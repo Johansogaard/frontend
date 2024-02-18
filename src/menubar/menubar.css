@@ -1,0 +1,32 @@
+.menubar-container
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%; /* Ensure it spans the full width */
+    
+}
+.menu-items{
+    position: absolute;
+    right: 25%;
+    left: 25%;
+    text-align: center; /* This centers the text in the available space */
+   
+}
+.menu-item{
+    margin-right: 20px;
+    color: black;
+}
+.menu-item:last-child {
+    margin-right: 0;
+  }
+.menu-icons{
+    margin-right: 3%;
+}
+.menu-icon{
+    margin-right: 10px; /* Adds some space between the icons */
+    margin-left: 10px;
+}
+.coffee-icon{
+    margin-left: 3%;
+}
