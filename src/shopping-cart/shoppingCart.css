@@ -48,7 +48,7 @@
     width: 50px; /* Adjust based on your needs */
     height: auto; /* Maintain aspect ratio */
 }
-.no-list-style {
+.unsortList {
     list-style-type: none;
     padding: 0;
     margin: 0;
