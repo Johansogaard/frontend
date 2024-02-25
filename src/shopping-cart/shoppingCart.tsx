@@ -31,15 +31,25 @@ export function ShoppingCart() {
     };
 
 
-//Don't know how to reference methods yet, but should be ideal inside an ellipse on shopping cart Icon.
-    //For now placeholder
-    const calculateSubtotal = () => {
-
+    //Not sure if toFixed  with decimals is the right solution in terms of optimization, but does the job for now.
+    const calculateTotal = () => {
         return items.reduce((total, item) => total + item.quantity * item.price, 0).toFixed(2);
     };
-    const calculatetotalItems = () => {
-        return items.reduce((total, item) => total + item.quantity, 0).toFixed(2);
+
+    const calculateSubTotal = () => {
+        return items.reduce((total, item) =>  item.quantity * item.price, 0).toFixed(2);
     };
+
+
+
+
+
+    //Don't know how to reference methods yet inside icons for react, but should be ideal inside an ellipse on shopping cart Icon.
+    //For now placeholder of total items.
+    const calculatetotalItems = () => {
+        return items.reduce((total, item) => total + item.quantity, 0).toFixed(0);
+    };
+
 
 
     return (
@@ -55,12 +65,19 @@ export function ShoppingCart() {
                 </ul>
             </div>
             <div className="subtotal">
-                <h2>Subtotal</h2>
-                <h3>{calculateSubtotal()} DKK</h3>
+                <h2>subTotal</h2>
+                <h3>{calculateSubTotal()} DKK</h3>
                 <div className="subtotal">
-                    <h2>Subtotal</h2>
-                    <h3>{calculatetotalItems()} Number of Items you have this awesome basket</h3>
+                    <h2>Total Items</h2>
+                    <h3>{calculatetotalItems()} Number of Items total. </h3>
             </div>
+            </div>
+            <div className="total">
+                <h2>Total</h2>
+                <h3>{calculateTotal()} DKK</h3>
+                <div className="total">
+
+                </div>
             </div>
         </div>
     );
