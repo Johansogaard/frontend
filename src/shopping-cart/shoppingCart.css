@@ -1,56 +1,93 @@
-.shopping-cart-container{
-    display: flex;
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-top: 100px;
-    justify-content: space-between;
-
+.shopping-cart-container {
+  display: flex;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 100px;
+  justify-content: space-between;
 }   
-.subtotal{
-    width: 30%;
-    height: 600px;
-    padding: 20px;
-    border-radius: 5px;
-    background-color: #E6E0D7;
-}
-.subtotal h2{
-    margin-top: 0;
+
+.subtotal {
+  width: 30%;
+  height: 600px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #E6E0D7;
 }
 
+.subtotal h2 {
+  margin-top: 0;
+  color: black; /* Sort tekst på h2*/
+}
+
+/* Generelle stilarter for subtotal og shopping cart */
+.subtotal p, .shopping-cart h2, .shopping-cart-container h3 {
+  color: black; /* Gør tekst sort for disse elementer */
+}
+
+/* Stilarter for shopping cart container og dens børneelementer */
 .shopping-cart {
-   
-    width: 50%;
-    max-height: 600px;
-    padding: 20px;
-
-    border-radius: 5px;
-    background-color: #E6E0D7;
-    overflow-y: auto;
-  }
-  .shopping-cart h2 {
-    margin-top: 0;
-    
-  }
-
-  .item-container {
-    display: flex; /* Enable Flexbox */
-    align-items: center; /* Center items vertically */
-    gap: 10px; /* Optional: adds space between the items */
+  width: 50%;
+  max-height: 600px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #E6E0D7;
+  overflow-y: auto;
 }
 
 .divider {
-    height: 1px;
-    background-color: black;
-    margin: 10px 0;
+  height: 1px;
+  background-color: black;
+  margin: 10px 0;
 }
 
+/* Produktbillede */
 .item-image {
-    width: 50px; /* Adjust based on your needs */
-    height: auto; /* Maintain aspect ratio */
+  width: 80px;
+  height: auto;
+  margin-right: 20px; /* Skabe mere plads til navnet på produkt */
 }
+
+.item-container {
+  display: flex;
+  align-items: center;
+  padding: 10px 0; /* Giver lidt mere plads over og under produktet */
+}
+
+.item-details {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.quantity-selector button, .quantity-selector span {
+  color: black;
+  min-width: 0;
+  flex-shrink: 0;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  padding: 5px 10px;
+  margin: 0 5px;
+  user-select: none;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Hover-effekter for knapper */
+.quantity-selector button:hover {
+  background-color: #f0f0f0;
+  border-color: #bbb;
+}
+
+/* Liste stilarter */
 .no-list-style {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
