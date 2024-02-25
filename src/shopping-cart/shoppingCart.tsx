@@ -23,10 +23,18 @@ export function ShoppingCart() {
     const handleShopQuantityComponent = (itemId: number, change: number) => {
         setItems(previousItems => previousItems.map(item => (
             item.id === itemId ? { ...item, quantity: Math.max(0, item.quantity + change) } : item
-        )));
+        )
+
+            )
+        );
+
     };
 
+
+//Don't know how to reference methods yet, but should be ideal inside an ellipse on shopping cart Icon.
+    //For now placeholder
     const calculateSubtotal = () => {
+
         return items.reduce((total, item) => total + item.quantity * item.price, 0).toFixed(2);
     };
     const calculatetotalItems = () => {
@@ -66,6 +74,7 @@ function shoppingCartItem(item: Item, handleShopQuantityComponent: (itemId: numb
                 <img src={itemPlaceholder} alt="item placeholder" className="item-image" />
                 <h3>{item.name}</h3>
                 <h3>{item.price} {item.currency}</h3>
+
                 <div className="quantity-Checker">
                     <button onClick={() => handleShopQuantityComponent(item.id, -1)} style={{ marginRight: '5px' }}>-</button>
                     <span style={{ margin: '0 5px' }}>{item.quantity}</span>
