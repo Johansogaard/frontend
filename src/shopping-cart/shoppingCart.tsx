@@ -65,12 +65,13 @@ export function ShoppingCart() {
                     <div key={item.id} className="item-subtotal">
                         <h3>{item.name} Subtotal: {calcItemSubTotal(item)} DKK</h3>
                     </div>
+
                     //This aligns the subtotal with the item.id and it's row
                 ))}
-                <h3>{calcSubTotal()} DKK</h3>
-                <div className="subtotal">
+
+                <div className="total">
                     <h2>Total Items</h2>
-                    <h3>{calctotalItems()} Total items. </h3>
+                    <h3>{calctotalItems()} </h3>
                     <h2>Total</h2>
                     <h3>{calcTotal()} DKK</h3>
                 </div>
