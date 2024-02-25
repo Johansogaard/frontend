@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import './shoppingCart.css';
 import itemPlaceholder from '../assets/placeholderItem.svg';
 
@@ -33,9 +33,9 @@ export function ShoppingCart() {
         return items.reduce((total, item) => total + item.quantity * item.price, 0).toFixed(2);
     };
 
-    const calcSubTotal = () => {
+   /* const calcSubTotal = () => {
         return items.reduce((total, item) =>  item.quantity * item.price, 0).toFixed(2);
-    };
+    };*/
 
     const calcItemSubTotal = (item: Item) => {
         return (item.quantity * item.price).toFixed(2);
@@ -54,7 +54,7 @@ export function ShoppingCart() {
                 <ul id="cart-items" className="unsortList">
                     {items.map((item) => (
                         <li key={item.id}>
-                            {shoppingCartItem(item, handleShopQuantityComponent, calcItemSubTotal)}
+                            {shoppingCartItem(item, handleShopQuantityComponent)}
                         </li>
                     ))}
                 </ul>
@@ -80,7 +80,7 @@ export function ShoppingCart() {
     );
 }
 
-function shoppingCartItem(item: Item, handleShopQuantityComponent: (itemId: number, change: number) => void, calcItemSubTotal: (item: Item) => string) {
+function shoppingCartItem(item: Item, handleShopQuantityComponent: (itemId: number, change: number) => void) {
     return (
         <section>
             <div className="divider"></div>
