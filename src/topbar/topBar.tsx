@@ -1,4 +1,4 @@
-import React from 'react';
+//import React from 'react';
 import './topBar.css';
 import instagram from '../assets/instagram.svg'
 import youtube from '../assets/youtube.svg'

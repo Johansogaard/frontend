@@ -1,4 +1,4 @@
-import React from 'react';
+//import React from 'react';
 import './menubar.css';
 import search from '../assets/search.svg'
 import basket from '../assets/basket.svg'
