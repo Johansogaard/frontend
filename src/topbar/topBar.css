@@ -4,6 +4,7 @@
     
     width: 100%; /* Ensure it spans the full width */
     background-color:  #E6E0D7;
+    height: 22.5%;
 }
   
   .social-icons {
@@ -23,7 +24,7 @@
 }
   
   .shipping-info {
-   
+   font-size: 0.7rem;
   position: absolute;
     right: 25%;
     left: 25%;
