@@ -37,10 +37,14 @@ export function ShoppingCart() {
         return items.reduce((total, item) =>  item.quantity * item.price, 0).toFixed(2);
     };*/
 
+    const removeItem = (itemId: number) => {
+        setItems(items.filter(item => item.id !== itemId));
+      };
+      
     const calcItemSubTotal = (item: Item) => {
         return (item.quantity * item.price).toFixed(2);
     };
-
+  
     //Don't know how to reference methods yet inside icons for react, but should be ideal inside an ellipse on shopping cart Icon.
     //For now placeholder of total items.
     const calctotalItems = () => {
@@ -54,7 +58,7 @@ export function ShoppingCart() {
                 <ul id="cart-items" className="unsortList">
                     {items.map((item) => (
                         <li key={item.id}>
-                            {shoppingCartItem(item, handleShopQuantityComponent)}
+                            {shoppingCartItem(item, handleShopQuantityComponent,removeItem)}
                         </li>
                     ))}
                 </ul>
@@ -80,20 +84,28 @@ export function ShoppingCart() {
     );
 }
 
-function shoppingCartItem(item: Item, handleShopQuantityComponent: (itemId: number, change: number) => void) {
+function shoppingCartItem(item: Item, 
+    handleShopQuantityComponent: (itemId: number, change: number) => void,
+    removeItem: (itemId: number) => void
+    ) {
     return (
         <section>
             <div className="divider"></div>
             <div className="item-container">
                 <img src={itemPlaceholder} alt="item placeholder" className="item-image" />
-                <h3>{item.name}</h3>
-                <h3>{item.price} {item.currency}</h3>
-
+                <p>{item.name}</p>
+                <p>{item.price} {item.currency}</p>
+                
+                
                 <div className="quantity-Checker">
                     <button onClick={() => handleShopQuantityComponent(item.id, -1)} style={{ marginRight: '5px' }}>-</button>
                     <span style={{ margin: '0 5px' }}>{item.quantity}</span>
                     <button onClick={() => handleShopQuantityComponent(item.id, 1)} style={{ marginLeft: '5px' }}>+</button>
                 </div>
+                <p onClick={() => removeItem(item.id)} style={{ cursor: 'pointer' }}>
+                remove
+                </p>
+
             </div>
         </section>
     );
