@@ -3,8 +3,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%; /* Ensure it spans the full width */
-    
+    width: 94%; /* Ensure it spans the full width */
+    margin-left: 3%;
+    margin-right: 3%;
+
 }
 .menu-items{
     position: absolute;
@@ -20,13 +22,8 @@
 .menu-item:last-child {
     margin-right: 0;
   }
-.menu-icons{
-    margin-right: 3%;
-}
+
 .menu-icon{
     margin-right: 10px; /* Adds some space between the icons */
     margin-left: 10px;
-}
-.coffee-icon{
-    margin-left: 3%;
 }

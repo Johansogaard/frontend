@@ -1,0 +1,127 @@
+[
+  {
+    "id": "Porcelain-Bowl",
+    "name": "Porcelain-bowl, Royal-Copenhagen",
+    "price": 116,
+    "currency": "DKK",
+    "rebateQuantity": 3,
+    "rebatePercent": 10,
+    "upsellProductId": null
+  },
+  {
+    "id": "ceramic-plate-set",
+    "name": "Ceramic plate set, 4 pcs",
+    "price": 150,
+    "currency": "DKK",
+    "rebateQuantity": 2,
+    "rebatePercent": 25,
+    "upsellProductId": "ceramic-plate-set-deluxe"
+  },
+  {
+    "id": "ceramic-plate-set-deluxe",
+    "name": "Ceramic plate set deluxe, 4 pcs",
+    "price": 175,
+    "currency": "DKK",
+    "rebateQuantity": 3,
+    "rebatePercent": 10,
+    "upsellProductId": null
+  },
+  {
+    "id": "glass-water-jug",
+    "name": "Glass water jug, 1.5L",
+    "price": 69,
+    "currency": "DKK",
+    "rebateQuantity": 5,
+    "rebatePercent": 10,
+    "upsellProductId": null
+  },
+  {
+    "id": "ceramic-mug",
+    "name": "Ceramic coffee mug",
+    "price": 145,
+    "currency": "DKK",
+    "rebateQuantity": 0,
+    "rebatePercent": 0,
+    "upsellProductId": "ceramic-mug-large"
+  },
+  {
+    "id": "ceramic-mug-large",
+    "name": "Large ceramic coffee mug",
+    "price": 320,
+    "currency": "DKK",
+    "rebateQuantity": 0,
+    "rebatePercent": 0,
+    "upsellProductId": null
+  },
+  {
+    "id": "decorative-vase",
+    "name": "Decorative glass vase",
+    "price": 200,
+    "currency": "DKK",
+    "rebateQuantity": 0,
+    "rebatePercent": 0,
+    "upsellProductId": "decorative-vase-large"
+  },
+  {
+    "id": "decorative-vase-large",
+    "name": "Large decorative glass vase",
+    "price": 350,
+    "currency": "DKK",
+    "rebateQuantity": 0,
+    "rebatePercent": 0,
+    "upsellProductId": null
+  },
+  {
+    "id": "serving-tray",
+    "name": "Wooden serving tray",
+    "price": 75,
+    "currency": "DKK",
+    "rebateQuantity": 0,
+    "rebatePercent": 0,
+    "upsellProductId": "serving-tray-large"
+  },
+  {
+    "id": "serving-tray-large",
+    "name": "Large wooden serving tray",
+    "price": 150,
+    "currency": "DKK",
+    "rebateQuantity": 0,
+    "rebatePercent": 0,
+    "upsellProductId": null
+  },
+  {
+    "id": "tablecloth-cotton",
+    "name": "Cotton tablecloth",
+    "price": 100,
+    "currency": "DKK",
+    "rebateQuantity": 2,
+    "rebatePercent": 10,
+    "upsellProductId": "tablecloth-linen"
+  },
+  {
+    "id": "tablecloth-linen",
+    "name": "Linen tablecloth",
+    "price": 150,
+    "currency": "DKK",
+    "rebateQuantity": 2,
+    "rebatePercent": 10,
+    "upsellProductId": "tablecloth-silk"
+  },
+  {
+    "id": "tablecloth-silk",
+    "name": "Silk tablecloth",
+    "price": 250,
+    "currency": "DKK",
+    "rebateQuantity": 2,
+    "rebatePercent": 10,
+    "upsellProductId": null
+  },
+  {
+    "id": "candle-holder",
+    "name": "Candle holder",
+    "price": 150,
+    "currency": "DKK",
+    "rebateQuantity": 2,
+    "rebatePercent": 10
+  }
+]
