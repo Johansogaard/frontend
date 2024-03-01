@@ -1,49 +1,46 @@
-.shopping-cart-container{
-    display: flex;
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-top: 100px;
-    justify-content: space-between;
-
+.shopping-cart-container {
+  display: flex;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 100px;
+  justify-content: space-between;
 }   
-.subtotal{
-    width: 30%;
-    height: 600px;
-    padding: 20px;
-    border-radius: 5px;
-    background-color: #E6E0D7;
-}
-.subtotal h2{
-    margin-top: 0;
+
+.subtotal {
+  width: 30%;
+  height: 600px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #E6E0D7;
 }
 
+.subtotal h2 {
+  margin-top: 0;
+  color: black; /* Sort tekst på h2*/
+}
+
+/* Generelle stilarter for subtotal og shopping cart */
+.subtotal p, .shopping-cart h2, .shopping-cart-container h3 {
+  color: black; /* Gør tekst sort for disse elementer */
+}
+
+/* Stilarter for shopping cart container og dens børneelementer */
 .shopping-cart {
-   
-    width: 50%;
-    max-height: 600px;
-    padding: 20px;
-
-    border-radius: 5px;
-    background-color: #E6E0D7;
-    overflow-y: auto;
-  }
-  .shopping-cart h2 {
-    margin-top: 0;
-    
-  }
-
-  .item-container {
-    display: flex; /* Enable Flexbox */
-    align-items: center; /* Center items vertically */
-    gap: 10px; /* Optional: adds space between the items */
+  width: 50%;
+  max-height: 600px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #E6E0D7;
+  overflow-y: auto;
 }
 
 .divider {
-    height: 1px;
-    background-color: black;
-    margin: 10px 0;
+  height: 1px;
+  background-color: black;
+  margin: 10px 0;
 }
 
+/* Produktbillede */
 .item-image {
     width: 50px; /* Adjust based on your needs */
     height: auto; /* Maintain aspect ratio */
@@ -53,4 +50,20 @@
     padding: 0;
     margin: 0;
   }
+.quantity-Checker
+{
+ 
+  display: flex;
+  background-color: black;
+  justify-content: space-between;
   
+}
+.item-container {
+  display: flex;
+  justify-content: space-between;
+}
+.quantity-numb
+{
+  background-color: black;
+  margin: 10px;
+}

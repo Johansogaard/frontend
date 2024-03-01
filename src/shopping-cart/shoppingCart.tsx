@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import  { useEffect, useState } from 'react';
 import './shoppingCart.css';
 import itemPlaceholder from '../assets/placeholderItem.svg';
 
@@ -14,7 +14,7 @@ interface Item {
 // Sample items
 const initialItems: Item[] = [
     { id: 1, name: "Royal Copenhagen", currency: "DKK", quantity: 2, price: 1.99, clicks: 0 },
-    { id: 2, name: "Banana", currency: "DKK", quantity: 3, price: 2.99, clicks: 0 },
+    { id: 2, name: "tablecloth-silk", currency: "DKK", quantity: 3, price: 250, clicks: 0 },
 ];
 
 export function ShoppingCart() {
@@ -62,7 +62,14 @@ export function ShoppingCart() {
                         </li>
                     ))}
                 </ul>
+
+                        
+                    
+                        <ZipForm />
+                    
+                    
             </div>
+            
             <div className="subtotal">
                 <h2>Check out basket</h2>
                 {items.map((item) => (
@@ -98,9 +105,9 @@ function shoppingCartItem(item: Item,
                 
                 
                 <div className="quantity-Checker">
-                    <button onClick={() => handleShopQuantityComponent(item.id, -1)} style={{ marginRight: '5px' }}>-</button>
-                    <span style={{ margin: '0 5px' }}>{item.quantity}</span>
-                    <button onClick={() => handleShopQuantityComponent(item.id, 1)} style={{ marginLeft: '5px' }}>+</button>
+                    <button onClick={() => handleShopQuantityComponent(item.id, -1)} >-</button>
+                    <p >{item.quantity}</p>
+                    <button onClick={() => handleShopQuantityComponent(item.id, 1)}>+</button>
                 </div>
                 <p onClick={() => removeItem(item.id)} style={{ cursor: 'pointer' }}>
                 remove
@@ -110,3 +117,71 @@ function shoppingCartItem(item: Item,
         </section>
     );
 }
+
+function ZipForm(){
+    
+    type PostalCodeData = {
+        nr: string;
+        navn: string;
+      };
+const [postalCode, setPostalCode] = useState('');
+const [postalCodes, setPostalCodes] = useState<PostalCodeData[]>([]);    
+const [message, setMessage] = useState('');
+    const [city, setCity] = useState('');
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch('https://api.dataforsyningen.dk/postnumre');
+            const data = await response.json();
+            setPostalCodes(data);
+        };
+        fetchData();
+    }, []);
+
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const value = event.target.value;
+        setPostalCode(value);
+
+        if (value.length === 4) {
+            const postalCodeData = postalCodes.find((item: { nr: string; navn: string }) => item.nr === value);
+            if (postalCodeData) {
+                setMessage('');
+                setCity(postalCodeData.navn);
+            } else {
+                setMessage('Postal code is not valid')
+                setCity('');
+            }
+        }
+    };
+    
+
+return(
+<div style={{ display: 'flex', justifyContent: 'space-between' }}>   
+     <form>
+        <input
+            type="text"
+            name="postalCode"
+            placeholder='Postal Code'
+            value={postalCode}
+            onChange={handleChange}
+        />
+        {message && <p style = {{color: 'red'}}>{message}</p>}
+    </form>
+
+    <form>
+        <input
+            type="text"
+            name="City"
+            placeholder="City"
+            value={city}
+            readOnly
+            />
+    </form>
+    </div>
+);
+}
+
+export default ZipForm;
+
+

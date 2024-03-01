@@ -29,5 +29,6 @@
     right: 25%;
     left: 25%;
     text-align: center; /* This centers the text in the available space */
+    color: black; /* Changes text color to black in the top-bar*/
   }
  
