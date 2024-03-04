@@ -28,21 +28,26 @@ export function ShoppingCart() {
             )
         );
     };
-    //Not sure if toFixed  with decimals is the right solution in terms of optimization, but does the job for now.
-    const calcTotal = () => {
-        return items.reduce((total, item) => total + item.quantity * item.price, 0).toFixed(2);
-    };
 
-   /* const calcSubTotal = () => {
-        return items.reduce((total, item) =>  item.quantity * item.price, 0).toFixed(2);
-    };*/
+    const calcTotal = () => {
+        return items.reduce((total, item) => total + parseFloat(calcItemSubTotalWithDiscount(item)), 0).toFixed(2);
+    };
 
     const removeItem = (itemId: number) => {
         setItems(items.filter(item => item.id !== itemId));
       };
-      
-    const calcItemSubTotal = (item: Item) => {
-        return (item.quantity * item.price).toFixed(2);
+
+    const calcItemSubTotalWithDiscount = (item: Item) => {
+        const discountprice = item.quantity >= 5 ? item.price * 0.8 : item.price;
+        //20% discount HER!!
+        return (item.quantity * discountprice).toFixed(2);
+    };
+
+    const calcItemSubTotal = (itemId: number) => {
+        const item = items.find((item) => item.id === itemId);
+        if (item) {
+            return calcItemSubTotalWithDiscount(item);
+        }
     };
   
     //Don't know how to reference methods yet inside icons for react, but should be ideal inside an ellipse on shopping cart Icon.
@@ -50,7 +55,6 @@ export function ShoppingCart() {
     const calctotalItems = () => {
         return items.reduce((total, item) => total + item.quantity, 0).toFixed(0);
     };
-
     return (
         <div className="shopping-cart-container">
             <div className="shopping-cart">
@@ -74,7 +78,7 @@ export function ShoppingCart() {
                 <h2>Check out basket</h2>
                 {items.map((item) => (
                     <div key={item.id} className="item-subtotal">
-                        <h3>{item.name} Subtotal: {calcItemSubTotal(item)} DKK</h3>
+                        <h3>{item.name} Subtotal: {calcItemSubTotal(item.id)} DKK</h3>
                     </div>
 
                     //This aligns the subtotal with the item.id and it's row
