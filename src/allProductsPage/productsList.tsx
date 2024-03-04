@@ -8,7 +8,7 @@ const ProductsList: React.FC = () => {
     useEffect(() => {
       const fetchProducts = async () => {
         try {
-          const response = await fetch('http://localhost:3000/products/'); // Update with your actual API endpoint
+          const response = await fetch('http://localhost:3000/products'); // Update with your actual API endpoint
           if (!response.ok) {
             throw new Error('Products could not be fetched');
           }
