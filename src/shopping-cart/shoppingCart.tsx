@@ -29,6 +29,14 @@ export function ShoppingCart() {
         );
     };
 
+    const numberOfItemsfordiscount = 5;
+    const remainingItemsForDiscount = (itemId: number) => {
+        const item = items.find((item) => item.id === itemId);
+        if (item && item.quantity < numberOfItemsfordiscount) {
+            return `Buy only ${numberOfItemsfordiscount - item.quantity} more ${item.name} to get a 20% discount!`;
+        } // if you got enough items for that item, it's applied. (Visual text change)
+        return '20% Discount Applied!';
+    };
     const calcTotal = () => {
         return items.reduce((total, item) => total + parseFloat(calcItemSubTotalWithDiscount(item)), 0).toFixed(2);
     };
@@ -39,7 +47,7 @@ export function ShoppingCart() {
 
     const calcItemSubTotalWithDiscount = (item: Item) => {
         const discountprice = item.quantity >= 5 ? item.price * 0.8 : item.price;
-        //20% discount HER!!
+        //20%  math calc discount HERE!!
         return (item.quantity * discountprice).toFixed(2);
     };
 
@@ -79,9 +87,10 @@ export function ShoppingCart() {
                 {items.map((item) => (
                     <div key={item.id} className="item-subtotal">
                         <h3>{item.name} Subtotal: {calcItemSubTotal(item.id)} DKK</h3>
+                        <p>{remainingItemsForDiscount(item.id)}</p>
                     </div>
 
-                    //This aligns the subtotal with the item.id and it's row
+                    //This Div aligns the subtotal with the item.id and it's row
                 ))}
 
                 <div className="total">
