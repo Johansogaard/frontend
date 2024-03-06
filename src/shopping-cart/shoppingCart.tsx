@@ -75,8 +75,6 @@ export function ShoppingCart() {
                     ))}
                 </ul>
 
-                        
-                    
                         <ZipForm />
                     
                     
@@ -98,11 +96,16 @@ export function ShoppingCart() {
                     <h3>{calctotalItems()} </h3>
                     <h2>Total</h2>
                     <h3>{calcTotal()} DKK</h3>
+                    <div className="checkout-button-container">
+                    <button className="checkout-button">Køb</button>
+                    </div>
                 </div>
             </div>
         </div>
     );
 }
+
+
 
 function shoppingCartItem(item: Item, 
     handleShopQuantityComponent: (itemId: number, change: number) => void,
