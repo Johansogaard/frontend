@@ -1,18 +1,23 @@
+// import React from 'react';
 import './App.css'
-import Route from './components/Route';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './landingPage/landingPage';
 import { ShoppingCart } from "./shopping-cart/shoppingCart";
+import Checkout from './Checkout';
 import {Topbar} from './topbar/topBar';
 import {Menubar} from './menubar/menubar';
 
 const App = () => {
   return (
-    <>
+    <Router>
       <Topbar />
       <Menubar />
-      <Route path="/" component={() => <Home />} />
-      <Route path="/cart" component={() => <ShoppingCart />} />
-    </>
+        <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/cart" element={<ShoppingCart />} />
+        <Route path="/checkout" element={<Checkout />} />
+      </Routes>
+    </Router>
   );
 };
 

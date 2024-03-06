@@ -1,6 +1,8 @@
 import  { useEffect, useState } from 'react';
 import './shoppingCart.css';
 import itemPlaceholder from '../assets/placeholderItem.svg';
+import { useNavigate } from 'react-router-dom';
+import React from 'react';
 
 interface Item {
     id: number;
@@ -19,12 +21,16 @@ const initialItems: Item[] = [
 
 export function ShoppingCart() {
     const [items, setItems] = useState<Item[]>(initialItems);
+    const navigate = useNavigate();
+    
+    const handleCheckout = () => {
+        navigate('/checkout'); // Stien til checkout-siden
+      };
 
     const handleShopQuantityComponent = (itemId: number, change: number) => {
         setItems(previousItems => previousItems.map(item => (
             item.id === itemId ? { ...item, quantity: Math.max(0, item.quantity + change) } : item
         )
-
             )
         );
     };
@@ -57,7 +63,7 @@ export function ShoppingCart() {
             return calcItemSubTotalWithDiscount(item);
         }
     };
-  
+
     //Don't know how to reference methods yet inside icons for react, but should be ideal inside an ellipse on shopping cart Icon.
     //For now placeholder of total items.
     const calctotalItems = () => {
@@ -76,8 +82,7 @@ export function ShoppingCart() {
                 </ul>
 
                         <ZipForm />
-                    
-                    
+                     
             </div>
             
             <div className="subtotal">
@@ -87,7 +92,6 @@ export function ShoppingCart() {
                         <h3>{item.name} Subtotal: {calcItemSubTotal(item.id)} DKK</h3>
                         <p>{remainingItemsForDiscount(item.id)}</p>
                     </div>
-
                     //This Div aligns the subtotal with the item.id and it's row
                 ))}
 
@@ -97,7 +101,7 @@ export function ShoppingCart() {
                     <h2>Total</h2>
                     <h3>{calcTotal()} DKK</h3>
                     <div className="checkout-button-container">
-                    <button className="checkout-button">Køb</button>
+                    <button className="checkout-button" onClick={handleCheckout}>Køb</button>
                     </div>
                 </div>
             </div>
@@ -198,6 +202,4 @@ return(
 );
 }
 
-export default ZipForm;
-
-
+export default ZipForm; 
