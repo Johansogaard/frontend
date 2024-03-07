@@ -1,0 +1,18 @@
+.checkout-page {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 20px; /* Dette skaber afstand mellem kolonner */
+  }
+  
+  .checkout-form,
+  .order-summary {
+    width: 48%; /* Justering for at give plads til margin/padding */
+    background-color: #888; 
+    padding: 20px;
+    border-radius: 8px;
+    height: auto; /*sikrer at højden tilpasses indholdet på siden*/
+    min-width: 500px; /* Minimumshøjde, udover den er auto korrigeret*/
+  }
+  
+  
