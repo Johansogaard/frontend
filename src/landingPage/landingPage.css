@@ -1,0 +1,26 @@
+.gallery{
+    width: 94%;
+    box-sizing: border-box;
+    background-color: black;
+    height: 550px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.spacer-landingpage{
+    height: 39px;
+}
+
+.scrollableContent {
+    height: 90vh; /* Adjust this value as needed */
+    overflow-y: auto;
+  }
+
+.products-landingpage{
+    width: 94%;
+    height: 550px;
+    box-sizing: border-box;
+    background-color: cyan;
+    margin-left: auto;
+    margin-right: auto;
+}

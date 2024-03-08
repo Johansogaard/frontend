@@ -1,11 +1,14 @@
 .menubar-container
 {
+    position: sticky;
+    top: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 94%; /* Ensure it spans the full width */
+    width: 94%;
     margin-left: 3%;
     margin-right: 3%;
+    z-index: 1;
 
 }
 .menu-items{
@@ -26,4 +29,16 @@
 .menu-icon{
     margin-right: 10px; /* Adds some space between the icons */
     margin-left: 10px;
+}
+
+body {
+    margin-top: 2.9rem;
+}
+
+.menubar-container.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #E6E0D7;
+    z-index: 1;
 }

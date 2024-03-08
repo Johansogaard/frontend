@@ -1,10 +1,23 @@
 import React from 'react';
+import './landingPage.css';
 
 const LandingPage: React.FC = () => {
   return (
-    <div>
-      <h1>Landing Page</h1>
+        <div className='scrollableContent'>
+
+    <div className='gallery'>
+      {}
+      
     </div>
+<div className='spacer-landingpage'>
+    {}
+    
+    </div>
+      <div className='products-landingpage'>
+      </div>
+    </div>
+
+  
   );
 };
 
