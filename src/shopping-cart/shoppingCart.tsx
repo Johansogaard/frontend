@@ -1,3 +1,4 @@
+
 import  { useEffect, useState } from 'react';
 import './shoppingCart.css';
 import itemPlaceholder from '../assets/placeholderItem.svg';
@@ -64,7 +65,32 @@ export function ShoppingCart() {
         return items.reduce((total, item) => total + item.quantity, 0).toFixed(0);
     };
     return (
+
+
         <div className="shopping-cart-container">
+            
+
+            <div className='delivery'>
+            <h2>Contact Information</h2>
+            <form>
+                <input type="email" name="email" placeholder="Email" required />
+                <h2>Delivery</h2>
+                <select id="country" name="country" required>
+                    <option value="dk">Denmark</option>
+                </select>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <input type="text" name="firstName" placeholder='First name' className='small-input'  />
+                        <input type="text" name="lastName" placeholder='Last name' className='small-input'/>
+                    </div>
+                    <input type="text" name="company" placeholder='Company (optional)' />
+                    <input type="text" name="address" placeholder='Address' />
+                    <ZipForm />
+                    <input type="tel" name="phone" placeholder='Phone number' />
+
+                </form>
+
+                </div>
+
             <div className="shopping-cart">
                 <h2>Shopping Cart</h2>
                 <ul id="cart-items" className="unsortList">
@@ -77,7 +103,6 @@ export function ShoppingCart() {
 
                         
                     
-                        <ZipForm />
                     
                     
             </div>
@@ -171,30 +196,31 @@ const [message, setMessage] = useState('');
 
 return(
 <div style={{ display: 'flex', justifyContent: 'space-between' }}>   
-     <form>
         <input
             type="text"
             name="postalCode"
             placeholder='Postal Code'
             value={postalCode}
             onChange={handleChange}
+            className='small-input'
         />
         {message && <p style = {{color: 'red'}}>{message}</p>}
-    </form>
 
-    <form>
         <input
             type="text"
             name="City"
             placeholder="City"
             value={city}
             readOnly
+            className='small-input'
             />
-    </form>
     </div>
 );
 }
 
+
+
 export default ZipForm;
+
 
 
