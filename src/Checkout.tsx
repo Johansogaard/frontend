@@ -8,15 +8,13 @@ const Checkout = () => {
         <div className="input-group">
           <label htmlFor="email">Email</label>
           <input
-              type="email"
-              id="email"
-              placeholder="Indtast din email"
+              type="email" id="email" placeholder="Indtast din email" /* Check for om det er en korrekt email */
             />
+          <label htmlFor="subscribe">Send mails til mig om nyheder og tilbud</label>
           <input
               type="checkbox"
               id="subscribe"
-            />
-          <label htmlFor="subscribe">Send mails til mig om nyheder og tilbud</label>
+              />
         </div>
         <h2>Levering</h2>
         <div className="input-group"> 
@@ -33,7 +31,22 @@ const Checkout = () => {
           <label htmlFor="lastname">Efternavn</label>
           <input type="text" id="lastname" />
         </div>
-        {/* Add more input fieds here */}
+        <div className="input-group">
+          <label htmlFor="address">Adresse</label>
+          <input type="text" id="address" />
+        </div>
+        <div className="input-group">
+          <label htmlFor="zipcode">Postnummer</label>
+          <input type="text" id="zipcode" />
+        </div>
+        <div className="input-group">
+          <label htmlFor="city">By</label>
+          <input type="text" id="city" />
+        </div>
+        <div className="input-group">
+          <label htmlFor="tel">Telefonnummer</label>
+          <input type="text" id="number" pattern='/d{8}' title='Telefon nummer skal være 8 cifre' required /> {/* Check for korrekt tlf nummer */}
+        </div>
       </div>
       <div className="order-summary">
         <h2>Din ordre</h2>

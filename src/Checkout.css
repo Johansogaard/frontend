@@ -18,7 +18,7 @@
 /*Sørger for de 2 containere deler samme stil*/
 .checkout-left,
 .order-summary {
-  background-color: #8a755c;
+  background-color: #928f89;
   padding: 20px;
   border-radius: 8px;
   width: 48%; /* Afstanden mellem de 2 columns */
@@ -38,8 +38,10 @@
   width: 60%;
   padding: 10px;
   margin-bottom: 10px; /* Afstand under input-felter */
+  background-color: rgb(202, 199, 191);
+  color: rgb(0, 0, 0);
   border: 1px solid #ccc;
-  border-radius: 4px; /* Afrundede hjørner */
+  border-radius: 4px; /* Giver afrundede hjørner */
 }
 
 .input-group input[type="checkbox"] {
