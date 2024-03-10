@@ -3,7 +3,7 @@ import  { useEffect, useState } from 'react';
 import './shoppingCart.css';
 import itemPlaceholder from '../assets/placeholderItem.svg';
 
-interface Item {
+export interface Item {
     id: number;
     name: string;
     currency: string;
