@@ -38,8 +38,20 @@ export function ShoppingCart() {
         } // if you got enough items for that item, it's applied. (Visual text change)
         return '20% Discount Applied!';
     };
+    
+
     const calcTotal = () => {
-        return items.reduce((total, item) => total + parseFloat(calcItemSubTotalWithDiscount(item)), 0).toFixed(2);
+        const total = items.reduce((total, item) => total + parseFloat(calcItemSubTotalWithDiscount(item)), 0);
+        const discountThreshold = 300;
+        const discountPercentage = 0.1; // 10% discount
+    
+        if (total > discountThreshold) {
+            // Apply discount
+            const discountedTotal = total * (1 - discountPercentage);
+            return discountedTotal.toFixed(2);
+        } else {
+            return total.toFixed(2);
+        }
     };
 
     const removeItem = (itemId: number) => {
