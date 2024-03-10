@@ -58,6 +58,45 @@ export function ShoppingCart() {
             return calcItemSubTotalWithDiscount(item);
         }
     };
+        //Email validering
+    const [email, setEmail] = useState('');
+    const [isEmailValid, setIsEmailValid] = useState(true); 
+
+    const validateEmail = (email: string) => {
+        var re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    };
+
+    const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const email = event.target.value;
+        console.log('Email changed:', email); 
+        setEmail(email);
+        setIsEmailValid(validateEmail(email));
+    };
+
+    //Telefon nummer validering
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(true);
+
+    const handlePhoneNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const phone = event.target.value;
+    
+    const isValid = /^\d{8}$/.test(phone);
+        setPhoneNumber(phone);
+        setIsPhoneNumberValid(isValid);
+    };    
+
+    // VAT nummer validering
+    const [vatNumber, setVatNumber] = useState('');
+    const [isVatNumberValid, setIsVatNumberValid] = useState(true);
+
+    const handleVatNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const vat = event.target.value;
+        // Tjekker om VAT-nummeret kun indeholder tal og er 8 cifre langt
+    const isValid = /^\d{8}$/.test(vat);
+        setVatNumber(vat);
+        setIsVatNumberValid(isValid);
+  };
   
     //Don't know how to reference methods yet inside icons for react, but should be ideal inside an ellipse on shopping cart Icon.
     //For now placeholder of total items.
@@ -68,12 +107,14 @@ export function ShoppingCart() {
 
 
         <div className="shopping-cart-container">
-            
-
             <div className='delivery'>
             <h2>Contact Information</h2>
             <form>
-                <input type="email" name="email" placeholder="Email" required />
+                <input 
+                type="email" name="email" placeholder="Indtast din Email" required  value={email} onChange={handleEmailChange}
+                style={{ borderColor: isEmailValid ? 'green' : 'red' }} // Visuel feedback med grænsefarve rød eller grøn når det er korrekt/forkert
+                />
+                {!isEmailValid && <p style={{ color: 'red' }}>Emailen er ikke gyldig.</p>} 
                 <h2>Delivery</h2>
                 <select id="country" name="country" required>
                     <option value="dk">Denmark</option>
@@ -82,15 +123,38 @@ export function ShoppingCart() {
                         <input type="text" name="firstName" placeholder='First name' className='small-input'  />
                         <input type="text" name="lastName" placeholder='Last name' className='small-input'/>
                     </div>
-                    <input type="text" name="company" placeholder='Company (optional)' />
-                    <input type="text" name="address" placeholder='Address' />
+                    {
+                    // Tjekker at det er et 8 cifre langt, som er krav for VAT nummeret.
+                    }
+                    <input type="text" name="company" placeholder='Company VAT number' value={vatNumber} onChange={handleVatNumberChange} 
+                    style={{ borderColor: isVatNumberValid ? 'green' : 'red' }} maxLength={8} required/>
+                    <input type="text" name="address" placeholder='Address' 
+                    onKeyPress={(event) => {
+                        if (!/[0-9]/.test(event.key)) {
+                          event.preventDefault();
+                        }
+                      }}/>
+                    {!isVatNumberValid && <p style={{ color: 'red' }}>VAT-nummeret skal være 8 cifre langt.</p>} 
+ 
                     <ZipForm />
-                    <input type="tel" name="phone" placeholder='Phone number' />
 
+                    {
+                    // Tjekker at det er et telefonnummer. Ved at sikre det er præcis 8 cifre, og ingen af disse cifre kan være bogstaver.
+                    }
+                    <input type="tel" 
+                    name="phone"  placeholder='Phone number' value={phoneNumber} onChange={handlePhoneNumberChange} 
+                    style={{ borderColor: isPhoneNumberValid ? 'green' : 'red' }} required
+                    onKeyPress={(event) => {
+                        if (!/[0-9]/.test(event.key)) {
+                          event.preventDefault();
+                        }
+                      }}
+                      maxLength={8}
+                    /> 
+                    {!isPhoneNumberValid && <p style={{ color: 'red' }}>Telefonnummeret er forkert.</p>}
                 </form>
 
                 </div>
-
             <div className="shopping-cart">
                 <h2>Shopping Cart</h2>
                 <ul id="cart-items" className="unsortList">
@@ -101,8 +165,6 @@ export function ShoppingCart() {
                     ))}
                 </ul>
 
-                        
-                    
                     
                     
             </div>
