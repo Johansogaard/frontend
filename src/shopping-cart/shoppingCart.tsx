@@ -130,7 +130,7 @@ export function ShoppingCart() {
 }
 
 function shoppingCartItem(item: Item, 
-    handleShopQuantityComponent: (itemId: number, change: number) => void,
+    handleShopQuantityComponent: (itemId, change: number) => void,
     removeItem: (itemId: number) => void
     ) {
     return (
