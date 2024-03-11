@@ -16,6 +16,7 @@ interface Item {
 const initialItems: Item[] = [
     { id: 1, name: "Royal Copenhagen", currency: "DKK", quantity: 2, price: 1.99, clicks: 0 },
     { id: 2, name: "tablecloth-silk", currency: "DKK", quantity: 3, price: 250, clicks: 0 },
+    { id: 3, name: "Luxury Tablecloth", currency: "DKK", quantity: 1, price: 399, clicks: 0 }, // hardcoded upSell item
 ];
 
 export function ShoppingCart() {
@@ -70,6 +71,11 @@ export function ShoppingCart() {
             return calcItemSubTotalWithDiscount(item);
         }
     };
+
+    const findMoreExpensiveProduct = (item: Item) => {
+        const moreExpensiveItem = items.find(i => i.price > item.price);
+        return moreExpensiveItem;
+    };
   
     //Don't know how to reference methods yet inside icons for react, but should be ideal inside an ellipse on shopping cart Icon.
     //For now placeholder of total items.
@@ -109,14 +115,16 @@ export function ShoppingCart() {
                     {items.map((item) => (
                         <li key={item.id}>
                             {shoppingCartItem(item, handleShopQuantityComponent,removeItem)}
-                        </li>
+                        </li>                        
                     ))}
                 </ul>
 
-                        
-                    
-                    
-                    
+                {items.map((item) => (
+                    item.id === 3 && (
+        <           li key={item.id}>
+                         {shoppingCartItem(item, handleShopQuantityComponent, removeItem)}
+                     </li>
+                    )))}
             </div>
             
             <div className="subtotal">
@@ -137,7 +145,7 @@ export function ShoppingCart() {
                     <h3>{parseFloat(calcTotal()) > 300 ? '10% Discount Applied!' : `Add ${(300 - parseFloat(calcTotal())).toFixed(2)} more to get a 10% discount`}</h3>
                     <h3>{calcTotal()} DKK</h3>
                 </div>
-            </div>
+            </div>s
         </div>
     );
 }
