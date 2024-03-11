@@ -31,6 +31,9 @@
   color: black; /* Gør tekst sort for disse elementer */
 }
 
+.quantity-Checker p {
+  color: white;
+}
 /* Stilarter for shopping cart container og dens børneelementer */
 .shopping-cart {
   width: 90%;

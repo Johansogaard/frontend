@@ -3,12 +3,12 @@ import './shoppingCart.css'
 import itemPlaceholder from '../assets/placeholderItem.svg'
 
 export interface Item {
-    id: number;
-    name: string;
-    currency: string;
-    quantity: number;
-    price: number;
-    clicks: number; // Click Counter
+  id: number
+  name: string
+  currency: string
+  quantity: number
+  price: number
+  clicks: number // Click Counter
 }
 
 // Sample items
@@ -48,8 +48,12 @@ export function ShoppingCart() {
         item.id === itemId
           ? { ...item, quantity: Math.max(0, item.quantity + change) }
           : item,
-      ),
+      ).filter((item) => item.quantity > 0),
     )
+  }
+
+  if (items.length === 0) {
+    return <p>Your shopping cart is empty.</p>
   }
 
   const numberOfItemsfordiscount = 5
