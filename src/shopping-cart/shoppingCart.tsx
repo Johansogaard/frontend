@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react'
 import './shoppingCart.css'
 import itemPlaceholder from '../assets/placeholderItem.svg'
 
-interface Item {
-  id: number
-  name: string
-  currency: string
-  quantity: number
-  price: number
-  clicks: number // Click Counter
+export interface Item {
+    id: number;
+    name: string;
+    currency: string;
+    quantity: number;
+    price: number;
+    clicks: number; // Click Counter
 }
 
 // Sample items
