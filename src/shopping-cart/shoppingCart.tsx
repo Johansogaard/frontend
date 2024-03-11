@@ -178,13 +178,14 @@ export function ShoppingCart() {
 // Tjekker at det er et 8 cifre langt, som er krav for VAT nummeret.
 }
         <input type="text" name="company" placeholder="Company VAT number (optional)" value={vatNumber} onChange={handleVatNumberChange} 
-          style={{ borderColor: isVatNumberValid ? 'green' : 'red' }} maxLength={8} required/>
-          <input type="text" name="address" placeholder="Address" 
+          style={{ borderColor: isVatNumberValid ? 'green' : 'red' }} maxLength={8} required
           onKeyPress={(event) => {
             if (!/[0-9]/.test(event.key)) {
               event.preventDefault();
             }
           }}/>
+          <input type="text" name="address" placeholder="Address" 
+        />
         {!isVatNumberValid && <p style={{ color: 'red' }}>VAT-nummeret skal være 8 cifre langt.</p>} 
 
           <ZipForm />
