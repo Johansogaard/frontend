@@ -6,6 +6,10 @@
   justify-content: center;
 }
 
+.upselling {
+  margin-bottom: 20px;
+}
+
 .subtotal {
   width: 90%;
   height: 600px;
@@ -50,11 +54,13 @@
   height: auto; /* Maintain aspect ratio */
 }
 .unsortList {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-.quantity-Checker {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 220px;
+  }
+.quantity-Checker
+{
+ 
   display: flex;
   background-color: black;
   justify-content: space-between;
