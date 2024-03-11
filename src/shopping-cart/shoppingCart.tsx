@@ -71,11 +71,6 @@ export function ShoppingCart() {
             return calcItemSubTotalWithDiscount(item);
         }
     };
-
-    const findMoreExpensiveProduct = (item: Item) => {
-        const moreExpensiveItem = items.find(i => i.price > item.price);
-        return moreExpensiveItem;
-    };
   
     //Don't know how to reference methods yet inside icons for react, but should be ideal inside an ellipse on shopping cart Icon.
     //For now placeholder of total items.
