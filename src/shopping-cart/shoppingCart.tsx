@@ -2,27 +2,40 @@
 import  { useEffect, useState } from 'react';
 import './shoppingCart.css';
 import itemPlaceholder from '../assets/placeholderItem.svg';
+import productsData from '/Users/mikkel/Desktop/4.Semester/FrontendProject/frontend/frontend/product.json'; // Importing product data
+
 
 interface Item {
-    id: number;
+    id: string;
     name: string;
     currency: string;
-    quantity: number;
+    quantity: number; // This property is missing in your current interface
     price: number;
-    clicks: number; // Click Counter
+    clicks: number; // Click Counter - Not present in JSON but inferred from your usage
+    rebateQuantity: number; // Present in JSON but missing in your current interface
+    rebatePercent: number; // Present in JSON but missing in your current interface
+    upsellProductId?: string | null; // Present in JSON but missing in your current interface
+    productCategory: string;
 }
 
 // Sample items
-const initialItems: Item[] = [
-    { id: 1, name: "Royal Copenhagen", currency: "DKK", quantity: 2, price: 1.99, clicks: 0 },
-    { id: 2, name: "tablecloth-silk", currency: "DKK", quantity: 3, price: 250, clicks: 0 },
-    { id: 3, name: "Luxury Tablecloth", currency: "DKK", quantity: 1, price: 399, clicks: 0 }, // hardcoded upSell item
-];
+
 
 export function ShoppingCart() {
-    const [items, setItems] = useState<Item[]>(initialItems);
+    const [items, setItems] = useState<Item[]>([]);
 
-    const handleShopQuantityComponent = (itemId: number, change: number) => {
+    useEffect(() => {
+        // Fetch product data from product.json
+        const fetchedItems: Item[] = productsData.map(item => ({
+            ...item,
+            quantity: 0, // Initialize quantity to 0
+            clicks: 0,   // Initialize clicks to 0
+            upsellProductId: item.upsellProductId,
+        })).slice(0, 2);
+        setItems(fetchedItems);
+    }, []);
+
+    const handleShopQuantityComponent = (itemId: string, change: number) => {
         setItems(previousItems => previousItems.map(item => (
             item.id === itemId ? { ...item, quantity: Math.max(0, item.quantity + change) } : item
         )
@@ -32,7 +45,7 @@ export function ShoppingCart() {
     };
 
     const numberOfItemsfordiscount = 5;
-    const remainingItemsForDiscount = (itemId: number) => {
+    const remainingItemsForDiscount = (itemId: string) => {
         const item = items.find((item) => item.id === itemId);
         if (item && item.quantity < numberOfItemsfordiscount) {
             return `Buy only ${numberOfItemsfordiscount - item.quantity} more ${item.name} to get a 20% discount!`;
@@ -55,7 +68,7 @@ export function ShoppingCart() {
         }
     };
 
-    const removeItem = (itemId: number) => {
+    const removeItem = (itemId: string) => {
         setItems(items.filter(item => item.id !== itemId));
       };
 
@@ -65,7 +78,7 @@ export function ShoppingCart() {
         return (item.quantity * discountprice).toFixed(2);
     };
 
-    const calcItemSubTotal = (itemId: number) => {
+    const calcItemSubTotal = (itemId: string) => {
         const item = items.find((item) => item.id === itemId);
         if (item) {
             return calcItemSubTotalWithDiscount(item);
@@ -108,23 +121,30 @@ export function ShoppingCart() {
                 <h2>Shopping Cart</h2>
                 <ul id="cart-items" className="unsortList">
                     {items.map((item) => (
-                        item.id != 3 && (
                         <li key={item.id}>
                             {shoppingCartItem(item, handleShopQuantityComponent,removeItem)}
                         </li>                        
-                    )))}
+                    ))}
                 </ul>
 
                 <div className="upselling">
-                    <p>
-                        Consider Luxury Tablecloth cloth for only 149 DKK Ekstra
-                    </p>
+                    
                     {items.map((item) => (
-                    item.id === 3 && (
-        <           li key={item.id}>
-                         {shoppingCartItem(item, handleShopQuantityComponent, removeItem)}
-                     </li>
-                    )))}
+                        // Check if upsellProductId exists and is not null
+                        item.upsellProductId && (
+                            <li key={item.id}>
+                                {/* Find the corresponding upsell item */}
+                                <p>
+                                    Consider Ceramic plate set deluxe for only 25 ekstra!
+                                </p>
+                                {shoppingCartItem(
+                                    productsData.find(product => product.id === item.upsellProductId) as Item, 
+                                    handleShopQuantityComponent, 
+                                    removeItem
+                                )}
+                            </li>
+                        )
+                    ))}
                 </div>
                 
             </div>
@@ -153,8 +173,8 @@ export function ShoppingCart() {
 }
 
 function shoppingCartItem(item: Item, 
-    handleShopQuantityComponent: (itemId: number, change: number) => void,
-    removeItem: (itemId: number) => void
+    handleShopQuantityComponent: (itemId: string, change: number) => void,
+    removeItem: (itemId: string) => void
     ) {
     return (
         <section>
