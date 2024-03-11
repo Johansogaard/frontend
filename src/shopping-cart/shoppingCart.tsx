@@ -113,18 +113,25 @@ export function ShoppingCart() {
                 <h2>Shopping Cart</h2>
                 <ul id="cart-items" className="unsortList">
                     {items.map((item) => (
+                        item.id != 3 && (
                         <li key={item.id}>
                             {shoppingCartItem(item, handleShopQuantityComponent,removeItem)}
                         </li>                        
-                    ))}
+                    )))}
                 </ul>
 
-                {items.map((item) => (
+                <div className="upselling">
+                    <p>
+                        Consider Luxury Tablecloth cloth for only 149 DKK Ekstra
+                    </p>
+                    {items.map((item) => (
                     item.id === 3 && (
         <           li key={item.id}>
                          {shoppingCartItem(item, handleShopQuantityComponent, removeItem)}
                      </li>
                     )))}
+                </div>
+                
             </div>
             
             <div className="subtotal">

@@ -5,7 +5,11 @@
   margin-right: 3%;
   margin-top: 100px;
   justify-content: center;
-}   
+}
+
+.upselling {
+  margin-bottom: 20px;
+}
 
 .subtotal {
   width: 90%;
@@ -52,7 +56,7 @@
 .unsortList {
     list-style-type: none;
     padding: 0;
-    margin: 0;
+    margin-bottom: 220px;
   }
 .quantity-Checker
 {
