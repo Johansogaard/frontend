@@ -4,12 +4,12 @@ import './shoppingCart.css'
 import itemPlaceholder from '../assets/placeholderItem.svg'
 
 export interface Item {
-    id: number;
-    name: string;
-    currency: string;
-    quantity: number;
-    price: number;
-    clicks: number; // Click Counter
+  id: number
+  name: string
+  currency: string
+  quantity: number
+  price: number
+  clicks: number // Click Counter
 }
 
 // Sample items
@@ -49,8 +49,12 @@ export function ShoppingCart() {
         item.id === itemId
           ? { ...item, quantity: Math.max(0, item.quantity + change) }
           : item,
-      ),
+      ).filter((item) => item.quantity > 0),
     )
+  }
+
+  if (items.length === 0) {
+    return <p>Your shopping cart is empty.</p>
   }
 
   const numberOfItemsfordiscount = 5
@@ -102,8 +106,8 @@ export function ShoppingCart() {
     return items.reduce((total, item) => total + item.quantity, 0).toFixed(0)
   }
   return (
-    <div className="shopping-cart-container">
-      <div className="delivery">
+    <main className="shopping-cart-container">
+      <section className="delivery">
         <h2>Contact Information</h2>
         <form>
           <input type="email" name="email" placeholder="Email" required />
@@ -131,8 +135,8 @@ export function ShoppingCart() {
           <input type="tel" name="phone" placeholder="Phone number" />
           <input type="text" name="Other billing address" placeholder="Other billing address" />
         </form>
-      </div>
-      <div className="shopping-cart">
+      </section>
+      <section className="shopping-cart">
         <h2>Shopping Cart</h2>
         <ul id="cart-items" className="unsortList">
           {items.map(
@@ -149,7 +153,7 @@ export function ShoppingCart() {
           )}
         </ul>
 
-        <div className="upselling">
+        <section className="upselling">
           <p>Consider Luxury Tablecloth cloth for only 149 DKK Ekstra</p>
           {items.map(
             (item) =>
@@ -163,9 +167,9 @@ export function ShoppingCart() {
                 </li>
               ),
           )}
-        </div>
-      </div>
-      <div className="subtotal">
+        </section>
+      </section>
+      <section className="subtotal">
         <h2>Check out basket</h2>
         {items.map((item) => (
           <div key={item.id} className="item-subtotal">
@@ -189,9 +193,8 @@ export function ShoppingCart() {
           </h3>
           <h3>{calcTotal()} DKK</h3>
         </div>
-      </div>
-      s
-    </div>
+      </section>
+    </main>
   )
 }
 
@@ -203,7 +206,7 @@ function shoppingCartItem(
   return (
     <section>
       <div className="divider"></div>
-      <div className="item-container">
+      <article className="item-container">
         <img
           src={itemPlaceholder}
           alt="item placeholder"
@@ -226,7 +229,7 @@ function shoppingCartItem(
         <p onClick={() => removeItem(item.id)} style={{ cursor: 'pointer' }}>
           remove
         </p>
-      </div>
+      </article>
     </section>
   )
 }
@@ -277,6 +280,7 @@ function ZipForm() {
         value={postalCode}
         onChange={handleChange}
         className="small-input"
+        maxLength={4}
       />
       {message && <p style={{ color: 'red' }}>{message}</p>}
 
