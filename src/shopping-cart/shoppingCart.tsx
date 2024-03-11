@@ -2,7 +2,7 @@
 import  { useEffect, useState } from 'react';
 import './shoppingCart.css';
 import itemPlaceholder from '../assets/placeholderItem.svg';
-import productsData from '/Users/mikkel/Desktop/4.Semester/FrontendProject/frontend/frontend/product.json'; // Importing product data
+import product from '/Users/mikkel/Desktop/4.Semester/FrontendProject/frontend/frontend/product.json'; // Importing product data
 
 
 interface Item {
@@ -59,7 +59,7 @@ export function ShoppingCart() {
         const discountThreshold = 300;
         const discountPercentage = 0.1; // 10% discount
     
-        if (total > discountThreshold) {
+        if (total >= discountThreshold) {
             // Apply discount
             const discountedTotal = total * (1 - discountPercentage);
             return discountedTotal.toFixed(2);
