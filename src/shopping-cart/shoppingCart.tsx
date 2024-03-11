@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import React from 'react';
 import './shoppingCart.css'
 import itemPlaceholder from '../assets/placeholderItem.svg'
 
@@ -201,6 +202,7 @@ export function ShoppingCart() {
          maxLength={8}
         /> 
        {!isPhoneNumberValid && <p style={{ color: 'red' }}>Telefonnummeret er forkert.</p>}
+          <input type="text" name="Other billing address" placeholder="Other billing address" />
         </form>
       </section>
       <section className="shopping-cart">
@@ -364,3 +366,6 @@ function ZipForm() {
 }
 
 export default ZipForm
+
+
+
