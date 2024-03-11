@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import React from 'react';
 import './shoppingCart.css'
 import itemPlaceholder from '../assets/placeholderItem.svg'
 
@@ -128,6 +129,7 @@ export function ShoppingCart() {
           <input type="text" name="address" placeholder="Address" />
           <ZipForm />
           <input type="tel" name="phone" placeholder="Phone number" />
+          <input type="text" name="Other billing address" placeholder="Other billing address" />
         </form>
       </div>
       <div className="shopping-cart">
@@ -291,3 +293,6 @@ function ZipForm() {
 }
 
 export default ZipForm
+
+
+
