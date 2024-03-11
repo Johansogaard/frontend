@@ -11,7 +11,7 @@ export function Menubar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
-    <div className="menubar-container">
+    <header className="menubar-container">
       <button
         className="menu-button"
         onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -24,7 +24,7 @@ export function Menubar() {
         <img src={cofee} alt="coffee" />
       </Link>
 
-      <div className={`menu-items ${isMenuOpen ? 'open' : ''}`}>
+      <nav className={`menu-items ${isMenuOpen ? 'open' : ''}`}>
         {isMenuOpen && (
           <button className="exit-button" onClick={() => setIsMenuOpen(false)}>
             X
@@ -45,17 +45,17 @@ export function Menubar() {
         <Link to="/all-products" className="menu-item">
           ALL PRODUCTS
         </Link>
-      </div>
+      </nav>
       <div className={`overlay ${isMenuOpen ? 'open' : ''}`}></div>
 
-      <div>
+      <nav>
         <Link to="#" target="_self" rel="noreferrer noopener">
           <img src={search} alt="Search icon" className="menu-icon" />
         </Link>
         <Link to="/cart" target="_self" rel="noreferrer noopener">
           <img src={basket} alt="basket icon" className="menu-icon" />
         </Link>
-      </div>
-    </div>
+      </nav>
+    </header>
   )
 }

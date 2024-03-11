@@ -101,8 +101,8 @@ export function ShoppingCart() {
     return items.reduce((total, item) => total + item.quantity, 0).toFixed(0)
   }
   return (
-    <div className="shopping-cart-container">
-      <div className="delivery">
+    <main className="shopping-cart-container">
+      <section className="delivery">
         <h2>Contact Information</h2>
         <form>
           <input type="email" name="email" placeholder="Email" required />
@@ -129,8 +129,8 @@ export function ShoppingCart() {
           <ZipForm />
           <input type="tel" name="phone" placeholder="Phone number" />
         </form>
-      </div>
-      <div className="shopping-cart">
+      </section>
+      <section className="shopping-cart">
         <h2>Shopping Cart</h2>
         <ul id="cart-items" className="unsortList">
           {items.map(
@@ -147,7 +147,7 @@ export function ShoppingCart() {
           )}
         </ul>
 
-        <div className="upselling">
+        <section className="upselling">
           <p>Consider Luxury Tablecloth cloth for only 149 DKK Ekstra</p>
           {items.map(
             (item) =>
@@ -161,9 +161,9 @@ export function ShoppingCart() {
                 </li>
               ),
           )}
-        </div>
-      </div>
-      <div className="subtotal">
+        </section>
+      </section>
+      <section className="subtotal">
         <h2>Check out basket</h2>
         {items.map((item) => (
           <div key={item.id} className="item-subtotal">
@@ -187,9 +187,8 @@ export function ShoppingCart() {
           </h3>
           <h3>{calcTotal()} DKK</h3>
         </div>
-      </div>
-      s
-    </div>
+      </section>
+    </main>
   )
 }
 
@@ -201,7 +200,7 @@ function shoppingCartItem(
   return (
     <section>
       <div className="divider"></div>
-      <div className="item-container">
+      <article className="item-container">
         <img
           src={itemPlaceholder}
           alt="item placeholder"
@@ -224,7 +223,7 @@ function shoppingCartItem(
         <p onClick={() => removeItem(item.id)} style={{ cursor: 'pointer' }}>
           remove
         </p>
-      </div>
+      </article>
     </section>
   )
 }
@@ -275,6 +274,7 @@ function ZipForm() {
         value={postalCode}
         onChange={handleChange}
         className="small-input"
+        maxLength={4}
       />
       {message && <p style={{ color: 'red' }}>{message}</p>}
 

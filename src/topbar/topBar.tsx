@@ -6,8 +6,8 @@ import tiktok from '../assets/tiktok.svg'
 
 export function Topbar() {
   return (
-    <div className="topbar-container">
-      <div className="social-icons">
+    <section className="topbar-container">
+      <aside className="social-icons">
         <a
           href="https://www.instagram.com/"
           target="_blank"
@@ -29,10 +29,10 @@ export function Topbar() {
         >
           <img src={tiktok} alt="Tiktok logo" className="social-icon" />
         </a>
-      </div>
-      <span className="shipping-info">
+      </aside>
+      <p className="shipping-info">
         Free shipping on all orders over 129 USD
-      </span>
-    </div>
+      </p>
+    </section>
   )
 }
