@@ -1,18 +1,17 @@
-
 .shopping-cart-container {
   display: flex;
   margin-left: 3%;
   margin-right: 3%;
   margin-top: 100px;
   justify-content: center;
-}   
+}
 
 .subtotal {
   width: 90%;
   height: 600px;
   padding: 20px;
   border-radius: 5px;
-  background-color: #E6E0D7;
+  background-color: #e6e0d7;
   margin-left: 10px;
 }
 
@@ -22,7 +21,9 @@
 }
 
 /* Generelle stilarter for subtotal og shopping cart */
-.subtotal p, .shopping-cart h2, .shopping-cart-container h3 {
+.subtotal p,
+.shopping-cart h2,
+.shopping-cart-container h3 {
   color: black; /* Gør tekst sort for disse elementer */
 }
 
@@ -32,10 +33,9 @@
   max-height: 600px;
   padding: 20px;
   border-radius: 5px;
-  background-color: #E6E0D7;
+  background-color: #e6e0d7;
   overflow-y: auto;
-  margin-left:10px;
-
+  margin-left: 10px;
 }
 
 .divider {
@@ -46,79 +46,74 @@
 
 /* Produktbillede */
 .item-image {
-    width: 50px; /* Adjust based on your needs */
-    height: auto; /* Maintain aspect ratio */
+  width: 50px; /* Adjust based on your needs */
+  height: auto; /* Maintain aspect ratio */
 }
 .unsortList {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-.quantity-Checker
-{
- 
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.quantity-Checker {
   display: flex;
   background-color: black;
   justify-content: space-between;
-  
 }
 .item-container {
   display: flex;
   justify-content: space-between;
-
 }
-.quantity-numb
-{
+.quantity-numb {
   background-color: black;
   margin: 10px;
 }
 
 @media (max-width: 980px) {
-
-
   .shopping-cart-container {
     flex-direction: column;
     align-items: center;
   }
 
-  .subtotal, .shopping-cart, .contact-info, .delivery{
+  .subtotal,
+  .shopping-cart,
+  .contact-info,
+  .delivery {
     width: 90%;
     margin-bottom: 20px;
     justify-content: center;
     margin-left: 0px;
-
   }
 }
 
-.delivery{
-
+.delivery {
   width: 90%;
   max-height: 600px;
   padding: 20px;
   border-radius: 5px;
-  background-color: #E6E0D7;
+  background-color: #e6e0d7;
   overflow-y: auto;
   color: black;
-  
 }
 
-
-
-form label, form select, form input {
+form label,
+form select,
+form input {
   display: block;
-  background-color: #ffffff; 
+  background-color: #ffffff;
   color: black;
   margin-bottom: 10px;
   height: 48px;
 }
-form input:not(.small-input), form select {
+form input:not(.small-input),
+form select {
   width: 100%;
   max-width: 520px;
   min-width: 50px;
 }
 
 @media (max-width: 581px) {
-  form input:not(.small-input), form select {
+  form input:not(.small-input),
+  form select {
     width: 100%;
   }
 }

@@ -1,34 +1,29 @@
-
 .topbar-container {
-    display: flex;
-    align-items: center;
-    
-    width: 94%; /* Ensure it spans the full width */
-    background-color:  #E6E0D7;
-    padding-left: 3%;
-    padding-right: 3%;
+  display: flex;
+  align-items: center;
+
+  width: 94%; /* Ensure it spans the full width */
+  background-color: #e6e0d7;
+  padding-left: 3%;
+  padding-right: 3%;
 }
-  
-  .social-icons {
- 
-    display: flex;
-    justify-content: space-between;
-        /* align-items: left; is not valid. If you want to align items to the start of the container, use justify-content: flex-start; */
-    justify-content: flex-start; /* Aligns social icons to the left */
-  }
-  
-  .social-icon {
-    margin-right: 10px; /* Adds some space between the icons */
-    margin-top: 4px;
-   
+
+.social-icons {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: left; is not valid. If you want to align items to the start of the container, use justify-content: flex-start; */
+  justify-content: flex-start; /* Aligns social icons to the left */
 }
-  
-  .shipping-info {
-   
+
+.social-icon {
+  margin-right: 10px; /* Adds some space between the icons */
+  margin-top: 4px;
+}
+
+.shipping-info {
   position: absolute;
-    right: 25%;
-    left: 25%;
-    text-align: center; /* This centers the text in the available space */
-    color: black; /* Changes text color to black in the top-bar*/
-  }
- 
+  right: 25%;
+  left: 25%;
+  text-align: center; /* This centers the text in the available space */
+  color: black; /* Changes text color to black in the top-bar*/
+}
