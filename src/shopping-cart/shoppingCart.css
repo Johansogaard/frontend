@@ -54,13 +54,11 @@
   height: auto; /* Maintain aspect ratio */
 }
 .unsortList {
-    list-style-type: none;
-    padding: 0;
-    margin-bottom: 220px;
-  }
-.quantity-Checker
-{
- 
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 220px;
+}
+.quantity-Checker {
   display: flex;
   background-color: black;
   justify-content: space-between;
