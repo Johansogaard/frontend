@@ -1,13 +1,9 @@
 import {useState} from 'react';
 import apiCaller from '../../customHooks/apiCaller';
-
+import { Item } from '../../models/Item';
 import { Product } from '../../models/Product';
 
-export interface Item {
 
-   product: Product;
-   quantity: number;
-}
 
 // Sample items
 
