@@ -29,6 +29,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
  
 
   const handleShopQuantityComponent = (itemId: number, change: number) => {
+    console.log('itemId to handle', itemId);
     setItems((prevItems) =>
       prevItems.map(item =>
         item.product.product_id === itemId ? { ...item, quantity: Math.max(0, item.quantity + change) } : item,

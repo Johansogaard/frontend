@@ -43,7 +43,7 @@ function ShoppingCartItem({item}: {item:Item}) {
             -
           </button>
           <p>{item.quantity}</p>
-          <button onClick={() => handleShopQuantityComponent(item.product.category_id, 1)}>
+          <button onClick={() => handleShopQuantityComponent(item.product.product_id, 1)}>
             +
           </button>
         </div>
