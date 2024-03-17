@@ -7,6 +7,10 @@ interface CartContextProps {
   items: Item[];
   handleShopQuantityComponent: (itemId: number, change: number) => void;
   removeItem: (itemId: number) => void;
+  calcItemSubTotal: (itemId: number) => string;
+  calcTotal: () => string;
+  remainingItemsForDiscount: (itemId: number) => string;
+  calcTotalItems: () => string;
 }
 
 const CartContext = createContext<CartContextProps | undefined>(undefined);
@@ -41,6 +45,47 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     setItems(prevItems => prevItems.filter(item => item.product.product_id !== itemId));
   };
 
+  const calcTotal = () => {
+    const total = items.reduce(
+      (total, item) => total + parseFloat(calcItemSubTotalWithDiscount(item)),
+      0,
+    )
+    const discountThreshold = 300
+    const discountPercentage = 0.1 // 10% discount
+
+    if (total > discountThreshold) {
+      // Apply discount
+      const discountedTotal = total * (1 - discountPercentage)
+      return discountedTotal.toFixed(2)
+    } else {
+      return total.toFixed(2)
+    }
+  }
+
+  const calcTotalItems = ():string => {
+    return items.reduce((total, item) => total + item.quantity, 0).toFixed(0)
+  }
+  const remainingItemsForDiscount = (itemId: number):string => {
+    const item = items.find((item) => item.product.product_id === itemId)
+    if (item?.product?.rebateQuantity && item.quantity < item.product.rebateQuantity) {
+      return `Buy only ${item.product.rebateQuantity - item.quantity} more ${item.product.product_name} to get a 20% discount!`
+    } // if you got enough items for that item, it's applied. (Visual text change)
+    return '20% Discount Applied!'
+  }
+  const calcItemSubTotalWithDiscount = (item: Item):string => {
+    const discountprice = item.quantity >= 5 ? item.product.product_price * 0.8 : item.product.product_price
+    //20%  math calc discount HERE!!
+    return (item.quantity * discountprice).toFixed(2)
+  }
+  const calcItemSubTotal = (itemId: number) => {
+    const item = items.find((item) => item.product.product_id === itemId)
+    if (item) {
+      return calcItemSubTotalWithDiscount(item)
+    }
+    return '0.00';
+    }
+
+  
   useEffect(() => {
     const fetchProducts = async () => {
       await fetchAllProducts();
@@ -56,8 +101,10 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     console.log('products', products);
   }, [products]);
 
+
+
   return (
-    <CartContext.Provider value={{ items, handleShopQuantityComponent, removeItem }}>
+    <CartContext.Provider value={{ items, handleShopQuantityComponent, removeItem,calcItemSubTotal,calcTotal,remainingItemsForDiscount,calcTotalItems}}>
       {children}
     </CartContext.Provider>
   );

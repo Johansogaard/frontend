@@ -3,7 +3,7 @@ import './shoppingCartPage.css'
 import {CartProvider } from './shoppingCart-Context/cartContext';
 import { ItemListComponent } from './shoppingCart-Components/ItemlistComponent';
 import { FormComponent } from './shoppingCart-Components/formComponent';
-
+import { TotalPriceComponent } from './shoppingCart-Components/totalPriceComponent';
 
 export function ShoppingCart() {
  
@@ -14,19 +14,6 @@ export function ShoppingCart() {
 
   
 
-  /*if (items.length === 0) {
-    return <p>Your shopping cart is empty.</p>
-  }*/
-
- // const numberOfItemsfordiscount = 5
-  
-
- //Email validering
-   
-
-
- //Telefon nummer validering
-
   return (
     <main className="shopping-cart-container">
       <CartProvider>
@@ -35,6 +22,9 @@ export function ShoppingCart() {
       </section>
       <section className="shopping-cart">
       <ItemListComponent />
+      </section>
+      <section className= "total">
+      <TotalPriceComponent />
       </section>
       </CartProvider>
     </main>

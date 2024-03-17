@@ -19,6 +19,8 @@
   margin-left: 10px;
 }
 
+
+
 .subtotal h2 {
   margin-top: 0;
   color: black; /* Sort tekst på h2*/
@@ -37,7 +39,7 @@
 /* Stilarter for shopping cart container og dens børneelementer */
 .shopping-cart {
   width: 90%;
-  max-height: 600px;
+
   padding: 20px;
   border-radius: 5px;
   background-color: #e6e0d7;
@@ -94,7 +96,7 @@
 
 .delivery {
   width: 90%;
-  max-height: 600px;
+
   padding: 20px;
   border-radius: 5px;
   background-color: #e6e0d7;
