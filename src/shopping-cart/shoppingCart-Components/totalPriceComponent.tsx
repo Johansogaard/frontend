@@ -5,6 +5,7 @@ import { useCart } from '../shoppingCart-Context/cartContext'
 
 export function TotalPriceComponent() {
 const { items, calcTotal, calcItemSubTotal,remainingItemsForDiscount,calcTotalItems } = useCart();
+console.log('TotalPriceComponent rendered')
 return(
 <section className="subtotal">
         <h2>Check out basket</h2>

@@ -1,7 +1,7 @@
 import './App.css'
 import Route from './components/Route'
 import Home from './landingPage/landingPage'
-import AllProductsPage from './allProductsPage/allProductsPage'
+import AllProductsPage from './productsPage/ProductsPage'
 import React from 'react'
 import { ShoppingCart } from './shopping-cart/shoppingCartPage'
 import { Topbar } from './topbar/topBar'

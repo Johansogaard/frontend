@@ -5,6 +5,7 @@ import {Item} from '../../models/Item'
 
 
 export function ItemListComponent(){
+  console.log('ItemListComponent rendered')
   const { items} = useCart();
   console.log(items);
   return(

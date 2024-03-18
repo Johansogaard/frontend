@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { formsManager } from '../shoppingCart-Hooks/formsManager'
 
 export function FormComponent() {
+  console.log('FormComponent rendered')
     const {email,phoneNumber,vatNumber,setEmail,setPhoneNumber,setVatNumber,isEmailValid,isPhoneNumberValid,isVatNumberValid } = formsManager();
     return (
         <section className="form">

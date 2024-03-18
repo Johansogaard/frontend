@@ -8,7 +8,7 @@ import { TotalPriceComponent } from './shoppingCart-Components/totalPriceCompone
 export function ShoppingCart() {
  
  
-
+console.log('ShoppingCart rendered')
     
 
 
