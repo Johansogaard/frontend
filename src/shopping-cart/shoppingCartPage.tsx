@@ -1,6 +1,6 @@
 
 import './shoppingCartPage.css'
-import {CartProvider } from './shoppingCart-Context/cartContext';
+
 import { ItemListComponent } from './shoppingCart-Components/ItemlistComponent';
 import { FormComponent } from './shoppingCart-Components/formComponent';
 import { TotalPriceComponent } from './shoppingCart-Components/totalPriceComponent';
@@ -16,7 +16,7 @@ console.log('ShoppingCart rendered')
 
   return (
     <main className="shopping-cart-container">
-      <CartProvider>
+      
       <section className="delivery">
         <FormComponent />
       </section>
@@ -26,7 +26,7 @@ console.log('ShoppingCart rendered')
       <section className= "total">
       <TotalPriceComponent />
       </section>
-      </CartProvider>
+  
     </main>
   )
 }

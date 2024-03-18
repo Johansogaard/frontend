@@ -1,6 +1,7 @@
 
 import { Product } from "../../models/Product";
 import { useProducts } from "../productsPage-Context/productsContext";
+import { useCart } from "../../shopping-cart/shoppingCart-Context/cartContext";
 
 
 function ProductListComponent() {
@@ -23,7 +24,7 @@ function ProductListComponent() {
   export default ProductListComponent;
 
   function ProductDisplay({product} : {product: Product}) {
-
+    const { addItem } = useCart();
     return (
       <article className="product-display">
         <img
@@ -34,7 +35,7 @@ function ProductListComponent() {
       <h3>{product.product_name}</h3>
       <p>{product.product_description}</p>
       <p>Price: {product.product_price} {product.product_currency}</p>
-      <button className = "add-to-cart-button">Add to cart</button>
+      <button className = "add-to-cart-button" onClick={() =>addItem(product)}>Add to cart</button>
       </article>
    
   );

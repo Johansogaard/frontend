@@ -1,16 +1,19 @@
 // CartContext.tsx
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { Item } from '../../models/Item';
-import apiCaller from '../../customHooks/apiCaller';
+
+import { Product } from '../../models/Product';
 
 interface CartContextProps {
   items: Item[];
   handleShopQuantityComponent: (itemId: number, change: number) => void;
+  addItem: (product: Product) => void;
   removeItem: (itemId: number) => void;
   calcItemSubTotal: (itemId: number) => string;
   calcTotal: () => string;
   remainingItemsForDiscount: (itemId: number) => string;
   calcTotalItems: () => string;
+  
 }
 
 const CartContext = createContext<CartContextProps | undefined>(undefined);
@@ -26,10 +29,28 @@ interface CartProviderProps {
 }
 
 export const CartProvider = ({ children }: CartProviderProps) => {
-  const { products, fetchAllProducts } = apiCaller();
-  const [items, setItems] = useState<Item[]>([]);
+  const [items, setItems] = useState<Item[]>(() => {
+    // Load cart items from localStorage or initialize to an empty array
+    const savedItems = localStorage.getItem('cartItems');
+    return savedItems ? JSON.parse(savedItems) : [];
+  });
 
-
+// Function to add items to the cart
+const addItem = (product: Product) => {
+  setItems((prevItems) => {
+    const itemIndex = prevItems.findIndex(item => item.product.product_id === product.product_id);
+    if (itemIndex > -1) {
+      // If the item already exists, update the quantity
+      const newItems = [...prevItems];
+      newItems[itemIndex] = { ...newItems[itemIndex], quantity: newItems[itemIndex].quantity + 1 };
+      return newItems;
+    } else {
+      // If the product is new, create a new item with the product and a quantity of 1
+      const newItem = { product: product, quantity: 1 };
+      return [...prevItems, newItem];
+    }
+  });
+};
  
 
   const handleShopQuantityComponent = (itemId: number, change: number) => {
@@ -86,25 +107,15 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     }
 
   
+  // Update localStorage when items change
   useEffect(() => {
-    const fetchProducts = async () => {
-      await fetchAllProducts();
-      // Additional logic after fetching products
-    };
-
-    fetchProducts();
-  }, []);
-  useEffect(() => {
-    if (products.length) {
-      setItems(products.map(product => ({ product, quantity: 1 })));
-    }
-    console.log('products', products);
-  }, [products]);
+    localStorage.setItem('cartItems', JSON.stringify(items));
+  }, [items]);
 
 
 
   return (
-    <CartContext.Provider value={{ items, handleShopQuantityComponent, removeItem,calcItemSubTotal,calcTotal,remainingItemsForDiscount,calcTotalItems}}>
+    <CartContext.Provider value={{ items, handleShopQuantityComponent, removeItem,calcItemSubTotal,calcTotal,remainingItemsForDiscount,calcTotalItems,addItem}}>
       {children}
     </CartContext.Provider>
   );
