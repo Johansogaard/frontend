@@ -5,7 +5,7 @@ import {useState,useEffect} from 'react';
 export function formsManager()
 {
 const [email, setEmail] = useState('');
-const [isEmailValid, setIsEmailValid] = useState(true); 
+const [isEmailValid, setIsEmailValid] = useState(false);
 const [phoneNumber, setPhoneNumber] = useState('');
 const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(true);
 const [vatNumber, setVatNumber] = useState('');
