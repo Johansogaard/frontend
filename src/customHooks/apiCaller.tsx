@@ -2,6 +2,7 @@ import {useState} from 'react';
 import { Product } from "../models/Product";
 
 
+
 function apiCaller() 
 {
     //const [product, setProduct] = useState<Product | null>(null);
@@ -10,6 +11,7 @@ function apiCaller()
   const [error, setError] = useState<string | null>(null);
 
     async function fetchAllProducts() {
+      console.log('fetchAllProducts called');
     setIsLoading(true);
     try {
       const response = await fetch('http://dtu62597.eduhost.dk:10131/products');
@@ -22,9 +24,30 @@ function apiCaller()
     } finally {
       setIsLoading(false);
     }
+    console.log('Api caller returns :',products);
+  };
+
+  async function fetchProductsByCategory(category : string) {
+    console.log('fetchProductsByCategory called with :',category);
+    //categories are DINNERWARE, DRINKWARE, SERVEWARE, TABLE, ACCESSORIES
+
+    setIsLoading(true);
+    try {
+      const response = await fetch('http://dtu62597.eduhost.dk:10131/products/'+category);
+      if (!response.ok) throw new Error('Could not fetch products.');
+      const data: Product[] = await response.json();
+      setProducts(data);
+    } catch (err:unknown) {
+        const message = (err as Error).message;
+        setError(message);
+    } finally {
+      setIsLoading(false);
+    }
+    console.log('Api caller returns :',products);
   };
 
 
-    return { products, isLoading, error, fetchAllProducts};
+
+    return { products, isLoading, error, fetchAllProducts, fetchProductsByCategory};
 }
 export default apiCaller;

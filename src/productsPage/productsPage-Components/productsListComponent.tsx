@@ -6,12 +6,12 @@ import { useCart } from "../../shopping-cart/shoppingCart-Context/cartContext";
 
 function ProductListComponent() {
     const { products} =useProducts();
-    console.log('products in productsList', products);
+    //console.log('products in productsList', products);
 
   
     return (
       <div className = "productListComponent" >
-        <h2>Product List</h2>
+
         <ul id="products" className="productList">
           {products.map((product) => (
           <ProductDisplay key={product.product_id} product={product} />
