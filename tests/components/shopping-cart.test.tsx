@@ -2,12 +2,13 @@ import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
 import { ShoppingCart} from '../../src/shopping-cart/shoppingCartPage'
+import { CartProvider } from '../../src/shopping-cart/shoppingCart-Context/cartContext'
 
 vi.mock('../assets/placeholderItem.svg', () => {})
 
 describe('ShoppingCart', () => {
   beforeEach(() => {
-    render(<ShoppingCart />)
+    render(<CartProvider><ShoppingCart /></CartProvider>)
   })
 
   afterEach(() => {
