@@ -1,9 +1,13 @@
-import { createContext, useContext, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useEffect, ReactNode,useState } from 'react';
 import apiCaller from '../../customHooks/apiCaller';
 import { Product } from '../../models/Product';
+import { Category } from '../../models/Category';
+
 
 interface ProductsContextProps{
  products: Product[];
+  setCategory: (category: Category) => void;
+  category: Category;
 }
 
 const ProductsContext = createContext<ProductsContextProps | undefined>(undefined);
@@ -21,20 +25,36 @@ interface ProductProviderProps {
 
 
 export const ProductProvider = ({ children }: ProductProviderProps) => {
-  const { products, fetchAllProducts } = apiCaller();
-  console.log('products in productProvider', products);
+  const { products, fetchAllProducts,fetchProductsByCategory } = apiCaller();
+  const [category, setCategory] = useState<Category>(Category.all);
+  
   useEffect(() => {
-    const fetchProducts = async () => {
+    console.log('useEffect ran', category);
+    const fetchCorrectProducts = async () => {
+      console.log('fetchCorrectProducts called', category);
+    if (category === Category.all) {
+      console.log('fetching all products');
       await fetchAllProducts();
-      // Additional logic after fetching products
+    }
+    else {
+      console.log('fetching category', category);
+      await fetchProductsByCategory(category);
+    }
     };
 
-    fetchProducts();
-  }, []);
+    console.log('DEBUG', products);
+    fetchCorrectProducts();
+
+      
+  }, [category]);
+  
+
+  
+
   
 
   return (
-    <ProductsContext.Provider value={{ products }}>
+    <ProductsContext.Provider value={{ products,setCategory,category }}>
       {children}
     </ProductsContext.Provider>
   );
