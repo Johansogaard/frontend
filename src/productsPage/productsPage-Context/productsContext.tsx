@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, ReactNode,useState } from 'react'
 import apiCaller from '../../customHooks/apiCaller';
 import { Product } from '../../models/Product';
 import { Category } from '../../models/Category';
-import { c } from 'vite/dist/node/types.d-AKzkD8vd';
+
 
 interface ProductsContextProps{
  products: Product[];
