@@ -1,24 +1,39 @@
 // import React from 'react';
 import './App.css'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './landingPage/landingPage';
-import { ShoppingCart } from "./shopping-cart/shoppingCart";
-import Checkout from './Checkout';
-import {Topbar} from './topbar/topBar';
-import {Menubar} from './menubar/menubar';
+import Route from './components/Route'
+import Home from './landingPage/landingPage'
+import {AllProductsPage} from './productsPage/AllProductsPage'
+import {DinnerwarePage} from './productsPage/DinnerwarePage'
+import {DrinkwarePage} from './productsPage/DrinkwarePage'
+import {ServewarePage} from './productsPage/ServewarePage'
+import {AccessoriesPage} from './productsPage/AccessoriesPage'
+import React from 'react'
+import { ShoppingCart } from './shopping-cart/shoppingCartPage'
+import { Topbar } from './topbar/topBar'
+import { Menubar } from './menubar/menubar'
+import { CartProvider } from './shopping-cart/shoppingCart-Context/cartContext'
+import { ProductProvider } from './productsPage/productsPage-Context/productsContext'
 
-const App = () => {
+const App: React.FC = () => {
   return (
-    <Router>
+    <>
+      <CartProvider>
+      
       <Topbar />
       <Menubar />
-        <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/cart" element={<ShoppingCart />} />
-        <Route path="/checkout" element={<Checkout />} />
-      </Routes>
-    </Router>
-  );
-};
+      
+      <Route path="/" component={() => <Home />} />
+      <Route path="/cart" component={() => <ShoppingCart />} />
+      <ProductProvider>
+      <Route path="/all-products" component={() => <AllProductsPage />} />
+      <Route path="/dinnerware" component={() => <DinnerwarePage  />} />
+      <Route path="/drinkware" component={() => <DrinkwarePage />} />
+      <Route path="/serveware" component={() => <ServewarePage />} />
+      <Route path="/table-accessories" component={() => <AccessoriesPage />} />
+      </ProductProvider>
+      </CartProvider>
+    </>
+  )
+}
 
-export default App;
+export default App

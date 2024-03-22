@@ -6,7 +6,8 @@
     "currency": "DKK",
     "rebateQuantity": 3,
     "rebatePercent": 10,
-    "upsellProductId": null
+    "upsellProductId": null,
+    "productCategory": "SERVEWARE"
   },
   {
     "id": "ceramic-plate-set",
@@ -15,7 +16,8 @@
     "currency": "DKK",
     "rebateQuantity": 2,
     "rebatePercent": 25,
-    "upsellProductId": "ceramic-plate-set-deluxe"
+    "upsellProductId": "ceramic-plate-set-deluxe",
+    "productCategory": "SERVEWARE"
   },
   {
     "id": "ceramic-plate-set-deluxe",
@@ -24,7 +26,8 @@
     "currency": "DKK",
     "rebateQuantity": 3,
     "rebatePercent": 10,
-    "upsellProductId": null
+    "upsellProductId": null,
+    "productCategory": "SERVEWARE"
   },
   {
     "id": "glass-water-jug",
@@ -33,7 +36,8 @@
     "currency": "DKK",
     "rebateQuantity": 5,
     "rebatePercent": 10,
-    "upsellProductId": null
+    "upsellProductId": null,
+    "productCategory": "DRINKWARE"
   },
   {
     "id": "ceramic-mug",
@@ -42,7 +46,8 @@
     "currency": "DKK",
     "rebateQuantity": 0,
     "rebatePercent": 0,
-    "upsellProductId": "ceramic-mug-large"
+    "upsellProductId": "ceramic-mug-large",
+    "productCategory": "DRINKWARE"
   },
   {
     "id": "ceramic-mug-large",
@@ -51,7 +56,8 @@
     "currency": "DKK",
     "rebateQuantity": 0,
     "rebatePercent": 0,
-    "upsellProductId": null
+    "upsellProductId": null,
+    "productCategory": "DRINKWARE"
   },
   {
     "id": "decorative-vase",
@@ -60,7 +66,8 @@
     "currency": "DKK",
     "rebateQuantity": 0,
     "rebatePercent": 0,
-    "upsellProductId": "decorative-vase-large"
+    "upsellProductId": "decorative-vase-large",
+    "productCategory": "ACCESSORIES"
   },
   {
     "id": "decorative-vase-large",
@@ -69,7 +76,8 @@
     "currency": "DKK",
     "rebateQuantity": 0,
     "rebatePercent": 0,
-    "upsellProductId": null
+    "upsellProductId": null,
+    "productCategory": "ACCESSORIES"
   },
   {
     "id": "serving-tray",
@@ -78,7 +86,8 @@
     "currency": "DKK",
     "rebateQuantity": 0,
     "rebatePercent": 0,
-    "upsellProductId": "serving-tray-large"
+    "upsellProductId": "serving-tray-large",
+    "productCategory": "SERVEWARE"
   },
   {
     "id": "serving-tray-large",
@@ -87,7 +96,8 @@
     "currency": "DKK",
     "rebateQuantity": 0,
     "rebatePercent": 0,
-    "upsellProductId": null
+    "upsellProductId": null,
+    "productCategory": "SERVEWARE"
   },
   {
     "id": "tablecloth-cotton",
@@ -96,7 +106,8 @@
     "currency": "DKK",
     "rebateQuantity": 2,
     "rebatePercent": 10,
-    "upsellProductId": "tablecloth-linen"
+    "upsellProductId": "tablecloth-linen",
+    "productCategory": "TABLE"
   },
   {
     "id": "tablecloth-linen",
@@ -105,7 +116,8 @@
     "currency": "DKK",
     "rebateQuantity": 2,
     "rebatePercent": 10,
-    "upsellProductId": "tablecloth-silk"
+    "upsellProductId": "tablecloth-silk",
+    "productCategory": "TABLE"
   },
   {
     "id": "tablecloth-silk",
@@ -114,7 +126,8 @@
     "currency": "DKK",
     "rebateQuantity": 2,
     "rebatePercent": 10,
-    "upsellProductId": null
+    "upsellProductId": null,
+    "productCategory": "TABLE"
   },
   {
     "id": "candle-holder",
@@ -122,6 +135,7 @@
     "price": 150,
     "currency": "DKK",
     "rebateQuantity": 2,
-    "rebatePercent": 10
+    "rebatePercent": 10,
+    "productCategory": "ACCESSORIES"
   }
 ]
