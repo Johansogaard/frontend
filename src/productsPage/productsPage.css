@@ -1,5 +1,21 @@
 /* ProductPage */
 
+.category-introduction {
+  max-width: 1200px; 
+  margin: 50px auto; /* Centrerer element og tilføjer margin på top og bund */
+  padding: 0 10px; /* Giver polstring inde i element */
+}
+
+.category-introduction h2 {
+  font-size: 28px; 
+  margin-bottom: 30px; 
+}
+
+.category-introduction p {
+  font-size: 18px;
+  color: #666; 
+}
+
 
 
 /* Each Components section*/
