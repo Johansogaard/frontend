@@ -2,8 +2,10 @@
 import './shoppingCartPage.css'
 
 import { ItemListComponent } from './shoppingCart-Components/ItemlistComponent';
-import { FormComponent } from './shoppingCart-Components/formComponent';
+
 import { TotalPriceComponent } from './shoppingCart-Components/totalPriceComponent';
+import { Menubar } from '../menubar/menubar';
+import { Topbar } from '../topbar/topBar';
 
 export function ShoppingCart() {
  
@@ -15,11 +17,11 @@ console.log('ShoppingCart rendered')
   
 
   return (
+    <>
+    <Topbar />
+    <Menubar />
     <main className="shopping-cart-container">
       
-      <section className="delivery">
-        <FormComponent />
-      </section>
       <section className="shopping-cart">
       <ItemListComponent />
       </section>
@@ -28,6 +30,7 @@ console.log('ShoppingCart rendered')
       </section>
   
     </main>
+    </>
   )
 }
 

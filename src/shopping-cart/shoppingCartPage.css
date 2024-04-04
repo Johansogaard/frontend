@@ -33,9 +33,7 @@
   color: black; /* Gør tekst sort for disse elementer */
 }
 
-.quantity-Checker p {
-  color: white;
-}
+
 /* Stilarter for shopping cart container og dens børneelementer */
 .shopping-cart {
   width: 90%;
@@ -53,28 +51,93 @@
   margin: 10px 0;
 }
 
-/* Produktbillede */
-.item-image {
-  width: 50px; /* Adjust based on your needs */
-  height: auto; /* Maintain aspect ratio */
-}
+
 .unsortList {
   list-style-type: none;
   padding: 0;
   margin-bottom: 220px;
 }
 .quantity-Checker {
-  display: flex;
-  background-color: black;
-  justify-content: space-between;
+  display: flex; /* Establishes a flex container */
+  justify-content: space-between; /* Spaces children with equal space between them */
+  align-items: center; /* Centers children vertically */
+  width: 100px; /* Specific width of the container */
+  height: 30px; /* Specific height of the container */
+  background-color: white; /* Container background color */
+  border-radius: 10px; /* Rounded corners for the container */
+  /*padding: 5px;  Padding inside the container */
+ /* box-sizing: border-box;  Ensures padding is included in the width/height */
+}
+
+.quantity-btn, .quantity-numb {
+  flex: 1; /* Each child will flex to take up equal space */
+  text-align: center; /* Center content horizontally */
+  background-color: transparent; /* Background color for buttons if needed */
+  border: none; /* Removes border for buttons */
+  cursor: pointer; /* Cursor changes to pointer to indicate a button */
+ /* margin: 0 5px;  Margin between elements */
+  /* padding: 10px 0; Padding for larger clickable area */
+}
+
+.quantity-numb {
+  margin: 0; /* No margin for the number to center it between buttons */
 }
 .item-container {
   display: flex;
   justify-content: space-between;
 }
-.quantity-numb {
-  background-color: black;
-  margin: 10px;
+
+/* Produktbillede */
+.item-image {
+
+  width: 100px; /* Adjust based on your needs */
+  height: auto; /* Maintains aspect ratio */
+  object-fit: cover; /* Ensures the image covers the area without distortion */
+  flex: none; /* Prevents the image from growing or shrinking */
+  margin-right: 20px; /* Adds some space between the image and the item info */
+}
+.item-info{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  flex: 1;
+}
+.item-info h1 {
+  font-size: 20px; /* Specific size for h1 */
+  margin: 0 0 10px 0; /* Removes default margin and adds some space below */
+}
+
+.item-info span {
+  font-size: 14px; /* Specific size for span */
+}
+.item-pricing
+{
+  align-items: right;
+  
+  
+  
+}
+.remove-btn{
+  background-color: transparent;
+  flex-grow: 0;
+  flex-shrink: 0; 
+  border: none;
+  cursor: pointer;
+  margin-left : 160px;
+  
+ 
+}
+.item-pricing-lineTwo{
+  display: flex;
+  
+  justify-content: space-between;
+  align-items: center;
+
+}
+.item-pricing-total
+{
+  display: flex;
+  justify-content: space-between;
 }
 
 @media (max-width: 980px) {

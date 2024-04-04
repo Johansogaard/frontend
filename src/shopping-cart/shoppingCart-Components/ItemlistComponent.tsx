@@ -1,23 +1,37 @@
 import { useCart } from '../shoppingCart-Context/cartContext'
 import {Item} from '../../models/Item'
-
-
-
+import Link from '../../components/Link'
+import deleteIcon from '../../assets/delete.svg'
 
 export function ItemListComponent(){
   console.log('ItemListComponent rendered')
   const { items} = useCart();
   console.log(items);
+
+  
   return(
     <>
     <h2>Shopping Cart</h2>
+    {items.length === 0 ? (
+      <>
+      <p>Cart is empty</p>
+      <button>
+        <Link to="/all-products" className="link">
+          Cuntinue shopping
+        </Link>
+      </button>
+   
+
+    
+  </>
+    
+    ) : (
 <ul id="cart-items" className="unsortList">
 {items.map((item) => (
           <ShoppingCartItem key={item.product.product_id} item={item} />
         ))}
 </ul>
-
-
+    )}
 </>
   )
 }
@@ -34,23 +48,36 @@ function ShoppingCartItem({item}: {item:Item}) {
           alt="item imager"
           className="item-image"
         />
-        <p>{item.product.product_name}</p>
+        <div className='item-info'>
+        <h1>{item.product.product_name}</h1>
+        <span>
+          {item.product.product_description}
+        </span>
+        </div>
+        
+        <div className="item-pricing">
+        <button className='remove-btn' onClick={() => removeItem(item.product.product_id)} style={{ cursor: 'pointer' }}>
+          <img src={deleteIcon} alt='delete' className='remove-image' />
+        </button> 
+        <div className='item-pricing-lineTwo'>
         <p>
-          {item.product.product_name} {item.product.product_price} {item.product.product_currency}
+          {item.product.product_price} pr item
         </p>
-
         <div className="quantity-Checker">
-          <button onClick={() => handleShopQuantityComponent(item.product.product_id, -1)}>
+          <button className='quantity-btn' onClick={() => handleShopQuantityComponent(item.product.product_id, -1)}>
             -
           </button>
-          <p>{item.quantity}</p>
-          <button onClick={() => handleShopQuantityComponent(item.product.product_id, 1)}>
+          <p className='quantity-numb'>{item.quantity}</p>
+          <button className='quantity-btn' onClick={() => handleShopQuantityComponent(item.product.product_id, 1)}>
             +
           </button>
+          </div>
         </div>
-        <p onClick={() => removeItem(item.product.product_id)} style={{ cursor: 'pointer' }}>
-          remove
-        </p>
+        <div className='item-pricing-total'>
+          <p>Price:</p>
+          <p>{item.product.product_price * item.quantity} DKK</p>
+          </div>
+        </div>
       </article>
     </section>
   )

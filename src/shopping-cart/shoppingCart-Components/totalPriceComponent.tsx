@@ -1,4 +1,5 @@
 import { useCart } from '../shoppingCart-Context/cartContext'
+import Link from '../../components/Link'
 
 
 
@@ -31,6 +32,13 @@ return(
           </h3>
           <h3>{calcTotal()} DKK</h3>
         </div>
+        <button className="checkout-button">
+        <Link to="/checkout" className="link">
+          Go to checkout
+        </Link>
+        </button>
       </section>
+      
+
       )
 }

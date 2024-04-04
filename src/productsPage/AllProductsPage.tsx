@@ -3,6 +3,8 @@ import ProductListComponent from './productsPage-Components/productsListComponen
 import { useProducts } from './productsPage-Context/productsContext'
 import { Category } from '../models/Category';
 import './productsPage.css'
+import { Menubar } from '../menubar/menubar';
+import { Topbar } from '../topbar/topBar';
 
 
 
@@ -14,7 +16,8 @@ export function AllProductsPage(){
   }, []);
   return (
    <> 
-    
+      <Topbar />
+      <Menubar />
       <h1>All Products</h1>
       <ProductListComponent />
   
