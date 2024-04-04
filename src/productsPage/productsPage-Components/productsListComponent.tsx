@@ -1,8 +1,7 @@
-
 import { Product } from "../../models/Product";
 import { useProducts } from "../productsPage-Context/productsContext";
 import { useCart } from "../../shopping-cart/shoppingCart-Context/cartContext";
-
+import { useState } from 'react';
 
 function ProductListComponent() {
     const { products} =useProducts();
@@ -25,6 +24,14 @@ function ProductListComponent() {
 
   function ProductDisplay({product} : {product: Product}) {
     const { addItem } = useCart();
+    const [buttonText, setButtonText] = useState('Add to cart'); // Gives a state to the button/text to change
+
+    const handleAddToCart = () => {
+      addItem(product); 
+      setButtonText('Item added to cart'); // Update button text
+      setTimeout(() => setButtonText('Add To Cart'), 2000); // Reset button after 2 sec.
+    }
+
     return (
       <article className="product-display">
         <img
@@ -35,7 +42,9 @@ function ProductListComponent() {
       <h3>{product.product_name}</h3>
       <p>{product.product_description}</p>
       <p>Price: {product.product_price} {product.product_currency}</p>
-      <button className = "add-to-cart-button" onClick={() =>addItem(product)}>Add to cart</button>
+      <button className="add-to-cart-button" onClick={handleAddToCart}>
+        {buttonText}
+      </button>
       </article>
    
   );
