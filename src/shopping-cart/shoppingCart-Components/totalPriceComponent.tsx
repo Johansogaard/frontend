@@ -9,7 +9,8 @@ const { items, calcTotal, calcItemSubTotal,remainingItemsForDiscount,calcTotalIt
 console.log('TotalPriceComponent rendered')
 return(
 <section className="subtotal">
-        <h2>Check out basket</h2>
+        <h2>{calcTotalItems()} products - {calcTotal()} DKK</h2>
+        <hr></hr>
         {items.map((item) => (
           <div key={item.product.product_id} className="item-subtotal">
             <h3>
@@ -21,7 +22,7 @@ return(
           //This Div aligns the subtotal with the item.id and it's row
         ))}
 
-        <div className="total">
+        <div className="subtotal-total">
           <h2>Total Items</h2>
           <h3>{calcTotalItems()} </h3>
           <h2>Total</h2>
@@ -30,7 +31,7 @@ return(
               ? '10% Discount Applied!'
               : `Add ${(300 - parseFloat(calcTotal())).toFixed(2)} more to get a 10% discount`}
           </h3>
-          <h3>{calcTotal()} DKK</h3>
+          
         </div>
         <button className="checkout-button">
         <Link to="/checkout" className="link">

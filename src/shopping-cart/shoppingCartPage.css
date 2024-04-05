@@ -1,8 +1,13 @@
+root{
+  margin-left: 0px;
+}
 .shopping-cart-container {
   display: flex;
+  
   margin-left: 3%;
   margin-right: 3%;
   margin-top: 50px;
+  margin-bottom: 100px;
   justify-content: center;
 }
 
@@ -10,15 +15,46 @@
   margin-bottom: 20px;
 }
 
-.subtotal {
-  width: 90%;
-  height: 600px;
-  padding: 20px;
-  border-radius: 5px;
-  background-color: #e6e0d7;
+.total {
+ 
+  width: 30%;
   margin-left: 10px;
-}
+  
 
+  
+}
+.subtotal{
+  width: 100%;
+  height: auto;
+  padding: 20px;
+ 
+  
+ 
+  border: 1px solid black;
+  background-color: #e6e0d7;
+  border-radius: 5px;
+  
+ 
+}
+.checkout-button{
+  width: 80%;
+  background-color: black;
+ 
+  color : black;
+  border-radius: 5px;
+ 
+  
+  cursor: pointer;
+
+}
+.checkout-button .link {
+  color: white; /* Ensures text color is black for the link */
+  text-decoration: none; /* Optional: Removes underline from the link */
+}
+.checkout-button:hover {
+  background-color: rgb(43, 41, 41); /* Change to whatever color you prefer */
+  border-color: rgb(43, 41, 41);
+}
 
 
 .subtotal h2 {
@@ -36,13 +72,13 @@
 
 /* Stilarter for shopping cart container og dens børneelementer */
 .shopping-cart {
-  width: 90%;
+  width: 55%;
 
   padding: 20px;
   border-radius: 5px;
   background-color: #e6e0d7;
-  overflow-y: auto;
-  margin-left: 10px;
+  
+ 
 }
 
 .divider {
@@ -85,6 +121,7 @@
 .item-container {
   display: flex;
   justify-content: space-between;
+  
 }
 
 /* Produktbillede */
@@ -145,15 +182,26 @@
     flex-direction: column;
     align-items: center;
   }
-
-  .subtotal,
-  .shopping-cart,
-  .contact-info,
-  .delivery {
+  .total
+  {
+    width: 90%;
+    margin-right: 50px;
+  }
+  .shopping-cart{
     width: 90%;
     margin-bottom: 20px;
-    justify-content: center;
-    margin-left: 0px;
+}
+
+  
+  .shopping-cart,
+  .contact-info,
+  .delivery
+  
+   {
+    width: 90%;
+    
+    
+ 
   }
 }
 
@@ -200,4 +248,14 @@ form select {
   .small-input {
     width: 100%;
   }
+}
+
+
+
+
+hr {
+  border: none;        /* Removes the default border */
+  height: 1px;         /* Sets the thickness of the line */
+  background-color: black; /* Sets the color of the line */
+  margin: 20px 0;      /* Adds top and bottom spacing */
 }
