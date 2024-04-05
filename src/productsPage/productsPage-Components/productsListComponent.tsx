@@ -25,11 +25,16 @@ function ProductListComponent() {
   function ProductDisplay({product} : {product: Product}) {
     const { addItem } = useCart();
     const [buttonText, setButtonText] = useState('Add to cart'); // Gives a state to the button/text to change
+    const [buttonColor, setButtonColor] = useState(''); // State to control button color
 
     const handleAddToCart = () => {
       addItem(product); 
       setButtonText('Item added to cart'); // Update button text
-      setTimeout(() => setButtonText('Add To Cart'), 2000); // Reset button after 2 sec.
+      setButtonColor('#D4D2D2'); // Change button color to grey
+      setTimeout(() => {
+        setButtonText('Add To Cart'); // Reset button text after 2 sec.
+        setButtonColor(''); // Reset button color after 2 sec.
+      }, 2000); 
     }
 
     return (
@@ -42,7 +47,7 @@ function ProductListComponent() {
       <h3>{product.product_name}</h3>
       <p>{product.product_description}</p>
       <p>Price: {product.product_price} {product.product_currency}</p>
-      <button className="add-to-cart-button" onClick={handleAddToCart}>
+      <button className="add-to-cart-button" onClick={handleAddToCart} style={{backgroundColor: buttonColor}}>
         {buttonText}
       </button>
       </article>
