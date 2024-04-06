@@ -36,6 +36,29 @@ root{
   
  
 }
+.item-subtotal{
+ 
+  
+  margin-bottom: 10px;
+}
+.item-subtotal-price{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.item-subtotal-discount{
+  display: flex;
+  justify-content: space-between;
+  align-items: left;
+}
+
+.subtotal-total{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  
+}
 .checkout-button{
   width: 80%;
   background-color: black;
