@@ -6,6 +6,7 @@
   padding-left: 3%;
   padding-right: 3%;
   background-color: #ececec;
+  position: relative; /* Added to support absolute positioning of the cart-counter */
 }
 .menu-items {
   position: absolute;
@@ -83,4 +84,22 @@
   .overlay.open {
     transform: translateX(0);
   }
+}
+.cart-counter {
+  position: absolute;
+  /* "right" and "top" is adjusted to move the counter closer to the cart icon */
+  right: 40px;
+  top: 1px; 
+}
+
+.cart-count {
+  background-color: #e6e0d7;
+  color: rgb(0, 0, 0);
+  border-radius: 50%; /* Makes a circle for the counter */
+  padding: 1px 5px; 
+  font-size: 12px; 
+  text-align: center;
+  display: inline-block; /* Allows elements to be side to side, without breaking breaking the line. 
+  Allows for the special placement of the cart counter */
+  border: 0.5px solid black
 }

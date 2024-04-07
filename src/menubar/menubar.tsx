@@ -6,9 +6,12 @@ import cofee from '../assets/coffee.svg'
 import Link from '../components/Link'
 import hamburger from '../assets/hamburger.svg'
 import { useState } from 'react'
+import { useCart } from '../shopping-cart/shoppingCart-Context/cartContext'; 
 
 export function Menubar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { calcTotalItems } = useCart(); // Use calcTotalItems from CartContext
+  const totalItems = calcTotalItems(); // Calcualte sum of products in cart
 
   return (
     <header className="menubar-container">
@@ -56,6 +59,12 @@ export function Menubar() {
           <img src={basket} alt="basket icon" className="menu-icon" />
         </Link>
       </nav>
+      {/* Counter of products in cart, can be seen at the cart icon */}
+      <div className="cart-counter">
+        {Number(totalItems) > 0 && (
+          <span className="cart-count">{totalItems}</span>
+        )}
+      </div>
     </header>
   )
 }
