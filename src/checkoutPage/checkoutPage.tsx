@@ -1,4 +1,4 @@
-import { FormComponent } from "../shopping-cart/shoppingCart-Components/formComponent"
+import { FormComponent } from "./checkoutPage-Components/formComponent"
 import { CheckoutMenuBar } from "./checkoutMenuBar/checkoutMenuBar"
 
 

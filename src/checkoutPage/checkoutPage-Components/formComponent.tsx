@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { formsManager } from '../shoppingCart-Hooks/formsManager'
+import { formsManager } from '../checkoutPage-Hooks/formsManager'
+import './formComponent.css'
 
 
 export function FormComponent() {
