@@ -5,7 +5,7 @@ import Link from '../../components/Link'
 
 
 export function TotalPriceComponent() {
-const { items, calcTotal, calcItemSubTotal,remainingItemsForDiscount,calcTotalItems } = useCart();
+const { items, calcTotal, calcItemSubTotal,remainingItemsForDiscount,calcTotalItems,calcTotalDiscount,calcTotalWithDiscount,calcDiscountForItem } = useCart();
 console.log('TotalPriceComponent rendered')
 return(
 <section className="subtotal">
@@ -20,16 +20,34 @@ return(
             <span>{calcItemSubTotal(item.product.product_id)}</span>
             </div>
             <div className='item-subtotal-discount'>
-            <span>{remainingItemsForDiscount(item.product.product_id)}</span>
+             {calcDiscountForItem(item) !== '0.00' &&
+
+              (remainingItemsForDiscount(item) !== '0' ? (
+            <span> add {remainingItemsForDiscount(item)} for {calcDiscountForItem(item)} DKK discount!</span>
+              ):     (
+                <span className='item-subtotal-discount-applied'> -{calcDiscountForItem(item)} DKK discount!</span>
+              )
+          
+          
+            )
+          
+          }
             </div>
           </div>
 
           //This Div aligns the subtotal with the item.id and it's row
         ))}
-
-        <div className="subtotal-total">
+         <div className="subtotal-total">
+          <span>Price</span>
+          <span>{calcTotal()}</span> 
+        </div>
+         <div className="subtotal-discount">
+          <span>Discount</span>
+          <span>-{calcTotalDiscount()}</span>
+         </div>
+        <div className="subtotal-total-withDiscount">
           <strong>Your total price</strong>
-          <strong>{calcTotal()}</strong> 
+          <strong>{calcTotalWithDiscount()}</strong> 
         
           
         </div>

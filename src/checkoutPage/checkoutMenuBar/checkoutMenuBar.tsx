@@ -1,17 +1,17 @@
 import Link from '../../components/Link'
 import cofee from '../../assets/coffee.svg'
 import navigateBack from '../../assets/navigate_before.svg'
+import './checkoutMenuBar.css'
 
 export function CheckoutMenuBar() {
     return (
-        <header className="Checkout-menubar-container">
+        <header className="checkout-menubar-container">
         <Link to="/cart">
         <img src={navigateBack} alt="back" />
         <h2>back</h2>
         </Link>
         <Link to="/">
         <img src={cofee} alt="coffee" />
-        <h1>Porcelain</h1>
         </Link>
         </header>
     )

@@ -11,8 +11,11 @@ interface CartContextProps {
   removeItem: (itemId: number) => void;
   calcItemSubTotal: (itemId: number) => string;
   calcTotal: () => string;
-  remainingItemsForDiscount: (itemId: number) => string;
+  remainingItemsForDiscount: (item:Item) => string;
   calcTotalItems: () => string;
+  calcTotalDiscount: () => string;
+  calcTotalWithDiscount: () => string;
+  calcDiscountForItem: (item: Item) => string;
   
 }
 
@@ -67,31 +70,67 @@ const addItem = (product: Product) => {
   };
 
   const calcTotal = () => {
-    const total = items.reduce(
-      (total, item) => total + parseFloat(calcItemSubTotalWithDiscount(item)),
-      0,
-    )
-    const discountThreshold = 300
-    const discountPercentage = 0.1 // 10% discount
+    let total =0;
 
-    if (total > discountThreshold) {
-      // Apply discount
-      const discountedTotal = total * (1 - discountPercentage)
-      return discountedTotal.toFixed(2)
-    } else {
-      return total.toFixed(2)
+    for (let item of items) {
+     total += item.product.product_price*item.quantity;
+
+    }
+
+    return total.toFixed(2);
+
+  }
+  const calcTotalWithDiscount= () => {
+    const totalMinusDiscount = parseFloat(calcTotal()) - parseFloat(calcTotalDiscount());
+    return totalMinusDiscount.toFixed(2);
+  }
+  //this method returns the total amount of discount for a order
+  const calcTotalDiscount = () => {
+    let totalDiscount =0;
+
+    for (let item of items) {
+      if(item.product.rebateQuantity)
+        {
+      if(item.quantity >= item.product.rebateQuantity){
+        totalDiscount += parseFloat(calcDiscountForItem(item));
+      }
+     
     }
   }
+    return totalDiscount.toFixed(2);
+  }
+  //This method returns the total amount of discount for a specific item and this is the way we calculate all discounts
+  //so if there is 10 % discount if you buy 5 items and the total is 100 this method returns 10 eventho you add more items you only
+  //get 10% discount for 5 items which is the way we give discounts
+ const calcDiscountForItem = (item: Item) => { 
+    let discount = 0;
+    if(item.product.rebateQuantity && item.product.rebatePercent)
+      {
+    discount = (item.product.product_price * item.product.rebateQuantity)/item.product.rebatePercent;
+      }
+    return discount.toFixed(2);
+  }
+
 
   const calcTotalItems = ():string => {
     return items.reduce((total, item) => total + item.quantity, 0).toFixed(0)
   }
-  const remainingItemsForDiscount = (itemId: number):string => {
-    const item = items.find((item) => item.product.product_id === itemId)
-    if (item?.product?.rebateQuantity && item.quantity < item.product.rebateQuantity) {
-      return `Buy only ${item.product.rebateQuantity - item.quantity} more ${item.product.product_name} to get a 20% discount!`
-    } // if you got enough items for that item, it's applied. (Visual text change)
-    return '20% Discount Applied!'
+  //returns the number of items remainging to get a discount 
+  const remainingItemsForDiscount = (item: Item):string => {
+    if(item.product.rebateQuantity)
+      {
+    if (item.product.rebateQuantity> item.quantity) {
+      return (item.product.rebateQuantity - item.quantity).toFixed(0)
+    }
+    else  
+    {
+      return '0';
+    }
+      }
+      else
+      {
+        return 'no discount available';
+      }
   }
   const calcItemSubTotalWithDiscount = (item: Item):string => {
     const discountprice = item.quantity >= 5 ? item.product.product_price * 0.8 : item.product.product_price
@@ -115,7 +154,11 @@ const addItem = (product: Product) => {
 
 
   return (
-    <CartContext.Provider value={{ items, handleShopQuantityComponent, removeItem,calcItemSubTotal,calcTotal,remainingItemsForDiscount,calcTotalItems,addItem}}>
+    <CartContext.Provider value={{ items, handleShopQuantityComponent, 
+    removeItem,calcItemSubTotal,calcTotal,remainingItemsForDiscount,calcTotalItems,addItem,  
+    calcTotalDiscount,
+    calcTotalWithDiscount,
+    calcDiscountForItem}}>
       {children}
     </CartContext.Provider>
   );
