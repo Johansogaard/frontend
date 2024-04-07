@@ -6,6 +6,11 @@
   background-color: #e6e0d7;
   padding-left: 3%;
   padding-right: 3%;
+
+  position: fixed; /* Locks topbar */
+  height: 31px; /* Sets height of topbar */
+  top: 0;
+  z-index: 1000; /* Ensure topbar stays at top*/
 }
 
 .social-icons {

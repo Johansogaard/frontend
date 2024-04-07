@@ -3,10 +3,14 @@
   align-items: center;
   justify-content: space-between;
   width: 94%; /* Ensure it spans the full width */
-  padding-left: 3%;
-  padding-right: 3%;
+  padding: 0% 3%;
   background-color: #ececec;
-  position: relative; /* Added to support absolute positioning of the cart-counter */
+
+  /*This is for locking in the topbar at the correct place*/
+  position: fixed; /* Locks menubar in place */
+  height: 52px; /* Set height of menubar */
+  top: 31px; /* Places the menubar right under topbar */
+  z-index: 999; 
 }
 .menu-items {
   position: absolute;
@@ -88,7 +92,7 @@
 .cart-counter {
   position: absolute;
   /* "right" and "top" is adjusted to move the counter closer to the cart icon */
-  right: 40px;
+  right: 38px;
   top: 1px; 
 }
 
