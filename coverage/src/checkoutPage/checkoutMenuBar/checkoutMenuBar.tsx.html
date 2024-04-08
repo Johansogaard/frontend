@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/productsPage/productsPage-Components/productsListComponent.tsx</title>
+    <title>Code coverage report for src/checkoutPage/checkoutMenuBar/checkoutMenuBar.tsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/productsPage/productsPage-Components</a> productsListComponent.tsx</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/checkoutPage/checkoutMenuBar</a> checkoutMenuBar.tsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/55</span>
+                <span class='fraction'>0/44</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/55</span>
+                <span class='fraction'>0/44</span>
             </div>
         
             
@@ -108,16 +108,7 @@
 <a name='L43'></a><a href='#L43'>43</a>
 <a name='L44'></a><a href='#L44'>44</a>
 <a name='L45'></a><a href='#L45'>45</a>
-<a name='L46'></a><a href='#L46'>46</a>
-<a name='L47'></a><a href='#L47'>47</a>
-<a name='L48'></a><a href='#L48'>48</a>
-<a name='L49'></a><a href='#L49'>49</a>
-<a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a>
-<a name='L52'></a><a href='#L52'>52</a>
-<a name='L53'></a><a href='#L53'>53</a>
-<a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L46'></a><a href='#L46'>46</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -161,71 +152,53 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span></span>
-<span class="cstat-no" title="statement not covered" >import { Product } from "../../models/Product";</span>
-<span class="cstat-no" title="statement not covered" >import { useProducts } from "../productsPage-Context/productsContext";</span>
-<span class="cstat-no" title="statement not covered" >import { useCart } from "../../shopping-cart/shoppingCart-Context/cartContext";</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import Link from '../../components/Link'</span></span></span>
+<span class="cstat-no" title="statement not covered" >import cofee from '../../assets/coffee.svg'</span>
+<span class="cstat-no" title="statement not covered" >import navigateBack from '../../assets/navigate_before.svg'</span>
+<span class="cstat-no" title="statement not covered" >import './checkoutMenuBar.css'</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >function ProductListComponent() {</span>
-<span class="cstat-no" title="statement not covered" >    const { products} =useProducts();</span>
-<span class="cstat-no" title="statement not covered" >    //console.log('products in productsList', products);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  </span>
+<span class="cstat-no" title="statement not covered" >export function CheckoutMenuBar() {</span>
 <span class="cstat-no" title="statement not covered" >    return (</span>
-<span class="cstat-no" title="statement not covered" >      &lt;div className = "productListComponent" &gt;</span>
-<span class="cstat-no" title="statement not covered" >        {products.length === 0 ? (</span>
-<span class="cstat-no" title="statement not covered" >         &lt;div&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;p&gt;No products found&lt;/p&gt;</span>
-<span class="cstat-no" title="statement not covered" >           &lt;p&gt;Because we do not have a personal backend server with a personal domain, we cannot provide a CA certificate. For that reason, you will need to accept the connection using this link to our server:</span>
-<span class="cstat-no" title="statement not covered" >            &lt;/p&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;p&gt;&lt;a href="https://localhost/" target="_blank" rel="noopener noreferrer"&gt;https://localhost/&lt;/a&gt;&lt;/p&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;p&gt;press advanced and the press continue to this&lt;/p&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;p&gt;After that, you can return to this page and refresh&lt;/p&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >         </span>
-<span class="cstat-no" title="statement not covered" >        ) : (</span>
-<span class="cstat-no" title="statement not covered" >        &lt;ul id="products" className="productList"&gt;</span>
-<span class="cstat-no" title="statement not covered" >          {products.map((product) =&gt; (</span>
-<span class="cstat-no" title="statement not covered" >          &lt;ProductDisplay key={product.product_id} product={product} /&gt;</span>
-<span class="cstat-no" title="statement not covered" >        ))}</span>
-<span class="cstat-no" title="statement not covered" >        </span>
-<span class="cstat-no" title="statement not covered" >&lt;/ul&gt;</span>
-<span class="cstat-no" title="statement not covered" >        )}</span>
-<span class="cstat-no" title="statement not covered" >      &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >  );</span>
-<span class="cstat-no" title="statement not covered" >};</span>
-<span class="cstat-no" title="statement not covered" >  </span>
-<span class="cstat-no" title="statement not covered" >  export default ProductListComponent;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;header className="checkout-menubar-container"&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;Link to="/cart" className="menubar-link"&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;img src={navigateBack} alt="back" /&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;span&gt;back&lt;/span&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;/Link&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;Link to="/"&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;img src={cofee} alt="coffee" /&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;/Link&gt;</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  function ProductDisplay({product} : {product: Product}) {</span>
-<span class="cstat-no" title="statement not covered" >    const { addItem } = useCart();</span>
+<span class="cstat-no" title="statement not covered" >        &lt;ProgressBar step={2} /&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;/header&gt;</span>
+<span class="cstat-no" title="statement not covered" >    )</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >const ProgressBar = ({step}: {step: number}) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    return (</span>
-<span class="cstat-no" title="statement not covered" >      &lt;article className="product-display"&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;img</span>
-<span class="cstat-no" title="statement not covered" >          src={product.product_image_url}</span>
-<span class="cstat-no" title="statement not covered" >          alt="item imager"</span>
-<span class="cstat-no" title="statement not covered" >          className="item-image"</span>
-<span class="cstat-no" title="statement not covered" >        /&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;h3&gt;{product.product_name}&lt;/h3&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;p&gt;{product.product_description}&lt;/p&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;p&gt;Price: {product.product_price} {product.product_currency}&lt;/p&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;button className = "add-to-cart-button" onClick={() =&gt;addItem(product)}&gt;Add to cart&lt;/button&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;/article&gt;</span>
-<span class="cstat-no" title="statement not covered" >   </span>
-<span class="cstat-no" title="statement not covered" >  );</span>
-<span class="cstat-no" title="statement not covered" >    </span>
-<span class="cstat-no" title="statement not covered" >  }</span></pre></td></tr></table></pre>
+<span class="cstat-no" title="statement not covered" >        &lt;div className="progress-bar"&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;div className={'progress-bar-step' }&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;span className={`progress-bar-step-numb ${step === 1 ? 'active' : ''}`}&gt;</span>
+<span class="cstat-no" title="statement not covered" >                1</span>
+<span class="cstat-no" title="statement not covered" >            &lt;/span&gt;</span>
+<span class="cstat-no" title="statement not covered" >                &lt;span className='progress-bar-step-text'&gt;Info&lt;/span&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;div className="horizontal-line"&gt;&lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;div className={`progress-bar-step`}&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;span className='progress-bar-step-numb '&gt;2&lt;/span&gt;</span>
+<span class="cstat-no" title="statement not covered" >                &lt;span className='progress-bar-step-text'&gt;Delivery&lt;/span&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;div className="horizontal-line"&gt;&lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;div className={`progress-bar-step ${step &gt;= 3 ? 'active' : ''}`}&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;span className='progress-bar-step-numb'&gt;3&lt;/span&gt;</span>
+<span class="cstat-no" title="statement not covered" >                &lt;span className='progress-bar-step-text'&gt;Payment&lt;/span&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >    )</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+&nbsp;
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
