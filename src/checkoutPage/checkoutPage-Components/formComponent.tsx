@@ -81,9 +81,7 @@ export function FormComponent() {
                 if (currentValue.length > 2 && !/[0-9]/.test(event.key)) {
                   event.preventDefault();
                 }
-                if (currentValue.length < 2 && /[0-9]/.test(event.key)) {
-
-                }
+                if (currentValue.length < 2 && /[0-9]/.test(event.key)) { /* empty */ }
               }}
             />
 
@@ -103,6 +101,9 @@ export function FormComponent() {
             {!isPhoneNumberValid && <p style={{ color: 'red' }}>Telefonnummeret er forkert.</p>}
             <input type="text" name="Other billing address" placeholder="Other billing address" />
           </form>
+          <Checkboxterms></Checkboxterms>
+          <CheckboxNews></CheckboxNews>
+          <Button disabled={undefined}></Button>
         </section>
     )
 }
@@ -171,3 +172,46 @@ function ZipForm() {
 
 export default ZipForm
 
+//For making a checkbox with a label (So both text and checkbox has a certain size).
+const Checkboxterms = (checker) => {
+  return (
+      <label className="checkbox">
+        <input
+            type="checkbox"
+            name= {checker.name}
+            checked={checker.val}
+            onChange={() => {
+              checker.setValue(!checker.val);
+            }}
+        />
+
+        {checker.label}
+        <h2 style={{ margin: '0', color: '#333' }}>Jeg bekræfter at mine oplysninger er korrekte og accepterer Handelsbetingelserne</h2>
+      </label>
+  );
+};
+const CheckboxNews = (checkNewsCon) => {
+  return (
+      <label className="checkbox">
+        <input
+            type="checkbox"
+            name= {checkNewsCon.name}
+            checked={checkNewsCon.val}
+            onChange={() => {
+              checkNewsCon.setValue(!checkNewsCon.val);
+            }}
+        />
+
+        {checkNewsCon.label}
+        <h2 style={{ margin: '0', color: '#333' }}>Jeg vil gerne modtage mulige fremtidige tilbud og emails fra Porcelain For Dads</h2>
+      </label>
+  );
+};
+const Button = ({ disabled }) => {
+  return (
+      <button disabled={disabled}>Submit order</button>
+  );
+};
+export {default as Button} from './formComponent'
+export {default as Checkboxterms} from './formComponent'
+export {default as CheckboxNews} from './formComponent'
