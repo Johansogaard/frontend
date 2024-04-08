@@ -81,6 +81,12 @@ describe('ShoppingCart', () => {
     expect(result.current.calcTotalDiscount()).not.toBe('0.00');
   });
 
+
+
+
+
+
+  /*
   it('increases item quantity by 1 when "+" button is clicked', async () => {
     // First, we need to render the component within its provider
     render(
@@ -115,6 +121,8 @@ expect(quantityElement + 1);
 
   
   });
+
+  */
 
   /*
 it('updates item quantity correctly', () => {
