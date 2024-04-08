@@ -8,39 +8,54 @@ export function FormComponent() {
     const {email,phoneNumber,vatNumber,setEmail,setPhoneNumber,setVatNumber,isEmailValid,isPhoneNumberValid,isVatNumberValid } = formsManager();
     return (
         <section className="form">
-        <h2>Contact Information</h2>
-          <form>
-            <input type="email" name="email" placeholder="Indtast din email" required value={email}
-                   onChange={(e) => setEmail(e.target.value)}
+        <h2>Customer information</h2>
+          <form className='form-content'>
+            
+          
+            <div className='checkout-UserInfo'>
 
-                   style={{ borderColor:  !(email.length > 1 && isEmailValid) ? 'black' : 'black' }} // Visuel feedback med grænsefarve rød eller grøn når det er korrekt/forkert/
-            />
-            {email.length > 1 && isEmailValid && email.includes('@') && email.includes('.') && (
-              <p style={{ color: 'green' }}>Emailen er gyldig.</p>
-            )}
-            {email.length > 1 && (!isEmailValid || !email.includes('@') || !email.includes('.')) && (
-              <p style={{ color: 'red' }}>Emailen er ikke gyldig.</p>
-            )}
-            <h2>Delivery</h2>
-            <select id="country" name="country" required>
-              <option value="dk">Denmark</option>
+            <select id="userType" name="usertype" required>
+              <option value="privat">Private</option>
+              <option value="comp">Company</option>
 
             </select>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+
+            <input type="tel"
+                   name="phone" placeholder="Phone number" value={phoneNumber}
+                   onChange={(e) => setPhoneNumber(e.target.value)}
+                   style={{ borderColor: isPhoneNumberValid ? 'green' : 'red' }} required
+                   onKeyPress={(event) => {
+                     if (!/[0-9]/.test(event.key)) {
+                       event.preventDefault()
+                     }
+                   }}
+                   maxLength={8}
+            />
               <input
                 type="text"
                 name="firstName"
                 placeholder="First name"
-                className="small-input"
+                className="user-input"
               />
               <input
                 type="text"
                 name="lastName"
                 placeholder="Last name"
-                className="small-input"
+                className="user-input"
               />
-            </div>
+              
+              <input type="email" name="email" placeholder="Indtast din email" required value={email}
+                   onChange={(e) => setEmail(e.target.value)}
 
+                   style={{ borderColor:  !(email.length > 1 && isEmailValid) ? 'black' : 'black' }} // Visuel feedback med grænsefarve rød eller grøn når det er korrekt/forkert/
+            />
+             <select id="country" name="country" required>
+              <option value="dk">Denmark</option>
+
+            </select>
+                   
+            </div>
+            <ZipForm />  
 
             <input
               type="text"
@@ -77,19 +92,14 @@ export function FormComponent() {
             />
 
 
-            <ZipForm />
+            
 
-            <input type="tel"
-                   name="phone" placeholder="Phone number" value={phoneNumber}
-                   onChange={(e) => setPhoneNumber(e.target.value)}
-                   style={{ borderColor: isPhoneNumberValid ? 'green' : 'red' }} required
-                   onKeyPress={(event) => {
-                     if (!/[0-9]/.test(event.key)) {
-                       event.preventDefault()
-                     }
-                   }}
-                   maxLength={8}
-            />
+            {email.length > 1 && isEmailValid && email.includes('@') && email.includes('.') && (
+              <p style={{ color: 'green' }}>Emailen er gyldig.</p>
+            )}
+            {email.length > 1 && (!isEmailValid || !email.includes('@') || !email.includes('.')) && (
+              <p style={{ color: 'red' }}>Emailen er ikke gyldig.</p>
+            )}
             {!isPhoneNumberValid && <p style={{ color: 'red' }}>Telefonnummeret er forkert.</p>}
             <input type="text" name="Other billing address" placeholder="Other billing address" />
           </form>
@@ -135,14 +145,14 @@ function ZipForm() {
   }
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+    <div className='zipform-container'>
       <input
         type="text"
         name="postalCode"
         placeholder="Postal Code"
         value={postalCode}
         onChange={handleChange}
-        className="small-input"
+        className="postalCode-input"
         maxLength={4}
       />
       {message && <p style={{ color: 'red' }}>{message}</p>}
@@ -153,7 +163,7 @@ function ZipForm() {
         placeholder="City"
         value={city}
         readOnly
-        className="small-input"
+        className="city-input"
       />
     </div>
   )
