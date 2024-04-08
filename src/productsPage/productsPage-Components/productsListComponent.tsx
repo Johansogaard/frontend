@@ -14,11 +14,11 @@ function ProductListComponent() {
         {products.length === 0 ? (
          <div>
             <p>No products found</p>
-           <p>Because we do not have a personal backend server with a personal domain, we cannot provide a CA certificate. For that reason, you will need to accept the connection using this link to our server:
+           <p>We have a problem with the backend server that contains the products is running http and netlify only runs https there for it dosent fetch when deployed. We just found out and are working on a solution
             </p>
-            <p><a href="https://localhost/" target="_blank" rel="noopener noreferrer">https://localhost/</a></p>
-            <p>press advanced and the press continue to this</p>
-            <p>After that, you can return to this page and refresh</p>
+           
+            <p></p>
+            <p></p>
           </div>
          
         ) : (
