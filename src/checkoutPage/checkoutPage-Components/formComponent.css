@@ -1,34 +1,37 @@
-form label,
-form select,
-form input {
-  display: block;
-  background-color: #ffffff;
-  color: black;
-  margin-bottom: 10px;
-  height: 48px;
-}
-form input:not(.small-input),
-form select {
-  width: 100%;
-  max-width: 520px;
-  min-width: 50px;
-}
-
-@media (max-width: 581px) {
-  form input:not(.small-input),
-  form select {
-    width: 100%;
-  }
-}
-
-@media (max-width: 980px) {
-    .contact-info,
-  .delivery
+.form{
+  width: 90%;
+  padding-bottom: 20px ;
+  display: flex;
+  flex-direction: column;
   
-   {
-    width: 90%;
-    
-    
+  background-color: #e6e0d7;
+  
+}
+.checkout-UserInfo{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.form-content{
  
-  }
+  
+  margin-left: 3%;
+  margin-right: 3%;
+}
+.email-info{
+  width: 100%;
+}
+.zipform-container{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  
+}
+.postalCode-input{
+  
+}
+.city-input{
+
 }
