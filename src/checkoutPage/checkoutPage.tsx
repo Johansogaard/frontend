@@ -1,4 +1,4 @@
-import {Checkboxterms, FormComponent} from "./checkoutPage-Components/formComponent"
+import { FormComponent} from "./checkoutPage-Components/formComponent"
 import { CheckoutMenuBar } from "./checkoutMenuBar/checkoutMenuBar"
 import './checkoutPage.css'
 import Link from "../components/Link"
