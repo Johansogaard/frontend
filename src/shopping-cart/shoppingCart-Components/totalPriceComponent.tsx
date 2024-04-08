@@ -1,31 +1,12 @@
 import { useCart } from '../shoppingCart-Context/cartContext'
 import Link from '../../components/Link'
 import { loadStripe } from '@stripe/stripe-js';
+import { Item } from '../../models/Item';
 
-
-export async function handleCheckout() {
-  try {
-
-    
-    // make a POST request to server to create a checkout session
-    const response = await fetch('http://localhost/payments/create-checkout-session', {
-      method: 'POST',
-    });
-    const responseData = await response.json();
-    const { sessionId } = responseData;
-
-    // redirecct  user to  checkout page
-    const stripe = await loadStripe('pk_test_51OiCXmBMSCX1jgl0IUNdbTl3vYHRLFCzO2Hf6HsfmbdZGFvy3lwCWkYYAOaLDRXaT6XvqiT0hlnJOJ4cMqmcWBTS00TwtT3JgH');
-    if (stripe) {
-      stripe.redirectToCheckout({ sessionId });
-    }
-  } catch (error) {
-    console.error('Error during checkout:', error);
-  }
-}
 
 
 export function TotalPriceComponent() {
+  
 const { items, calcTotal, calcItemSubTotal,remainingItemsForDiscount,calcTotalItems } = useCart();
 console.log('TotalPriceComponent rendered')
 return(
@@ -66,4 +47,37 @@ return(
       
 
       );
+}
+
+
+
+export async function handleCheckout(items: Item[]) {
+  try {
+    console.log('Items:', items);
+
+    const bodyData = {
+      items: items,
+    };
+
+    console.log('Body Data:', bodyData);
+
+    // make a POST request to server to create a checkout session
+    const response = await fetch('http://localhost/payments/create-checkout-session', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(bodyData),
+    });
+    const responseData = await response.json();
+    const { sessionId } = responseData;
+
+    // redirect user to checkout page
+    const stripe = await loadStripe('pk_test_51OiCXmBMSCX1jgl0IUNdbTl3vYHRLFCzO2Hf6HsfmbdZGFvy3lwCWkYYAOaLDRXaT6XvqiT0hlnJOJ4cMqmcWBTS00TwtT3JgH');
+    if (stripe) {
+      stripe.redirectToCheckout({ sessionId });
+    }
+  } catch (error) {
+    console.error('Error during checkout:', error);
+  }
 }
