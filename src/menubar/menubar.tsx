@@ -5,7 +5,7 @@ import basket from '../assets/basket.svg'
 import cofee from '../assets/coffee.svg'
 import Link from '../components/Link'
 import hamburger from '../assets/hamburger.svg'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useCart } from '../shopping-cart/shoppingCart-Context/cartContext'
 
 

@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/162</span>
+                <span class='fraction'>0/172</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/162</span>
+                <span class='fraction'>0/172</span>
             </div>
         
             
@@ -226,7 +226,27 @@
 <a name='L161'></a><a href='#L161'>161</a>
 <a name='L162'></a><a href='#L162'>162</a>
 <a name='L163'></a><a href='#L163'>163</a>
-<a name='L164'></a><a href='#L164'>164</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L164'></a><a href='#L164'>164</a>
+<a name='L165'></a><a href='#L165'>165</a>
+<a name='L166'></a><a href='#L166'>166</a>
+<a name='L167'></a><a href='#L167'>167</a>
+<a name='L168'></a><a href='#L168'>168</a>
+<a name='L169'></a><a href='#L169'>169</a>
+<a name='L170'></a><a href='#L170'>170</a>
+<a name='L171'></a><a href='#L171'>171</a>
+<a name='L172'></a><a href='#L172'>172</a>
+<a name='L173'></a><a href='#L173'>173</a>
+<a name='L174'></a><a href='#L174'>174</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -399,39 +419,54 @@
 <span class="cstat-no" title="statement not covered" >    const {email,phoneNumber,vatNumber,setEmail,setPhoneNumber,setVatNumber,isEmailValid,isPhoneNumberValid,isVatNumberValid } = formsManager();</span>
 <span class="cstat-no" title="statement not covered" >    return (</span>
 <span class="cstat-no" title="statement not covered" >        &lt;section className="form"&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;h2&gt;Contact Information&lt;/h2&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;form&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;input type="email" name="email" placeholder="Indtast din email" required value={email}</span>
-<span class="cstat-no" title="statement not covered" >                   onChange={(e) =&gt; setEmail(e.target.value)}</span>
+<span class="cstat-no" title="statement not covered" >        &lt;h2&gt;Customer information&lt;/h2&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;form className='form-content'&gt;</span>
+<span class="cstat-no" title="statement not covered" >            </span>
+<span class="cstat-no" title="statement not covered" >          </span>
+<span class="cstat-no" title="statement not covered" >            &lt;div className='checkout-UserInfo'&gt;</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >                   style={{ borderColor:  !(email.length &gt; 1 &amp;&amp; isEmailValid) ? 'black' : 'black' }} // Visuel feedback med grænsefarve rød eller grøn når det er korrekt/forkert/</span>
-<span class="cstat-no" title="statement not covered" >            /&gt;</span>
-<span class="cstat-no" title="statement not covered" >            {email.length &gt; 1 &amp;&amp; isEmailValid &amp;&amp; email.includes('@') &amp;&amp; email.includes('.') &amp;&amp; (</span>
-<span class="cstat-no" title="statement not covered" >              &lt;p style={{ color: 'green' }}&gt;Emailen er gyldig.&lt;/p&gt;</span>
-<span class="cstat-no" title="statement not covered" >            )}</span>
-<span class="cstat-no" title="statement not covered" >            {email.length &gt; 1 &amp;&amp; (!isEmailValid || !email.includes('@') || !email.includes('.')) &amp;&amp; (</span>
-<span class="cstat-no" title="statement not covered" >              &lt;p style={{ color: 'red' }}&gt;Emailen er ikke gyldig.&lt;/p&gt;</span>
-<span class="cstat-no" title="statement not covered" >            )}</span>
-<span class="cstat-no" title="statement not covered" >            &lt;h2&gt;Delivery&lt;/h2&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;select id="country" name="country" required&gt;</span>
-<span class="cstat-no" title="statement not covered" >              &lt;option value="dk"&gt;Denmark&lt;/option&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;select id="userType" name="usertype" required&gt;</span>
+<span class="cstat-no" title="statement not covered" >              &lt;option value="privat"&gt;Private&lt;/option&gt;</span>
+<span class="cstat-no" title="statement not covered" >              &lt;option value="comp"&gt;Company&lt;/option&gt;</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >            &lt;/select&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;div style={{ display: 'flex', justifyContent: 'space-between' }}&gt;</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >            &lt;input type="tel"</span>
+<span class="cstat-no" title="statement not covered" >                   name="phone" placeholder="Phone number" value={phoneNumber}</span>
+<span class="cstat-no" title="statement not covered" >                   onChange={(e) =&gt; setPhoneNumber(e.target.value)}</span>
+<span class="cstat-no" title="statement not covered" >                   style={{ borderColor: isPhoneNumberValid ? 'green' : 'red' }} required</span>
+<span class="cstat-no" title="statement not covered" >                   onKeyPress={(event) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                     if (!/[0-9]/.test(event.key)) {</span>
+<span class="cstat-no" title="statement not covered" >                       event.preventDefault()</span>
+<span class="cstat-no" title="statement not covered" >                     }</span>
+<span class="cstat-no" title="statement not covered" >                   }}</span>
+<span class="cstat-no" title="statement not covered" >                   maxLength={8}</span>
+<span class="cstat-no" title="statement not covered" >            /&gt;</span>
 <span class="cstat-no" title="statement not covered" >              &lt;input</span>
 <span class="cstat-no" title="statement not covered" >                type="text"</span>
 <span class="cstat-no" title="statement not covered" >                name="firstName"</span>
 <span class="cstat-no" title="statement not covered" >                placeholder="First name"</span>
-<span class="cstat-no" title="statement not covered" >                className="small-input"</span>
+<span class="cstat-no" title="statement not covered" >                className="user-input"</span>
 <span class="cstat-no" title="statement not covered" >              /&gt;</span>
 <span class="cstat-no" title="statement not covered" >              &lt;input</span>
 <span class="cstat-no" title="statement not covered" >                type="text"</span>
 <span class="cstat-no" title="statement not covered" >                name="lastName"</span>
 <span class="cstat-no" title="statement not covered" >                placeholder="Last name"</span>
-<span class="cstat-no" title="statement not covered" >                className="small-input"</span>
+<span class="cstat-no" title="statement not covered" >                className="user-input"</span>
 <span class="cstat-no" title="statement not covered" >              /&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >              </span>
+<span class="cstat-no" title="statement not covered" >              &lt;input type="email" name="email" placeholder="Indtast din email" required value={email}</span>
+<span class="cstat-no" title="statement not covered" >                   onChange={(e) =&gt; setEmail(e.target.value)}</span>
 <span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >                   style={{ borderColor:  !(email.length &gt; 1 &amp;&amp; isEmailValid) ? 'black' : 'black' }} // Visuel feedback med grænsefarve rød eller grøn når det er korrekt/forkert/</span>
+<span class="cstat-no" title="statement not covered" >            /&gt;</span>
+<span class="cstat-no" title="statement not covered" >             &lt;select id="country" name="country" required&gt;</span>
+<span class="cstat-no" title="statement not covered" >              &lt;option value="dk"&gt;Denmark&lt;/option&gt;</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >            &lt;/select&gt;</span>
+<span class="cstat-no" title="statement not covered" >                   </span>
+<span class="cstat-no" title="statement not covered" >            &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;ZipForm /&gt;  </span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >            &lt;input</span>
 <span class="cstat-no" title="statement not covered" >              type="text"</span>
@@ -468,19 +503,14 @@
 <span class="cstat-no" title="statement not covered" >            /&gt;</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >            &lt;ZipForm /&gt;</span>
+<span class="cstat-no" title="statement not covered" >            </span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >            &lt;input type="tel"</span>
-<span class="cstat-no" title="statement not covered" >                   name="phone" placeholder="Phone number" value={phoneNumber}</span>
-<span class="cstat-no" title="statement not covered" >                   onChange={(e) =&gt; setPhoneNumber(e.target.value)}</span>
-<span class="cstat-no" title="statement not covered" >                   style={{ borderColor: isPhoneNumberValid ? 'green' : 'red' }} required</span>
-<span class="cstat-no" title="statement not covered" >                   onKeyPress={(event) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >                     if (!/[0-9]/.test(event.key)) {</span>
-<span class="cstat-no" title="statement not covered" >                       event.preventDefault()</span>
-<span class="cstat-no" title="statement not covered" >                     }</span>
-<span class="cstat-no" title="statement not covered" >                   }}</span>
-<span class="cstat-no" title="statement not covered" >                   maxLength={8}</span>
-<span class="cstat-no" title="statement not covered" >            /&gt;</span>
+<span class="cstat-no" title="statement not covered" >            {email.length &gt; 1 &amp;&amp; isEmailValid &amp;&amp; email.includes('@') &amp;&amp; email.includes('.') &amp;&amp; (</span>
+<span class="cstat-no" title="statement not covered" >              &lt;p style={{ color: 'green' }}&gt;Emailen er gyldig.&lt;/p&gt;</span>
+<span class="cstat-no" title="statement not covered" >            )}</span>
+<span class="cstat-no" title="statement not covered" >            {email.length &gt; 1 &amp;&amp; (!isEmailValid || !email.includes('@') || !email.includes('.')) &amp;&amp; (</span>
+<span class="cstat-no" title="statement not covered" >              &lt;p style={{ color: 'red' }}&gt;Emailen er ikke gyldig.&lt;/p&gt;</span>
+<span class="cstat-no" title="statement not covered" >            )}</span>
 <span class="cstat-no" title="statement not covered" >            {!isPhoneNumberValid &amp;&amp; &lt;p style={{ color: 'red' }}&gt;Telefonnummeret er forkert.&lt;/p&gt;}</span>
 <span class="cstat-no" title="statement not covered" >            &lt;input type="text" name="Other billing address" placeholder="Other billing address" /&gt;</span>
 <span class="cstat-no" title="statement not covered" >          &lt;/form&gt;</span>
@@ -526,14 +556,14 @@
 <span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >  return (</span>
-<span class="cstat-no" title="statement not covered" >    &lt;div style={{ display: 'flex', justifyContent: 'space-between' }}&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;div className='zipform-container'&gt;</span>
 <span class="cstat-no" title="statement not covered" >      &lt;input</span>
 <span class="cstat-no" title="statement not covered" >        type="text"</span>
 <span class="cstat-no" title="statement not covered" >        name="postalCode"</span>
 <span class="cstat-no" title="statement not covered" >        placeholder="Postal Code"</span>
 <span class="cstat-no" title="statement not covered" >        value={postalCode}</span>
 <span class="cstat-no" title="statement not covered" >        onChange={handleChange}</span>
-<span class="cstat-no" title="statement not covered" >        className="small-input"</span>
+<span class="cstat-no" title="statement not covered" >        className="postalCode-input"</span>
 <span class="cstat-no" title="statement not covered" >        maxLength={4}</span>
 <span class="cstat-no" title="statement not covered" >      /&gt;</span>
 <span class="cstat-no" title="statement not covered" >      {message &amp;&amp; &lt;p style={{ color: 'red' }}&gt;{message}&lt;/p&gt;}</span>
@@ -544,7 +574,7 @@
 <span class="cstat-no" title="statement not covered" >        placeholder="City"</span>
 <span class="cstat-no" title="statement not covered" >        value={city}</span>
 <span class="cstat-no" title="statement not covered" >        readOnly</span>
-<span class="cstat-no" title="statement not covered" >        className="small-input"</span>
+<span class="cstat-no" title="statement not covered" >        className="city-input"</span>
 <span class="cstat-no" title="statement not covered" >      /&gt;</span>
 <span class="cstat-no" title="statement not covered" >    &lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" >  )</span>
@@ -559,7 +589,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-04-08T12:27:53.019Z
+                at 2024-04-08T14:11:37.818Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
