@@ -8,10 +8,15 @@
   background-color: #ececec;
   
 }
+.menubar-container nav {
+  display: flex;
+  align-items: center; /* This will vertically center the icons */
+  gap: 10px; /* Adjust the space between icons */
+}
 .menu-items {
   position: absolute;
   right: 10%;
-  left: 10%;
+  left: 30%;
   text-align: center; /* This centers the text in the available space */
 }
 .menu-item {

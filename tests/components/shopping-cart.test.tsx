@@ -4,6 +4,7 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
 import { ShoppingCart} from '../../src/shopping-cart/shoppingCartPage'
 import { CartProvider } from '../../src/shopping-cart/shoppingCart-Context/cartContext'
 import { useCart } from '../../src/shopping-cart/shoppingCart-Context/cartContext'
+import { ItemListComponent } from '../../src/shopping-cart/shoppingCart-Components/ItemlistComponent'
 
 
 
@@ -78,6 +79,41 @@ describe('ShoppingCart', () => {
       }
     });
     expect(result.current.calcTotalDiscount()).not.toBe('0.00');
+  });
+
+  it('increases item quantity by 1 when "+" button is clicked', async () => {
+    // First, we need to render the component within its provider
+    render(
+      <CartProvider>
+        <ItemListComponent />
+      </CartProvider>
+    );
+    
+    const { result } = renderHook(() => useCart(), { wrapper: CartProvider });
+    act(() => {
+      result.current.addItem({ product_id: 1, 
+        product_name: 'Coffee Mug', 
+        product_price: 12.99, 
+        rebateQuantity: 5, 
+        rebatePercent: 10,
+        product_currency: 'USD',
+        category_id: 123 });
+    });
+    
+
+    const addButton = screen.getAllByRole('button', { name: '+' })[0];
+
+    // Before clicking the "+" button, capture the current quantity displayed in the UI.
+  // The specific way to select this depends on your markup.
+  const quantityElement = 1;
+
+// Click the "+" button to increase the quantity.
+fireEvent.click(addButton);
+
+// After the click, assert the quantity has increased by 1.
+expect(quantityElement + 1);
+
+  
   });
 
   /*

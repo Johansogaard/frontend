@@ -5,10 +5,15 @@ import basket from '../assets/basket.svg'
 import cofee from '../assets/coffee.svg'
 import Link from '../components/Link'
 import hamburger from '../assets/hamburger.svg'
-import { useState } from 'react'
+import React, { useState } from 'react'
+import { useCart } from '../shopping-cart/shoppingCart-Context/cartContext'
+
+
 
 export function Menubar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { calcTotalItems } = useCart(); // Use the useCart hook to get cart items
+  const itemCount = Number(calcTotalItems());
 
   return (
     <header className="menubar-container">
@@ -53,7 +58,27 @@ export function Menubar() {
           <img src={search} alt="Search icon" className="menu-icon" />
         </Link>
         <Link to="/cart" target="_self" rel="noreferrer noopener">
-          <img src={basket} alt="basket icon" className="menu-icon" />
+        <div style={{ position: 'relative' }}>
+            <img src={basket} alt="basket icon" className="menu-icon" />
+            {itemCount > 0 && (
+              <span style={{
+                position: 'absolute',
+                top: '-10px',
+                right: '-10px',
+                background: 'red',
+                color: 'white',
+                borderRadius: '50%',
+                width: '20px',
+                height: '20px',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                fontSize: '12px',
+              }}>
+                {itemCount}
+              </span>
+            )}
+          </div>
         </Link>
       </nav>
     </header>
