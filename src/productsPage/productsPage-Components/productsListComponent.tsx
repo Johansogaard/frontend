@@ -14,11 +14,9 @@ function ProductListComponent() {
         {products.length === 0 ? (
          <div>
             <p>No products found</p>
-           <p>We have a problem with the backend server that contains the products is running http and netlify only runs https there for it dosent fetch when deployed. We just found out and are working on a solution
-            </p>
-           
-            <p></p>
-            <p></p>
+            <p>Our backend doesn't have a certified SSL certificate because it is not possible with the server we are provided, so for that reason, we use a self-signed certificate.</p>
+             <p>You will need to go to <a href="https://dtu62597.eduhost.dk:10132/" target="_blank">this link</a>, press advanced, then continue, and finally return to this site to see any products.</p>
+
           </div>
          
         ) : (

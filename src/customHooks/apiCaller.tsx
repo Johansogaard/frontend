@@ -14,7 +14,7 @@ function apiCaller()
       console.log('fetchAllProducts called');
     setIsLoading(true);
     try {
-      const response = await fetch('http://dtu62597.eduhost.dk:10131/products');
+      const response = await fetch('https://dtu62597.eduhost.dk:10132/products');
       if (!response.ok) throw new Error('Could not fetch products.');
       const data: Product[] = await response.json();
       setProducts(data);
@@ -33,7 +33,7 @@ function apiCaller()
 
     setIsLoading(true);
     try {
-      const response = await fetch('http://dtu62597.eduhost.dk:10131/products/'+category);
+      const response = await fetch('https://dtu62597.eduhost.dk:10132/products/'+category);
       if (!response.ok) throw new Error('Could not fetch products.');
       const data: Product[] = await response.json();
       setProducts(data);
