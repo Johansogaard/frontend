@@ -47,7 +47,7 @@ function apiCaller()
   };
 
 
-
     return { products, isLoading, error, fetchAllProducts, fetchProductsByCategory};
 }
 export default apiCaller;
+
