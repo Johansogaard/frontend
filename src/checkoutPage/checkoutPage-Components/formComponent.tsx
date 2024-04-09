@@ -4,14 +4,17 @@ import './formComponent.css'
 
 
 export function FormComponent() {
+
   console.log('FormComponent rendered')
     const {email,phoneNumber,vatNumber,setEmail,setPhoneNumber,setVatNumber,isEmailValid,isPhoneNumberValid,isVatNumberValid } = formsManager();
+    const [termsChecked, setTermsChecked] = useState(false);
+    const [NewsChecked, setnewsChecked] = useState(false);
     return (
         <section className="form">
         <h2>Customer information</h2>
           <form className='form-content'>
-            
-          
+
+
             <div className='checkout-UserInfo'>
 
             <select id="userType" name="usertype" required>
@@ -43,7 +46,7 @@ export function FormComponent() {
                 placeholder="Last name"
                 className="user-input"
               />
-              
+
               <input type="email" name="email" placeholder="Indtast din email" required value={email}
                    onChange={(e) => setEmail(e.target.value)}
 
@@ -53,9 +56,9 @@ export function FormComponent() {
               <option value="dk">Denmark</option>
 
             </select>
-                   
+
             </div>
-            <ZipForm />  
+            <ZipForm />
 
             <input
               type="text"
@@ -90,7 +93,7 @@ export function FormComponent() {
             />
 
 
-            
+
 
             {email.length > 1 && isEmailValid && email.includes('@') && email.includes('.') && (
               <p style={{ color: 'green' }}>Emailen er gyldig.</p>
@@ -101,9 +104,18 @@ export function FormComponent() {
             {!isPhoneNumberValid && <p style={{ color: 'red' }}>Telefonnummeret er forkert.</p>}
             <input type="text" name="Other billing address" placeholder="Other billing address" />
           </form>
-          <Checkboxterms></Checkboxterms>
-          <CheckboxNews></CheckboxNews>
-          <Button disabled={undefined}></Button>
+            <CheckboxTerms
+                name="terms"
+                val={termsChecked}
+                setValue={setTermsChecked}
+                label="Jeg bekræfter at mine oplysninger er korrekte og accepterer Handelsbetingelserne."
+            />
+            <CheckboxNews
+                name="terms"
+                val={NewsChecked}
+                setValue={setnewsChecked}
+                label="Jeg vil gerne modtage mulige fremtidige tilbud og emails fra Porcelain For Dads."
+            />
         </section>
     )
 }
@@ -173,45 +185,43 @@ function ZipForm() {
 export default ZipForm
 
 //For making a checkbox with a label (So both text and checkbox has a certain size).
-const Checkboxterms = (checker) => {
-  return (
-      <label className="checkbox">
-        <input
-            type="checkbox"
-            name= {checker.name}
-            checked={checker.val}
-            onChange={() => {
-              checker.setValue(!checker.val);
-            }}
-        />
+interface CheckboxProps {
+    name: string;
+    val: boolean;
+    setValue: React.Dispatch<React.SetStateAction<boolean>>;
+    label: string;
+}
 
-        {checker.label}
-        <h2 style={{ margin: '0', color: '#333' }}>Jeg bekræfter at mine oplysninger er korrekte og accepterer Handelsbetingelserne</h2>
-      </label>
-  );
+const CheckboxTerms: React.FC<CheckboxProps> = ({ name, val, setValue, label }) => {
+    return (
+        <label className="checkbox">
+            <input
+                type="checkbox"
+                name={name}
+                checked={val}
+                onChange={() => {
+                    setValue(!val);
+                }}
+            />
+            {label}
+        </label>
+    );
 };
-const CheckboxNews = (checkNewsCon) => {
-  return (
-      <label className="checkbox">
-        <input
-            type="checkbox"
-            name= {checkNewsCon.name}
-            checked={checkNewsCon.val}
-            onChange={() => {
-              checkNewsCon.setValue(!checkNewsCon.val);
-            }}
-        />
+const CheckboxNews: React.FC<CheckboxProps> = ({ name, val, setValue, label }) => {
+    return (
+        <label className="checkbox">
+            <input
+                type="checkbox"
+                name={name}
+                checked={val}
+                onChange={() => {
+                    setValue(!val);
+                }}
+            />
+            {label}
+        </label>
+    );
+};
 
-        {checkNewsCon.label}
-        <h2 style={{ margin: '0', color: '#333' }}>Jeg vil gerne modtage mulige fremtidige tilbud og emails fra Porcelain For Dads</h2>
-      </label>
-  );
-};
-const Button = ({ disabled }) => {
-  return (
-      <button disabled={disabled}>Submit order</button>
-  );
-};
-export {default as Button} from './formComponent'
-export {default as Checkboxterms} from './formComponent'
+export {default as CheckboxTerms} from './formComponent'
 export {default as CheckboxNews} from './formComponent'
