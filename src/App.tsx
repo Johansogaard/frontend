@@ -12,6 +12,8 @@ import { ShoppingCart } from './shopping-cart/shoppingCartPage'
 import { CartProvider } from './shopping-cart/shoppingCart-Context/cartContext'
 import { ProductProvider } from './productsPage/productsPage-Context/productsContext'
 import { CheckoutPage } from './checkoutPage/checkoutPage'
+import CancelPage from './checkoutPage/cancelPage'
+import SuccessPage from './checkoutPage/successPage'
 
 const App: React.FC = () => {
   return (
@@ -30,6 +32,8 @@ const App: React.FC = () => {
       <Route path="/serveware" component={() => <ServewarePage />} />
       <Route path="/table-accessories" component={() => <AccessoriesPage />} />
       <Route path= "/checkout" component={() => <CheckoutPage />} />
+      <Route path="/cancel" component={() => <CancelPage />} />
+      <Route path="/success" component={() => <SuccessPage />} />
       </ProductProvider>
       </CartProvider>
     </>

@@ -2,7 +2,7 @@ import { FormComponent} from "./checkoutPage-Components/formComponent"
 import { CheckoutMenuBar } from "./checkoutMenuBar/checkoutMenuBar"
 import './checkoutPage.css'
 import Link from "../components/Link"
-import { handleCheckout } from "../shopping-cart/shoppingCart-Components/totalPriceComponent"
+import { handleCheckout } from "../shopping-cart/shoppingCart-Components/handleCheckout"
 
 import { useCart } from "../shopping-cart/shoppingCart-Context/cartContext";
 
