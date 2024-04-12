@@ -1,6 +1,6 @@
 import { useCart } from '../shoppingCart-Context/cartContext'
 import {Item} from '../../models/Item'
-import Link from '../../components/Link'
+import { Link } from 'react-router-dom'
 import deleteIcon from '../../assets/delete.svg'
 
 export function ItemListComponent(){

@@ -1,6 +1,5 @@
 import { useCart } from '../shoppingCart-Context/cartContext'
-import Link from '../../components/Link'
-
+import { Link } from 'react-router-dom'
 
 
 

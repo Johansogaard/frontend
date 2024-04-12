@@ -1,4 +1,4 @@
-import Link from '../../components/Link'
+import { Link } from 'react-router-dom'
 import cofee from '../../assets/coffee.svg'
 import navigateBack from '../../assets/navigate_before.svg'
 import './checkoutMenuBar.css'
