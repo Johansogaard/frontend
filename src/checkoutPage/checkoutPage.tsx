@@ -10,10 +10,14 @@ export function CheckoutPage() {
   const { items } = useCart(); // Access items from the shopping cart
   const [termsChecked, setTermsChecked] = useState(false);
   const [newsChecked, setNewsChecked] = useState(false);
+  const [error, setError] = useState("");
 
 
   const handleCheckoutClick = () => {
-    // Call handleCheckout function with the items from the shopping cart
+    if (!termsChecked) {
+      setError("Please accept the Terms and Conditions to proceed.");
+      return;
+    }
     handleCheckout(items);
   };
 
@@ -26,21 +30,22 @@ export function CheckoutPage() {
 
       <section className="checkout-checkboxNews">
         <CheckboxNews
-          name="terms"
-          val={termsChecked}
-          setValue={setTermsChecked}
+          name="News"
+          val={newsChecked}
+          setValue={setNewsChecked}
           label="I would like to receive possible future offers and emails from Porcelain Shop."
 
         />
       </section>
       <section className="checkout-checkboxTerm">
         <CheckboxTerms
-          name="news"
-          val={newsChecked}
-          setValue={setNewsChecked}
+          name="Terms"
+
+          val={termsChecked}
+          setValue={setTermsChecked}
 
           label="I confirm that my details are correct and accept the Terms and Conditions"
-
+          error={error} // Pass error state as a prop
         />
       </section>
       <section className="checkout-Comment">
@@ -52,8 +57,10 @@ export function CheckoutPage() {
       </section>
 
 
+      {error && <div className="error-message">{error}</div>}
+
       <button className="checkout-button" onClick={handleCheckoutClick}>
-        <Link to="/payment" className="link">
+        <Link to={termsChecked ? "/payment" : "/checkout"} className="link">
           Go to payment
         </Link>
       </button>
@@ -69,16 +76,16 @@ interface CheckboxProps {
 
 }
 
-const CheckboxTerms: React.FC<CheckboxProps> = ({ name, val, setValue, label }) => {
+const CheckboxTerms: React.FC<CheckboxProps & { error: string }> = ({ name, val, setValue, label, error }) => {
   return (
-    <div className="checkbox-wrapper">
-      <label className="checkout-checkboxTerm" style={{ color: 'black' }}>
+    <div className={`checkbox-wrapper ${error ? 'error' : ''}`}>
+      <label className={`checkout-checkboxTerm ${error ? 'error' : ''}`} style={{ color: 'black' }}>
         <input
           type="checkbox"
           name={name}
           checked={val}
           onChange={() => {
-            setValue(!val);
+            setValue(!val)
           }}
         />
         {label}
