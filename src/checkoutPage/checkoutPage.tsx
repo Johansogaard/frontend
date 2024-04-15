@@ -5,13 +5,15 @@ import { Link } from "react-router-dom"
 import { handleCheckout } from "../shopping-cart/shoppingCart-Components/handleCheckout"
 
 import { useCart } from "../shopping-cart/shoppingCart-Context/cartContext";
+import { formsManager } from "./checkoutPage-Hooks/formsManager";
 
 export function CheckoutPage(){
   const { items } = useCart(); // Access items from the shopping cart
 
+ 
   const handleCheckoutClick = () => {
     // Call handleCheckout function with the items from the shopping cart
-    handleCheckout(items);
+    handleCheckout(items, "1", "shipping_address", "billing_address", 200020);
   };
     return(
 <>
@@ -20,7 +22,7 @@ export function CheckoutPage(){
       <FormComponent />
       </section>
       <button className="checkout-button" onClick={handleCheckoutClick}>
-        <Link to="/payment" className="link">
+        <Link to="/payments" className="link">
           Go to payment
         </Link>
       </button>
