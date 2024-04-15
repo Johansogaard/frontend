@@ -7,8 +7,6 @@ export function FormComponent() {
 
   console.log('FormComponent rendered')
     const {email,phoneNumber,vatNumber,setEmail,setPhoneNumber,setVatNumber,isEmailValid,isPhoneNumberValid,isVatNumberValid } = formsManager();
-    const [termsChecked, setTermsChecked] = useState(false);
-    const [NewsChecked, setnewsChecked] = useState(false);
     return (
         <section className="form">
         <h2>Customer information</h2>
@@ -104,18 +102,7 @@ export function FormComponent() {
             {!isPhoneNumberValid && <p style={{ color: 'red' }}>Telefonnummeret er forkert.</p>}
             <input type="text" name="Other billing address" placeholder="Other billing address" />
           </form>
-            <CheckboxTerms
-                name="terms"
-                val={termsChecked}
-                setValue={setTermsChecked}
-                label="Jeg bekræfter at mine oplysninger er korrekte og accepterer Handelsbetingelserne."
-            />
-            <CheckboxNews
-                name="terms"
-                val={NewsChecked}
-                setValue={setnewsChecked}
-                label="Jeg vil gerne modtage mulige fremtidige tilbud og emails fra Porcelain For Dads."
-            />
+
         </section>
     )
 }
@@ -185,43 +172,4 @@ function ZipForm() {
 export default ZipForm
 
 //For making a checkbox with a label (So both text and checkbox has a certain size).
-interface CheckboxProps {
-    name: string;
-    val: boolean;
-    setValue: React.Dispatch<React.SetStateAction<boolean>>;
-    label: string;
-}
 
-const CheckboxTerms: React.FC<CheckboxProps> = ({ name, val, setValue, label }) => {
-    return (
-        <label className="checkbox">
-            <input
-                type="checkbox"
-                name={name}
-                checked={val}
-                onChange={() => {
-                    setValue(!val);
-                }}
-            />
-            {label}
-        </label>
-    );
-};
-const CheckboxNews: React.FC<CheckboxProps> = ({ name, val, setValue, label }) => {
-    return (
-        <label className="checkbox">
-            <input
-                type="checkbox"
-                name={name}
-                checked={val}
-                onChange={() => {
-                    setValue(!val);
-                }}
-            />
-            {label}
-        </label>
-    );
-};
-
-export {default as CheckboxTerms} from './formComponent'
-export {default as CheckboxNews} from './formComponent'

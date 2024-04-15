@@ -2,3 +2,41 @@
     display: flex;
     justify-content: center;
 }
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.checkbox-wrapper {
+    width: 400px; /* Proper workaround because the label and box where dependent on string length before...*/
+    margin: 0 auto;
+}
+
+.checkout-checkboxNews label{
+    display: inline-block;
+    text-align: left; /* so it actually works with the wrapper properties. */
+    color-scheme: dark;
+    margin-bottom: 10px; /* Styling, looks more clean */
+    margin-top: 15px;
+
+}
+.checkout-checkboxTerm label {
+    display: inline-block;
+    text-align: left;
+    color-scheme: dark;
+    margin-top: 5px;
+    margin-bottom: 15px;
+
+}
+
+.checkout-Comment {
+    display: inline-block;
+    text-align: left;
+    margin-top: 5px;
+    margin-bottom: 15px;
+
+
+}
