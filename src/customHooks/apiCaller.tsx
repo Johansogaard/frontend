@@ -10,44 +10,52 @@ function apiCaller()
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-    async function fetchAllProducts() {
-      console.log('fetchAllProducts called');
+  async function fetchAllProducts() {
+    console.log('fetchAllProducts called');
     setIsLoading(true);
+    const token = localStorage.getItem('sessionToken'); // Retrieve the token from local storage
     try {
-      const response = await fetch('https://dtu62597.eduhost.dk:10132/products');
+      const response = await fetch('https://dtu62597.eduhost.dk:10132/products', {
+        headers: {
+          'Authorization': `Bearer ${token}` // Include the token in the Authorization header
+        }
+      });
       if (!response.ok) throw new Error('Could not fetch products.');
       const data: Product[] = await response.json();
       setProducts(data);
-    } catch (err:unknown) {
-        const message = (err as Error).message;
-        setError(message);
+    } catch (err: unknown) {
+      const message = (err as Error).message;
+      setError(message);
     } finally {
       setIsLoading(false);
     }
-    console.log('Api caller returns :',products);
+    console.log('Api caller returns:', products);
   };
 
-  async function fetchProductsByCategory(category : string) {
-    console.log('fetchProductsByCategory called with :',category);
-    //categories are DINNERWARE, DRINKWARE, SERVEWARE, TABLE, ACCESSORIES
-
+  async function fetchProductsByCategory(category: string) {
+    console.log('fetchProductsByCategory called with:', category);
     setIsLoading(true);
+    const token = localStorage.getItem('sessionToken'); // Ensure token is retrieved for each call
     try {
-      const response = await fetch('https://dtu62597.eduhost.dk:10132/products/'+category);
+      const response = await fetch(`https://dtu62597.eduhost.dk:10132/products/${category}`, {
+        headers: {
+          'Authorization': `Bearer ${token}` // Use token in header
+        }
+      });
       if (!response.ok) throw new Error('Could not fetch products.');
       const data: Product[] = await response.json();
       setProducts(data);
-    } catch (err:unknown) {
-        const message = (err as Error).message;
-        setError(message);
+    } catch (err: unknown) {
+      const message = (err as Error).message;
+      setError(message);
     } finally {
       setIsLoading(false);
     }
-    console.log('Api caller returns :',products);
+    console.log('Api caller returns:', products);
   };
 
-
-    return { products, isLoading, error, fetchAllProducts, fetchProductsByCategory};
+  return { products, isLoading, error, fetchAllProducts, fetchProductsByCategory };
 }
+
 export default apiCaller;
 
