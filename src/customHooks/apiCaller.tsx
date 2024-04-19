@@ -15,7 +15,7 @@ function apiCaller()
     setIsLoading(true);
     const token = localStorage.getItem('sessionToken'); // Retrieve the token from local storage
     try {
-      const response = await fetch('https://dtu62597.eduhost.dk:10132/products', {
+      const response = await fetch('http://localhost:3000/products', {
         headers: {
           'Authorization': `Bearer ${token}` // Include the token in the Authorization header
         }
@@ -37,7 +37,7 @@ function apiCaller()
     setIsLoading(true);
     const token = localStorage.getItem('sessionToken'); // Ensure token is retrieved for each call
     try {
-      const response = await fetch(`https://dtu62597.eduhost.dk:10132/products/${category}`, {
+      const response = await fetch(`http://localhost/products/${category}`, {
         headers: {
           'Authorization': `Bearer ${token}` // Use token in header
         }
