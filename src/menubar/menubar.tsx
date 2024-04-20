@@ -7,7 +7,7 @@ import {Link} from 'react-router-dom'
 import hamburger from '../assets/hamburger.svg'
 import { useState } from 'react'
 import { useCart } from '../shopping-cart/shoppingCart-Context/cartContext'
-
+import profile from '../assets/profile.svg'
 
 
 export function Menubar() {
@@ -54,6 +54,9 @@ export function Menubar() {
       <div className={`overlay ${isMenuOpen ? 'open' : ''}`}></div>
 
       <nav>
+        <Link to="/user" target="_self" rel="noreferrer noopener">
+          <img src={profile} alt="Profile icon" className="menu-icon" />
+        </Link>
         <Link to="#" target="_self" rel="noreferrer noopener">
           <img src={search} alt="Search icon" className="menu-icon" />
         </Link>

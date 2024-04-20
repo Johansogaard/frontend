@@ -12,10 +12,13 @@ import CancelPage from './checkoutPage/cancelPage';
 import SuccessPage from './checkoutPage/successPage';
 import { CartProvider } from './shopping-cart/shoppingCart-Context/cartContext';
 import { ProductProvider } from './productsPage/productsPage-Context/productsContext';
+import { UserPage} from './userPage/userPage';
+import { UserProvider } from './state/userState/userContext';
 
 const App = () => {
   return (
     <Router>
+      <UserProvider>
       <CartProvider>
         <ProductProvider> {}
           <Routes>
@@ -29,9 +32,11 @@ const App = () => {
             <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/cancel" element={<CancelPage />} />
             <Route path="/success" element={<SuccessPage />} />
+            <Route path="/user" element={<UserPage />} />
           </Routes>
         </ProductProvider>
       </CartProvider>
+      </UserProvider>
     </Router>
   );
 }
