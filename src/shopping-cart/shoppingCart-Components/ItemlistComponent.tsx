@@ -60,7 +60,7 @@ function ShoppingCartItem({item}: {item:Item}) {
           <img src={deleteIcon} alt='delete' className='remove-image' />
         </button> 
         <div className='item-pricing-lineTwo'>
-        <p>
+        <p className='price-pr-item-tag'>
           {item.product.product_price} pr item
         </p>
         <div className="quantity-Checker">
@@ -74,7 +74,7 @@ function ShoppingCartItem({item}: {item:Item}) {
           </div>
         </div>
         <div className='item-pricing-total'>
-          <p>Price:</p>
+          <p className='price-tag'>Price:</p>
           <p>{item.product.product_price * item.quantity} DKK</p>
           </div>
         </div>

@@ -16,7 +16,8 @@ function apiCaller()
     try {
       const response = await fetch('https://dtu62597.eduhost.dk:10132/products');
       if (!response.ok) throw new Error('Could not fetch products.');
-      const data: Product[] = await response.json();
+      const data = await response.json();
+      console.log('Data fetched :',data);
       setProducts(data);
     } catch (err:unknown) {
         const message = (err as Error).message;
@@ -46,6 +47,11 @@ function apiCaller()
     console.log('Api caller returns :',products);
   };
 
+
+
+ 
+  
+  
 
     return { products, isLoading, error, fetchAllProducts, fetchProductsByCategory};
 }
