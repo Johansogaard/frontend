@@ -1,23 +1,35 @@
 .menubar-container {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 94%; /* Ensure it spans the full width */
-  padding-left: 3%;
-  padding-right: 3%;
+  width: 100%; /* Ensure it spans the full width */
   background-color: #ececec;
   
 }
 .menubar-container nav {
   display: flex;
   align-items: center; /* This will vertically center the icons */
-  gap: 10px; /* Adjust the space between icons */
+   /* Adjust the space between icons */
 }
 .menu-items {
-  position: absolute;
-  right: 10%;
-  left: 30%;
-  text-align: center; /* This centers the text in the available space */
+ display: flex;
+ 
+ justify-content: center;
+ align-items: center;
+ width: 100%;
+  
+ 
+
+}
+.end-icons {
+  display: flex;
+  justify-content: flex-end;
+  
+  margin-right: 1%;
+}
+.coffe-logo {
+  display: flex;
+  align-items: start;
+ 
+  margin-left: 1%;
 }
 .menu-item {
   margin-right: 20px;
@@ -36,6 +48,10 @@
   display: none;
 }
 @media (max-width: 1220px) {
+  .coffe-logo {
+    justify-content: center;
+    width: 100%;
+  }
   .menu-button {
     display: block;
     background-color: #ececec;
@@ -44,6 +60,8 @@
   }
 
   .menu-items {
+    justify-content: start;
+   
     display: flex;
     position: fixed;
     top: 0;

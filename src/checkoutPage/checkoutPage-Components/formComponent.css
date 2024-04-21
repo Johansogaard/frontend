@@ -42,7 +42,7 @@ label.checkbox {
   justify-content: flex-end;
   width: 600px;
   gap: 4px;
-  #padding-bottom: 20px; /* Added height padding */
+  padding-bottom: 20px; /* Added height padding */
 }
 
 label.checkbox > input {

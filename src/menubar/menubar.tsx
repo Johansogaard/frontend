@@ -23,12 +23,12 @@ export function Menubar() {
       >
         <img src={hamburger} alt="Menu" />
       </button>
-
+      <div className='coffe-logo'>
       <Link to="/">
         {' '}
         <img src={cofee} alt="coffee" />
       </Link>
-
+      </div>
       <nav className={`menu-items ${isMenuOpen ? 'open' : ''}`}>
         {isMenuOpen && (
           <button className="exit-button" onClick={() => setIsMenuOpen(false)}>
@@ -53,7 +53,7 @@ export function Menubar() {
       </nav>
       <div className={`overlay ${isMenuOpen ? 'open' : ''}`}></div>
 
-      <nav>
+      <nav className='end-icons'>
         <Link to="/user" target="_self" rel="noreferrer noopener">
           <img src={profile} alt="Profile icon" className="menu-icon" />
         </Link>
