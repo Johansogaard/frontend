@@ -36,7 +36,7 @@ export function ItemListComponent(){
 }
 
 
-function ShoppingCartItem({item}: {item:Item}) {
+function ShoppingCartItem({item}: {item: Item}) {
   const { handleShopQuantityComponent, removeItem } = useCart();
   return (
     <section>
@@ -44,40 +44,32 @@ function ShoppingCartItem({item}: {item:Item}) {
       <article className="item-container">
         <img
           src={item.product.product_image_url}
-          alt="item imager"
-          className="item-image"
+          alt="item image"
+          className="item-image-popOut"
         />
-        <div className='item-info'>
-        <h1>{item.product.product_name}</h1>
-        <span>
-          {item.product.product_description}
-        </span>
-        </div>
-        
-        <div className="item-pricing">
-        <button className='remove-btn' onClick={() => removeItem(item.product.product_id)} style={{ cursor: 'pointer' }}>
-          <img src={deleteIcon} alt='delete' className='remove-image' />
-        </button> 
-        <div className='item-pricing-lineTwo'>
-        <p className='price-pr-item-tag'>
-          {item.product.product_price} pr item
-        </p>
-        <div className="quantity-Checker">
-          <button className='quantity-btn' onClick={() => handleShopQuantityComponent(item.product.product_id, -1)}>
-            -
-          </button>
-          <p className='quantity-numb'>{item.quantity}</p>
-          <button className='quantity-btn' onClick={() => handleShopQuantityComponent(item.product.product_id, 1)}>
-            +
-          </button>
+        <div className="item-details">
+          <div className='item-info'>
+            <h1>{item.product.product_name}</h1>
           </div>
-        </div>
-        <div className='item-pricing-total'>
-          <p className='price-tag'>Price:</p>
-          <p>{item.product.product_price * item.quantity} DKK</p>
+          <div className="item-pricing">
+            
+            <div className='item-pricing'>
+              <div className="quantity-Checker">
+                <button className='quantity-btn' onClick={() => handleShopQuantityComponent(item.product.product_id, -1)}>
+                  -
+                </button>
+                <p className='quantity-numb'>{item.quantity}</p>
+                <button className='quantity-btn' onClick={() => handleShopQuantityComponent(item.product.product_id, 1)}>
+                  +
+                </button>
+                <button className='remove-btn1' onClick={() => removeItem(item.product.product_id)} style={{ cursor: 'pointer' }}>
+                    <img src={deleteIcon} alt='delete' className='remove-image' />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </article>
     </section>
-  )
+  );
 }

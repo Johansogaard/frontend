@@ -209,7 +209,6 @@ root{
   
   justify-content: space-between;
   align-items: center;
-
 }
 .item-pricing-total
 {
@@ -292,4 +291,44 @@ hr {
   height: 1px;         /* Sets the thickness of the line */
   background-color: black; /* Sets the color of the line */
   margin: 20px 0;      /* Adds top and bottom spacing */
+}
+
+/*For the pop out shopping cart */
+
+.item-container-popOut {
+
+  display: flex;
+  align-items: flex-start; /* Aligns items at the start of the flex container */
+}
+
+.item-image-popOut {
+  width: 100px; /* Set fixed width or as needed */
+  height: auto; /* Maintain aspect ratio */
+  margin-right: 20px; /* Spacing between image and details */
+}
+
+.item-details {
+  flex: 1; /* Takes up the remaining space */
+  display: flex;
+  flex-direction: column;
+}
+
+.item-info {
+  flex-grow: 1; /* Allows the info area to take up any extra space */
+}
+
+.item-pricing {
+  width: 100%;
+  margin-bottom: 10px; /* Adjust this value as needed */
+}
+
+.quantity-Checker {
+  display: flex;
+  justify-content: space-between; /* Spreads out the - and + buttons */
+  align-items: center;
+}
+
+.remove-btn1{
+  display: flex;
+  background-color: transparent;
 }

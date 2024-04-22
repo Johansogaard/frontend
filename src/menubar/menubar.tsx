@@ -109,18 +109,23 @@ export function Menubar() {
       <ItemListComponent />
     </VStack>
 
-    {/* Footer area with total calculation */}
     <Box
-      display="flex"
-      justifyContent="space-between"
-      borderTop="1px solid #111111"
-      padding="24px 0" // equivalent to .9375rem 0
+  display="flex"
+  justifyContent="space-between"
+  borderTop="1px solid #111111"
+  padding="24px 0" // equivalent to .9375rem 0
+>
+  <Link to="/cart" style={{ width: '100%' }}>
+    <Button
+      width="100%"
+      backgroundColor="#616569" // Example color, adjust as needed
+      color="white"
+      _hover={{ bg: "#4299e1" }} // Example hover color, adjust as needed
     >
-      <Text fontWeight="600" fontSize="lg">Total</Text>
-      <Text fontWeight="600" fontSize="lg">
-        {/* Total calculation logic here */}
-      </Text>
-    </Box>
+      Continue to shopping cart
+    </Button>
+  </Link>
+</Box>
   </Box>
 </Slide>
     </header>
