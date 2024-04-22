@@ -13,11 +13,10 @@ import search from '../assets/search.svg'
 import basket from '../assets/basket.svg'
 import cofee from '../assets/coffee.svg'
 import {Link} from 'react-router-dom'
-import back from '../assets/delete.svg'
 import hamburger from '../assets/hamburger.svg'
 import { useState } from 'react'
 import { useCart } from '../shopping-cart/shoppingCart-Context/cartContext'
-import { ItemListComponent } from '../shopping-cart/shoppingCart-Components/ItemlistComponent'; // Adjust the import path as needed
+import { ItemListComponent } from '../shopping-cart/shoppingCart-Components/ItemlistComponentForPopOut'; // Adjust the import path as needed
 
 
 type ShoppingCartProps = {
@@ -87,38 +86,43 @@ export function Menubar() {
           padding="10px"
           borderLeft="1px solid #111111"
         >
-          <Box display="flex" flexDirection="column" gap="50px">  // equivalent to 3.125rem
-            <Box
-              display="flex"
-              justifyContent="space-between"
-              alignItems="center"
-            >
-              <Text fontSize="lg" fontWeight="600">Cart</Text>
-              <Button onClick={() => setIsCartOpen(false)} backgroundColor="transparent" padding="0" _hover={{ backgroundColor: "transparent" }}>
-                <img src={hamburger} alt="Menu" />
-              </Button>
-            </Box>
-            <VStack
-              divider={<StackDivider borderColor="gray.200" />}
-              spacing={4}
-              align="stretch"
-            >
-              <ItemListComponent />
-            </VStack>
-          </Box>
           <Box
-            display="flex"
-            justifyContent="space-between"
-            borderTop="1px solid #111111"
-            padding="24px 0"  // equivalent to .9375rem 0
-          >
-            <Text fontWeight="600" fontSize="lg">Total</Text>
-            <Text fontWeight="600" fontSize="lg">
-              {/* Total calculation logic here */}
-            </Text>
-          </Box>
-        </Box>
-      </Slide>
+      display="flex"
+      justifyContent="space-between"
+      alignItems="center"
+      padding="0 16px" // Add padding on left and right for spacing
+    >
+      <Text fontSize="lg" fontWeight="bold">Shopping Cart</Text>
+      <Button onClick={() => setIsCartOpen(false)} backgroundColor="transparent" padding="0" _hover={{ backgroundColor: "transparent" }}>
+        <img src={hamburger} alt="Close Menu" />
+      </Button>
+    </Box>
+
+    {/* Content area with items list */}
+    <VStack
+      divider={<StackDivider borderColor="gray.200" />}
+      spacing={4}
+      align="stretch"
+      flexGrow={1} // Make this VBox grow to fill space
+      paddingY="20px" // Add vertical padding for spacing
+    >
+      <ItemListComponent />
+    </VStack>
+
+    {/* Footer area with total calculation */}
+    <Box
+      display="flex"
+      justifyContent="space-between"
+      borderTop="1px solid #111111"
+      padding="24px 0" // equivalent to .9375rem 0
+    >
+      <Text fontWeight="600" fontSize="lg">Total</Text>
+      <Text fontWeight="600" fontSize="lg">
+        {/* Total calculation logic here */}
+      </Text>
+    </Box>
+  </Box>
+</Slide>
     </header>
   );
 }
