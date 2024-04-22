@@ -1,4 +1,5 @@
 .landingPageContainer {
+  width: 100%;
   background-image: url('../assets/images/DiningSet.webp'); 
   background-size: cover; 
   background-position: center; 
@@ -24,5 +25,19 @@
     cursor: pointer;
     margin-top: 80px; 
 }
-
-
+@media (max-width: 768px) {
+  .landingPageContainer h1 {
+    font-size: 24px; 
+  }
+  .landingPageContainer p {
+    font-size: 14px; 
+  }
+}
+@media (max-width: 380px) {
+  .landingPageContainer h1 {
+    font-size: 18px; 
+  }
+  .landingPageContainer p {
+    font-size: 8px; 
+  }
+}
