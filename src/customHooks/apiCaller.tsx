@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import { Product } from "../models/Product";
-
+import { Order } from "../models/Orders";
 
 
 function apiCaller() 
@@ -55,5 +55,7 @@ function apiCaller()
 
     return { products, isLoading, error, fetchAllProducts, fetchProductsByCategory};
 }
+
+
 export default apiCaller;
 

@@ -1,8 +1,6 @@
 
 import './shoppingCartPage.css'
-
 import { ItemListComponent } from './shoppingCart-Components/ItemlistComponent';
-
 import { TotalPriceComponent } from './shoppingCart-Components/totalPriceComponent';
 import { Menubar } from '../menubar/menubar';
 import { Topbar } from '../topbar/topBar';
@@ -12,10 +10,6 @@ export function ShoppingCart() {
  
 console.log('ShoppingCart rendered')
     
-
-
-  
-
   return (
     <>
     <Topbar />
@@ -33,8 +27,3 @@ console.log('ShoppingCart rendered')
     </>
   )
 }
-
-
-
-
-

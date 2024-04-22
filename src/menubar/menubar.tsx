@@ -50,6 +50,7 @@ export function Menubar() {
         <Link to="/all-products" className="menu-item">
           ALL PRODUCTS
         </Link>
+        
       </nav>
       <div className={`overlay ${isMenuOpen ? 'open' : ''}`}></div>
 

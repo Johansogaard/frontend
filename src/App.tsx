@@ -9,14 +9,17 @@ import { AccessoriesPage } from './productsPage/AccessoriesPage';
 import { ShoppingCart } from './shopping-cart/shoppingCartPage';
 import { CheckoutPage } from './checkoutPage/checkoutPage';
 import CancelPage from './checkoutPage/cancelPage';
-import SuccessPage from './checkoutPage/successPage';
 import { CartProvider } from './shopping-cart/shoppingCart-Context/cartContext';
 import { ProductProvider } from './productsPage/productsPage-Context/productsContext';
 import { UserPage} from './userPage/userPage';
 import { UserProvider } from './state/userState/userContext';
+import { ConfirmationPage } from './confirmationPage/confirmationPage';
+import { FormsManagerProvider } from './checkoutPage/checkoutPage-Components/FormsManagerContext';
+
 
 const App = () => {
   return (
+    <FormsManagerProvider>
     <Router>
       <UserProvider>
       <CartProvider>
@@ -31,13 +34,15 @@ const App = () => {
             <Route path="/table-accessories" element={<AccessoriesPage />} />
             <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/cancel" element={<CancelPage />} />
-            <Route path="/success" element={<SuccessPage />} />
             <Route path="/user" element={<UserPage />} />
+            <Route path="/payments/success" element={<ConfirmationPage />} />            
           </Routes>
         </ProductProvider>
       </CartProvider>
       </UserProvider>
     </Router>
+    </FormsManagerProvider>
+
   );
 }
 
