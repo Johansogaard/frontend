@@ -53,7 +53,8 @@ export function Menubar() {
         </Link>
         <Link to="/all-products" className="menu-item">
           ALL PRODUCTS
-        </Link>      </nav>
+        </Link>        
+      </nav>
       <div className={`overlay ${isMenuOpen ? 'open' : ''}`}></div>
 
       <nav className='end-icons'>
