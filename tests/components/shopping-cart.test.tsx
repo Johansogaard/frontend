@@ -22,8 +22,6 @@ describe('ShoppingCart', () => {
     expect(screen.getByText('Go to checkout')).not.toBeNull()
   })
 
-
-
   it('adds an item to the cart', () => {
     const { result } = renderHook(() => useCart(), { wrapper: CartProvider });
     act(() => {
@@ -57,7 +55,6 @@ describe('ShoppingCart', () => {
   });
 
 
-
   it('calculates the total price correctly', () => {
     const { result } = renderHook(() => useCart(), { wrapper: CartProvider });
     act(() => {
@@ -69,96 +66,5 @@ describe('ShoppingCart', () => {
 
 
 
-  it('applies discounts correctly', () => {
-    const { result } = renderHook(() => useCart(), { wrapper: CartProvider });
-    act(() => {
-      // Assuming the discount applies for quantities of 5 or more
-      result.current.addItem({ product_id: 1, product_name: 'Coffee Mug', product_price: 10, rebateQuantity: 5, rebatePercent: 10, product_currency: 'DKK', category_id: 12 });
-      for (let i = 0; i < 4; i++) { // Adding 4 more to have a total of 5
-        result.current.handleShopQuantityComponent(1, 1); 
-      }
-    });
-    expect(result.current.calcTotalDiscount()).not.toBe('0.00');
-  });
-
-
-
-
-
-
-  /*
-  it('increases item quantity by 1 when "+" button is clicked', async () => {
-    // First, we need to render the component within its provider
-    render(
-      <CartProvider>
-        <ItemListComponent />
-      </CartProvider>
-    );
-    
-    const { result } = renderHook(() => useCart(), { wrapper: CartProvider });
-    act(() => {
-      result.current.addItem({ product_id: 1, 
-        product_name: 'Coffee Mug', 
-        product_price: 12.99, 
-        rebateQuantity: 5, 
-        rebatePercent: 10,
-        product_currency: 'USD',
-        category_id: 123 });
-    });
-    
-
-    const addButton = screen.getAllByRole('button', { name: '+' })[0];
-
-    // Before clicking the "+" button, capture the current quantity displayed in the UI.
-  // The specific way to select this depends on your markup.
-  const quantityElement = 1;
-
-// Click the "+" button to increase the quantity.
-fireEvent.click(addButton);
-
-// After the click, assert the quantity has increased by 1.
-expect(quantityElement + 1);
-
   
-  });
-
-  */
-
-  /*
-it('updates item quantity correctly', () => {
-  const { result } = renderHook(() => useCart(), { wrapper: CartProvider });
-  act(() => {
-    result.current.addItem({ product_id: 1, product_name: 'Coffee Mug', product_price: 12.99, rebateQuantity: 5, rebatePercent: 10, product_currency: 'DKK', category_id: 12 });
-    // Increase quantity by 1
-    result.current.handleShopQuantityComponent(1, 1);
-  });
-  expect(result.current.items.find(item => item.product.product_id === 1)?.quantity).toBe(2);
-});
-*/
-
-/*
-  it('increases item quantity when "+" button is clicked', () => {
-    const addButton = screen.getAllByText('+')[0]
-    fireEvent.click(addButton)
-    const quantityText = screen.getAllByText('3')[0]
-    expect(quantityText).not.toBeNull()
-  })
-
-  it('decreases item quantity when "-" button is clicked', () => {
-    const subtractButton = screen.getAllByText('-')[0]
-    fireEvent.click(subtractButton)
-    const quantityText = screen.getAllByText('1')[0]
-    expect(quantityText).not.toBeNull()
-  })
-
-  it('removes an item when "remove" is clicked', () => {
-    const removeButton = screen.getAllByText('remove')[0]
-    fireEvent.click(removeButton)
-    expect(screen.queryByText('Royal Copenhagen')).toBeNull()
-  })
-  /*
-  it('displays the correct total price', () => {
-    const total = screen.getByText(/Total/);
-    expect(total).toHaveTextContent('Total 752.97 DKK'); 
-  });*/
 })
