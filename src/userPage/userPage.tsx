@@ -29,7 +29,10 @@ export function UserPage() {
     async function handleSignup(e: React.FormEvent) {
     e.preventDefault();
         register({ email, customer_password, customer_name, phone_number });
+    
+    
     }
+
 return (
     <>
      <Topbar />
@@ -57,6 +60,13 @@ return (
                     <button type ='submit' className='signup-btn'>Create Account</button>
                 </form>
                 <button className='goToLogin-btn' onClick={() => setSignup(false)}>go to login</button>
+                {state.message ==='Succesfully created account'? (
+                    <p className='success'>{state.message}</p>
+                ) : state.message?.includes('Registration failed')?
+                (
+                     <p className='failure'>{state.message}</p> 
+                ): null}
+                
             </div>
 
     )
@@ -71,6 +81,11 @@ return (
             
         </form>
         <button type='button' className='goToRegister-btn' onClick={() => setSignup(true)}>go to sign up</button>
+        {state.message?.includes('LOGIN_FAIL') ? 
+        (
+        <p className='failure'>{state.message}</p>
+        
+         ): null}
         </div>
     )}
     </div>
