@@ -9,6 +9,7 @@ const initialState: UserState = {
     customer_id: null,
     customer_name: null,
     token: null,
+    message: null
   };
 
 
@@ -48,7 +49,7 @@ const initialState: UserState = {
           });
           const data = await response.json();
           if (response.ok) {
-            dispatch({ type: 'LOGIN_SUCCESS', payload: { customer_id: data.customer_id,customer_name: data.customer_name ,token: data.token } });
+            dispatch({ type: 'LOGIN_SUCCESS', payload: { customer_id: data.customer_id,customer_name: data.customer_name ,token: data.token,message: data.message} });
           } else {
             dispatch({ type: 'LOGIN_FAILURE', payload: { error: data.message || 'Failed to login' } });
           }

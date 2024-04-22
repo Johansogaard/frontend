@@ -33,9 +33,9 @@ const App = () => {
             <Route path="/serveware" element={<ServewarePage />} />
             <Route path="/table-accessories" element={<AccessoriesPage />} />
             <Route path="/checkout" element={<CheckoutPage />} />
-            <Route path="/cancel" element={<CancelPage />} />
+            <Route path="checkout/cancel" element={<CancelPage />} />
             <Route path="/user" element={<UserPage />} />
-            <Route path="/payments/success" element={<ConfirmationPage />} />            
+            <Route path="/checkout/success" element={<ConfirmationPage />} />            
           </Routes>
         </ProductProvider>
       </CartProvider>
