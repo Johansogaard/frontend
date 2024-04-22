@@ -1,0 +1,51 @@
+.user-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    
+    
+}
+.login-container,
+.signup-container{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #e6e0d7;
+    border-radius: 8px;
+    text-align: left;
+}
+.login-btn,
+.signup-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    background-color: black;
+    color: white;
+
+}
+.signup-form,
+.login-form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.goToRegister-btn,
+.goToLogin-btn{
+    
+    
+    background-color: transparent;
+    font-size: small;
+    text-decoration: underline;
+    border: none;
+    padding: 0; 
+    cursor: pointer;
+    align-self: flex-start;
+    margin-top: 10px;
+}
+
+

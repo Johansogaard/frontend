@@ -19,6 +19,7 @@ export function DrinkwarePage(){
       <Topbar />
       <Menubar />
       <h1>Drinkware</h1>
+      <p className='productPageDescription'>Raise a glass to impeccable style with our Drinkware Collection, where each sip is a toast to elegance. Whether you're winding down with a delicate wine or toasting to new beginnings with sparkling crystal, our selection of glasses and stemware caters to every beverage preference. Explore our range of beautifully designed options, from robust tumblers to sophisticated flutes, each promising to complement your favorite libations and enhance your drinking experience. Cheers to life's moments, big and small, with the perfect drinkware in hand.</p>
       <ProductListComponent />
   
       </>

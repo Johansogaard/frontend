@@ -3,11 +3,11 @@ import './menubar.css'
 import search from '../assets/search.svg'
 import basket from '../assets/basket.svg'
 import cofee from '../assets/coffee.svg'
-import Link from '../components/Link'
+import {Link} from 'react-router-dom'
 import hamburger from '../assets/hamburger.svg'
 import { useState } from 'react'
 import { useCart } from '../shopping-cart/shoppingCart-Context/cartContext'
-
+import profile from '../assets/profile.svg'
 
 
 export function Menubar() {
@@ -23,12 +23,12 @@ export function Menubar() {
       >
         <img src={hamburger} alt="Menu" />
       </button>
-
+      <div className='coffe-logo'>
       <Link to="/">
         {' '}
         <img src={cofee} alt="coffee" />
       </Link>
-
+      </div>
       <nav className={`menu-items ${isMenuOpen ? 'open' : ''}`}>
         {isMenuOpen && (
           <button className="exit-button" onClick={() => setIsMenuOpen(false)}>
@@ -53,7 +53,10 @@ export function Menubar() {
       </nav>
       <div className={`overlay ${isMenuOpen ? 'open' : ''}`}></div>
 
-      <nav>
+      <nav className='end-icons'>
+        <Link to="/user" target="_self" rel="noreferrer noopener">
+          <img src={profile} alt="Profile icon" className="menu-icon" />
+        </Link>
         <Link to="#" target="_self" rel="noreferrer noopener">
           <img src={search} alt="Search icon" className="menu-icon" />
         </Link>
