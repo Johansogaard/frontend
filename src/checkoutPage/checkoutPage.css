@@ -1,5 +1,6 @@
 .checkout-page-container{
-with=100%}
+    width:100%
+}
 .checkout-delivery{
     display: flex;
     justify-content: center;

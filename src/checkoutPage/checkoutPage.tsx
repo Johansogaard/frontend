@@ -60,10 +60,10 @@ export function CheckoutPage() {
 
       {error && <div className="error-message">{error}</div>}
 
-      <button className="checkout-button" onClick={handleCheckoutClick}>
-        <Link to={termsChecked ? "/payment" : "/checkout"} className="link">
+      <button className="checkout-button" onClick={() => {
+        if (termsChecked)
+        {handleCheckoutClick();}}}>
           Go to payment
-        </Link>
       </button>
     </div>
   );

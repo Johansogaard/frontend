@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import { Product } from "../models/Product";
-import { Order } from "../models/Orders";
+
 
 
 function apiCaller() 
@@ -46,8 +46,7 @@ function apiCaller()
     }
     console.log('Api caller returns :',products);
   };
-
-
+   
 
  
   
