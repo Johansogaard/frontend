@@ -17,12 +17,11 @@ export function ItemListComponent(){
       <p>Cart is empty</p>
       <button>
         <Link to="/all-products" className="link">
-          Cuntinue shopping
+          Continue shopping
         </Link>
       </button>
    
 
-    
   </>
     
     ) : (
@@ -54,9 +53,16 @@ function ShoppingCartItem({item}: {item:Item}) {
           {item.product.product_description}
         </span>
         </div>
-        
         <div className="item-pricing">
-        <button className='remove-btn' onClick={() => removeItem(item.product.product_id)} style={{ cursor: 'pointer' }}>
+  
+        <button className='remove-btn' onClick={() => {
+          // This is for pop up window to ask user if they are sure about removing item from cart. 
+  const isConfirmed = window.confirm('Are you sure, you want to remove this is from cart?');
+  if (isConfirmed) {
+    removeItem(item.product.product_id);
+  }
+  }} style={{ cursor: 'pointer' }}>
+
           <img src={deleteIcon} alt='delete' className='remove-image' />
         </button> 
         <div className='item-pricing-lineTwo'>
@@ -64,7 +70,19 @@ function ShoppingCartItem({item}: {item:Item}) {
           {item.product.product_price} pr item
         </p>
         <div className="quantity-Checker">
-          <button className='quantity-btn' onClick={() => handleShopQuantityComponent(item.product.product_id, -1)}>
+        
+
+          <button className='quantity-btn' onClick={() => {
+            // Another pop up window, when user updates quantity to 0 items
+            if (item.quantity === 1) {
+              const isConfirmed = window.confirm('Are you sure, you want to remove this is from cart?');
+              if (isConfirmed) {
+                removeItem(item.product.product_id);
+              }
+            } else {
+              handleShopQuantityComponent(item.product.product_id, -1);
+            }
+          }}>
             -
           </button>
           <p className='quantity-numb'>{item.quantity}</p>
