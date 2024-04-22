@@ -51,11 +51,12 @@ return(
         
           
         </div>
-        <button className="checkout-button">
         <Link to="/checkout" className="link">
+        <button className="checkout-button">
           Go to checkout
+        </button>        
         </Link>
-        </button>
+
       </section>
       
 

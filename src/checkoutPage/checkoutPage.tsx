@@ -9,11 +9,10 @@ import { formsManager } from "./checkoutPage-Hooks/formsManager";
 
 export function CheckoutPage(){
   const { items } = useCart(); // Access items from the shopping cart
-
- 
   const handleCheckoutClick = () => {
+
     // Call handleCheckout function with the items from the shopping cart
-    handleCheckout(items, "1", "shipping_address", "billing_address", 200020);
+    handleCheckout(items, "1", "Voddervej 12", "Stengavl 6", 2020);
   };
     return(
 <>
@@ -21,11 +20,11 @@ export function CheckoutPage(){
   <section className="checkout-delivery">
       <FormComponent />
       </section>
+
       <button className="checkout-button" onClick={handleCheckoutClick}>
-        <Link to="/payments" className="link">
           Go to payment
-        </Link>
       </button>
+
     </>
     )
 }

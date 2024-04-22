@@ -87,7 +87,7 @@ root{
   cursor: pointer;
 
 }
-.checkout-button .link {
+.checkout-button  {
   color: white; /* Ensures text color is black for the link */
   text-decoration: none; /* Optional: Removes underline from the link */
 }

@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import { Product } from "../models/Product";
-
+import { Order } from "../models/Orders";
 
 
 function apiCaller() 
@@ -46,8 +46,25 @@ function apiCaller()
     console.log('Api caller returns :',products);
   };
 
+  async function fetchUserOrder(userId: number) {
+    console.log('fetchUserOrder called with userId:', userId);
+    setIsLoading(true);
+    try {
+      const response = await fetch(`https://dtu62597.eduhost.dk:10132/orders/${userId}`);
+      if (!response.ok) throw new Error('Could not fetch user order.');
+      
+    } catch (err: unknown) {
+      const message = (err as Error).message;
+      setError(message);
+    } finally {
+      setIsLoading(false);
+    }
+    console.log('Api caller returns:', products);
+  }
 
-    return { products, isLoading, error, fetchAllProducts, fetchProductsByCategory};
+    return { products, isLoading, error, fetchAllProducts, fetchProductsByCategory,fetchUserOrder};
 }
+
+
 export default apiCaller;
 

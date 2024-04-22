@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { formsManager } from '../checkoutPage-Hooks/formsManager'
 import './formComponent.css'
+import { useFormManager } from '../checkoutPage-Components/FormsManagerContext';
 
 
 export function FormComponent() {
 
   console.log('FormComponent rendered')
-    const {email,phoneNumber,vatNumber,setEmail,setPhoneNumber,setVatNumber,isEmailValid,isPhoneNumberValid,isVatNumberValid } = formsManager();
+    const {email,phoneNumber,vatNumber,setEmail,setPhoneNumber,setVatNumber,isEmailValid,isPhoneNumberValid,isVatNumberValid } = useFormManager();
     const [termsChecked, setTermsChecked] = useState(false);
     const [NewsChecked, setnewsChecked] = useState(false);
     return (
