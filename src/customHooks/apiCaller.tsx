@@ -46,8 +46,7 @@ function apiCaller()
     }
     console.log('Api caller returns :',products);
   };
-
-
+   
 
  
   
@@ -55,5 +54,7 @@ function apiCaller()
 
     return { products, isLoading, error, fetchAllProducts, fetchProductsByCategory};
 }
+
+
 export default apiCaller;
 

@@ -6,15 +6,18 @@ import './checkoutMenuBar.css'
 export function CheckoutMenuBar() {
     return (
         <header className="checkout-menubar-container">
+            <div className='menubar'>
         <Link to="/cart" className="menubar-link">
         <img src={navigateBack} alt="back" />
         <span>back</span>
         </Link>
+        
         <Link to="/">
         <img src={cofee} alt="coffee" />
         </Link>
 
         <ProgressBar step={2} />
+        </div>
         </header>
     )
 }
