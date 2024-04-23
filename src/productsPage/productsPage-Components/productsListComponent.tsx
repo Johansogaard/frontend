@@ -29,11 +29,10 @@ function ProductListComponent() {
         </div>
       ) : (
         <ul id="products" className="productList">
-          <li className='productListItems'>
           {products.map((product) => (
             <ProductDisplay key={product.product_id} product={product} />
           ))}
-          </li>
+          
         </ul>
       )}
     </div>

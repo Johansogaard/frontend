@@ -24,7 +24,7 @@ export async function handleCheckout(
     // make a POST request to server to create a checkout session
     //const response = await fetch('https://localhost/payments/create-checkout-session', {
     const response = await fetch(
-      `https://127.0.0.1:443/payments/create-checkout-session`,
+      `https://localhost:443/payments/create-checkout-session`,
       {
         method: 'POST',
         headers: {

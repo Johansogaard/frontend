@@ -24,7 +24,7 @@ export function CheckoutPage() {
 
   return (
     <div className="checkout-page-container">
-      <HelmetProvider>
+         <HelmetProvider>
       <Helmet>
         <meta name="description" content="This is the checkout page" />
       </Helmet>
