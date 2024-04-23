@@ -16,7 +16,7 @@ import hamburger from '../assets/hamburger.svg'
 import { useState } from 'react'
 import { useCart } from '../shopping-cart/shoppingCart-Context/cartContext'
 import { ItemListComponent } from '../shopping-cart/shoppingCart-Components/ItemlistComponentForPopOut'; // Adjust the import path as needed
-
+import profile  from '../assets/profile.svg'
 
 export function Menubar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -57,6 +57,10 @@ export function Menubar() {
       <div className={`overlay ${isMenuOpen ? 'open' : ''}`}></div>
 
       <nav className='end-icons'>
+      <Link to="/user" target="_self" rel="noreferrer noopener">
+          <img src={profile} alt="Profile icon" className="menu-icon" />
+        </Link>
+
         <Link to="#" target="_self" rel="noreferrer noopener">
           <img src={search} alt="Search icon" className="menu-icon" />
         </Link>

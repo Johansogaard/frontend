@@ -9,14 +9,15 @@ export async function handleCheckout(items: Item[], customer_id: string, shippin
         shipping_address: shipping_address,
         billing_address: billing_address,
         total_amount: total_amount,
+        baseurl: window.location.href
       },
     };
   
       console.log('Body Data:', bodyData);
-  
+  //https://dtu62597.eduhost.dk:10132/payments/create-checkout-session
       // make a POST request to server to create a checkout session
     //const response = await fetch('https://localhost/payments/create-checkout-session', {
-    const response = await fetch(`https://dtu62597.eduhost.dk:10132/payments/create-checkout-session`, {
+    const response = await fetch(`https://localhost:443/payments/create-checkout-session`, {
             
         method: 'POST',
         headers: {
