@@ -1,7 +1,8 @@
 .checkout-menubar-container{
-    display: flex;
-    justify-content: space-evenly;
     width: 100%;
+    display: flex;
+    justify-content:space-between;
+    
     margin-bottom: 20px;
     padding-bottom: 10px;
     padding-top: 10px;
@@ -12,12 +13,31 @@
     align-items: center; 
     color: black;
 }
-
+.front{
+    display: flex;
+align-items: center;
+justify-content: flex-start;
+margin-left: 3%;
+width: 33.33%;
+}
+.middle{
+display: flex;
+align-items: center;
+justify-content: center;
+width: 33.33%;
+}
+.back{
+    display: flex;
+align-items: center;
+justify-content: flex-end;
+margin-right: 3%;
+width: 33.33%;
+}
 
 .progress-bar {
     display: flex;
     align-items: center;
-    
+   
 }
 .progress-bar-step{
     display: flex;
@@ -42,7 +62,13 @@
 .progress-bar-step-numb.complete{
     background-color: #65f848;
 }
+.horizontal-line.active{
+    background-color: black;
 
+}
+.horizontal-line.complete{
+    background-color: #65f848;
+}
 
 .progress-bar-step-text{
     font-size: 10px;
@@ -62,4 +88,18 @@
 
 .horizontal-line.complete {
     background-color: #65f848;
+}
+@media screen and (max-width: 600px) {
+    .progress-bar-step-numb
+    {
+        width: 30px;
+        height: 30px;
+        font-size: 10px;
+    }
+    .horizontal-line {
+        width: 30px;
+    }
+    .progress-bar-step-text{
+        font-size: 8px;
+    }
 }

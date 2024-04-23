@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 
 
-import { Menubar } from '../menubar/menubar'
-import { Topbar } from '../topbar/topBar'
+import { CheckoutMenuBar } from "../checkoutMenuBar/checkoutMenuBar";
+import { Topbar } from '../../topbar/topBar'
 
 
 export function ConfirmationPage() {
@@ -20,7 +20,7 @@ export function ConfirmationPage() {
   return (
     <>
       <Topbar />
-      <Menubar />                    
+      <CheckoutMenuBar step={3} />                    
       <h1>Thanks for your order!</h1>
       {orderDetails && (
         <div>

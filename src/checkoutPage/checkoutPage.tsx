@@ -1,7 +1,7 @@
 import { FormComponent } from "./checkoutPage-Components/formComponent";
 import { CheckoutMenuBar } from "./checkoutMenuBar/checkoutMenuBar";
 import './checkoutPage.css';
-import { Link } from "react-router-dom";
+
 import { useCart } from "../shopping-cart/shoppingCart-Context/cartContext";
 import React, { useState } from 'react';
 import { handleCheckout } from '../shopping-cart/shoppingCart-Components/handleCheckout.tsx'
@@ -12,7 +12,7 @@ export function CheckoutPage() {
   const [newsChecked, setNewsChecked] = useState(false);
   const [error, setError] = useState("");
 
-
+  
   const handleCheckoutClick = () => {
     if (!termsChecked) {
       setError("Please accept the Terms and Conditions to proceed.");
@@ -24,7 +24,7 @@ export function CheckoutPage() {
 
   return (
     <div className ='checkout-page-container'>
-      <CheckoutMenuBar />
+      <CheckoutMenuBar step={1} />
       <section className="checkout-delivery">
         <FormComponent />
       </section>

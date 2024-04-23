@@ -13,7 +13,7 @@ import { CartProvider } from './shopping-cart/shoppingCart-Context/cartContext';
 import { ProductProvider } from './productsPage/productsPage-Context/productsContext';
 import { UserPage} from './userPage/userPage';
 import { UserProvider } from './state/userState/userContext';
-import { ConfirmationPage } from './confirmationPage/confirmationPage';
+import { ConfirmationPage } from './checkoutPage/confirmationPage/confirmationPage';
 import { FormsManagerProvider } from './checkoutPage/checkoutPage-Components/FormsManagerContext';
 
 
