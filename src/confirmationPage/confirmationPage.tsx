@@ -1,26 +1,29 @@
-import { useState, useEffect } from 'react';
-
-
+import { useState, useEffect } from 'react'
 import { Menubar } from '../menubar/menubar'
 import { Topbar } from '../topbar/topBar'
-
+import { Helmet,HelmetProvider } from 'react-helmet-async'
 
 export function ConfirmationPage() {
-  const [orderDetails] = useState(null);
+  const [orderDetails] = useState(null)
 
   // Get the Checkout Session ID from the URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const sessionId = urlParams.get('session_id');
+  const urlParams = new URLSearchParams(window.location.search)
+  const sessionId = urlParams.get('session_id')
 
   useEffect(() => {
-    console.log('id: '+ sessionId )
-    callSucces();}, [sessionId]);
-    
+    console.log('id: ' + sessionId)
+    callSucces()
+  }, [sessionId])
 
   return (
     <>
+    <HelmetProvider>
+      <Helmet>
+        <meta name="description" content="This is the confirmation page" />
+      </Helmet>
+      </HelmetProvider>
       <Topbar />
-      <Menubar />                    
+      <Menubar />
       <h1>Thanks for your order!</h1>
       {orderDetails && (
         <div>
@@ -31,21 +34,21 @@ export function ConfirmationPage() {
         </div>
       )}
     </>
-  );
+  )
 }
 async function callSucces() {
   console.log('INSIDE')
-  try{
-    const url = new URL(window.location.href);
-    const sessionId = url.searchParams.get('session_id');
-    console.log('session id '+sessionId);
+  try {
+    const url = new URL(window.location.href)
+    const sessionId = url.searchParams.get('session_id')
+    console.log('session id ' + sessionId)
     //https://localhost:443/payments/success?session_id='+sessionId
-    const response = await fetch('https://dtu62597.eduhost.dk:10132/payments/success?session_id='+sessionId);
-    if (!response.ok) throw new Error('Could not call success.');
-
+    const response = await fetch(
+      'https://dtu62597.eduhost.dk:10132/payments/success?session_id=' +
+        sessionId,
+    )
+    if (!response.ok) throw new Error('Could not call success.')
+  } catch (err: unknown) {
+    throw new Error('failed to call success')
   }
-  catch (err:unknown) {
-    throw new Error("failed to call success")
-  }
-  
 }

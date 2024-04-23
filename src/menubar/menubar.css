@@ -2,33 +2,29 @@
   display: flex;
   width: 100%; /* Ensure it spans the full width */
   background-color: #ececec;
-  
 }
 .menubar-container nav {
   display: flex;
   align-items: center; /* This will vertically center the icons */
-   /* Adjust the space between icons */
+  /* Adjust the space between icons */
 }
 .menu-items {
- display: flex;
- 
- justify-content: center;
- align-items: center;
- width: 100%;
-  
- 
+  display: flex;
 
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 .end-icons {
   display: flex;
   justify-content: flex-end;
-  
+
   margin-right: 1%;
 }
 .coffe-logo {
   display: flex;
   align-items: start;
- 
+
   margin-left: 1%;
 }
 .menu-item {
@@ -61,7 +57,7 @@
 
   .menu-items {
     justify-content: start;
-   
+
     display: flex;
     position: fixed;
     top: 0;
