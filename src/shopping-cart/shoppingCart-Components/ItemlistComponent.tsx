@@ -61,7 +61,7 @@ function ShoppingCartItem({item}: {item:Item}) {
   if (isConfirmed) {
     removeItem(item.product.product_id);
   }
-  }} style={{ cursor: 'pointer' }}>
+  }} >
 
           <img src={deleteIcon} alt='delete' className='remove-image' />
         </button> 

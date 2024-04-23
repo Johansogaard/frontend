@@ -313,10 +313,7 @@ hr {
   flex-grow: 1; /* Allows the info area to take up any extra space */
 }
 
-.item-pricing {
-  width: 100%;
-  margin-bottom: 10px; /* Adjust this value as needed */
-}
+
 
 .quantity-Checker {
   display: flex;
