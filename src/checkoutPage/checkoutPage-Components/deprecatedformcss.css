@@ -23,13 +23,8 @@ form select {
 }
 
 @media (max-width: 980px) {
-    .contact-info,
-  .delivery
-  
-   {
+  .contact-info,
+  .delivery {
     width: 90%;
-    
-    
- 
   }
 }

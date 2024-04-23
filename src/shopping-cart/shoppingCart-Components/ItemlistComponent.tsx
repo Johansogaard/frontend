@@ -1,43 +1,38 @@
 import { useCart } from '../shoppingCart-Context/cartContext'
-import {Item} from '../../models/Item'
+import { Item } from '../../models/Item'
 import { Link } from 'react-router-dom'
 import deleteIcon from '../../assets/delete.svg'
 
-export function ItemListComponent(){
+export function ItemListComponent() {
   console.log('ItemListComponent rendered')
-  const { items} = useCart();
-  console.log(items);
+  const { items } = useCart()
+  console.log(items)
 
-  
-  return(
+  return (
     <>
-    <h2>Shopping Cart</h2>
-    {items.length === 0 ? (
-      <>
-      <p>Cart is empty</p>
-      <button>
-        <Link to="/all-products" className="link">
-          Continue shopping
-        </Link>
-      </button>
-   
-
-  </>
-    
-    ) : (
-<ul id="cart-items" className="unsortList">
-{items.map((item) => (
-          <ShoppingCartItem key={item.product.product_id} item={item} />
-        ))}
-</ul>
-    )}
-</>
+      <h2>Shopping Cart</h2>
+      {items.length === 0 ? (
+        <>
+          <p>Cart is empty</p>
+          <button>
+            <Link to="/all-products" className="link">
+              Continue shopping
+            </Link>
+          </button>
+        </>
+      ) : (
+        <ul id="cart-items" className="unsortList">
+          {items.map((item) => (
+            <ShoppingCartItem key={item.product.product_id} item={item} />
+          ))}
+        </ul>
+      )}
+    </>
   )
 }
 
-
-function ShoppingCartItem({item}: {item:Item}) {
-  const { handleShopQuantityComponent, removeItem } = useCart();
+function ShoppingCartItem({ item }: { item: Item }) {
+  const { handleShopQuantityComponent, removeItem } = useCart()
   return (
     <section>
       <div className="divider"></div>
@@ -47,53 +42,63 @@ function ShoppingCartItem({item}: {item:Item}) {
           alt="item imager"
           className="item-image"
         />
-        <div className='item-info'>
-        <h1>{item.product.product_name}</h1>
-        <span>
-          {item.product.product_description}
-        </span>
+        <div className="item-info">
+          <h1>{item.product.product_name}</h1>
+          <span>{item.product.product_description}</span>
         </div>
         <div className="item-pricing">
-  
-        <button className='remove-btn' onClick={() => {
-          // This is for pop up window to ask user if they are sure about removing item from cart. 
-  const isConfirmed = window.confirm('Are you sure, you want to remove this is from cart?');
-  if (isConfirmed) {
-    removeItem(item.product.product_id);
-  }
-  }} style={{ cursor: 'pointer' }}>
-
-          <img src={deleteIcon} alt='delete' className='remove-image' />
-        </button> 
-        <div className='item-pricing-lineTwo'>
-        <p className='price-pr-item-tag'>
-          {item.product.product_price} pr item
-        </p>
-        <div className="quantity-Checker">
-        
-
-          <button className='quantity-btn' onClick={() => {
-            // Another pop up window, when user updates quantity to 0 items
-            if (item.quantity === 1) {
-              const isConfirmed = window.confirm('Are you sure, you want to remove this is from cart?');
+          <button
+            className="remove-btn"
+            onClick={() => {
+              // This is for pop up window to ask user if they are sure about removing item from cart.
+              const isConfirmed = window.confirm(
+                'Are you sure, you want to remove this is from cart?',
+              )
               if (isConfirmed) {
-                removeItem(item.product.product_id);
+                removeItem(item.product.product_id)
               }
-            } else {
-              handleShopQuantityComponent(item.product.product_id, -1);
-            }
-          }}>
-            -
+            }}
+            style={{ cursor: 'pointer' }}
+          >
+            <img src={deleteIcon} alt="delete" className="remove-image" />
           </button>
-          <p className='quantity-numb'>{item.quantity}</p>
-          <button className='quantity-btn' onClick={() => handleShopQuantityComponent(item.product.product_id, 1)}>
-            +
-          </button>
+          <div className="item-pricing-lineTwo">
+            <p className="price-pr-item-tag">
+              {item.product.product_price} pr item
+            </p>
+            <div className="quantity-Checker">
+              <button
+                className="quantity-btn"
+                onClick={() => {
+                  // Another pop up window, when user updates quantity to 0 items
+                  if (item.quantity === 1) {
+                    const isConfirmed = window.confirm(
+                      'Are you sure, you want to remove this is from cart?',
+                    )
+                    if (isConfirmed) {
+                      removeItem(item.product.product_id)
+                    }
+                  } else {
+                    handleShopQuantityComponent(item.product.product_id, -1)
+                  }
+                }}
+              >
+                -
+              </button>
+              <p className="quantity-numb">{item.quantity}</p>
+              <button
+                className="quantity-btn"
+                onClick={() =>
+                  handleShopQuantityComponent(item.product.product_id, 1)
+                }
+              >
+                +
+              </button>
+            </div>
           </div>
-        </div>
-        <div className='item-pricing-total'>
-          <p className='price-tag'>Price:</p>
-          <p>{item.product.product_price * item.quantity} DKK</p>
+          <div className="item-pricing-total">
+            <p className="price-tag">Price:</p>
+            <p>{item.product.product_price * item.quantity} DKK</p>
           </div>
         </div>
       </article>

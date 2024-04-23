@@ -3,17 +3,16 @@ import './menubar.css'
 import search from '../assets/search.svg'
 import basket from '../assets/basket.svg'
 import cofee from '../assets/coffee.svg'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import hamburger from '../assets/hamburger.svg'
 import { useState } from 'react'
 import { useCart } from '../shopping-cart/shoppingCart-Context/cartContext'
 import profile from '../assets/profile.svg'
 
-
 export function Menubar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const { calcTotalItems } = useCart(); // Use the useCart hook to get cart items
-  const itemCount = Number(calcTotalItems());
+  const { calcTotalItems } = useCart() // Use the useCart hook to get cart items
+  const itemCount = Number(calcTotalItems())
 
   return (
     <header className="menubar-container">
@@ -23,11 +22,11 @@ export function Menubar() {
       >
         <img src={hamburger} alt="Menu" />
       </button>
-      <div className='coffe-logo'>
-      <Link to="/">
-        {' '}
-        <img src={cofee} alt="coffee" />
-      </Link>
+      <div className="coffe-logo">
+        <Link to="/">
+          {' '}
+          <img src={cofee} alt="coffee" />
+        </Link>
       </div>
       <nav className={`menu-items ${isMenuOpen ? 'open' : ''}`}>
         {isMenuOpen && (
@@ -50,11 +49,10 @@ export function Menubar() {
         <Link to="/all-products" className="menu-item">
           ALL PRODUCTS
         </Link>
-        
       </nav>
       <div className={`overlay ${isMenuOpen ? 'open' : ''}`}></div>
 
-      <nav className='end-icons'>
+      <nav className="end-icons">
         <Link to="/user" target="_self" rel="noreferrer noopener">
           <img src={profile} alt="Profile icon" className="menu-icon" />
         </Link>
@@ -62,23 +60,25 @@ export function Menubar() {
           <img src={search} alt="Search icon" className="menu-icon" />
         </Link>
         <Link to="/cart" target="_self" rel="noreferrer noopener">
-        <div style={{ position: 'relative' }}>
+          <div style={{ position: 'relative' }}>
             <img src={basket} alt="basket icon" className="menu-icon" />
             {itemCount > 0 && (
-              <span style={{
-                position: 'absolute',
-                top: '-10px',
-                right: '-10px',
-                background: 'red',
-                color: 'white',
-                borderRadius: '50%',
-                width: '20px',
-                height: '20px',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                fontSize: '12px',
-              }}>
+              <span
+                style={{
+                  position: 'absolute',
+                  top: '-10px',
+                  right: '-10px',
+                  background: 'red',
+                  color: 'white',
+                  borderRadius: '50%',
+                  width: '20px',
+                  height: '20px',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  fontSize: '12px',
+                }}
+              >
                 {itemCount}
               </span>
             )}

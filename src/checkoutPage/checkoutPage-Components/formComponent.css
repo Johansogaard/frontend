@@ -1,39 +1,33 @@
-.form{
+.form {
   width: 90%;
-  padding-bottom: 20px ;
+  padding-bottom: 20px;
   display: flex;
   flex-direction: column;
-  
+
   background-color: #e6e0d7;
-  
 }
-.checkout-UserInfo{
+.checkout-UserInfo {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
 }
-.form-content{
- 
-  
+.form-content {
   margin-left: 3%;
   margin-right: 3%;
 }
-.email-info{
+.email-info {
   width: 100%;
 }
-.zipform-container{
+.zipform-container {
   margin-top: 10px;
   margin-bottom: 10px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
-  
 }
-.postalCode-input{
-  
+.postalCode-input {
 }
-.city-input{
-
+.city-input {
 }
 label.checkbox {
   color: #fff;

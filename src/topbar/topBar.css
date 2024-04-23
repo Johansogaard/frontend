@@ -27,8 +27,7 @@
   text-align: center; /* This centers the text in the available space */
   color: black; /* Changes text color to black in the top-bar*/
 }
-@media (max-width: 581px)
-{
+@media (max-width: 581px) {
   .shipping-info {
     font-size: 10px; /* Hides the shipping info on smaller screens */
   }
