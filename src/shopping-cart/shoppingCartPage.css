@@ -45,14 +45,14 @@ root {
 }
 
 .item-subtotal-discount-applied {
-  color: rgb(255, 136, 0);
+  color: #0000FF;
 }
 
 .subtotal-discount {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: rgb(255, 136, 0);
+  color: #0000FF;
 }
 
 .subtotal-total-withDiscount {

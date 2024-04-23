@@ -22,9 +22,11 @@ export function ItemListComponent() {
         </>
       ) : (
         <ul id="cart-items" className="unsortList">
+          <li>
           {items.map((item) => (
             <ShoppingCartItem key={item.product.product_id} item={item} />
           ))}
+          </li>
         </ul>
       )}
     </>
