@@ -3,173 +3,94 @@ import { formsManager } from '../checkoutPage-Hooks/formsManager'
 import './formComponent.css'
 
 
-export function FormComponent() {
-
-  console.log('FormComponent rendered')
-    const {email,phoneNumber,vatNumber,setEmail,setPhoneNumber,setVatNumber,isEmailValid,isPhoneNumberValid,isVatNumberValid } = formsManager();
-    return (
-        <section className="form">
-        <h2>Customer information</h2>
-          <form className='form-content'>
 
 
-            <div className='checkout-UserInfo'>
+export function FormComponent({ validateForm }) {
+  const [error, setError] = useState(""); // State for form validation error
+  const [isValidated, setIsValidated] = useState(false); // State to track if form has been validated
 
-            <select id="userType" name="usertype" required>
-              <option value="privat">Private</option>
-              <option value="comp">Company</option>
-
-            </select>
-
-            <input type="tel"
-                   name="phone" placeholder="Phone number" value={phoneNumber}
-                   onChange={(e) => setPhoneNumber(e.target.value)}
-                   style={{ borderColor: isPhoneNumberValid ? 'green' : 'red' }} required
-                   onKeyPress={(event) => {
-                     if (!/[0-9]/.test(event.key)) {
-                       event.preventDefault()
-                     }
-                   }}
-                   maxLength={8}
-            />
-              <input
-                type="text"
-                name="firstName"
-                placeholder="First name"
-                className="user-input"
-              />
-              <input
-                type="text"
-                name="lastName"
-                placeholder="Last name"
-                className="user-input"
-              />
-
-              <input type="email" name="email" placeholder="Indtast din email" required value={email}
-                   onChange={(e) => setEmail(e.target.value)}
-
-                   style={{ borderColor:  !(email.length > 1 && isEmailValid) ? 'black' : 'black' }} // Visuel feedback med grænsefarve rød eller grøn når det er korrekt/forkert/
-            />
-             <select id="country" name="country" required>
-              <option value="dk">Denmark</option>
-
-            </select>
-
-            </div>
-            <ZipForm />
-
-            <input
-              type="text"
-              name="company"
-              placeholder="Company VAT number (optional)"
-              value={vatNumber}
-              onChange={(e) => setVatNumber(e.target.value)}
-              style={{
-                borderColor: (vatNumber.length > 2 && !isVatNumberValid) ? 'red' : (vatNumber.length > 0 && vatNumber.length <= 2 && !/[a-zA-Z]/.test(vatNumber)) ? 'red' : (vatNumber.length >= 3 && !/[0-9]/.test(vatNumber)) ? 'red' : isVatNumberValid ? 'green' : ''
-              }}
-              maxLength={10}
-              required
-              onKeyPress={(event) => {
-                const currentValue = vatNumber + event.key;
-
-                //Lås for symboler.
-                if (!/^[0-9a-zA-Z]*$/.test(currentValue)) {
-                  event.preventDefault();
-                }
-                if (currentValue.length <= 2 && !/[a-zA-Z]/.test(event.key)) {
-                  event.preventDefault();
-                }
-                if (currentValue.length > 2 && !/[0-9]/.test(event.key)) {
-                  event.preventDefault();
-                }
-                if (currentValue.length < 2 && /[0-9]/.test(event.key)) { /* empty */ }
-              }}
-            />
-
-            {(vatNumber.length === 10 && !isVatNumberValid) && <p style={{ color: 'red' }}>VAT-nummeret skal være 10 cifre langt.</p>}
-            <input type="text" name="address" placeholder="Address"
-            />
-
-
-
-
-            {email.length > 1 && isEmailValid && email.includes('@') && email.includes('.') && (
-              <p style={{ color: 'green' }}>Emailen er gyldig.</p>
-            )}
-            {email.length > 1 && (!isEmailValid || !email.includes('@') || !email.includes('.')) && (
-              <p style={{ color: 'red' }}>Emailen er ikke gyldig.</p>
-            )}
-            {!isPhoneNumberValid && <p style={{ color: 'red' }}>Telefonnummeret er forkert.</p>}
-            <input type="text" name="Other billing address" placeholder="Other billing address" />
-          </form>
-
-        </section>
-    )
-}
-
-function ZipForm() {
-  type PostalCodeData = {
-    nr: string
-    navn: string
-  }
-  const [postalCode, setPostalCode] = useState('')
-  const [postalCodes, setPostalCodes] = useState<PostalCodeData[]>([])
-  const [message, setMessage] = useState('')
-  const [city, setCity] = useState('')
+  const { email, phoneNumber, vatNumber, setEmail, setPhoneNumber, setVatNumber, isEmailValid, isPhoneNumberValid, isVatNumberValid, validatePhoneNumb } = formsManager();
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch('https://api.dataforsyningen.dk/postnumre')
-      const data = await response.json()
-      setPostalCodes(data)
+    // Validate form fields if the form has been validated
+    if (isValidated) {
+      handleValidation();
     }
-    fetchData()
-  }, [])
+  }, [isValidated]); // Re-run validation when isValidated changes
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value
-    setPostalCode(value)
+  const handleValidation = () => {
+    // Validate form fields
+    validatePhoneNumb();
 
-    if (value.length === 4) {
-      const postalCodeData = postalCodes.find(
-        (item: { nr: string; navn: string }) => item.nr === value
-      )
-      if (postalCodeData) {
-        setMessage('')
-        setCity(postalCodeData.navn)
-      } else {
-        setMessage('Postal code is not valid')
-        setCity('')
-      }
+    // Check for validation errors
+    if (!isEmailValid || !isPhoneNumberValid || !isVatNumberValid) {
+      setError("Please fill in all required fields correctly.");
+      return false; // Validation failed
+    } else {
+      setError(""); // Clear error if validation succeeds
+      return true; // Validation succeeded
     }
-  }
+  };
+
+  const handleCheckoutClick = () => {
+    // Mark the form as validated
+    setIsValidated(true);
+
+    // Perform validation before proceeding to checkout
+    const isValid = handleValidation();
+
+    // Return validation status to parent component
+    validateForm(isValid);
+  };
 
   return (
-    <div className='zipform-container'>
-      <input
-        type="text"
-        name="postalCode"
-        placeholder="Postal Code"
-        value={postalCode}
-        onChange={handleChange}
-        className="postalCode-input"
-        maxLength={4}
-      />
-      {message && <p style={{ color: 'red' }}>{message}</p>}
+    <section className="form">
+      <h2>Customer information</h2>
+      <form className='form-content'>
+        {/* Email */}
+        <div className='form-field'>
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
 
-      <input
-        type="text"
-        name="City"
-        placeholder="City"
-        value={city}
-        readOnly
-        className="city-input"
-      />
-    </div>
-  )
+        {/* Phone Number */}
+        <div className='form-field'>
+          <input
+            type="tel"
+            name="phone"
+            placeholder="Enter your phone number"
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+          />
+        </div>
+
+        {/* VAT Number */}
+        <div className='form-field'>
+          <input
+            type="text"
+            name="vatNumber"
+            placeholder="Enter your VAT number"
+            value={vatNumber}
+            onChange={(e) => setVatNumber(e.target.value)}
+          />
+        </div>
+
+        {/* Error message for form validation */}
+        {error && <div className="error-message">{error}</div>}
+      </form>
+
+      {/* No button needed here */}
+    </section>
+  );
 }
 
-export default ZipForm
+
+//export default ZipForm
 
 //For making a checkbox with a label (So both text and checkbox has a certain size).
 

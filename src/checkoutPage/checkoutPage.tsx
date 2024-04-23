@@ -5,20 +5,35 @@ import { Link } from "react-router-dom";
 import { useCart } from "../shopping-cart/shoppingCart-Context/cartContext";
 import React, { useState } from 'react';
 import { handleCheckout } from '../shopping-cart/shoppingCart-Components/handleCheckout.tsx'
+import {formsManager} from './checkoutPage-Hooks/formsManager.tsx'
 
 export function CheckoutPage() {
-  const { items } = useCart(); // Access items from the shopping cart
+  const { items } = useCart();
   const [termsChecked, setTermsChecked] = useState(false);
   const [newsChecked, setNewsChecked] = useState(false);
   const [error, setError] = useState("");
+  const { isEmailValid, isPhoneNumberValid, isVatNumberValid, validatePhoneNumb } = formsManager();
 
+  const validateForm = (isValid) => {
+
+    if (!isValid) {
+      setError("Please fill in all required fields correctly.");
+    } else {
+      setError("");
+    }
+  };
 
   const handleCheckoutClick = () => {
-    if (!termsChecked) {
-      setError("Please accept the Terms and Conditions to proceed.");
+
+    validatePhoneNumb();
+
+
+    if (!isEmailValid || !isPhoneNumberValid || !isVatNumberValid) {
+      setError("Please fill in all required fields correctly.");
       return;
     }
-    //handleCheckout(items);
+
+
     handleCheckout(items, "1", "shipping_address", "billing_address", 200020);
   };
 
@@ -26,7 +41,7 @@ export function CheckoutPage() {
     <div className ='checkout-page-container'>
       <CheckoutMenuBar />
       <section className="checkout-delivery">
-        <FormComponent />
+        <FormComponent validateForm={validateForm} />
       </section>
 
       <section className="checkout-checkboxNews">
@@ -35,39 +50,40 @@ export function CheckoutPage() {
           val={newsChecked}
           setValue={setNewsChecked}
           label="I would like to receive possible future offers and emails from Porcelain Shop."
-
         />
       </section>
       <section className="checkout-checkboxTerm">
         <CheckboxTerms
           name="Terms"
-
           val={termsChecked}
           setValue={setTermsChecked}
-
           label="I confirm that my details are correct and accept the Terms and Conditions"
-          error={error} // Pass error state as a prop
+          error={error}
         />
       </section>
       <section className="checkout-Comment">
         <div>
-        <CommentTextField
-          label="Order Comments :"
-        />
+          <CommentTextField
+            label="Order Comments :"
+          />
         </div>
       </section>
-
-
-      {error && <div className="error-message">{error}</div>}
 
       <button className="checkout-button" onClick={handleCheckoutClick}>
         <Link to={termsChecked ? "/payment" : "/checkout"} className="link">
           Go to payment
         </Link>
       </button>
+
+
+      {error && <div className="error-message">{error}</div>}
+
     </div>
   );
 }
+
+
+
 
 interface CheckboxProps {
   name: string;
@@ -142,4 +158,3 @@ const CommentTextField: React.FC<CommentTextFieldCharacterCounter> = ({ label })
     /* "checkbox-textfield" calls the CSS properties that enables border change fyi.*/
   );
 };
-
