@@ -254,5 +254,47 @@ hr {
   border: none; /* Removes the default border */
   height: 1px; /* Sets the thickness of the line */
   background-color: black; /* Sets the color of the line */
+<<<<<<< HEAD
   margin: 20px 0; /* Adds top and bottom spacing */
 }
+=======
+  margin: 20px 0;      /* Adds top and bottom spacing */
+}
+
+/*For the pop out shopping cart */
+
+.item-container-popOut {
+
+  display: flex;
+  align-items: flex-start; /* Aligns items at the start of the flex container */
+}
+
+.item-image-popOut {
+  width: 100px; /* Set fixed width or as needed */
+  height: auto; /* Maintain aspect ratio */
+  margin-right: 20px; /* Spacing between image and details */
+}
+
+.item-details {
+  flex: 1; /* Takes up the remaining space */
+  display: flex;
+  flex-direction: column;
+}
+
+.item-info {
+  flex-grow: 1; /* Allows the info area to take up any extra space */
+}
+
+
+
+.quantity-Checker {
+  display: flex;
+  justify-content: space-between; /* Spreads out the - and + buttons */
+  align-items: center;
+}
+
+.remove-btn1{
+  display: flex;
+  background-color: transparent;
+}
+>>>>>>> development

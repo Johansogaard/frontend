@@ -10,11 +10,20 @@ import { userReducer } from './userReducer'
 
 // Define the initial state
 const initialState: UserState = {
+<<<<<<< HEAD
   isAuthenticated: false,
   customer_id: null,
   customer_name: null,
   token: null,
 }
+=======
+    isAuthenticated: false,
+    customer_id: null,
+    customer_name: null,
+    token: null,
+    message: null
+  };
+>>>>>>> development
 
 interface UserProviderProps {
   children: ReactNode
@@ -51,6 +60,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
           {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
+<<<<<<< HEAD
             body: JSON.stringify(credentials),
           },
         )
@@ -69,6 +79,16 @@ export const UserProvider = ({ children }: UserProviderProps) => {
             type: 'LOGIN_FAILURE',
             payload: { error: data.message || 'Failed to login' },
           })
+=======
+            body: JSON.stringify(credentials)
+          });
+          const data = await response.json();
+          if (response.ok) {
+            dispatch({ type: 'LOGIN_SUCCESS', payload: { customer_id: data.customer_id,customer_name: data.customer_name ,token: data.token,message: data.message} });
+          } else {
+            dispatch({ type: 'LOGIN_FAILURE', payload: { error: data.message || 'Failed to login' } });
+          }
+>>>>>>> development
         }
       } catch (error: unknown) {
         let errorMessage = 'An unexpected error occurred' // A default error message

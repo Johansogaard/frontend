@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React from 'react'
+=======
+
+>>>>>>> development
 
 export default function CancelPage() {
   return (

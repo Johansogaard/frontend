@@ -47,6 +47,7 @@ function ShoppingCartItem({ item }: { item: Item }) {
           <span>{item.product.product_description}</span>
         </div>
         <div className="item-pricing">
+<<<<<<< HEAD
           <button
             className="remove-btn"
             onClick={() => {
@@ -54,6 +55,30 @@ function ShoppingCartItem({ item }: { item: Item }) {
               const isConfirmed = window.confirm(
                 'Are you sure, you want to remove this is from cart?',
               )
+=======
+  
+        <button className='remove-btn' onClick={() => {
+          // This is for pop up window to ask user if they are sure about removing item from cart. 
+  const isConfirmed = window.confirm('Are you sure, you want to remove this is from cart?');
+  if (isConfirmed) {
+    removeItem(item.product.product_id);
+  }
+  }} >
+
+          <img src={deleteIcon} alt='delete' className='remove-image' />
+        </button> 
+        <div className='item-pricing-lineTwo'>
+        <p className='price-pr-item-tag'>
+          {item.product.product_price} pr item
+        </p>
+        <div className="quantity-Checker">
+        
+
+          <button className='quantity-btn' onClick={() => {
+            // Another pop up window, when user updates quantity to 0 items
+            if (item.quantity === 1) {
+              const isConfirmed = window.confirm('Are you sure, you want to remove this is from cart?');
+>>>>>>> development
               if (isConfirmed) {
                 removeItem(item.product.product_id)
               }

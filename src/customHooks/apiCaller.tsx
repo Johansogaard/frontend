@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 import { useState } from 'react'
 import { Product } from '../models/Product'
 import { Order } from '../models/Orders'
+=======
+import {useState} from 'react';
+import { Product } from "../models/Product";
+
+>>>>>>> development
 
 function apiCaller() {
   //const [product, setProduct] = useState<Product | null>(null);
@@ -44,6 +50,7 @@ function apiCaller() {
     } finally {
       setIsLoading(false)
     }
+<<<<<<< HEAD
     console.log('Api caller returns :', products)
   }
 
@@ -54,6 +61,17 @@ function apiCaller() {
     fetchAllProducts,
     fetchProductsByCategory,
   }
+=======
+    console.log('Api caller returns :',products);
+  };
+   
+
+ 
+  
+  
+
+    return { products, isLoading, error, fetchAllProducts, fetchProductsByCategory};
+>>>>>>> development
 }
 
 export default apiCaller

@@ -15,7 +15,9 @@ export async function handleCheckout(
         shipping_address: shipping_address,
         billing_address: billing_address,
         total_amount: total_amount,
+        baseurl: window.location.href
       },
+<<<<<<< HEAD
     }
 
     console.log('Body Data:', bodyData)
@@ -25,6 +27,16 @@ export async function handleCheckout(
     const response = await fetch(
       `https://dtu62597.eduhost.dk:10132/payments/create-checkout-session`,
       {
+=======
+    };
+  
+      console.log('Body Data:', bodyData);
+  //https://dtu62597.eduhost.dk:10132/payments/create-checkout-session
+      // make a POST request to server to create a checkout session
+    //const response = await fetch('https://localhost/payments/create-checkout-session', {
+    const response = await fetch(`https://localhost:443/payments/create-checkout-session`, {
+            
+>>>>>>> development
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

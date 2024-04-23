@@ -19,6 +19,7 @@ import { FormsManagerProvider } from './checkoutPage/checkoutPage-Components/For
 const App = () => {
   return (
     <FormsManagerProvider>
+<<<<<<< HEAD
       <Router>
         <UserProvider>
           <CartProvider>
@@ -45,6 +46,29 @@ const App = () => {
           </CartProvider>
         </UserProvider>
       </Router>
+=======
+    <Router>
+      <UserProvider>
+      <CartProvider>
+        <ProductProvider> {}
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/cart" element={<ShoppingCart />} />
+            <Route path="/all-products" element={<AllProductsPage />} />
+            <Route path="/dinnerware" element={<DinnerwarePage />} />
+            <Route path="/drinkware" element={<DrinkwarePage />} />
+            <Route path="/serveware" element={<ServewarePage />} />
+            <Route path="/table-accessories" element={<AccessoriesPage />} />
+            <Route path="/checkout" element={<CheckoutPage />} />
+            <Route path="checkout/cancel" element={<CancelPage />} />
+            <Route path="/user" element={<UserPage />} />
+            <Route path="/checkout/success" element={<ConfirmationPage />} />            
+          </Routes>
+        </ProductProvider>
+      </CartProvider>
+      </UserProvider>
+    </Router>
+>>>>>>> development
     </FormsManagerProvider>
   )
 }

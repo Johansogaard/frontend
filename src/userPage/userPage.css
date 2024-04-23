@@ -42,3 +42,16 @@
   align-self: flex-start;
   margin-top: 10px;
 }
+<<<<<<< HEAD
+=======
+.success
+{
+    color: green;
+}
+.failure
+{
+    color: red;
+}
+
+
+>>>>>>> development

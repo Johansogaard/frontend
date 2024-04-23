@@ -14,15 +14,26 @@ export const userReducer = (
         customer_id: action.payload.customer_id,
         customer_name: action.payload.customer_name,
         token: action.payload.token,
+<<<<<<< HEAD
       }
     case 'LOGIN_FAILURE':
+=======
+        message: 'LOGIN_SUCCESS'
+      };
+      case 'LOGIN_FAILURE':
+>>>>>>> development
       return {
         ...state,
         isAuthenticated: false,
         customer_id: null,
         customer_name: null,
         token: null,
+<<<<<<< HEAD
       }
+=======
+        message: 'LOGIN_FAIL: ' + action.payload.error
+      };
+>>>>>>> development
     case 'LOGOUT':
       return {
         ...state,
@@ -30,7 +41,12 @@ export const userReducer = (
         customer_id: null,
         customer_name: null,
         token: null,
+<<<<<<< HEAD
       }
+=======
+        message: 'LOGOUT'
+      };
+>>>>>>> development
     case 'REGISTER_SUCCESS':
       return {
         ...state,
@@ -38,15 +54,26 @@ export const userReducer = (
         customer_id: null,
         customer_name: null,
         token: null,
+<<<<<<< HEAD
       }
     case 'REGISTER_FAILURE':
+=======
+        message: 'Succesfully created account'
+      };
+      case 'REGISTER_FAILURE':
+>>>>>>> development
       return {
         ...state,
         isAuthenticated: false,
         customer_id: null,
         customer_name: null,
         token: null,
+<<<<<<< HEAD
       }
+=======
+        message: 'Registration failed: ' + action.payload.error
+      };
+>>>>>>> development
 
     default:
       return state

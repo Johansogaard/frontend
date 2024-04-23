@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { formsManager } from '../checkoutPage-Hooks/formsManager'
 import './formComponent.css'
+<<<<<<< HEAD
 import { useFormManager } from '../checkoutPage-Components/FormsManagerContext'
+=======
+
+>>>>>>> development
 
 export function FormComponent() {
   console.log('FormComponent rendered')
+<<<<<<< HEAD
   const {
     email,
     phoneNumber,
@@ -27,6 +32,13 @@ export function FormComponent() {
             <option value="privat">Private</option>
             <option value="comp">Company</option>
           </select>
+=======
+    const {email,phoneNumber,vatNumber,setEmail,setPhoneNumber,setVatNumber,isEmailValid,isPhoneNumberValid,isVatNumberValid } = formsManager();
+    return (
+        <section className="form">
+        <h2>Customer information</h2>
+          <form className='form-content'>
+>>>>>>> development
 
           <input
             type="tel"
@@ -121,6 +133,7 @@ export function FormComponent() {
         )}
         <input type="text" name="address" placeholder="Address" />
 
+<<<<<<< HEAD
         {email.length > 1 &&
           isEmailValid &&
           email.includes('@') &&
@@ -154,6 +167,68 @@ export function FormComponent() {
       />
     </section>
   )
+=======
+              <input type="email" name="email" placeholder="Indtast din email" required value={email}
+                   onChange={(e) => setEmail(e.target.value)}
+
+                   style={{ borderColor:  !(email.length > 1 && isEmailValid) ? 'black' : 'black' }} // Visuel feedback med grænsefarve rød eller grøn når det er korrekt/forkert/
+            />
+             <select id="country" name="country" required>
+              <option value="dk">Denmark</option>
+
+            </select>
+
+            </div>
+            <ZipForm />
+
+            <input
+              type="text"
+              name="company"
+              placeholder="Company VAT number (optional)"
+              value={vatNumber}
+              onChange={(e) => setVatNumber(e.target.value)}
+              style={{
+                borderColor: (vatNumber.length > 2 && !isVatNumberValid) ? 'red' : (vatNumber.length > 0 && vatNumber.length <= 2 && !/[a-zA-Z]/.test(vatNumber)) ? 'red' : (vatNumber.length >= 3 && !/[0-9]/.test(vatNumber)) ? 'red' : isVatNumberValid ? 'green' : ''
+              }}
+              maxLength={10}
+              required
+              onKeyPress={(event) => {
+                const currentValue = vatNumber + event.key;
+
+                //Lås for symboler.
+                if (!/^[0-9a-zA-Z]*$/.test(currentValue)) {
+                  event.preventDefault();
+                }
+                if (currentValue.length <= 2 && !/[a-zA-Z]/.test(event.key)) {
+                  event.preventDefault();
+                }
+                if (currentValue.length > 2 && !/[0-9]/.test(event.key)) {
+                  event.preventDefault();
+                }
+                if (currentValue.length < 2 && /[0-9]/.test(event.key)) { /* empty */ }
+              }}
+            />
+
+            {(vatNumber.length === 10 && !isVatNumberValid) && <p style={{ color: 'red' }}>VAT-nummeret skal være 10 cifre langt.</p>}
+            <input type="text" name="address" placeholder="Address"
+            />
+
+
+
+
+            {email.length > 1 && isEmailValid && email.includes('@') && email.includes('.') && (
+              <p style={{ color: 'green' }}>Emailen er gyldig.</p>
+            )}
+            {email.length > 1 && (!isEmailValid || !email.includes('@') || !email.includes('.')) && (
+              <p style={{ color: 'red' }}>Emailen er ikke gyldig.</p>
+            )}
+            {!isPhoneNumberValid && <p style={{ color: 'red' }}>Telefonnummeret er forkert.</p>}
+            <input type="text" name="Other billing address" placeholder="Other billing address" />
+          </form>
+
+        </section>
+    )
+>>>>>>> development
 }
 
 function ZipForm() {
@@ -221,6 +296,7 @@ function ZipForm() {
 export default ZipForm
 
 //For making a checkbox with a label (So both text and checkbox has a certain size).
+<<<<<<< HEAD
 interface CheckboxProps {
   name: string
   val: boolean
@@ -271,3 +347,6 @@ const CheckboxNews: React.FC<CheckboxProps> = ({
 
 export { default as CheckboxTerms } from './formComponent'
 export { default as CheckboxNews } from './formComponent'
+=======
+
+>>>>>>> development
