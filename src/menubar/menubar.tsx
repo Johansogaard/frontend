@@ -66,7 +66,7 @@ export function Menubar() {
         </button>
       </nav>
 
-      <Slide direction="right" in={isCartOpen} style={{ zIndex: 5 }}>
+      <Slide direction="right" in={isCartOpen} style={{ zIndex: 5, width: "300px" }}>
   <Box
     display="flex"
     flexDirection="column"
