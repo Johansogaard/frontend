@@ -1,23 +1,34 @@
-import { createContext, useContext, useEffect, ReactNode,useState } from 'react';
+import { createContext, useReducer, Dispatch, ReactNode, useCallback } from 'react';
+import {ProductState, ProductAction } from './productTypes';
 import apiCaller from '../../customHooks/apiCaller';
+import { productReducer } from './productReducer';
 import { Product } from '../../models/Product';
 import { Category } from '../../models/Category';
 
 
-interface ProductsContextProps{
- products: Product[];
-  setCategory: (category: Category) => void;
-  category: Category;
+const initialState: ProductState = {
+    products: null,
+    category: null,
+    isloading: false,
+    message: null
+  };
+interface ProductsProviderProps{
+ children: ReactNode;
 }
 
-const ProductsContext = createContext<ProductsContextProps | undefined>(undefined);
+export const ProductContext = createContext<{
+  state: ProductState;
+  
+  dispatch: Dispatch<ProductAction>;
+}>({
+  state: initialState,
+  dispatch: () => null, // Placeholder function
+  
+});
 
 
-export const useProducts = () => {
-  const context = useContext(ProductsContext);
-  if (!context) throw new Error('ProductCart must be used within a ProductProvider');
-  return context;
-};
+
+
 
 interface ProductProviderProps {
   children: ReactNode;
@@ -25,9 +36,13 @@ interface ProductProviderProps {
 
 
 export const ProductProvider = ({ children }: ProductProviderProps) => {
+  const [state, dispatch] = useReducer(productReducer, initialState);
   const { products, fetchAllProducts,fetchProductsByCategory } = apiCaller();
   const [category, setCategory] = useState<Category>(Category.all);
   
+
+  const fetchProducts = useCallback(async () => {
+
   useEffect(() => {
     console.log('useEffect ran', category);
     const fetchCorrectProducts = async () => {

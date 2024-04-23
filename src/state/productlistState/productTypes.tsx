@@ -2,8 +2,8 @@ import { Product } from '../../models/Product';
 import { Category } from '../../models/Category';
 
 export type ProductState = {
-    products: Product[];
-    category: Category;
+    products: Product[]| null;
+    category: Category| null;
     isloading: boolean;
     message: string | null;
 };
