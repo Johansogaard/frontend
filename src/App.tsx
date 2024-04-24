@@ -9,7 +9,7 @@ import { AccessoriesPage } from './productsPage/AccessoriesPage';
 import { ShoppingCart } from './shopping-cart/shoppingCartPage';
 import { CheckoutPage } from './checkoutPage/checkoutPage';
 import CancelPage from './checkoutPage/cancelPage';
-import { CartProvider } from './shopping-cart/shoppingCart-Context/cartContext';
+import { CartProvider } from './state/cartState/cartContext';
 import { ProductProvider } from './state/productlistState/productContext';
 import { UserPage} from './userPage/userPage';
 import { UserProvider } from './state/userState/userContext';

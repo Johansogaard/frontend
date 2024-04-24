@@ -1,6 +1,6 @@
 import { Product } from "../../models/Product";
 import {ProductContext } from "../../state/productlistState/productContext";
-import { useCart } from "../../shopping-cart/shoppingCart-Context/cartContext";
+import { CartContext } from "../../state/cartState/cartContext"
 import { useContext, useState } from 'react';
 import '../productsPage.css';
 
@@ -34,12 +34,14 @@ function ProductListComponent() {
   
   
   function ProductDisplay({product} : {product: Product}) {
-    const { addItem } = useCart();
+    const { dispatch } = useContext(CartContext);
     const [buttonText, setButtonText] = useState("Add to cart");
     const [buttonStyle, setButtonStyle] = useState("add-to-cart-button"); // New state for buttons apperance
 
+
+
     const handleClick = () => {
-      addItem(product);
+      dispatch({type: 'CART_ADD_PRODUCT', payload:{product}} );
       setButtonText("Item added to cart!");
       setButtonStyle("add-to-cart-button-clicked"); // Update button visual apperance to another class
       setTimeout(() => {

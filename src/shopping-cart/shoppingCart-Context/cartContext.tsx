@@ -1,4 +1,5 @@
 // CartContext.tsx
+/*
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { Item } from '../../models/Item';
 
@@ -163,3 +164,4 @@ const addItem = (product: Product) => {
     </CartContext.Provider>
   );
 };
+*/

@@ -1,14 +1,26 @@
 // CartContext.tsx
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useReducer, Dispatch, ReactNode , useEffect} from 'react';
 import { Item } from '../../models/Item';
+import { CartState, CartAction} from './cartTypes';
+import { cartReducer } from './cartReducer';
 
-import { Product } from '../../models/Product';
-
-interface CartContextProps {
-  items: Item[];
-  handleShopQuantityComponent: (itemId: number, change: number) => void;
-  addItem: (product: Product) => void;
-  removeItem: (itemId: number) => void;
+const initialState: CartState = {
+ items: [],
+  
+};
+const init = (initialState:CartState) => {
+  const savedItems = localStorage.getItem('cartItems');
+  return {
+    ...initialState,
+    items: savedItems ? JSON.parse(savedItems) : []
+  };
+};
+interface CartProviderProps {
+  children: ReactNode;
+}
+export const CartContext = createContext<{
+  state: CartState;
+  dispatch: Dispatch<CartAction>;
   calcItemSubTotal: (itemId: number) => string;
   calcTotal: () => string;
   remainingItemsForDiscount: (item:Item) => string;
@@ -16,63 +28,33 @@ interface CartContextProps {
   calcTotalDiscount: () => string;
   calcTotalWithDiscount: () => string;
   calcDiscountForItem: (item: Item) => string;
-  
-}
+}>({
+  state: initialState,
+  dispatch: () => null, // Placeholder function
+  calcItemSubTotal: () => '0.00',
+  calcTotal: () => '0.00',
+  remainingItemsForDiscount: () => 'no discount available',
+  calcTotalItems: () => '0',
+  calcTotalDiscount: () => '0.00',
+  calcTotalWithDiscount: () => '0.00',
+  calcDiscountForItem: () => '0.00'
 
-const CartContext = createContext<CartContextProps | undefined>(undefined);
+});
 
-export const useCart = () => {
-  const context = useContext(CartContext);
-  if (!context) throw new Error('useCart must be used within a CartProvider');
-  return context;
-};
-
-interface CartProviderProps {
-  children: ReactNode;
-}
 
 export const CartProvider = ({ children }: CartProviderProps) => {
-  const [items, setItems] = useState<Item[]>(() => {
-    // Load cart items from localStorage or initialize to an empty array
-    const savedItems = localStorage.getItem('cartItems');
-    return savedItems ? JSON.parse(savedItems) : [];
-  });
+  const [state, dispatch] = useReducer(cartReducer, initialState,init);
 
-// Function to add items to the cart
-const addItem = (product: Product) => {
-  setItems((prevItems) => {
-    const itemIndex = prevItems.findIndex(item => item.product.product_id === product.product_id);
-    if (itemIndex > -1) {
-      // If the item already exists, update the quantity
-      const newItems = [...prevItems];
-      newItems[itemIndex] = { ...newItems[itemIndex], quantity: newItems[itemIndex].quantity + 1 };
-      return newItems;
-    } else {
-      // If the product is new, create a new item with the product and a quantity of 1
-      const newItem = { product: product, quantity: 1 };
-      return [...prevItems, newItem];
-    }
-  });
-};
- 
+ // Update localStorage when items change
+ useEffect(() => {
+  localStorage.setItem('cartItems', JSON.stringify(state.items));
+}, [state.items]);
 
-  const handleShopQuantityComponent = (itemId: number, change: number) => {
-    console.log('itemId to handle', itemId);
-    setItems((prevItems) =>
-      prevItems.map(item =>
-        item.product.product_id === itemId ? { ...item, quantity: Math.max(0, item.quantity + change) } : item,
-      ).filter(item => item.quantity > 0),
-    );
-  };
-
-  const removeItem = (itemId: number) => {
-    setItems(prevItems => prevItems.filter(item => item.product.product_id !== itemId));
-  };
 
   const calcTotal = () => {
     let total =0;
 
-    for (let item of items) {
+    for (let item of state.items) {
      total += item.product.product_price*item.quantity;
 
     }
@@ -88,7 +70,7 @@ const addItem = (product: Product) => {
   const calcTotalDiscount = () => {
     let totalDiscount =0;
 
-    for (let item of items) {
+    for (let item of state.items) {
       if(item.product.rebateQuantity)
         {
       if(item.quantity >= item.product.rebateQuantity){
@@ -113,7 +95,7 @@ const addItem = (product: Product) => {
 
 
   const calcTotalItems = ():string => {
-    return items.reduce((total, item) => total + item.quantity, 0).toFixed(0)
+    return state.items.reduce((total, item) => total + item.quantity, 0).toFixed(0)
   }
   //returns the number of items remainging to get a discount 
   const remainingItemsForDiscount = (item: Item):string => {
@@ -138,7 +120,7 @@ const addItem = (product: Product) => {
     return (item.quantity * discountprice).toFixed(2)
   }
   const calcItemSubTotal = (itemId: number) => {
-    const item = items.find((item) => item.product.product_id === itemId)
+    const item = state.items.find((item) => item.product.product_id === itemId)
     if (item) {
       return calcItemSubTotalWithDiscount(item)
     }
@@ -146,16 +128,12 @@ const addItem = (product: Product) => {
     }
 
   
-  // Update localStorage when items change
-  useEffect(() => {
-    localStorage.setItem('cartItems', JSON.stringify(items));
-  }, [items]);
+ 
 
 
 
   return (
-    <CartContext.Provider value={{ items, handleShopQuantityComponent, 
-    removeItem,calcItemSubTotal,calcTotal,remainingItemsForDiscount,calcTotalItems,addItem,  
+    <CartContext.Provider value={{state,dispatch,calcItemSubTotal,calcTotal,remainingItemsForDiscount,calcTotalItems,  
     calcTotalDiscount,
     calcTotalWithDiscount,
     calcDiscountForItem}}>

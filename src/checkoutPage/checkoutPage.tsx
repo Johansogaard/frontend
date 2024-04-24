@@ -2,12 +2,12 @@ import { FormComponent } from "./checkoutPage-Components/formComponent";
 import { CheckoutMenuBar } from "./checkoutMenuBar/checkoutMenuBar";
 import './checkoutPage.css';
 
-import { useCart } from "../shopping-cart/shoppingCart-Context/cartContext";
-import React, { useState } from 'react';
+import {CartContext} from "../state/cartState/cartContext";
+import React, { useState, useContext } from 'react';
 import { handleCheckout } from '../shopping-cart/shoppingCart-Components/handleCheckout.tsx'
 
 export function CheckoutPage() {
-  const { items } = useCart(); // Access items from the shopping cart
+  const { state} = useContext(CartContext);
   const [termsChecked, setTermsChecked] = useState(false);
   const [newsChecked, setNewsChecked] = useState(false);
   const [error, setError] = useState("");
@@ -19,7 +19,7 @@ export function CheckoutPage() {
       return;
     }
     //handleCheckout(items);
-    handleCheckout(items, "1", "shipping_address", "billing_address", 200020);
+    handleCheckout(state.items, "1", "shipping_address", "billing_address", 200020);
   };
 
   return (
