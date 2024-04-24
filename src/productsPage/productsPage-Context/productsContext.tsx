@@ -1,13 +1,8 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  ReactNode,
-  useState,
-} from 'react'
-import apiCaller from '../../customHooks/apiCaller'
-import { Product } from '../../models/Product'
-import { Category } from '../../models/Category'
+/*import { createContext, useContext, useEffect, ReactNode,useState } from 'react';
+import apiCaller from '../../customHooks/apiCaller';
+import { Product } from '../../models/Product';
+import { Category } from '../../models/Category';
+
 
 interface ProductsContextProps {
   products: Product[]
@@ -55,5 +50,5 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
     <ProductsContext.Provider value={{ products, setCategory, category }}>
       {children}
     </ProductsContext.Provider>
-  )
-}
+  );
+};*/

@@ -12,16 +12,16 @@ import basket from '../assets/basket.svg'
 import cofee from '../assets/coffee.svg'
 import { Link } from 'react-router-dom'
 import hamburger from '../assets/hamburger.svg'
-import { useState } from 'react'
-import { useCart } from '../shopping-cart/shoppingCart-Context/cartContext'
-import { ItemListComponent } from '../shopping-cart/shoppingCart-Components/ItemlistComponentForPopOut' // Adjust the import path as needed
-import profile from '../assets/profile.svg'
+import { useState,useContext } from 'react'
+import { CartContext} from '../state/cartState/cartContext'; 
+import { ItemListComponent } from '../shopping-cart/shoppingCart-Components/ItemlistComponentForPopOut';
+import profile  from '../assets/profile.svg'
 
 export function Menubar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isCartOpen, setIsCartOpen] = useState(false) // Define the state for cart drawer visibility
-  const { calcTotalItems } = useCart()
-  const itemCount = Number(calcTotalItems())
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false); // Define the state for cart drawer visibility
+  const { calcTotalItems } = useContext(CartContext);
+  const itemCount = Number(calcTotalItems());
 
   return (
     <header className="menubar-container">

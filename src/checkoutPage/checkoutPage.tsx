@@ -1,26 +1,27 @@
-import { FormComponent } from './checkoutPage-Components/formComponent'
-import { CheckoutMenuBar } from './checkoutMenuBar/checkoutMenuBar'
-import './checkoutPage.css'
-//import { Link } from 'react-router-dom'
-import { useCart } from '../shopping-cart/shoppingCart-Context/cartContext'
-import React, { useState } from 'react'
+import { FormComponent } from "./checkoutPage-Components/formComponent";
+import { CheckoutMenuBar } from "./checkoutMenuBar/checkoutMenuBar";
+import './checkoutPage.css';
+
+import {CartContext} from "../state/cartState/cartContext";
+import React, { useState, useContext } from 'react';
 import { handleCheckout } from '../shopping-cart/shoppingCart-Components/handleCheckout.tsx'
 import { Helmet, HelmetProvider} from 'react-helmet-async'
 
 export function CheckoutPage() {
-  const { items } = useCart() // Access items from the shopping cart
-  const [termsChecked, setTermsChecked] = useState(false)
-  const [newsChecked, setNewsChecked] = useState(false)
-  const [error, setError] = useState('')
+  const { state} = useContext(CartContext);
+  const [termsChecked, setTermsChecked] = useState(false);
+  const [newsChecked, setNewsChecked] = useState(false);
+  const [error, setError] = useState("");
 
+  
   const handleCheckoutClick = () => {
     if (!termsChecked) {
       setError('Please accept the Terms and Conditions to proceed.')
       return
     }
     //handleCheckout(items);
-    handleCheckout(items, '1', 'shipping_address', 'billing_address', 200020)
-  }
+    handleCheckout(state.items, "1", "shipping_address", "billing_address", 200020);
+  };
 
   return (
     <div className="checkout-page-container">
@@ -29,7 +30,7 @@ export function CheckoutPage() {
         <meta name="description" content="This is the checkout page" />
       </Helmet>
       </HelmetProvider>
-      <CheckoutMenuBar />
+      <CheckoutMenuBar step={1} />
       <section className="checkout-delivery">
         <FormComponent />
       </section>
