@@ -8,7 +8,9 @@ import { handleCheckout } from '../shopping-cart/shoppingCart-Components/handleC
 import { formsManager } from './checkoutPage-Hooks/formsManager'
 
 export function CheckoutPage() {
-  const { email, phoneNumber, vatNumber, isEmailValid, isPhoneNumberValid, isVatNumberValid, setEmail, setPhoneNumber, setVatNumber } = formsManager();
+
+  const {email,phoneNumber,vatNumber,isEmailValid,isPhoneNumberValid,isVatNumberValid,setEmail,setPhoneNumber,setVatNumber,firstName,lastName,address,isFirstNameValid,isLastNameValid,isAddressValid,
+    validateName,validateAddress,} = formsManager();
 
   const [termsChecked, setTermsChecked] = useState(false);
   const [newsChecked, setNewsChecked] = useState(false);
@@ -17,32 +19,37 @@ const [formError, setFormError] = useState('');
 
   const handleCheckoutClick = () => {
 
-
     const errors = [];
 
-    if (!email || !isEmailValid) {
-      errors.push('Email is not valid');
-    }
-    if (!phoneNumber || !isPhoneNumberValid) {
-      errors.push('Phone number is not valid');
-    }
-    if (vatNumber && !isVatNumberValid) {
-      errors.push('VAT number is not valid');
-    }
-if (!termsChecked) {
-  // If terms are not checked, set the error message
-  errors.push("Please accept the Terms and Conditions to proceed.");
+  if (!email || !isEmailValid) {
+     errors.push('Email is not valid');
+   }
 
-}
+   if (!firstName || !isFirstNameValid) {
+     errors.push('First name is not valid');
+   }
+   if (!lastName || !isLastNameValid) {
+     errors.push('Last name is not valid');
+   }
+    if (!phoneNumber || !isPhoneNumberValid) {
+        errors.push('Phone number is not valid');
+      }
+      if (vatNumber && !isVatNumberValid) {
+        errors.push('VAT number is not valid');
+      }
+   if (!address || !isAddressValid) {
+     errors.push('Address is not valid');
+   }
+   if (!termsChecked) {
+     errors.push('Please accept the Terms and Conditions to proceed.');
+   }
+
 if (errors.length > 0) {
   setError(errors.join('<br>'));
   // workaround because '\n' HTML don't work.
   return;
 }
 };
-
-
-
 
 
    return (
