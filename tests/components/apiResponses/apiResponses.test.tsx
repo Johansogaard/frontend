@@ -71,6 +71,12 @@ const server = setupServer(
       expect(products.length).toBe(2);
       expect(products[0].product_name).toBe('Plate');
     });
+
+
+    beforeEach(() => {
+        vi.restoreAllMocks();  // Reset mocks before each test
+      });
+
   
     it('handles network errors during fetch all products', async () => {
       server.use(
@@ -78,13 +84,18 @@ const server = setupServer(
           return res(ctx.status(500));
         })
       );
-  
       const { fetchAllProducts, error } = apiCaller();
       await act(async () => {
         await fetchAllProducts();
       });
       expect(error).toBe('Could not fetch products.');
     });
+
+    
+    beforeEach(() => {
+        vi.restoreAllMocks();  // Reset mocks before each test
+      });
+
   
     it('fetches products by category', async () => {
       const { fetchProductsByCategory, products } = apiCaller();
@@ -94,6 +105,12 @@ const server = setupServer(
       expect(products.length).toBe(1);
       expect(products[0].product_name).toBe('Cup');
     });
+
+
+    beforeEach(() => {
+        vi.restoreAllMocks();  // Reset mocks before each test
+      });
+
   
     it('handles fetching non-existent category', async () => {
       const { fetchProductsByCategory, error } = apiCaller();
