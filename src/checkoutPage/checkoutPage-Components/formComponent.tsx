@@ -56,7 +56,7 @@ export function FormComponent() {
           <input
             type="email"
             name="email"
-            placeholder="Indtast din email"
+            placeholder="Enter your email"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -69,13 +69,18 @@ export function FormComponent() {
           <select id="country" name="country" required>
             <option value="dk">Denmark</option>
           </select>
+          <input type="text" name="address" placeholder="Address" />
+
         </div>
+
         <ZipForm />
 
         <input
           type="text"
           name="company"
           placeholder="Company VAT number (optional)"
+          className="vat-input"
+
           value={vatNumber}
           onChange={(e) => setVatNumber(e.target.value)}
           style={{
@@ -114,28 +119,29 @@ export function FormComponent() {
         />
 
         {vatNumber.length === 10 && !isVatNumberValid && (
-          <p style={{ color: 'red' }}>VAT-nummeret skal være 10 cifre langt.</p>
+          <p style={{ color: 'red' }}>VAT-number has to be 10 digits.</p>
         )}
-        <input type="text" name="address" placeholder="Address" />
 
-        {email.length > 1 &&
-          isEmailValid &&
-          email.includes('@') &&
-          email.includes('.') && (
-            <p style={{ color: 'green' }}>Emailen er gyldig.</p>
-          )}
-        {email.length > 1 &&
-          (!isEmailValid || !email.includes('@') || !email.includes('.')) && (
-            <p style={{ color: 'red' }}>Emailen er ikke gyldig.</p>
-          )}
-        {!isPhoneNumberValid && (
-          <p style={{ color: 'red' }}>Telefonnummeret er forkert.</p>
-        )}
         <input
           type="text"
           name="Other billing address"
           placeholder="Other billing address"
+          className="billing-input"
         />
+        {email.length > 1 &&
+          isEmailValid &&
+          email.includes('@') &&
+          email.includes('.') && (
+            <p style={{ color: 'green' }}>Email is valid.</p>
+          )}
+        {email.length > 1 &&
+          (!isEmailValid || !email.includes('@') || !email.includes('.')) && (
+            <p style={{ color: 'red' }}>Email is invalid.</p>
+          )}
+        {!isPhoneNumberValid && (
+          <p style={{ color: 'red' }}>Phone number is invalid.</p>
+        )}
+       
       </form>
     </section>
   )

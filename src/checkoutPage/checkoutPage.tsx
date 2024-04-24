@@ -33,7 +33,11 @@ export function CheckoutPage() {
       <section className="checkout-delivery">
         <FormComponent />
       </section>
-
+      <section className="checkout-Comment">
+        <div>
+          <CommentTextField label="Order Comments :" />
+        </div>
+      </section>
       <section className="checkout-checkboxNews">
         <CheckboxNews
           name="News"
@@ -51,11 +55,7 @@ export function CheckoutPage() {
           error={error} // Pass error state as a prop
         />
       </section>
-      <section className="checkout-Comment">
-        <div>
-          <CommentTextField label="Order Comments :" />
-        </div>
-      </section>
+    
 
       {error && <div className="error-message">{error}</div>}
 

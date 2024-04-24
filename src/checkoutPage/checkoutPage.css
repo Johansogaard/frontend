@@ -12,10 +12,7 @@
   justify-content: center;
 }
 
-.checkbox-wrapper {
-  width: 400px; /* Proper workaround because the label and box where dependent on string length before...*/
-  margin: 0 auto;
-}
+
 
 .checkout-checkboxNews label {
   display: inline-block;
@@ -40,12 +37,13 @@
   border-color: red; /* UX add on for error. */
 }
 .checkbox-commentWrapper {
-  width: 400px;
+  width: 80%;
+  max-width: 400px;
   height: auto;
   margin: 0 auto;
   display: flex;
   flex-direction: column; /* DO NOT DELETE, no overlapping of payment button fix right here */
-  align-items: flex-start;
+  align-items: center;
 }
 .checkout-Comment {
   display: block;
@@ -62,4 +60,10 @@
   padding: 5px;
   vertical-align: top;
   resize: none;
+}
+
+form input, form select {
+  font-size: 16px;
+  border-radius: 7px;
+  height: 30px;
 }
