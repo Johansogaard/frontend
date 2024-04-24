@@ -54,7 +54,7 @@ function ShoppingCartItem({ item }: { item: Item }) {
             onClick={() => {
               // This is for pop up window to ask user if they are sure about removing item from cart.
               const isConfirmed = window.confirm(
-                'Are you sure, you want to remove this is from cart?',
+                'Are you sure, you want to remove this from cart?',
               )
               if (isConfirmed) {
                 removeItem(item.product.product_id)

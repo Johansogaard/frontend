@@ -9,7 +9,6 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import './menubar.css'
-import search from '../assets/search.svg'
 import basket from '../assets/basket.svg'
 import cofee from '../assets/coffee.svg'
 import { Link } from 'react-router-dom'
@@ -65,10 +64,6 @@ export function Menubar() {
       <nav className="end-icons">
         <Link to="/user" target="_self" rel="noreferrer noopener">
           <img src={profile} alt="Profile icon" className="menu-icon" />
-        </Link>
-
-        <Link to="#" target="_self" rel="noreferrer noopener">
-          <img src={search} alt="Search icon" className="menu-icon" />
         </Link>
         <button
           onClick={() => setIsCartOpen(!isCartOpen)}

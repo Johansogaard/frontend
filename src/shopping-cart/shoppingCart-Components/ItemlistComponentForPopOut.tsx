@@ -15,7 +15,7 @@ export function ItemListComponent() {
           <p>Cart is empty</p>
           <button>
             <Link to="/all-products" className="link">
-              Cuntinue shopping
+              Continue shopping
             </Link>
           </button>
         </>
