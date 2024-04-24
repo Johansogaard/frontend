@@ -12,54 +12,91 @@ export function FormComponent({
   setVatNumber,
   isEmailValid,
   isPhoneNumberValid,
-  isVatNumberValid
+  isVatNumberValid,
 }) {
+  const [userType, setUserType] = useState('privat'); // Default to 'privat' (Private)
+
   const handleSubmit = (event) => {
     event.preventDefault();
-
   };
 
-  return (
-    <section className="form">
-      <h2>Customer information</h2>
-      <form className='form-content' onSubmit={handleSubmit}>
+ return (
+     <section className="form">
+       <h2>Customer information</h2>
+       <form className="form-content" onSubmit={handleSubmit}>
+         <div className="checkout-UserInfo">
+           {/* User Type */}
+           <select
+             id="userType"
+             name="usertype"
+             required
+             value={userType}
+             onChange={(e) => setUserType(e.target.value)}
+           >
+             <option value="privat">Private</option>
+             <option value="comp">Company</option>
+           </select>
+  <input
+             type="email"
+             name="email"
+             placeholder="Email"
+             value={email}
+             onChange={(e) => setEmail(e.target.value)}
+             style={{ borderColor: !isEmailValid ? '' : '' }}
+           />
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          style={{ borderColor: !isEmailValid ? 'red' : '' }}
-        />
+           <input
+             type="text"
+             name="firstName"
+             placeholder="First name"
+             className="user-input"
+           />
 
-        <input
-          type="tel"
-          name="phone"
-          placeholder="Phone number"
-          value={phoneNumber}
-          onChange={(e) => setPhoneNumber(e.target.value)}
-          style={{ borderColor: !isPhoneNumberValid ? 'red' : '' }}
-          maxLength={8}
-        />
+           <input
+             type="text"
+             name="lastName"
+             placeholder="Last name"
+             className="user-input"
+           />
 
-        <input
-          type="text"
-          name="vatNumber"
-          placeholder="VAT number (optional)"
-          value={vatNumber}
-          onChange={(e) => setVatNumber(e.target.value)}
-          style={{ borderColor: vatNumber && !isVatNumberValid ? 'red' : '' }}
-          maxLength={10}
-        />
+           <input
+             type="tel"
+             name="phone"
+             placeholder="Phone number"
+             value={phoneNumber}
+             onChange={(e) => setPhoneNumber(e.target.value)}
+             style={{ borderColor: !isPhoneNumberValid ? '' : 'red' }}
+             maxLength={8}
+           />
 
 
+           {userType === 'comp' && (
+             <input
+               type="text"
+               name="vatNumber"
+               placeholder="VAT number (optional)"
+               value={vatNumber}
+               onChange={(e) => setVatNumber(e.target.value)}
+               style={{ borderColor: vatNumber && !isVatNumberValid ? '' : 'red' }}
+               maxLength={10}
+             />
+           )}
 
-        {vatNumber && !isVatNumberValid && <p style={{ color: 'red' }}>VAT number is not valid</p>}
-      </form>
-    </section>
-  );
-}
+
+           <ZipForm />
+
+
+           <input type="text" name="address" placeholder="Address" />
+
+
+           <select id="country" name="country" required>
+             <option value="dk">Denmark</option>
+           </select>
+         </div>
+       </form>
+     </section>
+   );
+ }
 
 function ZipForm() {
   type PostalCodeData = {

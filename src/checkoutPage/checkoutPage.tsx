@@ -32,11 +32,11 @@ const [formError, setFormError] = useState('');
 if (!termsChecked) {
   // If terms are not checked, set the error message
   errors.push("Please accept the Terms and Conditions to proceed.");
-  // Add a newline character to create spacing
+
 }
 if (errors.length > 0) {
   setError(errors.join('<br>'));
-  // If there are errors, return immediately
+  // workaround because '\n' HTML don't work.
   return;
 }
 };
