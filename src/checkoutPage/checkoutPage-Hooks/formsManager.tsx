@@ -8,11 +8,11 @@ export function formsManager() {
   const [vatNumber, setVatNumber] = useState('');
   const [isVatNumberValid, setIsVatNumberValid] = useState(true);
   const [firstName, setFirstName] = useState('');
+  const [isFirstNameValid, setIsFirstNameValid] = useState(false);
   const [lastName, setLastName] = useState('');
+  const [isLastNameValid, setIsLastNameValid] = useState(false);
   const [address, setAddress] = useState('');
-  const [isFirstNameValid, setIsFirstNameValid] = useState(true);
-  const [isLastNameValid, setIsLastNameValid] = useState(true);
-  const [isAddressValid, setIsAddressValid] = useState(true);
+  const [isAddressValid, setIsAddressValid] = useState(false);
 
   useEffect(() => {
     validateEmail();
@@ -25,6 +25,18 @@ export function formsManager() {
   useEffect(() => {
     validateVatNumber();
   }, [vatNumber]);
+
+  useEffect(() => {
+    validateFirstName();
+  }, [firstName]);
+
+  useEffect(() => {
+    validateLastName();
+  }, [lastName]);
+
+  useEffect(() => {
+    validateAddress();
+  }, [address]);
 
   const validateEmail = () => {
     const re = /\S+@\S+\.\S+/;
@@ -41,26 +53,33 @@ export function formsManager() {
     setIsVatNumberValid(isValid);
   };
 
-  const validateName = (name, setIsValid) => {
-    setIsValid(name.trim().length >= 2);
+  const validateFirstName = () => {
+    const isValid = /^[a-zA-Z]{2,}$/.test(firstName);
+    setIsFirstNameValid(isValid);
+  };
+
+  const validateLastName = () => {
+    const isValid = /^[a-zA-Z]{2,}$/.test(lastName);
+    setIsLastNameValid(isValid);
   };
 
   const validateAddress = () => {
-    setIsAddressValid(address.trim().length >= 2);
+    const isValid = /^[a-zA-Z]{2,}$/.test(address);
+    setIsAddressValid(isValid);
   };
 
   return {
     email,
-    phoneNumber,
-    vatNumber,
-    firstName,
-    lastName,
-    address,
     setEmail,
+    phoneNumber,
     setPhoneNumber,
+    vatNumber,
     setVatNumber,
+    firstName,
     setFirstName,
+    lastName,
     setLastName,
+    address,
     setAddress,
     isEmailValid,
     isPhoneNumberValid,
@@ -68,7 +87,6 @@ export function formsManager() {
     isFirstNameValid,
     isLastNameValid,
     isAddressValid,
-    validateName,
     validateAddress,
   };
 }

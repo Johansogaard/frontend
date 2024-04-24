@@ -9,8 +9,28 @@ import { formsManager } from './checkoutPage-Hooks/formsManager'
 
 export function CheckoutPage() {
 
-  const {email,phoneNumber,vatNumber,isEmailValid,isPhoneNumberValid,isVatNumberValid,setEmail,setPhoneNumber,setVatNumber,firstName,lastName,address,isFirstNameValid,isLastNameValid,isAddressValid,
-    validateName,validateAddress,} = formsManager();
+  const {
+    email,
+    setEmail,
+    phoneNumber,
+    setPhoneNumber,
+    vatNumber,
+    setVatNumber,
+    firstName,
+    setFirstName,
+    lastName,
+    setLastName,
+    address,
+    setAddress,
+    isEmailValid,
+    isPhoneNumberValid,
+    isVatNumberValid,
+    isFirstNameValid,
+    isLastNameValid,
+    isAddressValid,
+
+    validateAddress,
+  } = formsManager();
 
   const [termsChecked, setTermsChecked] = useState(false);
   const [newsChecked, setNewsChecked] = useState(false);
@@ -65,6 +85,12 @@ if (errors.length > 0) {
             isEmailValid={isEmailValid}
             isPhoneNumberValid={isPhoneNumberValid}
             isVatNumberValid={isVatNumberValid}
+            firstName={firstName}
+            setFirstName={setFirstName}
+            lastName={lastName}
+            setLastName={setLastName}
+            address={address}
+            setAddress={setAddress}
           />
       </section>
 

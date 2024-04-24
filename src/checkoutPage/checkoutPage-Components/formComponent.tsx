@@ -4,7 +4,7 @@ import './formComponent.css'
 
 
 export function FormComponent({
-  email,
+    email,
   setEmail,
   phoneNumber,
   setPhoneNumber,
@@ -13,6 +13,16 @@ export function FormComponent({
   isEmailValid,
   isPhoneNumberValid,
   isVatNumberValid,
+  firstName,
+  setFirstName,
+  isFirstNameValid,
+  lastName,
+  setLastName,
+  isLastNameValid,
+  address,
+  setAddress,
+  isAddressValid,
+
 }) {
   const [userType, setUserType] = useState('privat'); // Default to 'privat' (Private)
 
@@ -36,7 +46,7 @@ export function FormComponent({
              <option value="privat">Private</option>
              <option value="comp">Company</option>
            </select>
-  <input
+            <input
              type="email"
              name="email"
              placeholder="Email"
@@ -46,18 +56,23 @@ export function FormComponent({
            />
 
            <input
-             type="text"
+             type="firstName"
              name="firstName"
              placeholder="First name"
-             className="user-input"
+
+             value={firstName}
+             onChange={(e) => setFirstName(e.target.value)}
+             style={{ borderColor: !isFirstNameValid ? '' : '' }}
            />
 
-           <input
-             type="text"
-             name="lastName"
-             placeholder="Last name"
-             className="user-input"
-           />
+         <input
+           type="lastName"
+           name="lastName"
+           placeholder="Last name"
+           value={lastName}
+           onChange={(e) => setLastName(e.target.value)}
+           style={{ borderColor: !isLastNameValid ? '' : '' }}
+         />
 
            <input
              type="tel"
@@ -77,7 +92,7 @@ export function FormComponent({
                placeholder="VAT number (optional)"
                value={vatNumber}
                onChange={(e) => setVatNumber(e.target.value)}
-               style={{ borderColor: vatNumber && !isVatNumberValid ? '' : 'red' }}
+               style={{ borderColor: vatNumber && !isVatNumberValid ? '' : '' }}
                maxLength={10}
              />
            )}
@@ -86,7 +101,14 @@ export function FormComponent({
            <ZipForm />
 
 
-           <input type="text" name="address" placeholder="Address" />
+           <input
+             type="address"
+             name="address"
+             placeholder="Address"
+             value={address}
+             onChange={(e) => setAddress(e.target.value)}
+             style={{ borderColor: !isAddressValid ? '' : '' }}
+           />
 
 
            <select id="country" name="country" required>
