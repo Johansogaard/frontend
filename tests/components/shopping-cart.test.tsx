@@ -11,15 +11,19 @@ import { ShoppingCart } from '../../src/shopping-cart/shoppingCartPage'
 import { CartProvider } from '../../src/shopping-cart/shoppingCart-Context/cartContext'
 import { useCart } from '../../src/shopping-cart/shoppingCart-Context/cartContext'
 import { ItemListComponent } from '../../src/shopping-cart/shoppingCart-Components/ItemlistComponent'
+import { BrowserRouter as Router } from 'react-router-dom';
+
 
 vi.mock('../assets/placeholderItem.svg', () => {})
 
 describe('ShoppingCart', () => {
   beforeEach(() => {
     render(
-      <CartProvider>
+      <Router>
+        <CartProvider>
         <ShoppingCart />
       </CartProvider>,
+      </Router>
     )
   })
 

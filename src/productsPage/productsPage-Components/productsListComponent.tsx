@@ -5,7 +5,7 @@ import { useState } from 'react'
 import '../productsPage.css'
 
 function ProductListComponent() {
-  const { products } = useProducts()
+  const { products = [] } = useProducts()
   //console.log('products in productsList', products);
 
   return (
