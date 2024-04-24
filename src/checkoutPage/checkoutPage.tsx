@@ -5,28 +5,57 @@ import { Link } from "react-router-dom";
 import { useCart } from "../shopping-cart/shoppingCart-Context/cartContext";
 import React, { useState } from 'react';
 import { handleCheckout } from '../shopping-cart/shoppingCart-Components/handleCheckout.tsx'
+import { formsManager } from './checkoutPage-Hooks/formsManager'
 
 export function CheckoutPage() {
-  const { items } = useCart(); // Access items from the shopping cart
+  const { email, phoneNumber, vatNumber, isEmailValid, isPhoneNumberValid, isVatNumberValid, setEmail, setPhoneNumber, setVatNumber } = formsManager();
+
   const [termsChecked, setTermsChecked] = useState(false);
   const [newsChecked, setNewsChecked] = useState(false);
-  const [error, setError] = useState("");
-
+  const [error, setError] = useState('');
+const [formError, setFormError] = useState('');
 
   const handleCheckoutClick = () => {
+
+    const errors = [];
+
+    if (!email || !isEmailValid) {
+      errors.push('Email is not valid');
+    }
+    if (!phoneNumber || !isPhoneNumberValid) {
+      errors.push('Phone number is not valid');
+    }
+    if (vatNumber && !isVatNumberValid) {
+      errors.push('VAT number is not valid');
+    }
+
+    if (errors.length > 0) {
+      setFormError(errors.join(', '));
+      return;
+    }
+
     if (!termsChecked) {
       setError("Please accept the Terms and Conditions to proceed.");
       return;
     }
-    //handleCheckout(items);
-    handleCheckout(items, "1", "shipping_address", "billing_address", 200020);
-  };
+};
 
-  return (
-    <div className ='checkout-page-container'>
-      <CheckoutMenuBar />
-      <section className="checkout-delivery">
-        <FormComponent />
+
+
+   return (
+      <div className='checkout-page-container'>
+        <section className="checkout-delivery">
+          <FormComponent
+            email={email}
+            setEmail={setEmail}
+            phoneNumber={phoneNumber}
+            setPhoneNumber={setPhoneNumber}
+            vatNumber={vatNumber}
+            setVatNumber={setVatNumber}
+            isEmailValid={isEmailValid}
+            isPhoneNumberValid={isPhoneNumberValid}
+            isVatNumberValid={isVatNumberValid}
+          />
       </section>
 
       <section className="checkout-checkboxNews">
@@ -58,7 +87,10 @@ export function CheckoutPage() {
       </section>
 
 
-      {error && <div className="error-message">{error}</div>}
+{formError && <div className="form-error-message">{formError}</div>}
+{error && <div className="error-message">{error}</div>}
+
+
 
       <button className="checkout-button" onClick={handleCheckoutClick}>
         <Link to={termsChecked ? "/payment" : "/checkout"} className="link">

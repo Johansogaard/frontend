@@ -3,108 +3,63 @@ import { formsManager } from '../checkoutPage-Hooks/formsManager'
 import './formComponent.css'
 
 
-export function FormComponent() {
+export function FormComponent({
+  email,
+  setEmail,
+  phoneNumber,
+  setPhoneNumber,
+  vatNumber,
+  setVatNumber,
+  isEmailValid,
+  isPhoneNumberValid,
+  isVatNumberValid
+}) {
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-  console.log('FormComponent rendered')
-    const {email,phoneNumber,vatNumber,setEmail,setPhoneNumber,setVatNumber,isEmailValid,isPhoneNumberValid,isVatNumberValid } = formsManager();
-    return (
-        <section className="form">
-        <h2>Customer information</h2>
-          <form className='form-content'>
+  };
 
+  return (
+    <section className="form">
+      <h2>Customer information</h2>
+      <form className='form-content' onSubmit={handleSubmit}>
 
-            <div className='checkout-UserInfo'>
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          style={{ borderColor: !isEmailValid ? 'red' : '' }}
+        />
 
-            <select id="userType" name="usertype" required>
-              <option value="privat">Private</option>
-              <option value="comp">Company</option>
+        <input
+          type="tel"
+          name="phone"
+          placeholder="Phone number"
+          value={phoneNumber}
+          onChange={(e) => setPhoneNumber(e.target.value)}
+          style={{ borderColor: !isPhoneNumberValid ? 'red' : '' }}
+          maxLength={8}
+        />
 
-            </select>
-
-            <input type="tel"
-                   name="phone" placeholder="Phone number" value={phoneNumber}
-                   onChange={(e) => setPhoneNumber(e.target.value)}
-                   style={{ borderColor: isPhoneNumberValid ? 'green' : 'red' }} required
-                   onKeyPress={(event) => {
-                     if (!/[0-9]/.test(event.key)) {
-                       event.preventDefault()
-                     }
-                   }}
-                   maxLength={8}
-            />
-              <input
-                type="text"
-                name="firstName"
-                placeholder="First name"
-                className="user-input"
-              />
-              <input
-                type="text"
-                name="lastName"
-                placeholder="Last name"
-                className="user-input"
-              />
-
-              <input type="email" name="email" placeholder="Indtast din email" required value={email}
-                   onChange={(e) => setEmail(e.target.value)}
-
-                   style={{ borderColor:  !(email.length > 1 && isEmailValid) ? 'black' : 'black' }} // Visuel feedback med grænsefarve rød eller grøn når det er korrekt/forkert/
-            />
-             <select id="country" name="country" required>
-              <option value="dk">Denmark</option>
-
-            </select>
-
-            </div>
-            <ZipForm />
-
-            <input
-              type="text"
-              name="company"
-              placeholder="Company VAT number (optional)"
-              value={vatNumber}
-              onChange={(e) => setVatNumber(e.target.value)}
-              style={{
-                borderColor: (vatNumber.length > 2 && !isVatNumberValid) ? 'red' : (vatNumber.length > 0 && vatNumber.length <= 2 && !/[a-zA-Z]/.test(vatNumber)) ? 'red' : (vatNumber.length >= 3 && !/[0-9]/.test(vatNumber)) ? 'red' : isVatNumberValid ? 'green' : ''
-              }}
-              maxLength={10}
-              required
-              onKeyPress={(event) => {
-                const currentValue = vatNumber + event.key;
-
-                //Lås for symboler.
-                if (!/^[0-9a-zA-Z]*$/.test(currentValue)) {
-                  event.preventDefault();
-                }
-                if (currentValue.length <= 2 && !/[a-zA-Z]/.test(event.key)) {
-                  event.preventDefault();
-                }
-                if (currentValue.length > 2 && !/[0-9]/.test(event.key)) {
-                  event.preventDefault();
-                }
-                if (currentValue.length < 2 && /[0-9]/.test(event.key)) { /* empty */ }
-              }}
-            />
-
-            {(vatNumber.length === 10 && !isVatNumberValid) && <p style={{ color: 'red' }}>VAT-nummeret skal være 10 cifre langt.</p>}
-            <input type="text" name="address" placeholder="Address"
-            />
+        <input
+          type="text"
+          name="vatNumber"
+          placeholder="VAT number (optional)"
+          value={vatNumber}
+          onChange={(e) => setVatNumber(e.target.value)}
+          style={{ borderColor: vatNumber && !isVatNumberValid ? 'red' : '' }}
+          maxLength={10}
+        />
 
 
-
-
-            {email.length > 1 && isEmailValid && email.includes('@') && email.includes('.') && (
-              <p style={{ color: 'green' }}>Emailen er gyldig.</p>
-            )}
-            {email.length > 1 && (!isEmailValid || !email.includes('@') || !email.includes('.')) && (
-              <p style={{ color: 'red' }}>Emailen er ikke gyldig.</p>
-            )}
-            {!isPhoneNumberValid && <p style={{ color: 'red' }}>Telefonnummeret er forkert.</p>}
-            <input type="text" name="Other billing address" placeholder="Other billing address" />
-          </form>
-
-        </section>
-    )
+        {!isEmailValid && <p style={{ color: 'red' }}>Email is not valid</p>}
+        {!isPhoneNumberValid && <p style={{ color: 'red' }}>Phone number is not valid</p>}
+        {vatNumber && !isVatNumberValid && <p style={{ color: 'red' }}>VAT number is not valid</p>}
+      </form>
+    </section>
+  );
 }
 
 function ZipForm() {
