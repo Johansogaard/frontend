@@ -54,8 +54,7 @@ export function FormComponent({
         />
 
 
-        {!isEmailValid && <p style={{ color: 'red' }}>Email is not valid</p>}
-        {!isPhoneNumberValid && <p style={{ color: 'red' }}>Phone number is not valid</p>}
+
         {vatNumber && !isVatNumberValid && <p style={{ color: 'red' }}>VAT number is not valid</p>}
       </form>
     </section>

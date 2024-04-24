@@ -17,6 +17,7 @@ const [formError, setFormError] = useState('');
 
   const handleCheckoutClick = () => {
 
+
     const errors = [];
 
     if (!email || !isEmailValid) {
@@ -28,17 +29,19 @@ const [formError, setFormError] = useState('');
     if (vatNumber && !isVatNumberValid) {
       errors.push('VAT number is not valid');
     }
-
-    if (errors.length > 0) {
-      setFormError(errors.join(', '));
-      return;
-    }
-
-    if (!termsChecked) {
-      setError("Please accept the Terms and Conditions to proceed.");
-      return;
-    }
+if (!termsChecked) {
+  // If terms are not checked, set the error message
+  errors.push("Please accept the Terms and Conditions to proceed.");
+  // Add a newline character to create spacing
+}
+if (errors.length > 0) {
+  setError(errors.join('<br>'));
+  // If there are errors, return immediately
+  return;
+}
 };
+
+
 
 
 
@@ -86,13 +89,16 @@ const [formError, setFormError] = useState('');
         </div>
       </section>
 
-
+<section>
 {formError && <div className="form-error-message">{formError}</div>}
-{error && <div className="error-message">{error}</div>}
+</section>
+
+{error && (
+  <div className="error-message" dangerouslySetInnerHTML={{ __html: error }} />
+)}
 
 
-
-      <button className="checkout-button" onClick={handleCheckoutClick}>
+      <button className="checkout-button" onClick={handleCheckoutClick} >
         <Link to={termsChecked ? "/payment" : "/checkout"} className="link">
           Go to payment
         </Link>
