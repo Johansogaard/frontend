@@ -7,10 +7,10 @@ import {
   act,
 } from '@testing-library/react'
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
-import { ShoppingCart } from '../../src/shopping-cart/shoppingCartPage'
-import { CartProvider } from '../../src/shopping-cart/shoppingCart-Context/cartContext'
-import { useCart } from '../../src/shopping-cart/shoppingCart-Context/cartContext'
-import { ItemListComponent } from '../../src/shopping-cart/shoppingCart-Components/ItemlistComponent'
+import { ShoppingCart } from '../../../src/shopping-cart/shoppingCartPage'
+import { CartProvider } from '../../../src/shopping-cart/shoppingCart-Context/cartContext'
+import { useCart } from '../../../src/shopping-cart/shoppingCart-Context/cartContext'
+import { ItemListComponent } from '../../../src/shopping-cart/shoppingCart-Components/ItemlistComponent'
 import { BrowserRouter as Router } from 'react-router-dom';
 
 
