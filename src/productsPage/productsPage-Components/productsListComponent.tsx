@@ -1,17 +1,20 @@
 import { Product } from "../../models/Product";
-import { useProducts } from "../productsPage-Context/productsContext";
-import { useCart } from "../../shopping-cart/shoppingCart-Context/cartContext";
-import { useState } from 'react';
+import {ProductContext } from "../../state/productlistState/productContext";
+import { CartContext } from "../../state/cartState/cartContext"
+import { useContext, useState } from 'react';
 import '../productsPage.css';
 
 function ProductListComponent() {
-    const { products} =useProducts();
+    const { state} =useContext(ProductContext);
     //console.log('products in productsList', products);
 
   
     return (
       <div className = "productListComponent" >
-        {products.length === 0 ? (
+        {state.isloading? (
+          <h1>Loading Products</h1>
+
+        ) : state.products && state.message === 'PRODUCT_LIST_FAILURE' ?  (
          <div>
             <p>No products found</p>
             <p>Our backend doesn't have a certified SSL certificate because it is not possible with the server we are provided, so for that reason, we use a self-signed certificate.</p>
@@ -19,7 +22,7 @@ function ProductListComponent() {
           </div>
         ) : (
         <ul id="products" className="productList">
-          {products.map((product) => (
+          {state.products?.map((product) => (
           <ProductDisplay key={product.product_id} product={product} />
         ))}
         
@@ -31,12 +34,14 @@ function ProductListComponent() {
   
   
   function ProductDisplay({product} : {product: Product}) {
-    const { addItem } = useCart();
+    const { dispatch } = useContext(CartContext);
     const [buttonText, setButtonText] = useState("Add to cart");
     const [buttonStyle, setButtonStyle] = useState("add-to-cart-button"); // New state for buttons apperance
 
+
+
     const handleClick = () => {
-      addItem(product);
+      dispatch({type: 'CART_ADD_PRODUCT', payload:{product}} );
       setButtonText("Item added to cart!");
       setButtonStyle("add-to-cart-button-clicked"); // Update button visual apperance to another class
       setTimeout(() => {
@@ -50,12 +55,14 @@ function ProductListComponent() {
       <img src={product.product_image_url} alt="item imager" className="item-image"/>
       <h3>{product.product_name}</h3>
       <p>{product.product_description}</p>
-      <p>Price: {product.product_price} {product.product_currency}</p>
-      <button className={buttonStyle} onClick={handleClick}>{buttonText}</button>
+      <p>
+        Price: {product.product_price} {product.product_currency}
+      </p>
+      <button className={buttonStyle} onClick={handleClick}>
+        {buttonText}
+      </button>
     </article>
-   
-  );
-    
-  }
+  )
+}
 
-  export default ProductListComponent;
+export default ProductListComponent

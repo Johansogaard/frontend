@@ -1,67 +1,69 @@
-.checkout-page-container{
-    width:100%
+.checkout-page-container {
+  width: 100%;
 }
-.checkout-delivery{
-    display: flex;
-    justify-content: center;
+.checkout-delivery {
+  display: flex;
+  justify-content: center;
 }
 
 .checkbox-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 
-.checkbox-wrapper {
-    width: 400px; /* Proper workaround because the label and box where dependent on string length before...*/
-    margin: 0 auto;
-}
 
-.checkout-checkboxNews label{
-    display: inline-block;
-    text-align: left; /* so it actually works with the wrapper properties. */
-    color-scheme: dark;
-    margin-bottom: 10px; /* Styling, looks more clean */
-    margin-top: 15px;
-
+.checkout-checkboxNews label {
+  display: inline-block;
+  text-align: left; /* so it actually works with the wrapper properties. */
+  color-scheme: dark;
+  margin-bottom: 10px; /* Styling, looks more clean */
+  margin-top: 15px;
 }
 .checkout-checkboxTerm label {
-    display: inline-block;
-    text-align: left;
-    color-scheme: dark;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    border: 1px solid transparent;/* standard color*/
+  display: inline-block;
+  text-align: left;
+  color-scheme: dark;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid transparent; /* standard color*/
 }
 
 .error-message {
-    color: red;
+  color: red;
 }
 .checkout-checkboxTerm.error {
-    border-color: red; /* UX add on for error. */
+  border-color: red; /* UX add on for error. */
 }
 .checkbox-commentWrapper {
-    width: 400px;
-    height: auto;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column; /* DO NOT DELETE, no overlapping of payment button fix right here */
-    align-items: flex-start;
+  width: 80%;
+  max-width: 400px;
+  height: auto;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column; /* DO NOT DELETE, no overlapping of payment button fix right here */
+  align-items: center;
 }
 .checkout-Comment {
-    display: block;
-    text-align: left;
-    margin-bottom: 10px;
+  display: block;
+  text-align: left;
+  margin-bottom: 10px;
 }
 
 .checkbox-textfield {
-    max-width: 100%;
-    width: 100%;
-    height: 150px;
-    border: 1px solid #000;
-    border-radius: 4px;
-    padding: 5px;
-    vertical-align: top;
-    resize: none;
+  max-width: 100%;
+  width: 100%;
+  height: 150px;
+  border: 1px solid #000;
+  border-radius: 4px;
+  padding: 5px;
+  vertical-align: top;
+  resize: none;
+}
+
+form input, form select {
+  font-size: 16px;
+  border-radius: 7px;
+  height: 30px;
 }

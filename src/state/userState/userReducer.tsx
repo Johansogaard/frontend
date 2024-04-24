@@ -1,7 +1,10 @@
-import { UserState, UserAction } from './userTypes';
+import { UserState, UserAction } from './userTypes'
 
-export const userReducer = (state: UserState, action: UserAction): UserState => {
-  const { type } = action;
+export const userReducer = (
+  state: UserState,
+  action: UserAction,
+): UserState => {
+  const { type } = action
 
   switch (type) {
     case 'LOGIN_SUCCESS':
@@ -11,17 +14,17 @@ export const userReducer = (state: UserState, action: UserAction): UserState => 
         customer_id: action.payload.customer_id,
         customer_name: action.payload.customer_name,
         token: action.payload.token,
-        message: 'LOGIN_SUCCESS'
-      };
-      case 'LOGIN_FAILURE':
+        message: 'LOGIN_SUCCESS',
+      }
+    case 'LOGIN_FAILURE':
       return {
         ...state,
         isAuthenticated: false,
         customer_id: null,
         customer_name: null,
         token: null,
-        message: 'LOGIN_FAIL: ' + action.payload.error
-      };
+        message: 'LOGIN_FAIL: ' + action.payload.error,
+      }
     case 'LOGOUT':
       return {
         ...state,
@@ -29,8 +32,8 @@ export const userReducer = (state: UserState, action: UserAction): UserState => 
         customer_id: null,
         customer_name: null,
         token: null,
-        message: 'LOGOUT'
-      };
+        message: 'LOGOUT',
+      }
     case 'REGISTER_SUCCESS':
       return {
         ...state,
@@ -38,19 +41,19 @@ export const userReducer = (state: UserState, action: UserAction): UserState => 
         customer_id: null,
         customer_name: null,
         token: null,
-        message: 'Succesfully created account'
-      };
-      case 'REGISTER_FAILURE':
+        message: 'Succesfully created account',
+      }
+    case 'REGISTER_FAILURE':
       return {
         ...state,
         isAuthenticated: false,
         customer_id: null,
         customer_name: null,
         token: null,
-        message: 'Registration failed: ' + action.payload.error
-      };
+        message: 'Registration failed: ' + action.payload.error,
+      }
 
     default:
-      return state;
+      return state
   }
-};
+}

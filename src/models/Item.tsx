@@ -1,6 +1,5 @@
-import { Product } from './Product';
+import { Product } from './Product'
 export interface Item {
-
-    product: Product;
-    quantity: number;
- }
+  product: Product
+  quantity: number
+}

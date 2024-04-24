@@ -1,18 +1,19 @@
-import { useCart } from '../shoppingCart-Context/cartContext'
+import { CartContext } from '../../state/cartState/cartContext'
+import {useContext} from 'react'
 import {Item} from '../../models/Item'
 import { Link } from 'react-router-dom'
 import deleteIcon from '../../assets/delete.svg'
 
 export function ItemListComponent(){
-  console.log('ItemListComponent rendered')
-  const { items} = useCart();
-  console.log(items);
+
+  const { state} = useContext(CartContext);
+ 
 
   
   return(
     <>
     <h2>Shopping Cart</h2>
-    {items.length === 0 ? (
+    {state.items.length === 0 ? (
       <>
       <p>Cart is empty</p>
       <button>
@@ -26,7 +27,7 @@ export function ItemListComponent(){
     
     ) : (
 <ul id="cart-items" className="unsortList">
-{items.map((item) => (
+{state.items.map((item) => (
           <ShoppingCartItem key={item.product.product_id} item={item} />
         ))}
 </ul>
@@ -37,7 +38,15 @@ export function ItemListComponent(){
 
 
 function ShoppingCartItem({item}: {item:Item}) {
-  const { handleShopQuantityComponent, removeItem } = useCart();
+  const { dispatch } = useContext(CartContext);
+  const handleProductQuantity = (product_Id: number, quantity: number) => {
+    dispatch({type: 'CART_UPDATE_PRODUCT_QUANTITY', payload: {product_Id, quantity}});
+  };
+  const handleRemoveItem = (product_Id: number) => {
+    dispatch({type: 'CART_REMOVE_PRODUCT', payload: {product_Id}});
+  }
+  
+
   return (
     <section>
       <div className="divider"></div>
@@ -47,11 +56,9 @@ function ShoppingCartItem({item}: {item:Item}) {
           alt="item imager"
           className="item-image"
         />
-        <div className='item-info'>
-        <h1>{item.product.product_name}</h1>
-        <span>
-          {item.product.product_description}
-        </span>
+        <div className="item-info">
+          <h1>{item.product.product_name}</h1>
+          <span>{item.product.product_description}</span>
         </div>
         <div className="item-pricing">
   
@@ -59,7 +66,7 @@ function ShoppingCartItem({item}: {item:Item}) {
           // This is for pop up window to ask user if they are sure about removing item from cart. 
   const isConfirmed = window.confirm('Are you sure, you want to remove this is from cart?');
   if (isConfirmed) {
-    removeItem(item.product.product_id);
+    handleRemoveItem(item.product.product_id);
   }
   }} >
 
@@ -77,16 +84,16 @@ function ShoppingCartItem({item}: {item:Item}) {
             if (item.quantity === 1) {
               const isConfirmed = window.confirm('Are you sure, you want to remove this is from cart?');
               if (isConfirmed) {
-                removeItem(item.product.product_id);
+                handleRemoveItem(item.product.product_id);
               }
             } else {
-              handleShopQuantityComponent(item.product.product_id, -1);
+              handleProductQuantity(item.product.product_id, -1);
             }
           }}>
             -
           </button>
           <p className='quantity-numb'>{item.quantity}</p>
-          <button className='quantity-btn' onClick={() => handleShopQuantityComponent(item.product.product_id, 1)}>
+          <button className='quantity-btn' onClick={() => handleProductQuantity(item.product.product_id, 1)}>
             +
           </button>
           </div>
