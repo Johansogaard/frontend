@@ -1,17 +1,20 @@
 import { Product } from "../../models/Product";
-import { useProducts } from "../productsPage-Context/productsContext";
+import {ProductContext } from "../../state/productlistState/productContext";
 import { useCart } from "../../shopping-cart/shoppingCart-Context/cartContext";
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import '../productsPage.css';
 
 function ProductListComponent() {
-    const { products} =useProducts();
+    const { state} =useContext(ProductContext);
     //console.log('products in productsList', products);
 
   
     return (
       <div className = "productListComponent" >
-        {products.length === 0 ? (
+        {state.isloading? (
+          <h1>Loading Products</h1>
+
+        ) : state.products && state.message === 'PRODUCT_LIST_FAILURE' ?  (
          <div>
             <p>No products found</p>
             <p>Our backend doesn't have a certified SSL certificate because it is not possible with the server we are provided, so for that reason, we use a self-signed certificate.</p>
@@ -19,7 +22,7 @@ function ProductListComponent() {
           </div>
         ) : (
         <ul id="products" className="productList">
-          {products.map((product) => (
+          {state.products?.map((product) => (
           <ProductDisplay key={product.product_id} product={product} />
         ))}
         

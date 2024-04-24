@@ -1,6 +1,5 @@
-import { createContext, useReducer, Dispatch, ReactNode, useCallback } from 'react';
+import { createContext, useReducer, Dispatch, ReactNode, useCallback, useEffect } from 'react';
 import {ProductState, ProductAction } from './productTypes';
-import apiCaller from '../../customHooks/apiCaller';
 import { productReducer } from './productReducer';
 import { Product } from '../../models/Product';
 import { Category } from '../../models/Category';
@@ -12,9 +11,7 @@ const initialState: ProductState = {
     isloading: false,
     message: null
   };
-interface ProductsProviderProps{
- children: ReactNode;
-}
+
 
 export const ProductContext = createContext<{
   state: ProductState;
@@ -24,10 +21,9 @@ export const ProductContext = createContext<{
   state: initialState,
   dispatch: () => null, // Placeholder function
   
+
+  
 });
-
-
-
 
 
 interface ProductProviderProps {
@@ -37,31 +33,44 @@ interface ProductProviderProps {
 
 export const ProductProvider = ({ children }: ProductProviderProps) => {
   const [state, dispatch] = useReducer(productReducer, initialState);
-  const { products, fetchAllProducts,fetchProductsByCategory } = apiCaller();
-  const [category, setCategory] = useState<Category>(Category.all);
+ 
+  useEffect(() => {
+    if(state.category !==null)
+      {
+    fetchProducts();
+      }
+  },[state.category]);
   
 
   const fetchProducts = useCallback(async () => {
-
-  useEffect(() => {
-    console.log('useEffect ran', category);
-    const fetchCorrectProducts = async () => {
-      console.log('fetchCorrectProducts called', category);
-    if (category === Category.all) {
-      console.log('fetching all products');
-      await fetchAllProducts();
+    try{
+      dispatch({type: 'PRODUCT_LIST_REQUEST'});
+      let path = '';
+      if(state.category !== Category.all)
+        {
+            path = '/'+state.category
+        }
+        console.log('fetchProducts: '+state.category)
+      const response = await fetch('https://dtu62597.eduhost.dk:10132/products'+path);
+        
+     
+      if (!response.ok)
+        {
+          dispatch({type: 'PRODUCT_LIST_FAILURE'})
+        }
+      else{
+        const data: Product[] = await response.json();
+        dispatch({type: 'PRODUCT_LIST_SUCCESS', payload : {products: data}})
+      }
     }
-    else {
-      console.log('fetching category', category);
-      await fetchProductsByCategory(category);
+    catch(error: unknown)
+    {
+      const e = error as Error;  // Handle the error as an instance of Error
+      console.error(e.message);
     }
-    };
 
-    console.log('DEBUG', products);
-    fetchCorrectProducts();
+  },[dispatch,state.category]);
 
-      
-  }, [category]);
   
 
   
@@ -69,8 +78,8 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
   
 
   return (
-    <ProductsContext.Provider value={{ products,setCategory,category }}>
+    <ProductContext.Provider value={{ state,dispatch }}>
       {children}
-    </ProductsContext.Provider>
+    </ProductContext.Provider>
   );
 };

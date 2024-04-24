@@ -10,7 +10,7 @@ import { ShoppingCart } from './shopping-cart/shoppingCartPage';
 import { CheckoutPage } from './checkoutPage/checkoutPage';
 import CancelPage from './checkoutPage/cancelPage';
 import { CartProvider } from './shopping-cart/shoppingCart-Context/cartContext';
-import { ProductProvider } from './productsPage/productsPage-Context/productsContext';
+import { ProductProvider } from './state/productlistState/productContext';
 import { UserPage} from './userPage/userPage';
 import { UserProvider } from './state/userState/userContext';
 import { ConfirmationPage } from './checkoutPage/confirmationPage/confirmationPage';
@@ -23,7 +23,7 @@ const App = () => {
     <Router>
       <UserProvider>
       <CartProvider>
-        <ProductProvider> {}
+        <ProductProvider> 
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/cart" element={<ShoppingCart />} />

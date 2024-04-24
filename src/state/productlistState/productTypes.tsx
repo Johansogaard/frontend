@@ -8,6 +8,7 @@ export type ProductState = {
     message: string | null;
 };
 export type ProductAction =
-{
-
-}
+| { type: 'PRODUCT_LIST_REQUEST'; }
+| { type: 'PRODUCT_LIST_SUCCESS'; payload: {products : Product[]}}
+| { type: 'PRODUCT_LIST_FAILURE'}
+| { type: 'PRODUCT_LIST_CATEGORY'; payload: {category: Category}}

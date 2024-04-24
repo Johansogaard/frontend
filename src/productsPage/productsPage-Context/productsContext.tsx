@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, ReactNode,useState } from 'react';
+/*import { createContext, useContext, useEffect, ReactNode,useState } from 'react';
 import apiCaller from '../../customHooks/apiCaller';
 import { Product } from '../../models/Product';
 import { Category } from '../../models/Category';
@@ -58,4 +58,4 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
       {children}
     </ProductsContext.Provider>
   );
-};
+};*/

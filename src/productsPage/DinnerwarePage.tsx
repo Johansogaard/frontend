@@ -1,6 +1,6 @@
-import {useEffect} from 'react'
+import {useEffect,useContext} from 'react'
 import ProductListComponent from './productsPage-Components/productsListComponent'
-import { useProducts } from './productsPage-Context/productsContext'
+import {ProductContext } from '../state/productlistState/productContext'
 import { Category } from '../models/Category';
 import './productsPage.css'
 import { Menubar } from '../menubar/menubar';
@@ -8,11 +8,15 @@ import { Topbar } from '../topbar/topBar';
 
 
 export function DinnerwarePage(){
-    const {setCategory} = useProducts();
-
-    useEffect(() => {
-        setCategory(Category.dinnerware)
-    }, [])
+  const {state,dispatch} = useContext(ProductContext);
+  const thisCategory = Category.dinnerware
+  useEffect(() => {
+     if(state.category !==thisCategory )
+      {
+       
+        dispatch({type: 'PRODUCT_LIST_CATEGORY', payload : {category: thisCategory}});
+      }
+  }, [])
   return (
     <>
       <Topbar />
