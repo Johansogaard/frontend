@@ -1,7 +1,7 @@
 import { FormComponent } from './checkoutPage-Components/formComponent'
 import { CheckoutMenuBar } from './checkoutMenuBar/checkoutMenuBar'
 import './checkoutPage.css'
-import { Link } from 'react-router-dom'
+//import { Link } from 'react-router-dom'
 import { useCart } from '../shopping-cart/shoppingCart-Context/cartContext'
 import React, { useState } from 'react'
 import { handleCheckout } from '../shopping-cart/shoppingCart-Components/handleCheckout.tsx'
