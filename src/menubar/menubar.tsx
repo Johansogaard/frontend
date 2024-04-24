@@ -2,7 +2,6 @@
 import {
   Box,
   Button,
-  Icon,
   Slide,
   StackDivider,
   Text,
