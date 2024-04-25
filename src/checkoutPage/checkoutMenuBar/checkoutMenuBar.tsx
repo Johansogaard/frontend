@@ -30,9 +30,9 @@ export function CheckoutMenuBar({ step }: CheckoutMenuBarProps) {
 
 
 const ProgressBar = ({step}: {step: number}) => {
-    const stepOne = step===1 
-    const stepTwo = step===2
-    const stepThree = step===3
+    const stepOne = step>=1 
+    const stepTwo = step>=2
+    const stepThree = step>=3
     return (
         <div className="progress-bar">
             <div className={'progress-bar-step' }>
@@ -43,7 +43,7 @@ const ProgressBar = ({step}: {step: number}) => {
             </div>
             <div className={`horizontal-line ${stepTwo ? 'complete' : stepOne ? 'active' : ''}`} ></div>
             <div className={`progress-bar-step`}>
-            <span className='progress-bar-step-numb '>2</span>
+            <span className={`progress-bar-step-numb ${stepThree ? 'complete' : stepTwo ? 'active' : ''}`}>2</span>
                 <span className='progress-bar-step-text'>Payment</span>
             </div>
             <div className={`horizontal-line ${stepThree ? 'complete' : stepTwo ? 'active' : ''}`}></div>

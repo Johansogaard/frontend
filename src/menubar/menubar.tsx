@@ -25,17 +25,18 @@ export function Menubar() {
 
   return (
     <header className="menubar-container">
+      
       <button
         className="menu-button"
         onClick={() => setIsMenuOpen(!isMenuOpen)}
       >
         <img src={hamburger} alt="Menu" />
       </button>
-
+      <div className='coffe-logo'>
       <Link to="/">
-        <img src={cofee} alt="coffee" />
+        <img src={cofee} alt="coffee-logo" />
       </Link>
-
+      </div>
       <nav className={`menu-items ${isMenuOpen ? 'open' : ''}`}>
         {isMenuOpen && (
           <button className="exit-button" onClick={() => setIsMenuOpen(false)}>
@@ -66,9 +67,9 @@ export function Menubar() {
         </Link>
         <button
           onClick={() => setIsCartOpen(!isCartOpen)}
-          className="menu-icon-button"
+          className="basket-icon-button"
         >
-          <img src={basket} alt="basket icon" className="menu-icon" />
+          <img src={basket} alt="basket icon" className="basket-icon" />
           {itemCount > 0 && <div className="item-count-badge">{itemCount}</div>}
         </button>
       </nav>
