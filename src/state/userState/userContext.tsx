@@ -7,6 +7,7 @@ import {
 } from 'react'
 import { UserState, UserAction } from './userTypes'
 import { userReducer } from './userReducer'
+import { c } from 'vite/dist/node/types.d-aGj9QkWt'
 
 // Define the initial state
 const initialState: UserState = {
@@ -84,6 +85,42 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     [dispatch],
   )
 
+  const handleCheckCredentials = (credentials: {
+    email: string
+    customer_password: string
+    customer_name: string
+    phone_number: string
+  }) => {
+    
+
+    // Validate Email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(credentials.email)) {
+      return("Registration failed: Invalid email format.");
+    }
+  
+     
+    if (credentials.customer_password.length < 8 || credentials.customer_password.length > 20) {
+      return("Registration failed: Password must be between 8 and 20 characters long.");
+    }
+  
+     
+    if (!credentials.customer_name.trim()) {
+     return("Registration failed: Customer name cannot be empty.");
+    }
+  
+     
+    const phoneRegex = /^(?:\d{8})$/;
+    if (!phoneRegex.test(credentials.phone_number)) {
+      return("Registration failed: Invalid phone number format.");
+    }
+  
+     
+    return("Credentials are valid.");
+  
+    
+  };
+
   const register = useCallback(
     async (credentials: {
       email: string
@@ -91,6 +128,9 @@ export const UserProvider = ({ children }: UserProviderProps) => {
       customer_name: string
       phone_number: string
     }) => {
+
+      const checkCredentials = handleCheckCredentials(credentials);
+      if(checkCredentials === "Credentials are valid.") {
       try {
         const response = await fetch(
           'https://dtu62597.eduhost.dk:10132/customer/register',
@@ -118,9 +158,13 @@ export const UserProvider = ({ children }: UserProviderProps) => {
         }
         dispatch({ type: 'REGISTER_FAILURE', payload: { error: errorMessage } })
       }
-    },
-    [dispatch],
-  )
+  }
+  else {
+    dispatch({ type: 'REGISTER_FAILURE', payload: { error: checkCredentials } })
+  }
+  
+}, [dispatch]
+);
   return (
     <UserContext.Provider value={{ state, dispatch, login, register }}>
       {children}
