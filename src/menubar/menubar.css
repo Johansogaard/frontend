@@ -7,6 +7,8 @@
   display: flex;
   align-items: center; /* This will vertically center the icons */
   /* Adjust the space between icons */
+    justify-content: center; /* Add this line */
+
 }
 .menu-items {
   display: flex;
@@ -31,10 +33,9 @@
 .menu-item {
   margin-right: 20px;
   color: black;
+  
 }
-.menu-item:last-child {
-  margin-right: 0;
-}
+
 
 .basket-icon {
   margin-right: 10px; /* Adds some space between the icons */
@@ -50,7 +51,14 @@
 .menu-button {
   display: none;
 }
+
+.exit-button {
+  display: none;
+}
 @media (max-width: 1220px) {
+
+
+
   .coffe-logo {
     justify-content: center;
     width: 100%;
@@ -59,12 +67,11 @@
     display: block;
     background-color: #ececec;
     padding: 0;
-    margin-right: 50px;
+    margin-left: 10px;
   }
 
   .menu-items {
     justify-content: start;
-
     display: flex;
     position: fixed;
     top: 0;
@@ -76,23 +83,26 @@
     transform: translateX(-100%);
     transition: transform 0.3s ease-out;
     flex-direction: column;
-    align-items: start;
     z-index: 2;
   }
   .menu-item {
+
     margin-top: 5px;
     margin-left: 5%;
     height: 40px;
     display: flex;
-    align-items: center;
+   
   }
 
+  
   .menu-items.open {
     transform: translateX(0);
+    align-items: flex-end;
+    justify-content: start;
   }
   .exit-button {
+    display: block;
     align-items: start;
-    margin-left: 5%;
     background-color: #e6e0d7;
     color: black;
   }
