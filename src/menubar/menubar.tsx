@@ -88,7 +88,7 @@ export function Menubar() {
           right="0"
           top="0"
           height="100vh"
-          padding="10px"
+          padding="0px"
           borderLeft="1px solid #111111"
         >
           <Box

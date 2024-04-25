@@ -69,18 +69,24 @@ export function FormComponent() {
           <select id="country" name="country" required>
             <option value="dk">Denmark</option>
           </select>
+          
           <input type="text" name="address" placeholder="Address" />
+          <ZipForm />
 
-        </div>
 
-        <ZipForm />
+                    <input
+            type="text"
+            name="companyName"
+            placeholder="(Optional) Company Name"
+            className='companyName-input'
+          />    
 
-        <input
+            
+          <input
           type="text"
           name="company"
-          placeholder="Company VAT number (optional)"
-          className="vat-input"
-
+          placeholder="(Optional) Company VAT number "
+            className='vatNumber-input'
           value={vatNumber}
           onChange={(e) => setVatNumber(e.target.value)}
           style={{
@@ -116,18 +122,24 @@ export function FormComponent() {
               /* empty */
             }
           }}
+          
         />
+         <input
+          type="text"
+          name="Other billing address"
+          placeholder="(Optional) Other billing address"
+        /> 
+          <ZipForm />
+        </div>
+
+
+       
 
         {vatNumber.length === 10 && !isVatNumberValid && (
           <p style={{ color: 'red' }}>VAT-number has to be 10 digits.</p>
         )}
 
-        <input
-          type="text"
-          name="Other billing address"
-          placeholder="Other billing address"
-          className="billing-input"
-        />
+       
         {email.length > 1 &&
           isEmailValid &&
           email.includes('@') &&
@@ -141,6 +153,7 @@ export function FormComponent() {
         {!isPhoneNumberValid && (
           <p style={{ color: 'red' }}>Phone number is invalid.</p>
         )}
+       
        
       </form>
     </section>
@@ -202,7 +215,8 @@ function ZipForm() {
         name="City"
         placeholder="City"
         value={city}
-        readOnly
+        onChange={(e) => setCity(e.target.value)}
+
         className="city-input"
       />
     </div>

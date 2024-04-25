@@ -67,7 +67,8 @@
     display: block;
     background-color: #ececec;
     padding: 0;
-    margin-left: 10px;
+  margin-left: 1%;
+  margin-right: 55px;
   }
 
   .menu-items {
@@ -88,7 +89,6 @@
   .menu-item {
 
     margin-top: 5px;
-    margin-left: 5%;
     height: 40px;
     display: flex;
    
