@@ -17,7 +17,7 @@
   position: absolute;
   left: 0;
   bottom: 0;
-  top: 83px;
+  top: 94px;
   width: 35%;
 }
 
@@ -29,6 +29,7 @@
   margin: 4px 2px 4px 2px;
   cursor: pointer;
   margin-top: 80px;
+  background-color:  #f9f9f9;
 }
 @media (max-width: 768px) {
   .landingPageContainer h1 {

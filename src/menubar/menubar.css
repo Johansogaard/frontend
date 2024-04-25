@@ -23,8 +23,9 @@
 }
 .coffe-logo {
   display: flex;
-  align-items: start;
-
+  justify-content: flex-start;
+  margin-top: 5px;
+  
   margin-left: 1%;
 }
 .menu-item {
@@ -35,9 +36,15 @@
   margin-right: 0;
 }
 
-.menu-icon {
+.basket-icon {
   margin-right: 10px; /* Adds some space between the icons */
   margin-left: 10px;
+  background-color: none;
+}
+.basket-icon-button {
+  background-color: none;
+  border: none;
+  cursor: pointer;
 }
 
 .menu-button {

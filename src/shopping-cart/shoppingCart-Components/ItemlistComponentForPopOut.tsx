@@ -3,7 +3,7 @@ import {useContext  } from 'react'
 import {Item} from '../../models/Item'
 import { Link } from 'react-router-dom'
 import deleteIcon from '../../assets/delete.svg'
-import React from 'react'
+
 
 export function ItemListComponent() {
   console.log('ItemListComponent rendered')
