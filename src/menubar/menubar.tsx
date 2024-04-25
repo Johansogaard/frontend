@@ -12,30 +12,31 @@ import basket from '../assets/basket.svg'
 import cofee from '../assets/coffee.svg'
 import { Link } from 'react-router-dom'
 import hamburger from '../assets/hamburger.svg'
-import { useState } from 'react'
-import { useCart } from '../shopping-cart/shoppingCart-Context/cartContext'
-import { ItemListComponent } from '../shopping-cart/shoppingCart-Components/ItemlistComponentForPopOut' // Adjust the import path as needed
-import profile from '../assets/profile.svg'
+import { useState,useContext } from 'react'
+import { CartContext} from '../state/cartState/cartContext'; 
+import { ItemListComponent } from '../shopping-cart/shoppingCart-Components/ItemlistComponentForPopOut';
+import profile  from '../assets/profile.svg'
 
 export function Menubar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isCartOpen, setIsCartOpen] = useState(false) // Define the state for cart drawer visibility
-  const { calcTotalItems } = useCart()
-  const itemCount = Number(calcTotalItems())
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false); // Define the state for cart drawer visibility
+  const { calcTotalItems } = useContext(CartContext);
+  const itemCount = Number(calcTotalItems());
 
   return (
     <header className="menubar-container">
+      
       <button
         className="menu-button"
         onClick={() => setIsMenuOpen(!isMenuOpen)}
       >
         <img src={hamburger} alt="Menu" />
       </button>
-
+      <div className='coffe-logo'>
       <Link to="/">
-        <img src={cofee} alt="coffee" />
+        <img src={cofee} alt="coffee-logo" />
       </Link>
-
+      </div>
       <nav className={`menu-items ${isMenuOpen ? 'open' : ''}`}>
         {isMenuOpen && (
           <button className="exit-button" onClick={() => setIsMenuOpen(false)}>
@@ -66,9 +67,9 @@ export function Menubar() {
         </Link>
         <button
           onClick={() => setIsCartOpen(!isCartOpen)}
-          className="menu-icon-button"
+          className="basket-icon-button"
         >
-          <img src={basket} alt="basket icon" className="menu-icon" />
+          <img src={basket} alt="basket icon" className="basket-icon" />
           {itemCount > 0 && <div className="item-count-badge">{itemCount}</div>}
         </button>
       </nav>

@@ -1,27 +1,20 @@
-import { useCart } from '../shoppingCart-Context/cartContext'
+import { CartContext} from '../../state/cartState/cartContext'
 import { Link } from 'react-router-dom'
+import { useContext } from 'react';
+
+
+
 
 export function TotalPriceComponent() {
-  const {
-    items,
-    calcTotal,
-    calcItemSubTotal,
-    remainingItemsForDiscount,
-    calcTotalItems,
-    calcTotalDiscount,
-    calcTotalWithDiscount,
-    calcDiscountForItem,
-  } = useCart()
-  console.log('TotalPriceComponent rendered')
-  return (
-    <section className="subtotal">
-      <h2>
-        {calcTotalItems()} products - {calcTotal()} DKK
-      </h2>
-      <hr></hr>
-      {items.map((item) => (
-        <div key={item.product.product_id} className="item-subtotal">
-          <div className="item-subtotal-price">
+const {state, calcTotal, calcItemSubTotal,remainingItemsForDiscount,calcTotalItems,calcTotalDiscount,calcTotalWithDiscount,calcDiscountForItem } = useContext(CartContext);
+console.log('TotalPriceComponent rendered')
+return(
+<section className="subtotal">
+        <h2>{calcTotalItems()} products - {calcTotal()} DKK</h2>
+        <hr></hr>
+        {state.items.map((item) => (
+          <div key={item.product.product_id} className="item-subtotal">
+            <div className='item-subtotal-price'>
             <span>
               {item.product.product_name} x {item.quantity}
             </span>

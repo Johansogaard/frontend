@@ -56,7 +56,7 @@
 .productListComponent .add-to-cart-button {
   margin-top: auto; /* Pushes the button to the bottom */
   width: 100%; /* Optional: Makes the button stretch the full width */
-  
+  background-color:#f9f9f9;
 }
 .productListComponent .item-image {
   display: block; /* Removes bottom space/margin that inline elements have */
