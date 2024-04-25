@@ -4,6 +4,7 @@ import { Menubar } from '../menubar/menubar'
 import { Topbar } from '../topbar/topBar'
 import './userPage.css'
 import { Helmet, HelmetProvider } from 'react-helmet-async'
+import { s } from 'vitest/dist/reporters-P7C2ytIv'
 
 export function UserPage() {
   const { state, dispatch, login, register } = useContext(UserContext)
@@ -12,7 +13,8 @@ export function UserPage() {
   const [customer_password, setPassword] = useState('')
   const [customer_name, setName] = useState('')
   const [phone_number, setPhonenumber] = useState('')
-
+ 
+ 
   async function handleLogin(e: React.FormEvent) {
     //stops the page from refreshing like a submit button would do normally in a form
     //so we can handle it asynchronusly
@@ -24,7 +26,9 @@ export function UserPage() {
   }
   async function handleSignup(e: React.FormEvent) {
     e.preventDefault()
+    
     register({ email, customer_password, customer_name, phone_number })
+    
   }
 
   return (
