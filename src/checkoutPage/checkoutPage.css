@@ -20,6 +20,7 @@
   color-scheme: dark;
   margin-bottom: 10px; /* Styling, looks more clean */
   margin-top: 15px;
+  width: 90%;
 }
 .checkout-checkboxTerm label {
   display: inline-block;
@@ -28,6 +29,7 @@
   margin-top: 5px;
   margin-bottom: 15px;
   border: 1px solid transparent; /* standard color*/
+  width: 90%;
 }
 
 .error-message {
@@ -37,7 +39,7 @@
   border-color: red; /* UX add on for error. */
 }
 .checkbox-commentWrapper {
-  width: 80%;
+  width: 90%;
   max-width: 400px;
   height: auto;
   margin: 0 auto;
