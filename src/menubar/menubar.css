@@ -37,8 +37,8 @@
 }
 
 .basket-icon {
-  margin-right: 10px; /* Adds some space between the icons */
-  margin-left: 10px;
+  margin-right: 5px; /* Adds some space between the icons */
+  margin-left: 5px;
   background-color: none;
 }
 .basket-icon-button {

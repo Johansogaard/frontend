@@ -73,7 +73,7 @@ export function Menubar() {
           {itemCount > 0 && <div className="item-count-badge">{itemCount}</div>}
         </button>
       </nav>
-
+      
       <Slide
         direction="right"
         in={isCartOpen}
@@ -85,7 +85,7 @@ export function Menubar() {
           backgroundColor="#F2F0EB"
           width="300px"
           position="absolute"
-          right="0"
+          right={isCartOpen ? '0' : '-20px'}
           top="0"
           height="100vh"
           padding="10px"
@@ -137,5 +137,6 @@ export function Menubar() {
         </Box>
       </Slide>
     </header>
+    
   )
 }
