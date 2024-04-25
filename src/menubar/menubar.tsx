@@ -12,19 +12,38 @@ import basket from '../assets/basket.svg'
 import cofee from '../assets/coffee.svg'
 import { Link } from 'react-router-dom'
 import hamburger from '../assets/hamburger.svg'
-import { useState,useContext } from 'react'
+import { useState,useContext, useEffect } from 'react'
 import { CartContext} from '../state/cartState/cartContext'; 
 import { ItemListComponent } from '../shopping-cart/shoppingCart-Components/ItemlistComponentForPopOut';
 import profile  from '../assets/profile.svg'
 
 export function Menubar() {
+  
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false); // Define the state for cart drawer visibility
   const { calcTotalItems } = useContext(CartContext);
   const itemCount = Number(calcTotalItems());
 
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const checkScroll = () => {
+      if (window.scrollY > 30) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', checkScroll);
+
+    return () => {
+      window.removeEventListener('scroll', checkScroll);
+    };
+  }, []);
   return (
-    <header className="menubar-container">
+    <>
+    <header className={`menubar-container ${isScrolled ? 'fixed-menubar' : ''}`}>
       
       <button
         className="menu-button"
@@ -77,7 +96,7 @@ export function Menubar() {
       <Slide
         direction="right"
         in={isCartOpen}
-        style={{ zIndex: 5, width: '300px' }}
+        style={{ zIndex: 7, width: '300px' }}
       >
         <Box
           display="flex"
@@ -137,6 +156,7 @@ export function Menubar() {
         </Box>
       </Slide>
     </header>
-    
+        {isScrolled && <div className="menubar-placeholder"></div>}
+  </>
   )
 }

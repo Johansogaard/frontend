@@ -1,7 +1,22 @@
+.fixed-menubar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 5; 
+  
+}
+
+.menubar-placeholder {
+  height: 60px;
+}
 .menubar-container {
   display: flex;
   width: 100%; /* Ensure it spans the full width */
   background-color: #ececec;
+  backdrop-filter: blur(10px);
+  background-color: rgba(236, 236, 236, 0.7);
+  z-index: 4; 
+
 }
 .menubar-container nav {
   display: flex;
@@ -56,7 +71,24 @@
   display: none;
 }
 @media (max-width: 1220px) {
-
+  
+  
+  .menubar-container {
+    display: flex;
+    width: 100%; /* Ensure it spans the full width */
+    background-color: #ececec;
+  
+  
+  }
+  .fixed-menubar {
+    display: flex;
+    width: 100%; /* Ensure it spans the full width */
+    background-color: #ececec;
+    backdrop-filter: blur(100px);
+    
+    background-color: rgba(236, 236, 236, 0.7);
+    
+  }
 
 
   .coffe-logo {
@@ -65,7 +97,6 @@
   }
   .menu-button {
     display: block;
-    background-color: #ececec;
     padding: 0;
   margin-left: 1%;
   margin-right: 55px;
@@ -99,7 +130,12 @@
     transform: translateX(0);
     align-items: flex-end;
     justify-content: start;
+    z-index: 2;
+
+    backdrop-filter: none;
+  background-color: #e6e0d7;
   }
+
   .exit-button {
     display: block;
     align-items: start;
