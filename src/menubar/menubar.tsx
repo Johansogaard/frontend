@@ -115,6 +115,7 @@ export function Menubar() {
             justifyContent="space-between"
             alignItems="center"
             padding="0 16px"
+            
           >
             <Text fontSize="lg" fontWeight="bold">
               Shopping Cart
@@ -130,18 +131,20 @@ export function Menubar() {
           </Box>
 
           {/* Scrollable content area */}
-          <Box flex="1" overflowY="auto" paddingY="20px">
+          <Box flex="1" overflowY="auto" paddingY="20px" >
+            
             <VStack
               divider={<StackDivider borderColor="gray.200" />}
               spacing={4}
               align="stretch"
+
             >
               <ItemListComponent />
             </VStack>
           </Box>
 
           {/* Fixed footer with button */}
-          <Box borderTop="1px solid #111111" padding="24px 0">
+          <Box borderTop="1px solid #111111" padding="24px 10px">
             <Link to="/cart" style={{ width: '100%' }}>
               <Button
                 width="100%"

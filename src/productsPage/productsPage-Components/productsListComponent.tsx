@@ -12,8 +12,7 @@ function ProductListComponent() {
     return (
       <div className = "productListComponent" >
         {state.isloading? (
-          <h1>Loading Products</h1>
-
+            <span className="loader"></span>
         ) : state.products && state.message === 'PRODUCT_LIST_FAILURE' ?  (
          <div>
             <p>No products found</p>
