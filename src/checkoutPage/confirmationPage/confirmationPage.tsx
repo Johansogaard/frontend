@@ -14,7 +14,8 @@ export function ConfirmationPage() {
 
   useEffect(() => {
     console.log('id: '+ sessionId )
-    callSucces();}, [sessionId]);
+    callSucces();}, []);
+
     
 
   return (
@@ -40,7 +41,8 @@ async function callSucces() {
     const sessionId = url.searchParams.get('session_id');
     console.log('session id '+sessionId);
     //https://localhost:443/payments/success?session_id='+sessionId
-    const response = await fetch('https://dtu62597.eduhost.dk:10132/payments/success?session_id='+sessionId);
+    //https://dtu62597.eduhost.dk:10132/payments/success?session_id='+sessionId
+    const response = await fetch('https://localhost:443/payments/success?session_id='+sessionId);
     if (!response.ok) throw new Error('Could not call success.');
 
   }

@@ -1,12 +1,16 @@
-import { Item } from '../../models/Item'
+import { Item } from '../models/Item'
 import { loadStripe } from '@stripe/stripe-js'
+
 export async function handleCheckout(
   items: Item[],
-  customer_id: string,
   shipping_address: string,
   billing_address: string,
   total_amount: number,
+  token: string | null,
+  customer_id: number | null,
+
 ) {
+  
   try {
     const bodyData = {
       items: items,
@@ -15,6 +19,8 @@ export async function handleCheckout(
         shipping_address: shipping_address,
         billing_address: billing_address,
         total_amount: total_amount,
+        token: token,
+      
         baseurl: window.location.href,
       },
     }
@@ -23,7 +29,7 @@ export async function handleCheckout(
     //https://dtu62597.eduhost.dk:10132/payments/create-checkout-session
     // make a POST request to server to create a checkout session
     //const response = await fetch('https://localhost/payments/create-checkout-session', {
-    const response = await fetch(`https://dtu62597.eduhost.dk:10132/payments/create-checkout-session`, {
+    const response = await fetch(`https://localhost/payments/create-checkout-session`, {
             
         method: 'POST',
         headers: {

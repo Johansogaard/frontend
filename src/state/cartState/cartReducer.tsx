@@ -40,6 +40,10 @@ export const cartReducer = (state: CartState, action: CartAction): CartState => 
     ).filter(item => item.quantity > 0)
   };
   }
+  case 'CART_CLEAR': {
+    localStorage.setItem('cartItems', JSON.stringify([]));
+    return { ...state, items: [] };
+  }
 
   default: 
     return state;

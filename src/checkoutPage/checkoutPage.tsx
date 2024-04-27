@@ -1,14 +1,15 @@
 import { FormComponent } from "./checkoutPage-Components/formComponent";
 import { CheckoutMenuBar } from "./checkoutMenuBar/checkoutMenuBar";
 import './checkoutPage.css';
-
+import { UserContext } from "../state/userState/userContext.tsx";
 import {CartContext} from "../state/cartState/cartContext";
 import React, { useState, useContext } from 'react';
-import { handleCheckout } from '../shopping-cart/shoppingCart-Components/handleCheckout.tsx'
+import { handleCheckout } from './handleCheckout.tsx'
 import { Helmet, HelmetProvider} from 'react-helmet-async'
 
 export function CheckoutPage() {
-  const { state} = useContext(CartContext);
+  const { state:cartState} = useContext(CartContext);
+  const {state:userState } = useContext(UserContext);
   const [termsChecked, setTermsChecked] = useState(false);
   const [newsChecked, setNewsChecked] = useState(false);
   const [error, setError] = useState("");
@@ -19,8 +20,10 @@ export function CheckoutPage() {
       setError('Please accept the Terms and Conditions to proceed.')
       return
     }
+    else {
     //handleCheckout(items);
-    handleCheckout(state.items, "1", "shipping_address", "billing_address", 200020);
+    handleCheckout(cartState.items, "shipping_address", "billing_address", 200020,userState.token, userState.customer_id);
+    }
   };
 
   return (

@@ -4,6 +4,7 @@ import {
   Dispatch,
   ReactNode,
   useCallback,
+  useEffect,
 } from 'react'
 import { UserState, UserAction } from './userTypes'
 import { userReducer } from './userReducer'
@@ -16,6 +17,9 @@ const initialState: UserState = {
   customer_name: null,
   token: null,
   message: null,
+  orders: null,
+  loadingOrders: false,
+  ordersError: null,
 }
 
 interface UserProviderProps {
@@ -165,6 +169,40 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   
 }, [dispatch]
 );
+useEffect(() => {
+  if (state.isAuthenticated && state.token) {
+    fetchOrders()
+  }
+},[state.isAuthenticated])
+
+const fetchOrders = useCallback(async () => {
+  try {
+    dispatch({ type: 'FETCH_ORDERS' })
+    const response = await fetch(
+      `https://dtu62597.eduhost.dk:10132/orders/customer/${state.customer_id}`,
+      {
+        headers: {
+          authorization: `Bearer ${state.token}`,
+        },
+      },
+    )
+    const data = await response.json()
+    if (response.ok) {
+      dispatch({ type: 'FETCH_ORDERS_SUCCESS', payload: { orders: data } })
+    } else {
+      dispatch({
+        type: 'FETCH_ORDERS_FAILURE',
+        payload: { error: data.message || 'Failed to fetch orders' },
+      })
+    }
+
+  } catch (error: unknown) {
+    dispatch({type: 'FETCH_ORDERS_FAILURE', payload: { error: 'An unexpected error occurred' }})
+  }
+},[dispatch, state.token]);
+
+
+
   return (
     <UserContext.Provider value={{ state, dispatch, login, register }}>
       {children}

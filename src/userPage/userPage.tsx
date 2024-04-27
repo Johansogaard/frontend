@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../state/userState/userContext'
 import { Menubar } from '../menubar/menubar'
 import { Topbar } from '../topbar/topBar'
@@ -30,7 +30,9 @@ export function UserPage() {
     register({ email, customer_password, customer_name, phone_number })
     
   }
-
+  useEffect(() => { 
+  console.log('Orders '+ state.orders)
+  },[state.orders])
   return (
     <>
     <HelmetProvider>
@@ -45,7 +47,7 @@ export function UserPage() {
           <div className="LoggedIn">
             <h1>Logged in</h1>
             <span>Hello {state.customer_name}</span>
-
+              
             <button onClick={handleLogout}>Logout</button>
           </div>
         ) : signup ? (
