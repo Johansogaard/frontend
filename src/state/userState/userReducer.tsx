@@ -72,6 +72,11 @@ export const userReducer = (
         orders: null,
         ordersError: action.payload.error,
       }
+    case 'SET_USER_STATE':
+      return {
+        ...state,
+        ...action.payload.userState,
+      }
     default:
       return state
   }

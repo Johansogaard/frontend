@@ -1,25 +1,31 @@
-import { Item } from '../models/Item'
 import { loadStripe } from '@stripe/stripe-js'
 
-export async function handleCheckout(
-  items: Item[],
-  shipping_address: string,
-  billing_address: string,
-  total_amount: number,
-  token: string | null,
-  customer_id: number | null,
+import { CartState} from '../state/cartState/cartTypes'
+import { UserState} from '../state/userState/userTypes'
+import { FormsState} from '../state/fromsState/formsTypes'
 
-) {
-  
+export async function handleCheckout(cartState:CartState, userState:UserState, formsState:FormsState, total:string) {
+  /*const { state:cartState, calcTotalWithDiscount} = useContext(CartContext);
+  const {state:userState } = useContext(UserContext);
+  const {state:formsState} = useContext(FormsContext);*/
   try {
+    let billaddress = formsState.billing_address;
+    if(formsState.billing_address === '')
+      {
+        billaddress = formsState.address;
+      }
     const bodyData = {
-      items: items,
+      items: cartState.items,
       metadata: {
-        customer_id: customer_id,
-        shipping_address: shipping_address,
-        billing_address: billing_address,
-        total_amount: total_amount,
-        token: token,
+        customer_id: userState.customer_id,
+        shipping_address: formsState.address,
+        billing_address: billaddress,
+        first_name: formsState.first_name,
+        last_name: formsState.last_name,
+        total_amount: total,
+        token: userState.token,
+        email: formsState.email,
+        phone_number: formsState.phoneNumber,
       
         baseurl: window.location.href,
       },

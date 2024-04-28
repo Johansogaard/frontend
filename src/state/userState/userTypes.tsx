@@ -29,3 +29,4 @@ export type UserAction =
   | { type: 'FETCH_ORDERS';}
   | { type: 'FETCH_ORDERS_SUCCESS'; payload: { orders: Order[] } }
   | { type: 'FETCH_ORDERS_FAILURE'; payload: { error: String } }
+  | { type: 'SET_USER_STATE'; payload: { userState: UserState } }
