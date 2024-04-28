@@ -20,12 +20,12 @@ function ProductListComponent() {
              <p>You will need to go to <a href="https://dtu62597.eduhost.dk:10132/" target="_blank">this link</a>, press advanced, then continue, and finally return to this site to see any products.</p>
           </div>
         ) : (
-        <ul id="products" className="productList">
-
-          {state.products?.map((product) => (
-          <ProductDisplay key={product.product_id} product={product} />
-        ))}
-
+        <ul >
+        <li id="products" className="productList">
+                  {state.products?.map((product) => (
+                  <ProductDisplay key={product.product_id} product={product} />
+                ))}
+        </li>
         
         </ul>
         )}

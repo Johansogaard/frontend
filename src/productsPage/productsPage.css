@@ -8,6 +8,9 @@
   }
 }
 
+ul{
+  padding: 0;
+}
 .loader {
 
   width: 48px;
@@ -77,6 +80,7 @@
   .productPageDescription {
     display: none;
   }
+  
 }
 .productListComponent .add-to-cart-button {
   margin-top: auto; /* Pushes the button to the bottom */
@@ -109,10 +113,3 @@
   font-size: 19px;
 }
 
-.productListItems{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-left: 5%;
-  margin-right: 5%;
-}
