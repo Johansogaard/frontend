@@ -37,6 +37,7 @@ export function CheckoutPage() {
   const [error, setError] = useState('');
 const [formError, setFormError] = useState('');
 
+
   const handleCheckoutClick = () => {
 
     const errors = [];
@@ -90,8 +91,7 @@ if (errors.length > 0) {
             lastName={lastName}
             setLastName={setLastName}
             address={address}
-            setAddress={setAddress}
-          />
+            setAddress={setAddress}         />
       </section>
 
       <section className="checkout-checkboxNews">
@@ -132,13 +132,16 @@ if (errors.length > 0) {
 
 
       <button className="checkout-button" onClick={handleCheckoutClick} >
-        <Link to={termsChecked ? "/payment" : "/checkout"} className="link">
-          Go to payment
+        <Link to={termsChecked && isAddressValid && isEmailValid && isFirstNameValid && isLastNameValid && isPhoneNumberValid  ? "/payment" : "/checkout"} className="link">
+
+
+        Go to payment
         </Link>
       </button>
     </div>
   );
 }
+// FYI, could not directly use error as a list inside the check for link= to {} , since this cause it to be checked constantly and can be bypassed if you spam right click on the button.
 
 interface CheckboxProps {
   name: string;

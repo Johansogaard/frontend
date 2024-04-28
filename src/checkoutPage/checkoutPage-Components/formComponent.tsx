@@ -26,7 +26,7 @@ export function FormComponent({
 }) {
   const [userType, setUserType] = useState('privat'); // Default to 'privat' (Private)
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
   };
 
