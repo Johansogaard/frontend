@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.93% </span>
+                <span class="strong">63.79% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>51/58</span>
+                <span class='fraction'>37/58</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">71.42% </span>
+                <span class="strong">60% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>5/7</span>
+                <span class='fraction'>3/5</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.93% </span>
+                <span class="strong">63.79% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>51/58</span>
+                <span class='fraction'>37/58</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -139,13 +139,13 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-yes">14x</span>
@@ -160,13 +160,13 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-yes">14x</span>
@@ -197,13 +197,13 @@ function apiCaller() {
 <span class="cstat-no" title="statement not covered" >      const data = await response.json()</span>
 <span class="cstat-no" title="statement not covered" >      console.log('Data fetched :', data)</span>
 <span class="cstat-no" title="statement not covered" >      setProducts(data)</span>
-    } catch (err: unknown) {
-      const message = (err as Error).message
-      setError(message)
-    } finally {
-      setIsLoading(false)
-    }
-    console.log('Api caller returns :', products)
+<span class="cstat-no" title="statement not covered" >    } catch (err: unknown) {</span>
+<span class="cstat-no" title="statement not covered" >      const message = (err as Error).message</span>
+<span class="cstat-no" title="statement not covered" >      setError(message)</span>
+<span class="cstat-no" title="statement not covered" >    } finally {</span>
+<span class="cstat-no" title="statement not covered" >      setIsLoading(false)</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >    console.log('Api caller returns :', products)</span>
   }
 &nbsp;
   async function fetchProductsByCategory(category: string) {
@@ -218,13 +218,13 @@ function apiCaller() {
 <span class="cstat-no" title="statement not covered" >      if (!response.ok) throw new Error('Could not fetch products.')</span>
 <span class="cstat-no" title="statement not covered" >      const data: Product[] = await response.json()</span>
 <span class="cstat-no" title="statement not covered" >      setProducts(data)</span>
-    } catch (err: unknown) {
-      const message = (err as Error).message
-      setError(message)
-    } finally {
-      setIsLoading(false)
-    }
-    console.log('Api caller returns :', products)
+<span class="cstat-no" title="statement not covered" >    } catch (err: unknown) {</span>
+<span class="cstat-no" title="statement not covered" >      const message = (err as Error).message</span>
+<span class="cstat-no" title="statement not covered" >      setError(message)</span>
+<span class="cstat-no" title="statement not covered" >    } finally {</span>
+<span class="cstat-no" title="statement not covered" >      setIsLoading(false)</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >    console.log('Api caller returns :', products)</span>
   }
 &nbsp;
   return {
@@ -244,7 +244,7 @@ export default apiCaller
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-04-24T15:49:25.552Z
+                at 2024-04-28T18:23:27.080Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
