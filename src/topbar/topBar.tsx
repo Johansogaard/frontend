@@ -9,7 +9,7 @@ export function Topbar() {
     <section className="topbar-container">
       <aside className="social-icons">
         <a
-          href="https://www.instagram.com/"
+          href="https://www.instagram.com/mikkelschwarz/"
           target="_blank"
           rel="noreferrer noopener"
         >
