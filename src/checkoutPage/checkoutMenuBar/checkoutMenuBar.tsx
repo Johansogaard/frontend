@@ -12,7 +12,7 @@ export function CheckoutMenuBar({ step }: CheckoutMenuBarProps) {
 
         <div className='front'>
         <Link to="/cart" className="menubar-link">
-          <img src={navigateBack} alt="back" />
+          <img src={navigateBack} alt="back-button" />
           <span>back</span>
         </Link>
         </div> 

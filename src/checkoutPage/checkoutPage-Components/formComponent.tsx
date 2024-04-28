@@ -20,6 +20,7 @@ export function FormComponent() {
       <h2>Customer information</h2>
       <form className="form-content">
         <div className="checkout-UserInfo">
+          
           <select id="userType" name="usertype" required>
             <option value="privat">Private</option>
             <option value="comp">Company</option>

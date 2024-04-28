@@ -2,7 +2,7 @@
   display: flex;
   overflow-x: hidden;  
 
-  width: 100%; /* Ensure it spans the full width */
+  width: 100%; 
   background-color: #e6e0d7;
 
 }
@@ -11,8 +11,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  /* align-items: left; is not valid. If you want to align items to the start of the container, use justify-content: flex-start; */
-   /* Aligns social icons to the left */
+
 
   margin-left: 1%;
 }
