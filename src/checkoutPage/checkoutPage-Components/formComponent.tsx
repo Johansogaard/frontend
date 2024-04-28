@@ -20,9 +20,10 @@ export function FormComponent() {
       <h2>Customer information</h2>
       <form className="form-content">
         <div className="checkout-UserInfo">
+          
           <select id="userType" name="usertype" required>
-            <option value="privat">Private</option>
-            <option value="comp">Company</option>
+            <option value="privat">User type: Private</option>
+            <option value="comp">User type: Company</option>
           </select>
 
           <input
@@ -31,7 +32,7 @@ export function FormComponent() {
             placeholder="Phone number"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
-            style={{ borderColor: isPhoneNumberValid ? 'green' : 'red' }}
+            style={{ borderColor: isPhoneNumberValid ? 'green' : '#8B0000' }}
             required
             onKeyPress={(event) => {
               if (!/[0-9]/.test(event.key)) {
@@ -56,7 +57,7 @@ export function FormComponent() {
           <input
             type="email"
             name="email"
-            placeholder="Indtast din email"
+            placeholder="Enter your email"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -67,27 +68,38 @@ export function FormComponent() {
             }} // Visuel feedback med grænsefarve rød eller grøn når det er korrekt/forkert/
           />
           <select id="country" name="country" required>
-            <option value="dk">Denmark</option>
+            <option value="dk">Country: Denmark</option>
           </select>
-        </div>
-        <ZipForm />
+          
+          <input type="text" name="address" placeholder="Address" />
+          <ZipForm />
 
-        <input
+
+                    <input
+            type="text"
+            name="companyName"
+            placeholder="(Optional) Company Name"
+            className='companyName-input'
+          />    
+
+            
+          <input
           type="text"
           name="company"
-          placeholder="Company VAT number (optional)"
+          placeholder="(Optional) Company VAT number "
+            className='vatNumber-input'
           value={vatNumber}
           onChange={(e) => setVatNumber(e.target.value)}
           style={{
             borderColor:
               vatNumber.length > 2 && !isVatNumberValid
-                ? 'red'
+                ? '#8B0000'
                 : vatNumber.length > 0 &&
                     vatNumber.length <= 2 &&
                     !/[a-zA-Z]/.test(vatNumber)
-                  ? 'red'
+                  ? '#8B0000'
                   : vatNumber.length >= 3 && !/[0-9]/.test(vatNumber)
-                    ? 'red'
+                    ? '#8B0000'
                     : isVatNumberValid
                       ? 'green'
                       : '',
@@ -111,31 +123,39 @@ export function FormComponent() {
               /* empty */
             }
           }}
+          
         />
+         <input
+          type="text"
+          name="Other billing address"
+          placeholder="(Optional) Other billing address"
+        /> 
+          <ZipForm />
+        </div>
+
+
+       
 
         {vatNumber.length === 10 && !isVatNumberValid && (
-          <p style={{ color: 'red' }}>VAT-nummeret skal være 10 cifre langt.</p>
+          <p className="error-message">VAT-number has to be 10 digits.</p>
         )}
-        <input type="text" name="address" placeholder="Address" />
 
+       
         {email.length > 1 &&
           isEmailValid &&
           email.includes('@') &&
           email.includes('.') && (
-            <p style={{ color: 'green' }}>Emailen er gyldig.</p>
+            <p style={{ color: 'green' }}>Email is valid.</p>
           )}
         {email.length > 1 &&
           (!isEmailValid || !email.includes('@') || !email.includes('.')) && (
-            <p style={{ color: 'red' }}>Emailen er ikke gyldig.</p>
+            <p className="error-message">Email is invalid.</p>
           )}
         {!isPhoneNumberValid && (
-          <p style={{ color: 'red' }}>Telefonnummeret er forkert.</p>
+          <p className="error-message">Phone number is invalid.</p>
         )}
-        <input
-          type="text"
-          name="Other billing address"
-          placeholder="Other billing address"
-        />
+       
+       
       </form>
     </section>
   )
@@ -189,14 +209,15 @@ function ZipForm() {
         className="postalCode-input"
         maxLength={4}
       />
-      {message && <p style={{ color: 'red' }}>{message}</p>}
+      {message && <p className="error-message">{message}</p>}
 
       <input
         type="text"
         name="City"
         placeholder="City"
         value={city}
-        readOnly
+        onChange={(e) => setCity(e.target.value)}
+
         className="city-input"
       />
     </div>

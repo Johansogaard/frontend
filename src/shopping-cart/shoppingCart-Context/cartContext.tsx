@@ -1,12 +1,7 @@
 // CartContext.tsx
-import {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  ReactNode,
-} from 'react'
-import { Item } from '../../models/Item'
+/*
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { Item } from '../../models/Item';
 
 import { Product } from '../../models/Product'
 
@@ -178,5 +173,6 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     >
       {children}
     </CartContext.Provider>
-  )
-}
+  );
+};
+*/

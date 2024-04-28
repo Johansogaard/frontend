@@ -6,6 +6,7 @@
 
   background-color: #e6e0d7;
 }
+
 .checkout-UserInfo {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -19,16 +20,14 @@
   width: 100%;
 }
 .zipform-container {
-  margin-top: 10px;
   margin-bottom: 10px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
 }
-.postalCode-input {
-}
-.city-input {
-}
+
+
+
 label.checkbox {
   color: #fff;
   display: flex;
@@ -43,4 +42,11 @@ label.checkbox > input {
   outline: none;
   height: 20px;
   border-radius: 5px;
+}
+
+@media (max-width: 600px) {
+  .checkout-UserInfo, .zipform-container{
+    grid-template-columns: 1fr;
+  }
+  
 }

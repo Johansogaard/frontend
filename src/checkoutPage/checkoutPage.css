@@ -12,10 +12,7 @@
   justify-content: center;
 }
 
-.checkbox-wrapper {
-  width: 400px; /* Proper workaround because the label and box where dependent on string length before...*/
-  margin: 0 auto;
-}
+
 
 .checkout-checkboxNews label {
   display: inline-block;
@@ -23,6 +20,7 @@
   color-scheme: dark;
   margin-bottom: 10px; /* Styling, looks more clean */
   margin-top: 15px;
+  width: 90%;
 }
 .checkout-checkboxTerm label {
   display: inline-block;
@@ -31,21 +29,23 @@
   margin-top: 5px;
   margin-bottom: 15px;
   border: 1px solid transparent; /* standard color*/
+  width: 90%;
 }
 
 .error-message {
-  color: red;
+  color: #8B0000;
 }
 .checkout-checkboxTerm.error {
-  border-color: red; /* UX add on for error. */
+  border-color: #8B0000; /* UX add on for error. */
 }
 .checkbox-commentWrapper {
-  width: 400px;
+  width: 90%;
+  max-width: 400px;
   height: auto;
   margin: 0 auto;
   display: flex;
   flex-direction: column; /* DO NOT DELETE, no overlapping of payment button fix right here */
-  align-items: flex-start;
+  align-items: center;
 }
 .checkout-Comment {
   display: block;
@@ -62,4 +62,11 @@
   padding: 5px;
   vertical-align: top;
   resize: none;
+  font-size: 16px;
+}
+
+form input, form select {
+  font-size: 16px;
+  border-radius: 7px;
+  height: 30px;
 }

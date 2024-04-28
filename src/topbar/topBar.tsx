@@ -9,7 +9,7 @@ export function Topbar() {
     <section className="topbar-container">
       <aside className="social-icons">
         <a
-          href="https://www.instagram.com/"
+          href="https://www.instagram.com/mikkelschwarz/"
           target="_blank"
           rel="noreferrer noopener"
         >
@@ -30,7 +30,9 @@ export function Topbar() {
           <img src={tiktok} alt="Tiktok logo" className="social-icon" />
         </a>
       </aside>
-      <p className="shipping-info">Free shipping on all orders over 129 USD</p>
+     
+      <p className="shipping-info">Free shipping on all orders today!</p>
+  
     </section>
   )
 }
