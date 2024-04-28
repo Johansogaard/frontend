@@ -33,10 +33,10 @@
 }
 
 .error-message {
-  color: red;
+  color: #8B0000;
 }
 .checkout-checkboxTerm.error {
-  border-color: red; /* UX add on for error. */
+  border-color: #8B0000; /* UX add on for error. */
 }
 .checkbox-commentWrapper {
   width: 90%;

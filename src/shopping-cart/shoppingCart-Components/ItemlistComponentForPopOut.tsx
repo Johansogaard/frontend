@@ -28,7 +28,9 @@ export function ItemListComponent() {
     ) : (
 <ul id="cart-items" className="unsortList">
 {state.items.map((item) => (
-          <ShoppingCartItem key={item.product.product_id} item={item} />
+          <li key={item.product.product_id}>
+            <ShoppingCartItem item={item} />
+          </li>
         ))}
 </ul>
     )}

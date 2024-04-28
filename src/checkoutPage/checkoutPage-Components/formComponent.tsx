@@ -22,8 +22,8 @@ export function FormComponent() {
         <div className="checkout-UserInfo">
           
           <select id="userType" name="usertype" required>
-            <option value="privat">Private</option>
-            <option value="comp">Company</option>
+            <option value="privat">User type: Private</option>
+            <option value="comp">User type: Company</option>
           </select>
 
           <input
@@ -32,7 +32,7 @@ export function FormComponent() {
             placeholder="Phone number"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
-            style={{ borderColor: isPhoneNumberValid ? 'green' : 'red' }}
+            style={{ borderColor: isPhoneNumberValid ? 'green' : '#8B0000' }}
             required
             onKeyPress={(event) => {
               if (!/[0-9]/.test(event.key)) {
@@ -68,7 +68,7 @@ export function FormComponent() {
             }} // Visuel feedback med grænsefarve rød eller grøn når det er korrekt/forkert/
           />
           <select id="country" name="country" required>
-            <option value="dk">Denmark</option>
+            <option value="dk">Country: Denmark</option>
           </select>
           
           <input type="text" name="address" placeholder="Address" />
@@ -93,13 +93,13 @@ export function FormComponent() {
           style={{
             borderColor:
               vatNumber.length > 2 && !isVatNumberValid
-                ? 'red'
+                ? '#8B0000'
                 : vatNumber.length > 0 &&
                     vatNumber.length <= 2 &&
                     !/[a-zA-Z]/.test(vatNumber)
-                  ? 'red'
+                  ? '#8B0000'
                   : vatNumber.length >= 3 && !/[0-9]/.test(vatNumber)
-                    ? 'red'
+                    ? '#8B0000'
                     : isVatNumberValid
                       ? 'green'
                       : '',
@@ -137,7 +137,7 @@ export function FormComponent() {
        
 
         {vatNumber.length === 10 && !isVatNumberValid && (
-          <p style={{ color: 'red' }}>VAT-number has to be 10 digits.</p>
+          <p className="error-message">VAT-number has to be 10 digits.</p>
         )}
 
        
@@ -149,10 +149,10 @@ export function FormComponent() {
           )}
         {email.length > 1 &&
           (!isEmailValid || !email.includes('@') || !email.includes('.')) && (
-            <p style={{ color: 'red' }}>Email is invalid.</p>
+            <p className="error-message">Email is invalid.</p>
           )}
         {!isPhoneNumberValid && (
-          <p style={{ color: 'red' }}>Phone number is invalid.</p>
+          <p className="error-message">Phone number is invalid.</p>
         )}
        
        
@@ -209,7 +209,7 @@ function ZipForm() {
         className="postalCode-input"
         maxLength={4}
       />
-      {message && <p style={{ color: 'red' }}>{message}</p>}
+      {message && <p className="error-message">{message}</p>}
 
       <input
         type="text"

@@ -21,9 +21,11 @@ function ProductListComponent() {
           </div>
         ) : (
         <ul id="products" className="productList">
+
           {state.products?.map((product) => (
           <ProductDisplay key={product.product_id} product={product} />
         ))}
+
         
         </ul>
         )}
@@ -52,7 +54,7 @@ function ProductListComponent() {
     return (
       <article className="product-display">
       <img src={product.product_image_url} alt="item imager" className="item-image"/>
-      <h3>{product.product_name}</h3>
+      <h2>{product.product_name}</h2>
       <p>{product.product_description}</p>
       <p>
         Price: {product.product_price} {product.product_currency}
