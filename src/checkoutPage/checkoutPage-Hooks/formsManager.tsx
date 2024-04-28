@@ -1,5 +1,6 @@
 import {useState,useEffect} from 'react';
 
+
 export function FormsManager() {
   const [email, setEmail] = useState('');
   const [isEmailValid, setIsEmailValid] = useState(false);
@@ -13,6 +14,7 @@ export function FormsManager() {
   const [isLastNameValid, setIsLastNameValid] = useState(false);
   const [address, setAddress] = useState('');
   const [isAddressValid, setIsAddressValid] = useState(false);
+
 
   useEffect(() => {
     validateEmail();
@@ -49,9 +51,11 @@ export function FormsManager() {
   };
 
   const validateVatNumber = () => {
-    const isValid = /^\d{8}$/.test(vatNumber);
+    const isValid = /^[a-zA-Z]{2}\d{8}$/.test(vatNumber);
     setIsVatNumberValid(isValid);
-  };
+  }
+
+
 
   const validateFirstName = () => {
     const isValid = /^[a-zA-Z -]{2,}$/.test(firstName);
@@ -87,6 +91,5 @@ export function FormsManager() {
     isFirstNameValid,
     isLastNameValid,
     isAddressValid,
-    validateAddress,
   };
 }
