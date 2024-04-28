@@ -1,6 +1,6 @@
 import {useState,useEffect} from 'react';
 
-export function formsManager() {
+export function FormsManager() {
   const [email, setEmail] = useState('');
   const [isEmailValid, setIsEmailValid] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -54,17 +54,17 @@ export function formsManager() {
   };
 
   const validateFirstName = () => {
-    const isValid = /^[a-zA-Z]{2,}$/.test(firstName);
+    const isValid = /^[a-zA-Z -]{2,}$/.test(firstName);
     setIsFirstNameValid(isValid);
   };
 
   const validateLastName = () => {
-    const isValid = /^[a-zA-Z]{2,}$/.test(lastName);
+    const isValid = /^[a-zA-Z -]{2,}$/.test(lastName);
     setIsLastNameValid(isValid);
   };
 
   const validateAddress = () => {
-    const isValid = /^[a-zA-Z]{2,}$/.test(address);
+    const isValid = /^[a-zA-Z0-9 -]{3,}$/.test(address);
     setIsAddressValid(isValid);
   };
 

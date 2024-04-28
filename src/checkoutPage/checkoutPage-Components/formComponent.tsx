@@ -1,10 +1,30 @@
 import React, { useEffect, useState } from 'react'
-import { formsManager } from '../checkoutPage-Hooks/formsManager'
 import './formComponent.css'
 
 
+interface FormComponentAnyFix {
+  email: string;
+  setEmail: (email: string) => void;
+  phoneNumber: string;
+  setPhoneNumber: (phoneNumber: string) => void;
+  vatNumber: string;
+  setVatNumber: (vatNumber: string) => void;
+  isEmailValid: boolean;
+  isPhoneNumberValid: boolean;
+  isVatNumberValid: boolean;
+  firstName: string;
+  setFirstName: (firstName: string) => void;
+  isFirstNameValid: boolean;
+  lastName: string;
+  setLastName: (lastName: string) => void;
+  isLastNameValid: boolean;
+  address: string;
+  setAddress: (address: string) => void;
+  isAddressValid: boolean;
+}
+
 export function FormComponent({
-    email,
+  email,
   setEmail,
   phoneNumber,
   setPhoneNumber,
@@ -22,8 +42,9 @@ export function FormComponent({
   address,
   setAddress,
   isAddressValid,
+  }:
+  FormComponentAnyFix) {
 
-}) {
   const [userType, setUserType] = useState('privat'); // Default to 'privat' (Private)
 
   const handleSubmit = (event: { preventDefault: () => void; }) => {
@@ -47,6 +68,7 @@ export function FormComponent({
              <option value="comp">Company</option>
            </select>
             <input
+
              type="email"
              name="email"
              placeholder="Email"

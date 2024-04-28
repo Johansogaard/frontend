@@ -1,5 +1,5 @@
 import React, { ReactNode ,useState} from 'react';
-import {formsManager} from '../checkoutPage-Hooks/formsManager';
+import {FormsManager} from '../checkoutPage-Hooks/formsManager';
 
 const FormsManagerContext = React.createContext<FormsManagerState | null>(null);
 

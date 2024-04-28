@@ -1,11 +1,11 @@
 import { FormComponent } from "./checkoutPage-Components/formComponent";
-import { CheckoutMenuBar } from "./checkoutMenuBar/checkoutMenuBar";
+//import { CheckoutMenuBar } from "./checkoutMenuBar/checkoutMenuBar";
 import './checkoutPage.css';
 import { Link } from "react-router-dom";
-import { useCart } from "../shopping-cart/shoppingCart-Context/cartContext";
+//import { useCart } from "../shopping-cart/shoppingCart-Context/cartContext";
 import React, { useState } from 'react';
-import { handleCheckout } from '../shopping-cart/shoppingCart-Components/handleCheckout.tsx'
-import { formsManager } from './checkoutPage-Hooks/formsManager'
+//import { handleCheckout } from '../shopping-cart/shoppingCart-Components/handleCheckout.tsx'
+import { FormsManager } from './checkoutPage-Hooks/formsManager'
 
 export function CheckoutPage() {
 
@@ -29,13 +29,13 @@ export function CheckoutPage() {
     isLastNameValid,
     isAddressValid,
 
-    validateAddress,
-  } = formsManager();
+
+  } = FormsManager();
 
   const [termsChecked, setTermsChecked] = useState(false);
   const [newsChecked, setNewsChecked] = useState(false);
   const [error, setError] = useState('');
-const [formError, setFormError] = useState('');
+
 
 
   const handleCheckoutClick = () => {
@@ -47,13 +47,13 @@ const [formError, setFormError] = useState('');
    }
 
    if (!firstName || !isFirstNameValid) {
-     errors.push('First name is not valid');
+     errors.push('Fill out First Name');
    }
    if (!lastName || !isLastNameValid) {
-     errors.push('Last name is not valid');
+     errors.push('Fill out Last Name');
    }
     if (!phoneNumber || !isPhoneNumberValid) {
-        errors.push('Phone number is not valid');
+        errors.push('Phone number does not exist');
       }
       if (vatNumber && !isVatNumberValid) {
         errors.push('VAT number is not valid');
@@ -91,8 +91,12 @@ if (errors.length > 0) {
             lastName={lastName}
             setLastName={setLastName}
             address={address}
-            setAddress={setAddress}         />
+            setAddress={setAddress}
+            isFirstNameValid={isFirstNameValid}
+            isLastNameValid={isLastNameValid}
+            isAddressValid={isAddressValid}         />
       </section>
+
 
       <section className="checkout-checkboxNews">
         <CheckboxNews
@@ -123,7 +127,6 @@ if (errors.length > 0) {
       </section>
 
 <section>
-{formError && <div className="form-error-message">{formError}</div>}
 </section>
 
 {error && (
