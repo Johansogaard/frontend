@@ -5,6 +5,7 @@ import { CartContext } from '../../state/cartState/cartContext';
 
 import { CheckoutMenuBar } from "../checkoutMenuBar/checkoutMenuBar";
 import { Topbar } from '../../topbar/topBar'
+import { Item } from '../../models/Item';
 
 
 export function ConfirmationPage() {
@@ -29,13 +30,13 @@ export function ConfirmationPage() {
         setError(''); 
 
         const receipt = await callSuccess(sessionId);
-        setReceipt(receipt); // Set the order details received from the response
-        dispatch({ type: 'CART_CLEAR' }); // Clear the cart after successfully fetching order details
+        setReceipt(receipt); 
+        dispatch({ type: 'CART_CLEAR' }); 
       } catch (err) {
         console.error(err);
-        setError( 'Failed to fetch order details'); // Set the error state
+        setError( 'Failed to fetch order details');
       } finally {
-        setLoading(false); // Stop loading whether there was an error or not
+        setLoading(false); 
    
       }
     };
@@ -44,17 +45,20 @@ export function ConfirmationPage() {
       fetchOrderDetails();
     }
 
-    // Clean-up function to avoid setting state after the component has unmounted
+   
     return () => {
-      setLoading(false); // Cleanup loading state
-      setError(''); // Cleanup error state
+      setLoading(false); 
+      setError(''); 
     };
   }, [sessionId, dispatch]);
     
 
-    
+    const itemList = receipt?.items.map((item, index) => (
+      <ReceiptItem key={index} {...item} />
+    ));
 
   return (
+    
     <>
       <Topbar />
       <CheckoutMenuBar step={3} />                    
@@ -62,27 +66,40 @@ export function ConfirmationPage() {
       {receipt && (
         <div className='receipt_Container'>
           <h2>Receipt</h2>
+          <h3>Order ID: #{receipt.order_id}</h3>
           <p>Shipping Address: {receipt.shipping_address}</p>
           <p>Billing Address: {receipt.billing_address}</p>
-          <p>Total Amount: {receipt.total_amount}</p>
-          {receipt.items.map((item) => receiptItem(item.product.product_name, item.quantity.toString()))}
-          {/* Display the order details */}
-
-          {/* Add more fields as necessary */}
+          
+          {itemList}
+          <p className='total'>Total Amount: {receipt.total_amount}</p>
         </div>
       )}
     </>
   );
 }
 
-function receiptItem(name:String, quantity:String ) {
+function ReceiptItem(item: Item) {
+  const calcDiscountForItem = (item: Item) => { 
+    let discount = 0;
+    if(item.product.rebateQuantity && item.product.rebatePercent)
+      {
+    discount = (item.product.product_price * item.product.rebateQuantity)/item.product.rebatePercent;
+      }
+    return discount.toFixed(2);
+  }
   return (
-    <div>
-      <p>Name: {name}</p>
-      <p>Quantity: {quantity}</p>
+    <div className='receiptItem_Container'>
+      <div className='receiptItem_Container_firstline'>
+      <p className='Item'>Item: {item.product.product_name}</p>
+      <p className='Quan'>Quantity: {item.quantity} X {item.product.product_price}</p>
+      </div>
+      {item.product.rebateQuantity && item.product.rebateQuantity <= item.quantity ? (
+  <p className='receiptItem_discount'>Discount: -{calcDiscountForItem(item)}</p>
+) : null}
     </div>
   );
 };
+
 
 async function callSuccess(sessionId: string): Promise<Receipt> {
 
@@ -98,6 +115,7 @@ async function callSuccess(sessionId: string): Promise<Receipt> {
 
     
     const receipt: Receipt = {
+      order_id: data.orderId,
       shipping_address: data.shipping_address,
       billing_address: data.billing_address,
       total_amount: data.total_amount,
@@ -116,7 +134,4 @@ async function callSuccess(sessionId: string): Promise<Receipt> {
   
 }
 
-async function getProductsFromRecipt(itemId: string[]) {
-  
 
-}
