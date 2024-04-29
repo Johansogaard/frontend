@@ -27,18 +27,14 @@ export function Menubar() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const checkScroll = () => {
-      if (window.scrollY > 30) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+    const preventHorizontalScroll = () => {
+      window.scrollTo(0, window.scrollY);
     };
-
-    window.addEventListener('scroll', checkScroll);
-
+  
+    window.addEventListener('scroll', preventHorizontalScroll);
+  
     return () => {
-      window.removeEventListener('scroll', checkScroll);
+      window.removeEventListener('scroll', preventHorizontalScroll);
     };
   }, []);
   return (
