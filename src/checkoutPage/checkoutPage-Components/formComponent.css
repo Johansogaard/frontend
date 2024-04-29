@@ -1,6 +1,8 @@
 .form{
   width: 90%;
   padding-bottom: 20px ;
+  padding-left: 15px;
+  padding-right: 15px;
   display: flex;
   flex-direction: column;
   
@@ -11,6 +13,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
+  padding-right: 30px;
 }
 .form-content{
  
@@ -22,12 +25,17 @@
   width: 100%;
 }
 .zipform-container{
-  margin-top: 10px;
-  margin-bottom: 10px;
+
+    width: 90%;
+    padding-bottom: 20px ;
+ padding-left: 15px;
+  padding-right: 15px;
+
+    flex-direction: column;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
   gap: 10px;
-  
+
+    background-color: #e6e0d7;
 }
 .postalCode-input{
   

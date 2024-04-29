@@ -1,7 +1,14 @@
 .checkout-page-container{
-#width : 100%
+#width : 35%
 }
 .checkout-delivery{
+
+    display: flex;
+    justify-content: center;
+}
+
+.checkout-deliveryZip{
+
     display: flex;
     justify-content: center;
 }

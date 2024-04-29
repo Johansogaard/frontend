@@ -102,7 +102,7 @@ export function FormComponent({
              placeholder="Phone number"
              value={phoneNumber}
              onChange={(e) => setPhoneNumber(e.target.value)}
-             style={{ borderColor: !isPhoneNumberValid ? '' : 'red' }}
+             style={{ borderColor: !isPhoneNumberValid ? '' : '' }}
              maxLength={8}
            />
 
@@ -140,8 +140,11 @@ export function FormComponent({
      </section>
    );
  }
-
-function ZipForm({ setPostalCode, setPostalCodeValid }) {
+type ZipFormType = {
+  setPostalCode: (postalCode: string) => void; // Type for setPostalCode
+  setPostalCodeValid: (isValid: boolean) => void; // Type for setPostalCodeValid
+};
+function ZipForm({ setPostalCode, setPostalCodeValid }: ZipFormType) {
   type PostalCodeData = {
     nr: string;
     navn: string;
@@ -149,9 +152,9 @@ function ZipForm({ setPostalCode, setPostalCodeValid }) {
 
   const [postalCode, setPostalCodeLocal] = useState('');
   const [postalCodes, setPostalCodes] = useState<PostalCodeData[]>([]);
-  const [message, setMessage] = useState('');
+
   const [city, setCity] = useState('');
-  const [isValidPostalCode, setIsValidPostalCode] = useState(false);
+  const [, setIsValidPostalCode] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -171,13 +174,13 @@ function ZipForm({ setPostalCode, setPostalCodeValid }) {
         (item: { nr: string; navn: string }) => item.nr === value
       );
       if (postalCodeData) {
-        setMessage('');
+
         setCity(postalCodeData.navn);
         setIsValidPostalCode(true);
         setPostalCode(value);
         setPostalCodeValid(true);
       } else {
-        setMessage('Postal code is not valid');
+
         setIsValidPostalCode(false);
         setCity('');
         setPostalCode('');
@@ -201,7 +204,7 @@ function ZipForm({ setPostalCode, setPostalCodeValid }) {
         className="postalCode-input"
         maxLength={4}
       />
-      {message && <p style={{ color: 'red' }}>{message}</p>}
+
 
       <input
         type="text"

@@ -48,10 +48,6 @@ export function CheckoutPage() {
   if (!email || !isEmailValid) {
      errors.push('Email is not valid');
    }
-    if (!postalCode || postalCode.length !== 4) {
-      errors.push('Postal code is shit legit');
-    }
-
     if (!postalCode || !isValidPostalCode) {
       errors.push('Postal code was not found in Denmark ');
     }
@@ -84,77 +80,80 @@ if (errors.length > 0) {
 
 
    return (
-      <div className='checkout-page-container'>
-        <section className="checkout-delivery">
-          <FormComponent
-            email={email}
-            setEmail={setEmail}
-            phoneNumber={phoneNumber}
-            setPhoneNumber={setPhoneNumber}
-            vatNumber={vatNumber}
-            setVatNumber={setVatNumber}
-            isEmailValid={isEmailValid}
-            isPhoneNumberValid={isPhoneNumberValid}
-            isVatNumberValid={isVatNumberValid}
-            firstName={firstName}
-            setFirstName={setFirstName}
-            lastName={lastName}
-            setLastName={setLastName}
-            address={address}
-            setAddress={setAddress}
-            isFirstNameValid={isFirstNameValid}
-            isLastNameValid={isLastNameValid}
-            isAddressValid={isAddressValid}         />
+     <div className="checkout-page-container">
+       <section className="checkout-delivery">
+         <FormComponent
+           email={email}
+           setEmail={setEmail}
+           phoneNumber={phoneNumber}
+           setPhoneNumber={setPhoneNumber}
+           vatNumber={vatNumber}
+           setVatNumber={setVatNumber}
+           isEmailValid={isEmailValid}
+           isPhoneNumberValid={isPhoneNumberValid}
+           isVatNumberValid={isVatNumberValid}
+           firstName={firstName}
+           setFirstName={setFirstName}
+           lastName={lastName}
+           setLastName={setLastName}
+           address={address}
+           setAddress={setAddress}
+           isFirstNameValid={isFirstNameValid}
+           isLastNameValid={isLastNameValid}
+           isAddressValid={isAddressValid} />
 
-      </section>
-        <ZipForm setPostalCode={setPostalCode} setPostalCodeValid={setIsValidPostalCode} />
+       </section>
+       <section className="checkout-deliveryZip">
+         <ZipForm setPostalCode={setPostalCode} setPostalCodeValid={setIsValidPostalCode} />
+       </section>
 
+         <section className="checkout-checkboxNews">
+           <CheckboxNews
+             name="News"
+             val={newsChecked}
+             setValue={setNewsChecked}
+             label="I would like to receive possible future offers and emails from Porcelain Shop."
 
-        <section className="checkout-checkboxNews">
-        <CheckboxNews
-          name="News"
-          val={newsChecked}
-          setValue={setNewsChecked}
-          label="I would like to receive possible future offers and emails from Porcelain Shop."
+           />
+         </section>
+         <section className="checkout-checkboxTerm">
+           <CheckboxTerms
+             name="Terms"
 
-        />
-      </section>
-      <section className="checkout-checkboxTerm">
-        <CheckboxTerms
-          name="Terms"
+             val={termsChecked}
+             setValue={setTermsChecked}
 
-          val={termsChecked}
-          setValue={setTermsChecked}
+             label="I confirm that my details are correct and accept the Terms and Conditions"
+             error={error} // Pass error state as a prop
+           />
+         </section>
+         <section className="checkout-Comment">
+           <div>
+             <CommentTextField
+               label="Order Comments :"
+             />
+           </div>
+         </section>
 
-          label="I confirm that my details are correct and accept the Terms and Conditions"
-          error={error} // Pass error state as a prop
-        />
-      </section>
-      <section className="checkout-Comment">
-        <div>
-        <CommentTextField
-          label="Order Comments :"
-        />
-        </div>
-      </section>
+         <section>
+         </section>
 
-<section>
-</section>
-
-{error && (
-  <div className="error-message" dangerouslySetInnerHTML={{ __html: error }} />
-)}
-
-
-      <button className="checkout-button" onClick={handleCheckoutClick} >
-        <Link to={termsChecked && isAddressValid && isEmailValid && isFirstNameValid && isLastNameValid && isPhoneNumberValid  ? "/payment" : "/checkout"} className="link">
+         {error && (
+           <div className="error-message" dangerouslySetInnerHTML={{ __html: error }} />
+         )}
 
 
-        Go to payment
-        </Link>
-      </button>
-    </div>
-  );
+         <button className="checkout-button" onClick={handleCheckoutClick}>
+           <Link
+             to={termsChecked && isAddressValid && isEmailValid && isFirstNameValid && isLastNameValid && isPhoneNumberValid && isValidPostalCode ? '/payment' : '/checkout'}
+             className="link">
+
+
+             Go to payment
+           </Link>
+         </button>
+     </div>
+);
 }
 // FYI, could not directly use error as a list inside the check for link= to {} , since this cause it to be checked constantly and can be bypassed if you spam right click on the button.
 
