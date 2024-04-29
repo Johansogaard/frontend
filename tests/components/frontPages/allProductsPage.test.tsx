@@ -9,10 +9,8 @@ import {
   waitFor
 } from '@testing-library/react'
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
-import { Category } from '../../../src/models/Category';
 import { AllProductsPage } from '../../../src/productsPage/AllProductsPage'
 import { ProductContext, ProductProvider } from '../../../src/state/productlistState/productContext'
-import { productReducer } from '../../../src/state/productlistState/productReducer'
 
 import { CartProvider } from '../../../src/state/cartState/cartContext'
 
@@ -94,23 +92,6 @@ describe('AllProductsPage', () => {
       expect(screen.getByText('DINNERWARE')).toBeDefined();
       expect(screen.getByText('Free shipping on all orders today!')).toBeDefined();
     });
-
-
-    /*
-    it('renders mocked products correctly', () => {
-      
-      const plateText = screen.getByText('ceramic-plate-set');
-      const bowlText = screen.getByText('Deep wooden bowl');
-      expect(plateText).toBeDefined();
-      expect(bowlText).toBeDefined();
-    });
-    */
-    
-    
-    
-
-
-      // Tests for error responses using apiCaller
 
     
   });

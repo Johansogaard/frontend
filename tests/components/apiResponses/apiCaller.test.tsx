@@ -11,7 +11,7 @@ import { AllProductsPage } from '../../../src/productsPage/AllProductsPage'
 import { ProductProvider } from '../../../src/state/productlistState/productContext'
 import { BrowserRouter as Router } from 'react-router-dom';
 import { CartProvider } from '../../../src/state/cartState/cartContext'
-import { vi } from 'vitest';
+import { vi, beforeEach } from 'vitest';
 
 
 
@@ -39,11 +39,11 @@ vi.mock('../../../src/customHooks/apiCaller', () => ({
     }
   }));
   
-/*
+
 beforeEach(() => {
-  jest.resetAllMocks();
+  vi.resetAllMocks();
 });
-*/
+
 
 describe('AllProductsPage', () => {
     beforeEach(() => {
@@ -99,17 +99,6 @@ describe('AllProductsPage', () => {
             expect(productDisplays.length).toBeGreaterThan(0);
         });
     });
-  
-      
-   
-
-    
-    
-    
-
-
-      // Tests for error responses using apiCaller
-
     
   });
 

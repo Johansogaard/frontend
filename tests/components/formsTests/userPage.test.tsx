@@ -4,15 +4,10 @@ import { UserPage } from '../../../src/userPage/userPage'; // Adjust the path as
 import { UserProvider } from '../../../src/state/userState/userContext';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { vi } from 'vitest';
-//import { ProductContext, ProductProvider } from '../../../src/state/productlistState/productContext'
-//import { CartProvider } from '../../../src/state/cartState/cartContext'
+import { ProductContext, ProductProvider } from '../../../src/state/productlistState/productContext'
+import { CartProvider } from '../../../src/state/cartState/cartContext'
 
 
-// Mock for react-helmet-async
-vi.mock('react-helmet-async', () => ({
-    Helmet: ({ children }: { children: React.ReactNode }) => <>{children}</>,
-    HelmetProvider: ({ children }: { children: React.ReactNode }) => <>{children}</>
-  }));
 
 
 describe('UserPage', () => {
@@ -20,11 +15,13 @@ describe('UserPage', () => {
     beforeEach(() => {
       render(
       <Router>
+        <ProductProvider>
           <UserProvider>
-        
-                <UserPage />
-             
+        <CartProvider>
+        <UserPage />
+        </CartProvider>             
           </UserProvider>
+        </ProductProvider>
       </Router>
       
     )});
