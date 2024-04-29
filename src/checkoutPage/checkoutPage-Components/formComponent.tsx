@@ -141,7 +141,7 @@ export function FormComponent({
    );
  }
 
-function ZipForm({ setPostalCode }) {
+function ZipForm({ setPostalCode, setPostalCodeValid }) {
   type PostalCodeData = {
     nr: string;
     navn: string;
@@ -151,6 +151,7 @@ function ZipForm({ setPostalCode }) {
   const [postalCodes, setPostalCodes] = useState<PostalCodeData[]>([]);
   const [message, setMessage] = useState('');
   const [city, setCity] = useState('');
+  const [isValidPostalCode, setIsValidPostalCode] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -164,7 +165,6 @@ function ZipForm({ setPostalCode }) {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setPostalCodeLocal(value);
-    setPostalCode(value); // Update parent component with the postal code
 
     if (value.length === 4) {
       const postalCodeData = postalCodes.find(
@@ -173,10 +173,20 @@ function ZipForm({ setPostalCode }) {
       if (postalCodeData) {
         setMessage('');
         setCity(postalCodeData.navn);
+        setIsValidPostalCode(true);
+        setPostalCode(value);
+        setPostalCodeValid(true);
       } else {
         setMessage('Postal code is not valid');
+        setIsValidPostalCode(false);
         setCity('');
+        setPostalCode('');
+        setPostalCodeValid(false);
       }
+    } else {
+
+      setPostalCode('');
+      setPostalCodeValid(false);
     }
   };
 
@@ -196,7 +206,7 @@ function ZipForm({ setPostalCode }) {
       <input
         type="text"
         name="City"
-        placeholder="City"
+        placeholder="City, Automatic with Zip Code"
         value={city}
         readOnly
         className="city-input"

@@ -36,6 +36,7 @@ export function CheckoutPage() {
   const [newsChecked, setNewsChecked] = useState(false);
   const [error, setError] = useState('');
   const [postalCode, setPostalCode] = useState('');
+  const [isValidPostalCode, setIsValidPostalCode] = useState(false); // Corrected state name
 
 
 
@@ -48,7 +49,11 @@ export function CheckoutPage() {
      errors.push('Email is not valid');
    }
     if (!postalCode || postalCode.length !== 4) {
-      errors.push('Postal code is shit');
+      errors.push('Postal code is shit legit');
+    }
+
+    if (!postalCode || !isValidPostalCode) {
+      errors.push('Postal code was not found in Denmark ');
     }
 
    if (!firstName || !isFirstNameValid) {
@@ -102,7 +107,7 @@ if (errors.length > 0) {
             isAddressValid={isAddressValid}         />
 
       </section>
-        <ZipForm setPostalCode={setPostalCode} />
+        <ZipForm setPostalCode={setPostalCode} setPostalCodeValid={setIsValidPostalCode} />
 
 
         <section className="checkout-checkboxNews">
