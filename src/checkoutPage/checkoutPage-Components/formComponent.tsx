@@ -212,7 +212,10 @@ function ZipForm() {
   };
 
   return (
-    <div className="zipform-container">
+
+    <div className="zipform-containerLarge">
+ <form className="form-content">
+      <div className="checkout-UserInfo">
       <input
         type="text"
         name="postalCode"
@@ -222,17 +225,21 @@ function ZipForm() {
         className="postalCode-input"
         maxLength={4}
       />
-      {state.message && <p style={{ color: '#8B0000' }}>{state.message}</p>}
+
 
       <input
         type="text"
         name="City"
-        placeholder="City"
+        placeholder="City (Autofilled)"
         value={state.city}
         readOnly
         className="city-input"
       />
+
     </div>
+    </form>
+    </div>
+
   );
 }
 

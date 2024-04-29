@@ -7,6 +7,22 @@
   background-color: #e6e0d7;
 }
 
+.zipform-containerLarge{
+
+    width: 90%;
+    padding-bottom: 20px ;
+     display: flex;
+     align items : center
+      flex-direction: column;
+grid-template-columns: repeat(2, 1fr);
+
+    flex-direction: columns;
+
+  gap: 10px;
+
+    background-color: #e6e0d7;
+}
+
 .checkout-UserInfo {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -20,9 +36,10 @@
 .email-info {
   width: 100%;
 }
+
 .zipform-container {
   margin-bottom: 10px;
-  display: grid;
+  align
   gap: 10px;
 }
 
@@ -45,7 +62,7 @@ label.checkbox > input {
 }
 
 @media (max-width: 600px) {
-  .checkout-UserInfo, .zipform-container{
+  .checkout-UserInfo, .zipform-container, zipform-containerLarge{
     grid-template-columns: 1fr;
   }
   

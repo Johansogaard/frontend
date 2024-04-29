@@ -5,6 +5,11 @@
   display: flex;
   justify-content: center;
 }
+.checkout-deliveryZip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .checkbox-container {
   display: flex;

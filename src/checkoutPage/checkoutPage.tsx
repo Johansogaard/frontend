@@ -76,9 +76,12 @@ export function CheckoutPage() {
       </HelmetProvider>
       <CheckoutMenuBar step={1} />
       <section className="checkout-delivery">
-        <FormComponent />
-      </section>
-      <ZipForm/>
+              <FormComponent />
+            </section>
+            <section className="checkout-deliveryZip">
+              <ZipForm />
+            </section>
+
       <section className="checkout-checkboxNews">
         <CheckboxNews
           name="News"
