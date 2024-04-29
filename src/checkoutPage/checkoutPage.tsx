@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import React, { useState } from 'react';
 //import { handleCheckout } from '../shopping-cart/shoppingCart-Components/handleCheckout.tsx'
 import { FormsManager } from './checkoutPage-Hooks/formsManager'
+import { CheckoutMenuBar } from './checkoutMenuBar/checkoutMenuBar.tsx'
 
 export function CheckoutPage() {
 
@@ -81,7 +82,9 @@ if (errors.length > 0) {
 
    return (
      <div className="checkout-page-container">
+       <CheckoutMenuBar/>
        <section className="checkout-delivery">
+
          <FormComponent
            email={email}
            setEmail={setEmail}
