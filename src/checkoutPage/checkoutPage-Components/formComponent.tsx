@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from 'react'
+import React, { useEffect, useContext } from 'react'
 import { FormsContext } from '../../state/fromsState/formsContext'
 
 
@@ -148,7 +148,7 @@ function ZipForm() {
     navn: string;
   };
   const { state, dispatch } = useContext(FormsContext)
-  const [postalCodes, setPostalCodes] = useState<PostalCodeData[]>([]);
+  //const [postalCodes, setPostalCodes] = useState<PostalCodeData[]>([]);
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch('https://api.dataforsyningen.dk/postnumre');

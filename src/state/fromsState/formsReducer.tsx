@@ -1,4 +1,4 @@
-import { steps } from 'framer-motion';
+//import { steps } from 'framer-motion';
 import { FormsAction, FormsState } from './formsTypes';
 
 

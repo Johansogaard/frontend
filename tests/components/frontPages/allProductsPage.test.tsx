@@ -16,27 +16,7 @@ import { CartProvider } from '../../../src/state/cartState/cartContext'
 
 //import { ProductListComponent } from '../../src/productsPage/productsPage-Components/productsListComponent'
 import { BrowserRouter as Router } from 'react-router-dom';
-/*
-// Helper function to create a mock response
-const createMockResponse = (data: any) => {
-  return new Response(JSON.stringify(data), {
-    status: 200,
-    headers: {
-      'Content-type': 'application/json'
-    }
-  });
-};
 
-global.fetch = vi.fn(
-  (input: RequestInfo | URL, init?: RequestInit): Promise<Response> =>
-    Promise.resolve(
-      createMockResponse([
-        { id: 1, product_name: 'Plate', product_description: 'Round ceramic plate', product_price: '15.99', product_currency: 'USD', product_image_url: '/images/plate.jpg' },
-        { id: 2, product_name: 'Bowl', product_description: 'Deep wooden bowl', product_price: '12.99', product_currency: 'USD', product_image_url: '/images/bowl.jpg' }
-      ])
-    )
-);
-*/
 
 
 
