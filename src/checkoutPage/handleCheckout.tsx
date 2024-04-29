@@ -1,19 +1,18 @@
 import { loadStripe } from '@stripe/stripe-js'
 
-import { CartState} from '../state/cartState/cartTypes'
-import { UserState} from '../state/userState/userTypes'
-import { FormsState} from '../state/fromsState/formsTypes'
+import { CartState } from '../state/cartState/cartTypes'
+import { UserState } from '../state/userState/userTypes'
+import { FormsState } from '../state/fromsState/formsTypes'
 
-export async function handleCheckout(cartState:CartState, userState:UserState, formsState:FormsState, total:string) {
+export async function handleCheckout(cartState: CartState, userState: UserState, formsState: FormsState, total: string) {
   /*const { state:cartState, calcTotalWithDiscount} = useContext(CartContext);
   const {state:userState } = useContext(UserContext);
   const {state:formsState} = useContext(FormsContext);*/
   try {
     let billaddress = formsState.billing_address;
-    if(formsState.billing_address === '')
-      {
-        billaddress = formsState.address;
-      }
+    if (formsState.billing_address === '') {
+      billaddress = formsState.address;
+    }
     const bodyData = {
       items: cartState.items,
       metadata: {
@@ -26,7 +25,7 @@ export async function handleCheckout(cartState:CartState, userState:UserState, f
         token: userState.token,
         email: formsState.email,
         phone_number: formsState.phoneNumber,
-      
+
         baseurl: window.location.href,
       },
     }
@@ -36,13 +35,13 @@ export async function handleCheckout(cartState:CartState, userState:UserState, f
     // make a POST request to server to create a checkout session
     //const response = await fetch('https://localhost/payments/create-checkout-session', {
     const response = await fetch(`https://dtu62597.eduhost.dk:10132/payments/create-checkout-session`, {
-            
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(bodyData),
+
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
       },
+      body: JSON.stringify(bodyData),
+    },
     )
     const responseData = await response.json()
     const { sessionId } = responseData

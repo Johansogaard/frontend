@@ -6,58 +6,58 @@ import { UserContext } from "../state/userState/userContext.tsx";
 //import {CartContext} from "../state/cartState/cartContext";
 import React, { useState, useContext } from 'react';
 //import { handleCheckout } from './handleCheckout.tsx'
-import { Helmet, HelmetProvider} from 'react-helmet-async'
+import { Helmet, HelmetProvider } from 'react-helmet-async'
 import { handleCheckout } from './handleCheckout.tsx'
 import { CheckoutMenuBar } from './checkoutMenuBar/checkoutMenuBar.tsx';
-import {CartContext} from "../state/cartState/cartContext";
+import { CartContext } from "../state/cartState/cartContext";
 
 export function CheckoutPage() {
   const cartContext = useContext(CartContext);
   const userContext = useContext(UserContext);
   const formsContext = useContext(FormsContext);
- const  {state} = useContext(FormsContext)
+  const { state } = useContext(FormsContext)
   const [termsChecked, setTermsChecked] = useState(false);
   const [newsChecked, setNewsChecked] = useState(false);
   const [error, setError] = useState('');
-   
 
 
 
-  
+
+
   const handleCheckoutClick = async () => {
     const errors = [];
 
     if (!state.email || !state.isEmailValid) {
-       errors.push('Email is not valid');
-     }
-      if (!state.postalCode || !state.isPostalCodeValid) {
-        errors.push('Postal code was not found in Denmark ');
-      }
-  
-     if (!state.first_name || !state.isFirstNameValid) {
-       errors.push('Fill out First Name');
-     }
-     if (!state.last_name || !state.isLastNameValid) {
-       errors.push('Fill out Last Name');
-     }
-      if (!state.phoneNumber || !state.isPhoneNumberValid) {
-          errors.push('Phone number does not exist');
-        }
-        if (state.vatNumber && !state.isVatNumberValid) {
-          errors.push('VAT number is not valid');
-        }
-     if (!state.address || !state.isAddressValid) {
-       errors.push('Address is not valid');
-     }
-     if (!termsChecked) {
-       errors.push('Please accept the Terms and Conditions to proceed.');
-     }
-  
-  if (errors.length > 0) {
-    setError(errors.join('<br>'));
-    // workaround because '\n' HTML don't work.
-    return;
-  }
+      errors.push('Email is not valid');
+    }
+    if (!state.postalCode || !state.isPostalCodeValid) {
+      errors.push('Postal code was not found in Denmark ');
+    }
+
+    if (!state.first_name || !state.isFirstNameValid) {
+      errors.push('Fill out First Name');
+    }
+    if (!state.last_name || !state.isLastNameValid) {
+      errors.push('Fill out Last Name');
+    }
+    if (!state.phoneNumber || !state.isPhoneNumberValid) {
+      errors.push('Phone number does not exist');
+    }
+    if (state.vatNumber && !state.isVatNumberValid) {
+      errors.push('VAT number is not valid');
+    }
+    if (!state.address || !state.isAddressValid) {
+      errors.push('Address is not valid');
+    }
+    if (!termsChecked) {
+      errors.push('Please accept the Terms and Conditions to proceed.');
+    }
+
+    if (errors.length > 0) {
+      setError(errors.join('<br>'));
+      // workaround because '\n' HTML don't work.
+      return;
+    }
 
     try {
       await handleCheckout(cartContext.state, userContext.state, formsContext.state, cartContext.calcTotalWithDiscount());
@@ -69,18 +69,18 @@ export function CheckoutPage() {
 
   return (
     <div className="checkout-page-container">
-         <HelmetProvider>
-      <Helmet>
-        <meta name="description" content="This is the checkout page" />
-      </Helmet>
+      <HelmetProvider>
+        <Helmet>
+          <meta name="description" content="This is the checkout page" />
+        </Helmet>
       </HelmetProvider>
       <CheckoutMenuBar step={1} />
       <section className="checkout-delivery">
-              <FormComponent />
-            </section>
-            <section className="checkout-deliveryZip">
-              <ZipForm />
-            </section>
+        <FormComponent />
+      </section>
+      <section className="checkout-deliveryZip">
+        <ZipForm />
+      </section>
 
       <section className="checkout-checkboxNews">
         <CheckboxNews
@@ -105,14 +105,14 @@ export function CheckoutPage() {
         </div>
       </section>
 
-      {error && <div className="error-message" dangerouslySetInnerHTML={{__html:error}}/>}
+      {error && <div className="error-message" dangerouslySetInnerHTML={{ __html: error }} />}
 
       <button
         className="checkout-button"
         onClick={() => {
-          
-            handleCheckoutClick()
-          
+
+          handleCheckoutClick()
+
         }}
       >
         Go to payment

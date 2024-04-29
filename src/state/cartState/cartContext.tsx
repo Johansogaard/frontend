@@ -1,14 +1,14 @@
 // CartContext.tsx
-import { createContext, useReducer, Dispatch, ReactNode , useEffect} from 'react';
+import { createContext, useReducer, Dispatch, ReactNode, useEffect } from 'react';
 import { Item } from '../../models/Item';
-import { CartState, CartAction} from './cartTypes';
+import { CartState, CartAction } from './cartTypes';
 import { cartReducer } from './cartReducer';
 
 const initialState: CartState = {
- items: [],
-  
+  items: [],
+
 };
-const init = (initialState:CartState) => {
+const init = (initialState: CartState) => {
   const savedItems = localStorage.getItem('cartItems');
   return {
     ...initialState,
@@ -23,7 +23,7 @@ export const CartContext = createContext<{
   dispatch: Dispatch<CartAction>;
   calcItemSubTotal: (itemId: number) => string;
   calcTotal: () => string;
-  remainingItemsForDiscount: (item:Item) => string;
+  remainingItemsForDiscount: (item: Item) => string;
   calcTotalItems: () => string;
   calcTotalDiscount: () => string;
   calcTotalWithDiscount: () => string;
@@ -43,78 +43,73 @@ export const CartContext = createContext<{
 
 
 export const CartProvider = ({ children }: CartProviderProps) => {
-  const [state, dispatch] = useReducer(cartReducer, initialState,init);
+  const [state, dispatch] = useReducer(cartReducer, initialState, init);
 
- // Update localStorage when items change
- useEffect(() => {
-  localStorage.setItem('cartItems', JSON.stringify(state.items));
-}, [state.items]);
+  // Update localStorage when items change
+  useEffect(() => {
+    localStorage.setItem('cartItems', JSON.stringify(state.items));
+  }, [state.items]);
 
 
   const calcTotal = () => {
-    let total =0;
+    let total = 0;
 
     for (let item of state.items) {
-     total += item.product.product_price*item.quantity;
+      total += item.product.product_price * item.quantity;
 
     }
 
     return total.toFixed(2);
 
   }
-  const calcTotalWithDiscount= () => {
+  const calcTotalWithDiscount = () => {
     const totalMinusDiscount = parseFloat(calcTotal()) - parseFloat(calcTotalDiscount());
     return totalMinusDiscount.toFixed(2);
   }
   //this method returns the total amount of discount for a order
   const calcTotalDiscount = () => {
-    let totalDiscount =0;
+    let totalDiscount = 0;
 
     for (let item of state.items) {
-      if(item.product.rebateQuantity)
-        {
-      if(item.quantity >= item.product.rebateQuantity){
-        totalDiscount += parseFloat(calcDiscountForItem(item));
+      if (item.product.rebateQuantity) {
+        if (item.quantity >= item.product.rebateQuantity) {
+          totalDiscount += parseFloat(calcDiscountForItem(item));
+        }
+
       }
-     
     }
-  }
     return totalDiscount.toFixed(2);
   }
   //This method returns the total amount of discount for a specific item and this is the way we calculate all discounts
   //so if there is 10 % discount if you buy 5 items and the total is 100 this method returns 10 eventho you add more items you only
   //get 10% discount for 5 items which is the way we give discounts
- const calcDiscountForItem = (item: Item) => { 
+  const calcDiscountForItem = (item: Item) => {
     let discount = 0;
-    if(item.product.rebateQuantity && item.product.rebatePercent)
-      {
-    discount = (item.product.product_price * item.product.rebateQuantity)/item.product.rebatePercent;
-      }
+    if (item.product.rebateQuantity && item.product.rebatePercent) {
+      discount = (item.product.product_price * item.product.rebateQuantity) / item.product.rebatePercent;
+    }
     return discount.toFixed(2);
   }
 
 
-  const calcTotalItems = ():string => {
+  const calcTotalItems = (): string => {
     return state.items.reduce((total, item) => total + item.quantity, 0).toFixed(0)
   }
   //returns the number of items remainging to get a discount 
-  const remainingItemsForDiscount = (item: Item):string => {
-    if(item.product.rebateQuantity)
-      {
-    if (item.product.rebateQuantity> item.quantity) {
-      return (item.product.rebateQuantity - item.quantity).toFixed(0)
-    }
-    else  
-    {
-      return '0';
-    }
+  const remainingItemsForDiscount = (item: Item): string => {
+    if (item.product.rebateQuantity) {
+      if (item.product.rebateQuantity > item.quantity) {
+        return (item.product.rebateQuantity - item.quantity).toFixed(0)
       }
-      else
-      {
-        return 'no discount available';
+      else {
+        return '0';
       }
+    }
+    else {
+      return 'no discount available';
+    }
   }
-  const calcItemSubTotalWithDiscount = (item: Item):string => {
+  const calcItemSubTotalWithDiscount = (item: Item): string => {
     const discountprice = item.quantity >= 5 ? item.product.product_price * 0.8 : item.product.product_price
     //20%  math calc discount HERE!!
     return (item.quantity * discountprice).toFixed(2)
@@ -125,18 +120,20 @@ export const CartProvider = ({ children }: CartProviderProps) => {
       return calcItemSubTotalWithDiscount(item)
     }
     return '0.00';
-    }
+  }
 
-  
- 
+
+
 
 
 
   return (
-    <CartContext.Provider value={{state,dispatch,calcItemSubTotal,calcTotal,remainingItemsForDiscount,calcTotalItems,  
-    calcTotalDiscount,
-    calcTotalWithDiscount,
-    calcDiscountForItem}}>
+    <CartContext.Provider value={{
+      state, dispatch, calcItemSubTotal, calcTotal, remainingItemsForDiscount, calcTotalItems,
+      calcTotalDiscount,
+      calcTotalWithDiscount,
+      calcDiscountForItem
+    }}>
       {children}
     </CartContext.Provider>
   );

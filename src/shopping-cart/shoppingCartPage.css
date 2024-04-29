@@ -1,6 +1,7 @@
 root {
   margin-left: 0px;
 }
+
 .shopping-cart-container {
   display: flex;
   width: 100%;
@@ -9,7 +10,7 @@ root {
   margin-top: 50px;
   margin-bottom: 100px;
   justify-content: center;
-  
+
 }
 
 .upselling {
@@ -29,6 +30,7 @@ root {
   background-color: #e6e0d7;
   border-radius: 5px;
 }
+
 .item-subtotal {
   margin-bottom: 10px;
 }
@@ -68,6 +70,7 @@ root {
   justify-content: space-between;
   align-items: center;
 }
+
 .checkout-button {
   width: 90%;
   max-width: 400px;
@@ -78,25 +81,32 @@ root {
 
   cursor: pointer;
 }
+
 .checkout-button {
-  color: white; /* Ensures text color is black for the link */
-  text-decoration: none; /* Optional: Removes underline from the link */
+  color: white;
+  /* Ensures text color is black for the link */
+  text-decoration: none;
+  /* Optional: Removes underline from the link */
 }
+
 .checkout-button:hover {
-  background-color: rgb(43, 41, 41); /* Change to whatever color you prefer */
+  background-color: rgb(43, 41, 41);
+  /* Change to whatever color you prefer */
   border-color: rgb(43, 41, 41);
 }
 
 .subtotal h2 {
   margin-top: 0;
-  color: black; /* Sort tekst på h2*/
+  color: black;
+  /* Sort tekst på h2*/
 }
 
 /* Generelle stilarter for subtotal og shopping cart */
 .subtotal p,
 .shopping-cart h2,
 .shopping-cart-container h3 {
-  color: black; /* Gør tekst sort for disse elementer */
+  color: black;
+  /* Gør tekst sort for disse elementer */
 }
 
 /* Stilarter for shopping cart container og dens børneelementer */
@@ -119,32 +129,47 @@ root {
   list-style-type: none;
   padding: 0;
 }
+
 .quantity-Checker {
-  display: flex; /* Establishes a flex container */
-  justify-content: space-between; /* Spaces children with equal space between them */
-  align-items: center; /* Centers children vertically */
-  width: 100px; /* Specific width of the container */
-  height: 30px; /* Specific height of the container */
-  background-color: white; /* Container background color */
-  border-radius: 10px; /* Rounded corners for the container */
+  display: flex;
+  /* Establishes a flex container */
+  justify-content: space-between;
+  /* Spaces children with equal space between them */
+  align-items: center;
+  /* Centers children vertically */
+  width: 100px;
+  /* Specific width of the container */
+  height: 30px;
+  /* Specific height of the container */
+  background-color: white;
+  /* Container background color */
+  border-radius: 10px;
+  /* Rounded corners for the container */
   /*padding: 5px;  Padding inside the container */
   /* box-sizing: border-box;  Ensures padding is included in the width/height */
 }
 
 .quantity-btn,
 .quantity-numb {
-  flex: 1; /* Each child will flex to take up equal space */
-  text-align: center; /* Center content horizontally */
-  background-color: transparent; /* Background color for buttons if needed */
-  border: none; /* Removes border for buttons */
-  cursor: pointer; /* Cursor changes to pointer to indicate a button */
+  flex: 1;
+  /* Each child will flex to take up equal space */
+  text-align: center;
+  /* Center content horizontally */
+  background-color: transparent;
+  /* Background color for buttons if needed */
+  border: none;
+  /* Removes border for buttons */
+  cursor: pointer;
+  /* Cursor changes to pointer to indicate a button */
   /* margin: 0 5px;  Margin between elements */
   /* padding: 10px 0; Padding for larger clickable area */
 }
 
 .quantity-numb {
-  margin: 0; /* No margin for the number to center it between buttons */
+  margin: 0;
+  /* No margin for the number to center it between buttons */
 }
+
 .item-container {
   display: flex;
   justify-content: space-between;
@@ -152,29 +177,41 @@ root {
 
 /* Produktbillede */
 .item-image {
-  width: 100px; /* Adjust based on your needs */
-  height: auto; /* Maintains aspect ratio */
-  object-fit: contain; /* Ensures the image covers the area without distortion */
-  flex: none; /* Prevents the image from growing or shrinking */
-  margin-right: 20px; /* Adds some space between the image and the item info */
+  width: 100px;
+  /* Adjust based on your needs */
+  height: auto;
+  /* Maintains aspect ratio */
+  object-fit: contain;
+  /* Ensures the image covers the area without distortion */
+  flex: none;
+  /* Prevents the image from growing or shrinking */
+  margin-right: 20px;
+  /* Adds some space between the image and the item info */
 }
+
 .item-info {
   display: flex;
   flex-direction: column;
   text-align: left;
   flex: 1;
 }
+
 .item-info h1 {
-  font-size: 20px; /* Specific size for h1 */
-  margin: 0 0 10px 0; /* Removes default margin and adds some space below */
+  font-size: 20px;
+  /* Specific size for h1 */
+  margin: 0 0 10px 0;
+  /* Removes default margin and adds some space below */
 }
 
 .item-info span {
-  font-size: 14px; /* Specific size for span */
+  font-size: 14px;
+  /* Specific size for span */
 }
+
 .item-pricing {
   align-items: right;
 }
+
 .remove-btn {
   background-color: transparent;
   flex-grow: 0;
@@ -183,12 +220,14 @@ root {
   cursor: pointer;
   margin-left: 160px;
 }
+
 .item-pricing-lineTwo {
   display: flex;
 
   justify-content: space-between;
   align-items: center;
 }
+
 .item-pricing-total {
   display: flex;
   justify-content: space-between;
@@ -199,10 +238,12 @@ root {
     flex-direction: column;
     align-items: center;
   }
+
   .total {
     width: 90%;
     margin-right: 50px;
   }
+
   .shopping-cart {
     width: 90%;
     margin-bottom: 20px;
@@ -227,7 +268,8 @@ root {
 
 .small-input {
   width: 50%;
-  max-width: 260px; /* Half of 581px */
+  max-width: 260px;
+  /* Half of 581px */
   min-width: 50px;
 }
 
@@ -235,56 +277,75 @@ root {
   .small-input {
     width: 100%;
   }
+
   .item-info h1 {
-    font-size: 16px; /* Smaller font size for smaller screens */
+    font-size: 16px;
+    /* Smaller font size for smaller screens */
   }
+
   .item-info span {
-    font-size: 12px; /* Smaller font size for smaller screens */
+    font-size: 12px;
+    /* Smaller font size for smaller screens */
   }
 }
+
 @media (max-width: 450px) {
+
   .price-pr-item-tag,
   .price-tag {
-    display: none; /* Hides the price per item on smaller screens */
+    display: none;
+    /* Hides the price per item on smaller screens */
   }
+
   .remove-btn {
     margin-left: 50px;
   }
 }
 
 hr {
-  border: none; /* Removes the default border */
-  height: 1px; /* Sets the thickness of the line */
-  background-color: black; /* Sets the color of the line */
-  margin: 20px 0; /* Adds top and bottom spacing */
+  border: none;
+  /* Removes the default border */
+  height: 1px;
+  /* Sets the thickness of the line */
+  background-color: black;
+  /* Sets the color of the line */
+  margin: 20px 0;
+  /* Adds top and bottom spacing */
 }
 
 /*For the pop out shopping cart */
 
 .item-container-popOut {
   display: flex;
-  align-items: flex-start; /* Aligns items at the start of the flex container */
+  align-items: flex-start;
+  /* Aligns items at the start of the flex container */
 }
 
 .item-image-popOut {
-  width: 100px; /* Set fixed width or as needed */
-  height: auto; /* Maintain aspect ratio */
-  margin-right: 20px; /* Spacing between image and details */
+  width: 100px;
+  /* Set fixed width or as needed */
+  height: auto;
+  /* Maintain aspect ratio */
+  margin-right: 20px;
+  /* Spacing between image and details */
 }
 
 .item-details {
-  flex: 1; /* Takes up the remaining space */
+  flex: 1;
+  /* Takes up the remaining space */
   display: flex;
   flex-direction: column;
 }
 
 .item-info {
-  flex-grow: 1; /* Allows the info area to take up any extra space */
+  flex-grow: 1;
+  /* Allows the info area to take up any extra space */
 }
 
 .quantity-Checker {
   display: flex;
-  justify-content: space-between; /* Spreads out the - and + buttons */
+  justify-content: space-between;
+  /* Spreads out the - and + buttons */
   align-items: center;
 }
 

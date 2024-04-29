@@ -12,7 +12,7 @@
     width: 90%;
     padding-bottom: 20px ;
      display: flex;
-     align items : center
+    
       flex-direction: column;
 grid-template-columns: repeat(2, 1fr);
 
@@ -39,7 +39,7 @@ grid-template-columns: repeat(2, 1fr);
 
 .zipform-container {
   margin-bottom: 10px;
-  align
+
   gap: 10px;
 }
 

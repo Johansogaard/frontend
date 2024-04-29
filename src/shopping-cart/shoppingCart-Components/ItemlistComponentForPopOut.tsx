@@ -1,51 +1,51 @@
 import { CartContext } from '../../state/cartState/cartContext'
-import {useContext  } from 'react'
-import {Item} from '../../models/Item'
+import { useContext } from 'react'
+import { Item } from '../../models/Item'
 import { Link } from 'react-router-dom'
 import deleteIcon from '../../assets/delete.svg'
 
 export function ItemListComponent() {
   console.log('ItemListComponent rendered')
-  const { state} = useContext(CartContext);
- 
+  const { state } = useContext(CartContext);
 
-  
-  return(
+
+
+  return (
     <>
-    {state.items.length === 0 ? (
-      <>
-      <p>Cart is empty</p>
-      <button>
-        <Link to="/all-products" className="link">
-          Continue shopping
-        </Link>
-      </button>
-   
+      {state.items.length === 0 ? (
+        <>
+          <p>Cart is empty</p>
+          <button>
+            <Link to="/all-products" className="link">
+              Continue shopping
+            </Link>
+          </button>
 
-    
-  </>
-    
-    ) : (
-<ul id="cart-items" className="unsortList">
-{state.items.map((item) => (
-          <li key={item.product.product_id}>
-            <ShoppingCartItem item={item} />
-          </li>
-        ))}
-</ul>
-    )}
-</>
+
+
+        </>
+
+      ) : (
+        <ul id="cart-items" className="unsortList">
+          {state.items.map((item) => (
+            <li key={item.product.product_id}>
+              <ShoppingCartItem item={item} />
+            </li>
+          ))}
+        </ul>
+      )}
+    </>
   )
 }
 
 
-function ShoppingCartItem({item}: {item: Item}) {
+function ShoppingCartItem({ item }: { item: Item }) {
   const { dispatch } = useContext(CartContext);
   const handleProductQuantity = (product_Id: number, quantity: number) => {
-    dispatch({type: 'CART_UPDATE_PRODUCT_QUANTITY', payload: {product_Id, quantity}});
+    dispatch({ type: 'CART_UPDATE_PRODUCT_QUANTITY', payload: { product_Id, quantity } });
   };
   const handleRemoveItem = (product_Id: number) => {
-    dispatch({type: 'CART_REMOVE_PRODUCT', payload: {product_Id}});
+    dispatch({ type: 'CART_REMOVE_PRODUCT', payload: { product_Id } });
   }
   return (
     <section>
@@ -71,7 +71,7 @@ function ShoppingCartItem({item}: {item: Item}) {
                   +
                 </button>
                 <button className='remove-btn1' onClick={() => handleRemoveItem(item.product.product_id)} style={{ cursor: 'pointer' }}>
-                    <img src={deleteIcon} alt='delete' className='remove-image' />
+                  <img src={deleteIcon} alt='delete' className='remove-image' />
                 </button>
               </div>
             </div>

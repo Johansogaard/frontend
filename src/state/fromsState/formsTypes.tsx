@@ -43,12 +43,12 @@ export type FormsAction =
   | { type: 'SET_IS_VAT_NUMBER_VALID'; payload: { isVatNumberValid: boolean } }
   | { type: 'ZIPFORM_UPDATE_POSTAL_CODES'; payload: { postalCodes: PostalCodeData[] } }
   | { type: 'ZIPFORM_UPDATE_POSTAL_CODE'; payload: { postalCode: string } }
-  | { type: 'ZIPFORM_UPDATE_POSTAL_CODE_SUCCESS'; payload: { city: string,postalCode: string } }
-  | { type: 'ZIPFORM_UPDATE_POSTAL_CODE_FAILURE'; payload: {  } }
+  | { type: 'ZIPFORM_UPDATE_POSTAL_CODE_SUCCESS'; payload: { city: string, postalCode: string } }
+  | { type: 'ZIPFORM_UPDATE_POSTAL_CODE_FAILURE'; payload: {} }
   | { type: 'ZIPFORM_UPDATE_MESSAGE'; payload: { message: string } }
   | { type: 'ZIPFORM_UPDATE_CITY'; payload: { city: string } }
   | { type: 'FORM_UPDATE_ADDRESS'; payload: { address: string } }
   | { type: 'FORM_UPDATE_COUNTRY'; payload: { country: string } }
   | { type: 'FORM_UPDATE_BILLING_ADDRESS'; payload: { billing_address: string } }
   | { type: 'FORM_UPDATE_COMPANY_NAME'; payload: { company_name: string } }
-  | {type: 'FORM_UPDATE_USERTYPE'; payload: { userType: string }}
+  | { type: 'FORM_UPDATE_USERTYPE'; payload: { userType: string } }
