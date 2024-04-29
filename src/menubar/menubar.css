@@ -2,29 +2,35 @@
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 5; 
-  
+  z-index: 5;
+
 }
 
 .menubar-placeholder {
   height: 60px;
 }
+
 .menubar-container {
   display: flex;
-  width: 100%; /* Ensure it spans the full width */
+  width: 100%;
+  /* Ensure it spans the full width */
   background-color: #ececec;
   backdrop-filter: blur(10px);
   background-color: rgba(236, 236, 236, 0.7);
-  z-index: 4; 
+  z-index: 4;
 
 }
+
 .menubar-container nav {
   display: flex;
-  align-items: center; /* This will vertically center the icons */
+  align-items: center;
+  /* This will vertically center the icons */
   /* Adjust the space between icons */
-    justify-content: center; /* Add this line */
+  justify-content: center;
+  /* Add this line */
 
 }
+
 .menu-items {
   display: flex;
 
@@ -32,35 +38,42 @@
   align-items: center;
   width: 100%;
 }
+
 .end-icons {
   display: flex;
   justify-content: flex-end;
 
   margin-right: 1%;
 }
+
 .coffe-logo {
   display: flex;
   justify-content: flex-start;
   margin-top: 5px;
-  
+
   margin-left: 1%;
 }
+
 .menu-item {
   margin-right: 20px;
   color: black;
-  
+
 }
 
 
 .basket-icon {
-  margin-right: 5px; /* Adds some space between the icons */
+  margin-right: 5px;
+  /* Adds some space between the icons */
   margin-left: 5px;
   background-color: none;
 }
+
 .basket-icon-button {
   background-color: none;
   border: none;
   cursor: pointer;
+  outline: none;
+  /* Disables the default browser outline */
 }
 
 .menu-button {
@@ -70,25 +83,29 @@
 .exit-button {
   display: none;
 }
+
 @media (max-width: 1220px) {
-  
-  
+
+
   .menubar-container {
     display: flex;
-    width: 100%; /* Ensure it spans the full width */
+    width: 100%;
+    /* Ensure it spans the full width */
     backdrop-filter: none;
 
     background-color: #ececec;
-  
-  
+
+
   }
+
   .fixed-menubar {
     display: flex;
-    width: 100%; /* Ensure it spans the full width */
+    width: 100%;
+    /* Ensure it spans the full width */
     background-color: #ececec;
     backdrop-filter: none;
-    
-    
+
+
   }
 
 
@@ -96,11 +113,12 @@
     justify-content: center;
     width: 100%;
   }
+
   .menu-button {
     display: block;
     padding: 0;
-  margin-left: 1%;
-  margin-right: 55px;
+    margin-left: 1%;
+    margin-right: 55px;
   }
 
   .menu-items {
@@ -118,15 +136,16 @@
     flex-direction: column;
     z-index: 2;
   }
+
   .menu-item {
 
     margin-top: 5px;
     height: 40px;
     display: flex;
-   
+
   }
 
-  
+
   .menu-items.open {
     transform: translateX(0);
     align-items: flex-end;
@@ -134,7 +153,7 @@
     z-index: 2;
 
     backdrop-filter: none;
-  background-color: #e6e0d7;
+    background-color: #e6e0d7;
   }
 
   .exit-button {
@@ -143,6 +162,7 @@
     background-color: #e6e0d7;
     color: black;
   }
+
   .overlay {
     position: fixed;
     top: 0;

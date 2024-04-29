@@ -1,30 +1,29 @@
-import {useEffect,useContext} from 'react'
+import { useEffect, useContext } from 'react'
 import ProductListComponent from './productsPage-Components/productsListComponent'
-import {ProductContext } from '../state/productlistState/productContext'
+import { ProductContext } from '../state/productlistState/productContext'
 import { Category } from '../models/Category';
 import './productsPage.css'
 import { Menubar } from '../menubar/menubar'
 import { Topbar } from '../topbar/topBar'
-import { Helmet, HelmetProvider} from 'react-helmet-async'
+import { Helmet, HelmetProvider } from 'react-helmet-async'
 
-export function AllProductsPage(){
-  const {state,dispatch} = useContext(ProductContext);
+export function AllProductsPage() {
+  const { state, dispatch } = useContext(ProductContext);
   const thisCategory = Category.all
   useEffect(() => {
-     if(state.category !==thisCategory )
-      {
-        
-        dispatch({type: 'PRODUCT_LIST_CATEGORY', payload : {category: thisCategory}});
-        
-      }
+    if (state.category !== thisCategory) {
+
+      dispatch({ type: 'PRODUCT_LIST_CATEGORY', payload: { category: thisCategory } });
+
+    }
   }, [])
   return (
     <>
       {' '}
       <HelmetProvider>
-      <Helmet>
-        <meta name="description" content="This is the all products page" />
-      </Helmet>
+        <Helmet>
+          <meta name="description" content="This is the all products page" />
+        </Helmet>
       </HelmetProvider>
       <Topbar />
       <Menubar />

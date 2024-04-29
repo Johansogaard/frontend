@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom' // Importér Link fra react-router-dom
 import { Menubar } from '../menubar/menubar'
 import { Topbar } from '../topbar/topBar'
 import './landingPage.css'
-import { Helmet,HelmetProvider } from 'react-helmet-async'
+import { Helmet, HelmetProvider } from 'react-helmet-async'
 const LandingPage: React.FC = () => {
   return (
     <div className="landingPageContainer">
       <HelmetProvider>
-      <Helmet>
-        <meta name="description" content="This is the landing page" />
-      </Helmet>
+        <Helmet>
+          <meta name="description" content="This is the landing page" />
+        </Helmet>
       </HelmetProvider>
       <Topbar />
       <Menubar />

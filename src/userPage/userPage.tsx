@@ -4,7 +4,7 @@ import { Menubar } from '../menubar/menubar'
 import { Topbar } from '../topbar/topBar'
 import './userPage.css'
 import { Helmet, HelmetProvider } from 'react-helmet-async'
-import {Order} from '../models/Orders'
+import { Order } from '../models/Orders'
 
 export function UserPage() {
   const { state, dispatch, login, register } = useContext(UserContext)
@@ -13,8 +13,8 @@ export function UserPage() {
   const [customer_password, setPassword] = useState('')
   const [customer_name, setName] = useState('')
   const [phone_number, setPhonenumber] = useState('')
- 
- 
+
+
   async function handleLogin(e: React.FormEvent) {
     //stops the page from refreshing like a submit button would do normally in a form
     //so we can handle it asynchronusly
@@ -26,22 +26,22 @@ export function UserPage() {
   }
   async function handleSignup(e: React.FormEvent) {
     e.preventDefault()
-    
+
     register({ email, customer_password, customer_name, phone_number })
-    
+
   }
-  useEffect(() => { 
-  console.log('Orders '+ state.orders)
-  },[state.orders])
+  useEffect(() => {
+    console.log('Orders ' + state.orders)
+  }, [state.orders])
 
 
- 
+
   return (
     <>
-    <HelmetProvider>
-      <Helmet>
-        <meta name="description" content="This is the user page" />
-      </Helmet>
+      <HelmetProvider>
+        <Helmet>
+          <meta name="description" content="This is the user page" />
+        </Helmet>
       </HelmetProvider>
       <Topbar />
       <Menubar />
@@ -50,22 +50,22 @@ export function UserPage() {
           <div className="LoggedIn">
             <h1>Logged in</h1>
             <p>Hello {state.customer_name}</p>
-              
+
             <button className='logout_btn' onClick={handleLogout}>Logout</button>
 
             <h3>Orders:</h3>
             {state.loadingOrders ? (
-        <p>Loading orders...</p> 
-      ) : state.orders === null || state.orders.length === 0 ? (
-        <p>No orders</p> 
-      ) : (
-        state.orders.map((order) => (
-          <OrderItem key={order.order_id} order={order} />
-        ))
-      )}
+              <p>Loading orders...</p>
+            ) : state.orders === null || state.orders.length === 0 ? (
+              <p>No orders</p>
+            ) : (
+              state.orders.map((order) => (
+                <OrderItem key={order.order_id} order={order} />
+              ))
+            )}
 
 
-          
+
           </div>
         ) : signup ? (
           <div className="signup-container">
@@ -161,13 +161,13 @@ function OrderItem({ order }: { order: Order }) {
   }
   return (
     <div className="order-item-container">
-     
+
       <p>Order Id #{order.order_id}</p>
       <p>Order total: {order.total_amount}</p>
       <p>Shipping Address: {order.shipping_address}</p>
       <p>Billing Address: {order.billing_address}</p>
       <p>Order date: {convertDate(order.order_date)}</p>
-      
+
     </div>
   );
 }

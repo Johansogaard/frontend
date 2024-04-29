@@ -7,12 +7,13 @@
 }
 
 .contentContainer {
-  background-color: rgba(255, 255, 255, 0.6); /* Gives the picture transparency */
+  background-color: rgba(255, 255, 255, 0.6);
+  /* Gives the picture transparency */
   padding: 42px;
   position: absolute;
   left: 0;
   bottom: 0;
-  top:90px;
+  top: 90px;
   width: 35%;
 }
 
@@ -24,13 +25,14 @@
   margin: 4px 2px 4px 2px;
   cursor: pointer;
   margin-top: 80px;
-  background-color:  #f9f9f9;
+  background-color: #f9f9f9;
 }
 
 @media (max-width: 768px) {
   .landingPageContainer h1 {
     font-size: 24px;
   }
+
   .landingPageContainer p {
     font-size: 14px;
   }
@@ -40,6 +42,7 @@
   .landingPageContainer h1 {
     font-size: 18px;
   }
+
   .landingPageContainer p {
     font-size: 10px;
   }
