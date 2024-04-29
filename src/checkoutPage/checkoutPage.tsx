@@ -5,8 +5,10 @@ import { Link } from "react-router-dom";
 //import { useCart } from "../shopping-cart/shoppingCart-Context/cartContext";
 import React, { useState } from 'react';
 //import { handleCheckout } from '../shopping-cart/shoppingCart-Components/handleCheckout.tsx'
-import { FormsManager } from './checkoutPage-Hooks/formsManager'
-import { CheckoutMenuBar } from './checkoutMenuBar/checkoutMenuBar.tsx'
+import { FormsManager } from './checkoutPage-Hooks/formsManager';
+import { CheckoutMenuBar } from './checkoutMenuBar/checkoutMenuBar.tsx';
+import { UserContext } from "../state/userState/userContext.tsx";
+import {CartContext} from "../state/cartState/cartContext";
 
 export function CheckoutPage() {
 
@@ -81,8 +83,12 @@ if (errors.length > 0) {
 
 
    return (
+
+
      <div className="checkout-page-container">
-       <CheckoutMenuBar/>
+
+           <CheckoutMenuBar step={1} />
+
        <section className="checkout-delivery">
 
          <FormComponent

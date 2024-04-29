@@ -20,6 +20,7 @@
 }
 
 
+
 .checkbox-wrapper {
     width: 400px; /* Proper workaround because the label and box where dependent on string length before...*/
     margin: 0 auto;

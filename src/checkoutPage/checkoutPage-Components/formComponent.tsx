@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './formComponent.css'
 
 
-interface FormComponentAnyFix {
+interface FormComponentProps {
   email: string;
   setEmail: (email: string) => void;
   phoneNumber: string;
@@ -21,6 +21,10 @@ interface FormComponentAnyFix {
   address: string;
   setAddress: (address: string) => void;
   isAddressValid: boolean;
+  companyName: string;
+  setCompanyName: (companyName: string) => void;
+  billingAddress: string;
+  setBillingAddress: (billingAddress: string) => void;
 }
 
 export function FormComponent({
@@ -42,104 +46,120 @@ export function FormComponent({
   address,
   setAddress,
   isAddressValid,
-  }:
-  FormComponentAnyFix) {
-
+  companyName,
+  setCompanyName,
+  billingAddress,
+  setBillingAddress,
+}: FormComponentProps) {
   const [userType, setUserType] = useState('privat');
 
-  const handleSubmit = (event: { preventDefault: () => void; }) => {
+  const handleSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
   };
 
- return (
-     <section className="form">
-       <h2>Customer information</h2>
-       <form className="form-content" onSubmit={handleSubmit}>
-         <div className="checkout-UserInfo">
+  return (
+    <section className="form">
+      <h2>Customer information</h2>
+      <form className="form-content" onSubmit={handleSubmit}>
+        <div className="checkout-UserInfo">
+          <select
+            id="userType"
+            name="usertype"
+            required
+            value={userType}
+            onChange={(e) => setUserType(e.target.value)}
+          >
+            <option value="privat">Private</option>
+            <option value="comp">Company</option>
+          </select>
 
-           <select
-             id="userType"
-             name="usertype"
-             required
-             value={userType}
-             onChange={(e) => setUserType(e.target.value)}
-           >
-             <option value="privat">Private</option>
-             <option value="comp">Company</option>
-           </select>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            style={{ borderColor: !isEmailValid ? '' : '' }}
+          />
+
+          <input
+            type="firstName"
+            name="firstName"
+            placeholder="First name"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            style={{ borderColor: !isFirstNameValid ? '' : '' }}
+          />
+
+          <input
+            type="lastName"
+            name="lastName"
+            placeholder="Last name"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            style={{ borderColor: !isLastNameValid ? '' : '' }}
+          />
+
+          <input
+            type="tel"
+            name="phone"
+            placeholder="Phone number"
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+            style={{ borderColor: !isPhoneNumberValid ? '' : '' }}
+            maxLength={8}
+          />
+
+          {userType === 'comp' && (
+            <>
+              <input
+                type="text"
+                name="companyName"
+                placeholder="Company Name (optional)"
+                value={companyName}
+                onChange={(e) => setCompanyName(e.target.value)}
+              />
+
+              <input
+                type="text"
+                name="vatNumber"
+                placeholder="VAT number (optional)"
+                value={vatNumber}
+                onChange={(e) => setVatNumber(e.target.value)}
+                style={{ borderColor: vatNumber && !isVatNumberValid ? '' : '' }}
+                maxLength={10}
+              />
+            </>
+          )}
+
+
+          {userType === 'comp' && (
             <input
+              type="text"
+              name="billingAddress"
+              placeholder="Billing Address (optional)"
+              value={billingAddress}
+              onChange={(e) => setBillingAddress(e.target.value)}
+            />
+          )}
 
-             type="email"
-             name="email"
-             placeholder="Email"
-             value={email}
-             onChange={(e) => setEmail(e.target.value)}
-             style={{ borderColor: !isEmailValid ? '' : '' }}
-           />
+          <input
+            type="address"
+            name="address"
+            placeholder="Address"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            style={{ borderColor: !isAddressValid ? '' : '' }}
+          />
 
-           <input
-             type="firstName"
-             name="firstName"
-             placeholder="First name"
-
-             value={firstName}
-             onChange={(e) => setFirstName(e.target.value)}
-             style={{ borderColor: !isFirstNameValid ? '' : '' }}
-           />
-
-         <input
-           type="lastName"
-           name="lastName"
-           placeholder="Last name"
-           value={lastName}
-           onChange={(e) => setLastName(e.target.value)}
-           style={{ borderColor: !isLastNameValid ? '' : '' }}
-         />
-
-           <input
-             type="tel"
-             name="phone"
-             placeholder="Phone number"
-             value={phoneNumber}
-             onChange={(e) => setPhoneNumber(e.target.value)}
-             style={{ borderColor: !isPhoneNumberValid ? '' : '' }}
-             maxLength={8}
-           />
-
-
-           {userType === 'comp' && (
-             <input
-               type="text"
-               name="vatNumber"
-               placeholder="VAT number (optional)"
-               value={vatNumber}
-               onChange={(e) => setVatNumber(e.target.value)}
-               style={{ borderColor: vatNumber && !isVatNumberValid ? '' : '' }}
-               maxLength={10}
-             />
-           )}
-
-
-
-
-           <input
-             type="address"
-             name="address"
-             placeholder="Address"
-             value={address}
-             onChange={(e) => setAddress(e.target.value)}
-             style={{ borderColor: !isAddressValid ? '' : '' }}
-           />
-
-
-           <select id="country" name="country" required>
-             <option value="dk">Denmark</option>
-           </select>
-         </div>
-       </form>
-     </section>
-   );
- }
+          <select id="country" name="country" required>
+            <option value="dk">Denmark</option>
+          </select>
+        </div>
+      </form>
+    </section>
+  );
+}
 type ZipFormType = {
   setPostalCode: (postalCode: string) => void;
   setPostalCodeValid: (isValid: boolean) => void;
