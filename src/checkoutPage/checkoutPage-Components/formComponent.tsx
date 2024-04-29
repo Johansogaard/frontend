@@ -45,7 +45,7 @@ export function FormComponent({
   }:
   FormComponentAnyFix) {
 
-  const [userType, setUserType] = useState('privat'); // Default to 'privat' (Private)
+  const [userType, setUserType] = useState('privat');
 
   const handleSubmit = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
@@ -56,7 +56,7 @@ export function FormComponent({
        <h2>Customer information</h2>
        <form className="form-content" onSubmit={handleSubmit}>
          <div className="checkout-UserInfo">
-           {/* User Type */}
+
            <select
              id="userType"
              name="usertype"
@@ -141,8 +141,8 @@ export function FormComponent({
    );
  }
 type ZipFormType = {
-  setPostalCode: (postalCode: string) => void; // Type for setPostalCode
-  setPostalCodeValid: (isValid: boolean) => void; // Type for setPostalCodeValid
+  setPostalCode: (postalCode: string) => void;
+  setPostalCodeValid: (isValid: boolean) => void;
 };
 function ZipForm({ setPostalCode, setPostalCodeValid }: ZipFormType) {
   type PostalCodeData = {

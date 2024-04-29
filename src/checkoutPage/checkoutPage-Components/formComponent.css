@@ -58,3 +58,7 @@ label.checkbox > input {
   height: 20px;
   border-radius: 5px;
 }
+
+.invalid-input {
+  border-color: red;
+}
