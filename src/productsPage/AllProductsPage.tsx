@@ -15,6 +15,7 @@ export function AllProductsPage(){
       {
         
         dispatch({type: 'PRODUCT_LIST_CATEGORY', payload : {category: thisCategory}});
+        
       }
   }, [])
   return (

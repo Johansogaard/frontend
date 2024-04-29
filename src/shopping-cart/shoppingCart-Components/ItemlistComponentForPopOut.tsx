@@ -4,7 +4,6 @@ import {Item} from '../../models/Item'
 import { Link } from 'react-router-dom'
 import deleteIcon from '../../assets/delete.svg'
 
-
 export function ItemListComponent() {
   console.log('ItemListComponent rendered')
   const { state} = useContext(CartContext);
@@ -18,7 +17,7 @@ export function ItemListComponent() {
       <p>Cart is empty</p>
       <button>
         <Link to="/all-products" className="link">
-          Cuntinue shopping
+          Continue shopping
         </Link>
       </button>
    
@@ -29,7 +28,9 @@ export function ItemListComponent() {
     ) : (
 <ul id="cart-items" className="unsortList">
 {state.items.map((item) => (
-          <ShoppingCartItem key={item.product.product_id} item={item} />
+          <li key={item.product.product_id}>
+            <ShoppingCartItem item={item} />
+          </li>
         ))}
 </ul>
     )}
