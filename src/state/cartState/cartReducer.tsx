@@ -40,6 +40,17 @@ export const cartReducer = (state: CartState, action: CartAction): CartState => 
     ).filter(item => item.quantity > 0)
   };
   }
+
+  case 'CART_UPSELL_PRODUCT': {
+    const { originalProductId, upsellProductId } = action.payload;
+    const updatedItems = state.items.map(item =>
+      item.product.product_id === originalProductId ? { ...item, product: { ...item.product, product_id: upsellProductId } } : item
+    );
+    return { ...state, items: updatedItems };
+  }
+
+
+
   case 'CART_CLEAR': {
     localStorage.setItem('cartItems', JSON.stringify([]));
     return { ...state, items: [] };
