@@ -11,10 +11,10 @@ import { Item } from '../../models/Item';
 export function ConfirmationPage() {
   const {dispatch } = useContext(CartContext);
 
-  const [success, setSucces] = useState(false);
+  //const [success, setSucces] = useState(false);
   const [receipt, setReceipt] = useState<Receipt | null>(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(String);
+
   // Get the Checkout Session ID from the URL
   const urlParams = new URLSearchParams(window.location.search);
   const sessionId = urlParams.get('session_id');
@@ -22,21 +22,22 @@ export function ConfirmationPage() {
   useEffect(() => {
     const fetchOrderDetails = async () => {
       if (!sessionId) {
-        setError('Session ID is null');
+       
         return;
       }
       try {
         setLoading(true); 
-        setError(''); 
+       
 
         const receipt = await callSuccess(sessionId);
         setReceipt(receipt); 
         dispatch({ type: 'CART_CLEAR' }); 
       } catch (err) {
         console.error(err);
-        setError( 'Failed to fetch order details');
+        
       } finally {
         setLoading(false); 
+        
    
       }
     };
@@ -48,7 +49,7 @@ export function ConfirmationPage() {
    
     return () => {
       setLoading(false); 
-      setError(''); 
+      
     };
   }, [sessionId, dispatch]);
     
@@ -63,6 +64,7 @@ export function ConfirmationPage() {
       <Topbar />
       <CheckoutMenuBar step={3} />                    
       <h1>Thanks for your order!</h1>
+      {loading ? (<p>Loading...</p>) : null}
       {receipt && (
         <div className='receipt_Container'>
           <h2>Receipt</h2>
