@@ -3,6 +3,7 @@ import { createContext, Dispatch, ReactNode, useReducer, useEffect } from "react
 import { formsReducer } from "./formsReducer";
 
 const initialState: FormsState = {
+    userType: 'privat',
     email: '',
     first_name: '',
     last_name: '',
@@ -18,6 +19,12 @@ const initialState: FormsState = {
     address: '',
     country: '',
     billing_address: '',
+    isFirstNameValid: false,
+    isLastNameValid: false,
+    company_name: '',
+    isAddressValid: false,
+    isPostalCodeValid: false,
+
   };
   
   
@@ -49,7 +56,18 @@ const initialState: FormsState = {
       useEffect(() => {
         validateVatNumber()
       }, [state.vatNumber])
-    
+      useEffect(() => {
+        validateAddress()
+      }, [state.address])
+      useEffect(() => {
+        validateLastName()
+      }, [state.last_name])
+      useEffect(() => {
+        validateFirstName()
+      }, [state.first_name])
+     
+
+
       const validateEmail = () => {
         var re = /\S+@\S+\.\S+/
         const isValid = re.test(state.email)
@@ -65,6 +83,18 @@ const initialState: FormsState = {
         // VAT nummer validering
         const isValid = /^\d{8}$/.test(state.vatNumber)
         dispatch({type: 'SET_IS_VAT_NUMBER_VALID', payload: {isVatNumberValid: isValid}})
+      }
+      const validateFirstName = () => {
+        const isValid = /^[a-zA-Zøæå -]{2,}$/.test(state.first_name);
+        dispatch({type: 'SET_IS_FIRST_NAME_VALID', payload: {isFirstNameValid: isValid}})
+      }
+      const validateLastName = () => {
+        const isValid = /^[a-zA-Zøæå -]{2,}$/.test(state.last_name);
+        dispatch({type: 'SET_IS_LAST_NAME_VALID', payload: {isLastNameValid: isValid}})
+      }
+      const validateAddress = () => {
+        const isValid = /^[a-zA-Z0-9øæå -]{3,}$/.test(state.address);
+        dispatch({type: 'SET_IS_ADDRESS_VALID', payload: {isAddressValid: isValid}})
       }
     
     

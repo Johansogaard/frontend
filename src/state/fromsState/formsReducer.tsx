@@ -1,3 +1,4 @@
+import { steps } from 'framer-motion';
 import { FormsAction, FormsState } from './formsTypes';
 
 
@@ -81,6 +82,45 @@ export const formsReducer = (state: FormsState, action: FormsAction): FormsState
         return{
         ...state,
         billing_address: action.payload.billing_address,
+        }
+        case 'FORM_UPDATE_COMPANY_NAME':
+            return{
+                ...state,
+                company_name: action.payload.company_name
+            }
+        case 'SET_IS_FIRST_NAME_VALID' :
+            return{
+                ...state,
+                isFirstNameValid : action.payload.isFirstNameValid
+            }
+         case 'SET_IS_LAST_NAME_VALID' :
+                return{
+                    ...state,
+                    isLastNameValid : action.payload.isLastNameValid
+                }
+        case 'SET_IS_ADDRESS_VALID' :
+            return{
+                ...state,
+                isAddressValid: action.payload.isAddressValid
+            }
+        case 'FORM_UPDATE_USERTYPE' :
+            return{
+                ...state,
+                userType: action.payload.userType
+            }
+        case 'ZIPFORM_UPDATE_POSTAL_CODE_SUCCESS' :
+        return{
+            ...state,
+            city: action.payload.city,
+            postalCode:action.payload.postalCode,
+            isPostalCodeValid: true
+        }
+        case 'ZIPFORM_UPDATE_POSTAL_CODE_FAILURE' :
+        return{
+            ...state,
+            city: '',
+            postalCode:'',
+            isPostalCodeValid: false
         }
 
     default: 

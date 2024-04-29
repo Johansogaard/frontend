@@ -8,8 +8,8 @@ import {
 } from '@testing-library/react'
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
 import { ShoppingCart } from '../../src/shopping-cart/shoppingCartPage'
-import { CartProvider } from '../../src/shopping-cart/shoppingCart-Context/cartContext'
-import { useCart } from '../../src/shopping-cart/shoppingCart-Context/cartContext'
+import { CartProvider,CartContext } from '../../src/state/cartState/cartContext'
+import { useContext } from 'react'
 import { ItemListComponent } from '../../src/shopping-cart/shoppingCart-Components/ItemlistComponent'
 
 vi.mock('../assets/placeholderItem.svg', () => {})
@@ -31,8 +31,9 @@ describe('ShoppingCart', () => {
   })
 
   it('adds an item to the cart', () => {
-    const { result } = renderHook(() => useCart(), { wrapper: CartProvider })
+    const { state,dispatch } = useContext(CartContext), { wrapper: CartProvider })
     act(() => {
+      dispatch({type: 'CART_UPDATE_PRODUCT_QUANTITY', payload: {product_Id, quantity}});
       result.current.addItem({
         product_id: 1,
         product_name: 'Coffee Mug',

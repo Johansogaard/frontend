@@ -7,33 +7,58 @@ import { UserContext } from "../state/userState/userContext.tsx";
 import React, { useState, useContext } from 'react';
 //import { handleCheckout } from './handleCheckout.tsx'
 import { Helmet, HelmetProvider} from 'react-helmet-async'
-import { FormsManager } from './checkoutPage-Hooks/formsManager';
+import { handleCheckout } from './handleCheckout.tsx'
 import { CheckoutMenuBar } from './checkoutMenuBar/checkoutMenuBar.tsx';
-import { UserContext } from "../state/userState/userContext.tsx";
 import {CartContext} from "../state/cartState/cartContext";
 
 export function CheckoutPage() {
   const cartContext = useContext(CartContext);
   const userContext = useContext(UserContext);
   const formsContext = useContext(FormsContext);
+ const  {state} = useContext(FormsContext)
   const [termsChecked, setTermsChecked] = useState(false);
   const [newsChecked, setNewsChecked] = useState(false);
   const [error, setError] = useState('');
-  const [postalCode, setPostalCode] = useState('');
-  const [isValidPostalCode, setIsValidPostalCode] = useState(false); // Corrected state name
+   
 
 
 
   
   const handleCheckoutClick = async () => {
-    if (!termsChecked) {
-      setError('Please accept the Terms and Conditions to proceed.')
-      return
-    }
-    if (!cartContext || !userContext || !formsContext) {
-      setError('Missing context information.');
-      return;
-    }
+    const errors = [];
+
+    if (!state.email || !state.isEmailValid) {
+       errors.push('Email is not valid');
+     }
+      if (!state.postalCode || !state.isPostalCodeValid) {
+        errors.push('Postal code was not found in Denmark ');
+      }
+  
+     if (!state.first_name || !state.isFirstNameValid) {
+       errors.push('Fill out First Name');
+     }
+     if (!state.last_name || !state.isLastNameValid) {
+       errors.push('Fill out Last Name');
+     }
+      if (!state.phoneNumber || !state.isPhoneNumberValid) {
+          errors.push('Phone number does not exist');
+        }
+        if (state.vatNumber && !state.isVatNumberValid) {
+          errors.push('VAT number is not valid');
+        }
+     if (!state.address || !state.isAddressValid) {
+       errors.push('Address is not valid');
+     }
+     if (!termsChecked) {
+       errors.push('Please accept the Terms and Conditions to proceed.');
+     }
+  
+  if (errors.length > 0) {
+    setError(errors.join('<br>'));
+    // workaround because '\n' HTML don't work.
+    return;
+  }
+
     try {
       await handleCheckout(cartContext.state, userContext.state, formsContext.state, cartContext.calcTotalWithDiscount());
     } catch (error) {
@@ -53,11 +78,7 @@ export function CheckoutPage() {
       <section className="checkout-delivery">
         <FormComponent />
       </section>
-      <section className="checkout-Comment">
-        <div>
-          <CommentTextField label="Order Comments :" />
-        </div>
-      </section>
+      <ZipForm/>
       <section className="checkout-checkboxNews">
         <CheckboxNews
           name="News"
@@ -75,16 +96,20 @@ export function CheckoutPage() {
           error={error} // Pass error state as a prop
         />
       </section>
-    
+      <section className="checkout-Comment">
+        <div>
+          <CommentTextField label="Order Comments :" />
+        </div>
+      </section>
 
-      {error && <div className="error-message">{error}</div>}
+      {error && <div className="error-message" dangerouslySetInnerHTML={{__html:error}}/>}
 
       <button
         className="checkout-button"
         onClick={() => {
-          if (termsChecked) {
+          
             handleCheckoutClick()
-          }
+          
         }}
       >
         Go to payment
