@@ -3,8 +3,18 @@ import './topBar.css'
 import instagram from '../assets/instagram.svg'
 import youtube from '../assets/youtube.svg'
 import tiktok from '../assets/tiktok.svg'
+import { useEffect } from 'react'
 
 export function Topbar() {
+
+  useEffect(() => {
+    document.body.classList.add('no-horizontal-scroll');
+    
+    return () => {
+      document.body.classList.remove('no-horizontal-scroll');
+    };
+  }, []);
+
   return (
     <section className="topbar-container">
       <aside className="social-icons">

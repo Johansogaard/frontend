@@ -24,17 +24,21 @@ export function Menubar() {
   const { calcTotalItems } = useContext(CartContext);
   const itemCount = Number(calcTotalItems());
 
-  const [isScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const preventHorizontalScroll = () => {
-      window.scrollTo(0, window.scrollY);
+    const checkScroll = () => {
+      if (window.scrollY > 30) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
     };
-  
-    window.addEventListener('scroll', preventHorizontalScroll);
-  
+
+    window.addEventListener('scroll', checkScroll);
+
     return () => {
-      window.removeEventListener('scroll', preventHorizontalScroll);
+      window.removeEventListener('scroll', checkScroll);
     };
   }, []);
   return (

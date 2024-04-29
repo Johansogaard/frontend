@@ -7,6 +7,10 @@
 
 }
 
+.no-horizontal-scroll {
+  overflow-x: hidden;
+}
+
 .social-icons {
   display: flex;
   justify-content: flex-start;
