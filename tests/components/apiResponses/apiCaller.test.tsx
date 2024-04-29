@@ -11,13 +11,14 @@ import { AllProductsPage } from '../../../src/productsPage/AllProductsPage'
 import { ProductProvider } from '../../../src/state/productlistState/productContext'
 import { BrowserRouter as Router } from 'react-router-dom';
 import { CartProvider } from '../../../src/state/cartState/cartContext'
+import { vi } from 'vitest';
 
 
 
 // Mock fetch globally
 //global.fetch = jest.fn();
 
-jest.mock('../../../src/customHooks/apiCaller', () => ({
+vi.mock('../../../src/customHooks/apiCaller', () => ({
     default: () => {
         
       const products = [
@@ -32,8 +33,8 @@ jest.mock('../../../src/customHooks/apiCaller', () => ({
         products,
         isLoading: false,
         error: null,
-        fetchAllProducts: jest.fn().mockResolvedValue(products),
-        fetchProductsByCategory: jest.fn().mockResolvedValue(products),
+        fetchAllProducts: vi.fn().mockResolvedValue(products),
+        fetchProductsByCategory: vi.fn().mockResolvedValue(products),
       };
     }
   }));

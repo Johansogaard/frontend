@@ -24,7 +24,7 @@ export function Menubar() {
   const { calcTotalItems } = useContext(CartContext);
   const itemCount = Number(calcTotalItems());
 
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isScrolled] = useState(false);
 
   useEffect(() => {
     const preventHorizontalScroll = () => {

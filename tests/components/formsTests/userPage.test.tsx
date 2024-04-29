@@ -3,31 +3,36 @@ import { render, screen } from '@testing-library/react';
 import { UserPage } from '../../../src/userPage/userPage'; // Adjust the path as necessary
 import { UserProvider } from '../../../src/state/userState/userContext';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { vi } from 'vitest';
 //import { ProductContext, ProductProvider } from '../../../src/state/productlistState/productContext'
 //import { CartProvider } from '../../../src/state/cartState/cartContext'
 
 
 // Mock for react-helmet-async
-jest.mock('react-helmet-async', () => ({
+vi.mock('react-helmet-async', () => ({
     Helmet: ({ children }: { children: React.ReactNode }) => <>{children}</>,
     HelmetProvider: ({ children }: { children: React.ReactNode }) => <>{children}</>
   }));
 
 
-describe('userPage', () => {
+describe('UserPage', () => {
     React
-    
-  it('renders login form by default', () => {
-    render(
-    <Router>
-        <UserProvider>
+    beforeEach(() => {
+      render(
+      <Router>
+          <UserProvider>
+        
+                <UserPage />
+             
+          </UserProvider>
+      </Router>
       
-              <UserPage />
-           
-        </UserProvider>
-    </Router>
+    )});
+
+
+  it('renders login form by default', () => {
+
     
-    );
 
     expect(screen.getByLabelText('Email')).toBeDefined();
     expect(screen.getByLabelText('Password')).toBeDefined();
