@@ -50,7 +50,7 @@ export function FormComponent() {
             placeholder="Phone number"
             value={state.phoneNumber}
             onChange={handlePhoneNumberChange}
-            style={{ borderColor: state.isPhoneNumberValid ? 'green' : 'red' }}
+            style={{ borderColor: state.isPhoneNumberValid ? 'green' : '#8B0000' }}
             required
             onKeyPress={(event) => {
               if (!/[0-9]/.test(event.key)) {
@@ -110,13 +110,13 @@ export function FormComponent() {
           style={{
             borderColor:
               state.vatNumber.length > 2 && !state.isVatNumberValid
-                ? 'red'
+                ? '#8B0000'
                 : state.vatNumber.length > 0 &&
                 state.vatNumber.length <= 2 &&
                     !/[a-zA-Z]/.test(state.vatNumber)
-                  ? 'red'
+                  ? '#8B0000'
                   : state.vatNumber.length >= 3 && !/[0-9]/.test(state.vatNumber)
-                    ? 'red'
+                    ? '#8B0000'
                     : state.isVatNumberValid
                       ? 'green'
                       : '',
@@ -144,7 +144,7 @@ export function FormComponent() {
         />
 
         {state.vatNumber.length === 10 && !state.isVatNumberValid && (
-          <p style={{ color: 'red' }}>VAT-number has to be 10 digits.</p>
+          <p style={{ color: '#8B0000' }}>VAT-number has to be 10 digits.</p>
         )}
 
         <input
@@ -163,10 +163,10 @@ export function FormComponent() {
           )}
         {state.email.length > 1 &&
           (!state.isEmailValid || !state.email.includes('@') || !state.email.includes('.')) && (
-            <p style={{ color: 'red' }}>Email is invalid.</p>
+            <p style={{ color: '#8B0000' }}>Email is invalid.</p>
           )}
         {!state.isPhoneNumberValid && (
-          <p style={{ color: 'red' }}>Phone number is invalid.</p>
+          <p style={{ color: '#8B0000' }}>Phone number is invalid.</p>
         )}
        
        
@@ -232,7 +232,7 @@ function ZipForm() {
         className="postalCode-input"
         maxLength={4}
       />
-      {state.message && <p style={{ color: 'red' }}>{state.message}</p>}
+      {state.message && <p style={{ color: '#8B0000' }}>{state.message}</p>}
 
       <input
         type="text"

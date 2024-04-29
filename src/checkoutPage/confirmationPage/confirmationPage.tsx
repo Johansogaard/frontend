@@ -6,6 +6,7 @@ import { CartContext } from '../../state/cartState/cartContext';
 import { CheckoutMenuBar } from "../checkoutMenuBar/checkoutMenuBar";
 import { Topbar } from '../../topbar/topBar'
 import { Item } from '../../models/Item';
+import { Helmet, HelmetProvider} from 'react-helmet-async'
 
 
 export function ConfirmationPage() {
@@ -61,6 +62,11 @@ export function ConfirmationPage() {
   return (
     
     <>
+     <HelmetProvider>
+      <Helmet>
+        <meta name="description" content="This is the confirmation page" />
+      </Helmet>
+      </HelmetProvider>
       <Topbar />
       <CheckoutMenuBar step={3} />                    
       <h1>Thanks for your order!</h1>
