@@ -10,10 +10,8 @@ import {
 } from '@testing-library/react'
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
 import LandingPage from '../../../src/landingPage/landingPage'
-import { ProductProvider } from '../../../src/productsPage/productsPage-Context/productsContext'
-import { CartProvider } from '../../../src/shopping-cart/shoppingCart-Context/cartContext'
-import { useProducts } from '../../../src/productsPage/productsPage-Context/productsContext'
-import { useCart } from '../../../src/shopping-cart/shoppingCart-Context/cartContext'
+import { ProductContext, ProductProvider } from '../../../src/state/productlistState/productContext'
+import { CartProvider } from '../../../src/state/cartState/cartContext'
 //import { ProductListComponent } from '../../src/productsPage/productsPage-Components/productsListComponent'
 import { BrowserRouter as Router } from 'react-router-dom';
 
@@ -78,7 +76,7 @@ vi.mock('../../src/customHooks/apiCaller', () => ({
     it('renders correctly', () => {
       expect(screen.getByText('Browse Products')).toBeDefined();
       expect(screen.getByText('Welcome to Our Home Collection')).toBeDefined();
-      expect(screen.getByText('Free shipping on all orders over 129 USD')).toBeDefined();
+      expect(screen.getByText('Free shipping on all orders today!')).toBeDefined();
     });
 
 });
