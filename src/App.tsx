@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Home from './landingPage/landingPage';
 import { AllProductsPage } from './productsPage/AllProductsPage';
 import { DinnerwarePage } from './productsPage/DinnerwarePage';
@@ -14,42 +14,44 @@ import { ProductProvider } from './state/productlistState/productContext';
 import { UserPage} from './userPage/userPage';
 import { UserProvider } from './state/userState/userContext';
 import { ConfirmationPage } from './checkoutPage/confirmationPage/confirmationPage';
-import { FormsManagerProvider } from './checkoutPage/checkoutPage-Components/FormsManagerContext';
+import { FormsProvider } from './state/fromsState/formsContext';
 
 
 const App = () => {
   return (
-    <FormsManagerProvider>
+    
       <Router>
         <UserProvider>
           <CartProvider>
             <ProductProvider>
+              <FormsProvider>
               {' '}
               {}
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/cart" element={<ShoppingCart />} />
-                <Route path="/all-products" element={<AllProductsPage />} />
-                <Route path="/dinnerware" element={<DinnerwarePage />} />
-                <Route path="/drinkware" element={<DrinkwarePage />} />
-                <Route path="/serveware" element={<ServewarePage />} />
-                <Route
-                  path="/table-accessories"
-                  element={<AccessoriesPage />}
-                />
-                <Route path="/checkout" element={<CheckoutPage />} />
-                <Route path="checkout/cancel" element={<CancelPage />} />
-                <Route path="/user" element={<UserPage />} />
-                <Route
-                  path="/checkout/success"
-                  element={<ConfirmationPage />}
-                />
-              </Routes>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                 <Route path="/cart" element={<ShoppingCart />} />
+                  <Route path="/all-products" element={<AllProductsPage />} />
+                  <Route path="/dinnerware" element={<DinnerwarePage />} />
+                  <Route path="/drinkware" element={<DrinkwarePage />} />
+                 <Route path="/serveware" element={<ServewarePage />} />
+                 <Route
+                   path="/table-accessories"
+                   element={<AccessoriesPage />}
+                  />
+                  <Route path="/checkout" element={<CheckoutPage />} />
+                 <Route path="checkout/cancel" element={<CancelPage />} />
+                 <Route path="/user" element={<UserPage />} />
+                  <Route
+                    path="/checkout/success"
+                   element={<ConfirmationPage />}
+                  />
+                </Routes>
+              </FormsProvider>
             </ProductProvider>
           </CartProvider>
         </UserProvider>
       </Router>
-    </FormsManagerProvider>
+    
   )
 }
 
