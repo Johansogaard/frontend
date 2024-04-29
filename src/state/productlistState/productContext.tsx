@@ -65,6 +65,7 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
     }
     catch(error: unknown)
     {
+      dispatch({type: 'PRODUCT_LIST_FAILURE'})
       const e = error as Error;  // Handle the error as an instance of Error
       console.error(e.message);
     }

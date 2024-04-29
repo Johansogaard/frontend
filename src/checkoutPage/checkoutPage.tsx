@@ -1,26 +1,37 @@
 import { FormComponent } from "./checkoutPage-Components/formComponent";
+import { FormsContext } from "../state/fromsState/formsContext.tsx";
 import { CheckoutMenuBar } from "./checkoutMenuBar/checkoutMenuBar";
 import './checkoutPage.css';
-
+import { UserContext } from "../state/userState/userContext.tsx";
 import {CartContext} from "../state/cartState/cartContext";
 import React, { useState, useContext } from 'react';
-import { handleCheckout } from '../shopping-cart/shoppingCart-Components/handleCheckout.tsx'
+import { handleCheckout } from './handleCheckout.tsx'
 import { Helmet, HelmetProvider} from 'react-helmet-async'
 
 export function CheckoutPage() {
-  const { state} = useContext(CartContext);
+  const cartContext = useContext(CartContext);
+  const userContext = useContext(UserContext);
+  const formsContext = useContext(FormsContext);
   const [termsChecked, setTermsChecked] = useState(false);
   const [newsChecked, setNewsChecked] = useState(false);
   const [error, setError] = useState("");
 
   
-  const handleCheckoutClick = () => {
+  const handleCheckoutClick = async () => {
     if (!termsChecked) {
       setError('Please accept the Terms and Conditions to proceed.')
       return
     }
-    //handleCheckout(items);
-    handleCheckout(state.items, "1", "shipping_address", "billing_address", 200020);
+    if (!cartContext || !userContext || !formsContext) {
+      setError('Missing context information.');
+      return;
+    }
+    try {
+      await handleCheckout(cartContext.state, userContext.state, formsContext.state, cartContext.calcTotalWithDiscount());
+    } catch (error) {
+      console.error('Error during checkout:', error);
+      setError('Failed to process checkout.');
+    }
   };
 
   return (

@@ -52,7 +52,31 @@ export const userReducer = (
         token: null,
         message: 'Registration failed: ' + action.payload.error,
       }
-
+    case 'FETCH_ORDERS':
+      return {
+        ...state,
+        loadingOrders: true,
+        ordersError: null,
+      }
+    case 'FETCH_ORDERS_SUCCESS':
+      return {
+        ...state,
+        loadingOrders: false,
+        orders: action.payload.orders,
+        ordersError: null,
+      }
+    case 'FETCH_ORDERS_FAILURE':
+      return {
+        ...state,
+        loadingOrders: false,
+        orders: null,
+        ordersError: action.payload.error,
+      }
+    case 'SET_USER_STATE':
+      return {
+        ...state,
+        ...action.payload.userState,
+      }
     default:
       return state
   }
