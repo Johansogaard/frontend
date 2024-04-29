@@ -1,4 +1,4 @@
-import { FormComponent } from "./checkoutPage-Components/formComponent";
+import ZipForm, { FormComponent } from "./checkoutPage-Components/formComponent";
 //import { CheckoutMenuBar } from "./checkoutMenuBar/checkoutMenuBar";
 import './checkoutPage.css';
 import { Link } from "react-router-dom";
@@ -35,6 +35,8 @@ export function CheckoutPage() {
   const [termsChecked, setTermsChecked] = useState(false);
   const [newsChecked, setNewsChecked] = useState(false);
   const [error, setError] = useState('');
+  const [postalCode, setPostalCode] = useState('');
+
 
 
 
@@ -45,6 +47,9 @@ export function CheckoutPage() {
   if (!email || !isEmailValid) {
      errors.push('Email is not valid');
    }
+    if (!postalCode || postalCode.length !== 4) {
+      errors.push('Postal code is shit');
+    }
 
    if (!firstName || !isFirstNameValid) {
      errors.push('Fill out First Name');
@@ -95,10 +100,12 @@ if (errors.length > 0) {
             isFirstNameValid={isFirstNameValid}
             isLastNameValid={isLastNameValid}
             isAddressValid={isAddressValid}         />
+
       </section>
+        <ZipForm setPostalCode={setPostalCode} />
 
 
-      <section className="checkout-checkboxNews">
+        <section className="checkout-checkboxNews">
         <CheckboxNews
           name="News"
           val={newsChecked}

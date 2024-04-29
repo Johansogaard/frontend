@@ -120,7 +120,6 @@ export function FormComponent({
            )}
 
 
-           <ZipForm />
 
 
            <input
@@ -142,42 +141,44 @@ export function FormComponent({
    );
  }
 
-function ZipForm() {
+function ZipForm({ setPostalCode }) {
   type PostalCodeData = {
-    nr: string
-    navn: string
-  }
-  const [postalCode, setPostalCode] = useState('')
-  const [postalCodes, setPostalCodes] = useState<PostalCodeData[]>([])
-  const [message, setMessage] = useState('')
-  const [city, setCity] = useState('')
+    nr: string;
+    navn: string;
+  };
+
+  const [postalCode, setPostalCodeLocal] = useState('');
+  const [postalCodes, setPostalCodes] = useState<PostalCodeData[]>([]);
+  const [message, setMessage] = useState('');
+  const [city, setCity] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('https://api.dataforsyningen.dk/postnumre')
-      const data = await response.json()
-      setPostalCodes(data)
-    }
-    fetchData()
-  }, [])
+      const response = await fetch('https://api.dataforsyningen.dk/postnumre');
+      const data = await response.json();
+      setPostalCodes(data);
+    };
+    fetchData();
+  }, []);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value
-    setPostalCode(value)
+    const value = event.target.value;
+    setPostalCodeLocal(value);
+    setPostalCode(value); // Update parent component with the postal code
 
     if (value.length === 4) {
       const postalCodeData = postalCodes.find(
         (item: { nr: string; navn: string }) => item.nr === value
-      )
+      );
       if (postalCodeData) {
-        setMessage('')
-        setCity(postalCodeData.navn)
+        setMessage('');
+        setCity(postalCodeData.navn);
       } else {
-        setMessage('Postal code is not valid')
-        setCity('')
+        setMessage('Postal code is not valid');
+        setCity('');
       }
     }
-  }
+  };
 
   return (
     <div className='zipform-container'>
@@ -201,8 +202,9 @@ function ZipForm() {
         className="city-input"
       />
     </div>
-  )
+  );
 }
+
 
 export default ZipForm
 
