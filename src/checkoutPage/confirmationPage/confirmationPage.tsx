@@ -71,7 +71,7 @@ export function ConfirmationPage() {
           <p>Billing Address: {receipt.billing_address}</p>
           
           {itemList}
-          <p className='total'>Total Amount: {receipt.total_amount}</p>
+          <p className='receipt_total'>Total Amount: {receipt.total_amount}</p>
         </div>
       )}
     </>
@@ -90,8 +90,8 @@ function ReceiptItem(item: Item) {
   return (
     <div className='receiptItem_Container'>
       <div className='receiptItem_Container_firstline'>
-      <p className='Item'>Item: {item.product.product_name}</p>
-      <p className='Quan'>Quantity: {item.quantity} X {item.product.product_price}</p>
+      <p className='receiptItem_Item'>Item: {item.product.product_name}</p>
+      <p className='receiptItem_Quan'>Quantity: {item.quantity} X {item.product.product_price}</p>
       </div>
       {item.product.rebateQuantity && item.product.rebateQuantity <= item.quantity ? (
   <p className='receiptItem_discount'>Discount: -{calcDiscountForItem(item)}</p>

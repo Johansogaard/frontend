@@ -4,7 +4,7 @@ import { Menubar } from '../menubar/menubar'
 import { Topbar } from '../topbar/topBar'
 import './userPage.css'
 import { Helmet, HelmetProvider } from 'react-helmet-async'
-import { s } from 'vitest/dist/reporters-P7C2ytIv'
+import {Order} from '../models/Orders'
 
 export function UserPage() {
   const { state, dispatch, login, register } = useContext(UserContext)
@@ -33,6 +33,9 @@ export function UserPage() {
   useEffect(() => { 
   console.log('Orders '+ state.orders)
   },[state.orders])
+
+
+ 
   return (
     <>
     <HelmetProvider>
@@ -46,9 +49,23 @@ export function UserPage() {
         {state.isAuthenticated ? (
           <div className="LoggedIn">
             <h1>Logged in</h1>
-            <span>Hello {state.customer_name}</span>
+            <p>Hello {state.customer_name}</p>
               
-            <button onClick={handleLogout}>Logout</button>
+            <button className='logout_btn' onClick={handleLogout}>Logout</button>
+
+            <h3>Orders:</h3>
+            {state.loadingOrders ? (
+        <p>Loading orders...</p> 
+      ) : state.orders === null || state.orders.length === 0 ? (
+        <p>No orders</p> 
+      ) : (
+        state.orders.map((order) => (
+          <OrderItem key={order.order_id} order={order} />
+        ))
+      )}
+
+
+          
           </div>
         ) : signup ? (
           <div className="signup-container">
@@ -136,4 +153,21 @@ export function UserPage() {
       </div>
     </>
   )
+}
+
+function OrderItem({ order }: { order: Order }) {
+  const convertDate = (date: string) => {
+    return new Date(date).toDateString();
+  }
+  return (
+    <div className="order-item-container">
+     
+      <p>Order Id #{order.order_id}</p>
+      <p>Order total: {order.total_amount}</p>
+      <p>Shipping Address: {order.shipping_address}</p>
+      <p>Billing Address: {order.billing_address}</p>
+      <p>Order date: {convertDate(order.order_date)}</p>
+      
+    </div>
+  );
 }

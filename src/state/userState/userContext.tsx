@@ -9,6 +9,7 @@ import {
 import { UserState, UserAction } from './userTypes'
 import { userReducer } from './userReducer'
 import { c } from 'vite/dist/node/types.d-aGj9QkWt'
+import { Order } from '../../models/Orders'
 
 // Define the initial state
 const initialState: UserState = {
@@ -53,7 +54,9 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     async (credentials: { email: string; customer_password: string }) => {
       try {
         const response = await fetch(
-          'https://dtu62597.eduhost.dk:10132/customer/login',
+          //`https://localhost:443/customer/login`,
+          //`https://dtu62597.eduhost.dk:10132/customer/login`,
+          'https://localhost:443/customer/login',
           {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -61,6 +64,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
           },
         )
         const data = await response.json()
+        console.log('Token data:', JSON.stringify(data.token));
         if (response.ok) {
           dispatch({
             type: 'LOGIN_SUCCESS',
@@ -137,7 +141,9 @@ export const UserProvider = ({ children }: UserProviderProps) => {
       if(checkCredentials === "Credentials are valid.") {
       try {
         const response = await fetch(
-          'https://dtu62597.eduhost.dk:10132/customer/register',
+          //`https://localhost:443/customer/register`,
+          //`https://dtu62597.eduhost.dk:10132/customer/register`,
+          'https://localhost:443/customer/register',
           {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -171,6 +177,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
 );
 useEffect(() => {
   if (state.isAuthenticated && state.token) {
+    console.log('Fetching orders')
     fetchOrders()
   }
 },[state.isAuthenticated])
@@ -178,8 +185,11 @@ useEffect(() => {
 const fetchOrders = useCallback(async () => {
   try {
     dispatch({ type: 'FETCH_ORDERS' })
+    console.log('Token string:', JSON.stringify(state.token));
     const response = await fetch(
-      `https://dtu62597.eduhost.dk:10132/orders/customer/${state.customer_id}`,
+      //`https://localhost:443/orders/customer/${state.customer_id}`,
+      //`https://dtu62597.eduhost.dk:10132/orders/customer/${state.customer_id}`
+      `https://localhost:443/orders/customer/${state.customer_id}`,
       {
         headers: {
           authorization: `Bearer ${state.token}`,
@@ -187,8 +197,11 @@ const fetchOrders = useCallback(async () => {
       },
     )
     const data = await response.json()
+    
     if (response.ok) {
-      dispatch({ type: 'FETCH_ORDERS_SUCCESS', payload: { orders: data } })
+      const orders: Order[] = data as Order[];
+      console.log('Orders:', orders)
+      dispatch({ type: 'FETCH_ORDERS_SUCCESS', payload: { orders: orders } })
     } else {
       dispatch({
         type: 'FETCH_ORDERS_FAILURE',

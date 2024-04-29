@@ -10,7 +10,7 @@
   width: 80%;
   
 }
-.total{
+.receipt_total{
  
   display: flex;
  width: 100%;
@@ -44,14 +44,14 @@
   margin-top: 0px;
   color : #0000FF;
 }
-.Item{
+.receiptItem_Item{
   display: flex;
   justify-content: start;
   width: 100%;
   margin-left: 5%;
   margin-bottom: 0px;
 }
-.Quan{
+.receiptItem_Quan{
   display: flex;
  width: 100%;
   justify-content: end;

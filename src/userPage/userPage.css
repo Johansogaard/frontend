@@ -48,3 +48,21 @@
 .failure {
   color: red;
 }
+.order-item-container{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: #e6e0d7;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+.LoggedIn{
+  width: 80%;
+ 
+}
+.logout_btn{
+  background-color: #e6e0d7;
+  border: 1px solid black;
+}
