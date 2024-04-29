@@ -8,6 +8,7 @@ export default function CancelPage() {
       </Helmet>
       </HelmetProvider>
       <h1>Payment cancelled!</h1>
+      <button onClick={() => window.location.href = '/'}>Back to home</button>
     </div>
   )
 }

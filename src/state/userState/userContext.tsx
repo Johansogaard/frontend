@@ -56,7 +56,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
         const response = await fetch(
           //`https://localhost:443/customer/login`,
           //`https://dtu62597.eduhost.dk:10132/customer/login`,
-          'https://localhost:443/customer/login',
+          'https://dtu62597.eduhost.dk:10132/customer/login',
           {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -143,7 +143,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
         const response = await fetch(
           //`https://localhost:443/customer/register`,
           //`https://dtu62597.eduhost.dk:10132/customer/register`,
-          'https://localhost:443/customer/register',
+          'https://dtu62597.eduhost.dk:10132/customer/register',
           {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -189,7 +189,7 @@ const fetchOrders = useCallback(async () => {
     const response = await fetch(
       //`https://localhost:443/orders/customer/${state.customer_id}`,
       //`https://dtu62597.eduhost.dk:10132/orders/customer/${state.customer_id}`
-      `https://localhost:443/orders/customer/${state.customer_id}`,
+      `https://dtu62597.eduhost.dk:10132/orders/customer/${state.customer_id}`,
       {
         headers: {
           authorization: `Bearer ${state.token}`,
