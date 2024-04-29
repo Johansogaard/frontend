@@ -226,6 +226,7 @@ function ZipForm({ setPostalCode, setPostalCodeValid }: ZipFormType) {
       />
 
 
+
       <input
         type="text"
         name="City"
