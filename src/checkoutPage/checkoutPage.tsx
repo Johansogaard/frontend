@@ -1,12 +1,16 @@
-import { FormComponent } from "./checkoutPage-Components/formComponent";
+import ZipForm, { FormComponent } from "./checkoutPage-Components/formComponent";
 import { FormsContext } from "../state/fromsState/formsContext.tsx";
-import { CheckoutMenuBar } from "./checkoutMenuBar/checkoutMenuBar";
+//import { CheckoutMenuBar } from "./checkoutMenuBar/checkoutMenuBar";
 import './checkoutPage.css';
 import { UserContext } from "../state/userState/userContext.tsx";
-import {CartContext} from "../state/cartState/cartContext";
+//import {CartContext} from "../state/cartState/cartContext";
 import React, { useState, useContext } from 'react';
-import { handleCheckout } from './handleCheckout.tsx'
+//import { handleCheckout } from './handleCheckout.tsx'
 import { Helmet, HelmetProvider} from 'react-helmet-async'
+import { FormsManager } from './checkoutPage-Hooks/formsManager';
+import { CheckoutMenuBar } from './checkoutMenuBar/checkoutMenuBar.tsx';
+import { UserContext } from "../state/userState/userContext.tsx";
+import {CartContext} from "../state/cartState/cartContext";
 
 export function CheckoutPage() {
   const cartContext = useContext(CartContext);
@@ -14,7 +18,11 @@ export function CheckoutPage() {
   const formsContext = useContext(FormsContext);
   const [termsChecked, setTermsChecked] = useState(false);
   const [newsChecked, setNewsChecked] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
+  const [postalCode, setPostalCode] = useState('');
+  const [isValidPostalCode, setIsValidPostalCode] = useState(false); // Corrected state name
+
+
 
   
   const handleCheckoutClick = async () => {
@@ -84,6 +92,7 @@ export function CheckoutPage() {
     </div>
   )
 }
+// FYI, could not directly use error as a list inside the check for link= to {} , since this cause it to be checked constantly and can be bypassed if you spam right click on the button.
 
 interface CheckboxProps {
   name: string

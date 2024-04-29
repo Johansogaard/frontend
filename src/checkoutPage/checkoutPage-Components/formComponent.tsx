@@ -45,142 +45,107 @@ export function FormComponent() {
           </select>
 
           <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            style={{ borderColor: !isEmailValid ? '' : '' }}
+          />
+
+          <input
+            type="firstName"
+            name="firstName"
+            placeholder="First name"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            style={{ borderColor: !isFirstNameValid ? '' : '' }}
+          />
+
+          <input
+            type="lastName"
+            name="lastName"
+            placeholder="Last name"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            style={{ borderColor: !isLastNameValid ? '' : '' }}
+          />
+
+          <input
             type="tel"
             name="phone"
             placeholder="Phone number"
-            value={state.phoneNumber}
-            onChange={handlePhoneNumberChange}
-            style={{ borderColor: state.isPhoneNumberValid ? 'green' : '#8B0000' }}
-            required
-            onKeyPress={(event) => {
-              if (!/[0-9]/.test(event.key)) {
-                event.preventDefault()
-              }
-            }}
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+            style={{ borderColor: !isPhoneNumberValid ? '' : '' }}
             maxLength={8}
           />
-          <input
-            type="text"
-            name="firstName"
-            placeholder="First name"
-            className="user-input"
-            value={state.first_name}
-            onChange={handleFirstNameChange}
-          />
-          <input
-            type="text"
-            name="lastName"
-            placeholder="Last name"
-            className="user-input"
-            value={state.last_name}
-            onChange={handleLastNameChange}
-          />
+
+          {userType === 'comp' && (
+            <>
+              <input
+                type="text"
+                name="companyName"
+                placeholder="Company Name (optional)"
+                value={companyName}
+                onChange={(e) => setCompanyName(e.target.value)}
+              />
+
+              <input
+                type="text"
+                name="vatNumber"
+                placeholder="VAT number (optional)"
+                value={vatNumber}
+                onChange={(e) => setVatNumber(e.target.value)}
+                style={{ borderColor: vatNumber && !isVatNumberValid ? '' : '' }}
+                maxLength={10}
+              />
+            </>
+          )}
+
+
+          {userType === 'comp' && (
+            <input
+              type="text"
+              name="billingAddress"
+              placeholder="Billing Address (optional)"
+              value={billingAddress}
+              onChange={(e) => setBillingAddress(e.target.value)}
+            />
+          )}
 
           <input
-            type="email"
-            name="email"
-            placeholder="Enter your email"
-            required
-            value={state.email}
-            onChange={handleEmailChange}
-            style={{
-              borderColor: !(state.email.length > 1 && state.isEmailValid)
-                ? 'black'
-                : 'black',
-            }} // Visuel feedback med grænsefarve rød eller grøn når det er korrekt/forkert/
+            type="address"
+            name="address"
+            placeholder="Address"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            style={{ borderColor: !isAddressValid ? '' : '' }}
           />
-          <select id="country" name="country" onChange={handleCountryChange} required>
+
+          <select id="country" name="country" required>
             <option value="dk">Denmark</option>
           </select>
-          <input type="text" name="address" placeholder="Address"  value={state.address}
-            onChange={handleAddressChange}/>
-
         </div>
-
-        <ZipForm />
-
-        <input
-          type="text"
-          name="company"
-          placeholder="Company VAT number (optional)"
-          className="vat-input"
-
-          value={state.vatNumber}
-          onChange={handleVatNumberChange}
-          style={{
-            borderColor:
-              state.vatNumber.length > 2 && !state.isVatNumberValid
-                ? '#8B0000'
-                : state.vatNumber.length > 0 &&
-                state.vatNumber.length <= 2 &&
-                    !/[a-zA-Z]/.test(state.vatNumber)
-                  ? '#8B0000'
-                  : state.vatNumber.length >= 3 && !/[0-9]/.test(state.vatNumber)
-                    ? '#8B0000'
-                    : state.isVatNumberValid
-                      ? 'green'
-                      : '',
-          }}
-          maxLength={10}
-          required
-          onKeyPress={(event) => {
-            const currentValue = state.vatNumber + event.key
-
-            //Lås for symboler.
-            if (!/^[0-9a-zA-Z]*$/.test(currentValue)) {
-              event.preventDefault()
-            }
-            if (currentValue.length <= 2 && !/[a-zA-Z]/.test(event.key)) {
-              event.preventDefault()
-            }
-            if (currentValue.length > 2 && !/[0-9]/.test(event.key)) {
-              event.preventDefault()
-            }
-            if (currentValue.length < 2 && /[0-9]/.test(event.key)) {
-              /* empty */
-            }
-          }}
-          
-        />
-
-        {state.vatNumber.length === 10 && !state.isVatNumberValid && (
-          <p style={{ color: '#8B0000' }}>VAT-number has to be 10 digits.</p>
-        )}
-
-        <input
-          type="text"
-          name="Other billing address"
-          placeholder="Other billing address"
-          className="billing-input"
-          value={state.billing_address}
-          onChange={handleBillingAddressChange}
-        />
-        {state.email.length > 1 &&
-          state.isEmailValid &&
-          state.email.includes('@') &&
-          state.email.includes('.') && (
-            <p style={{ color: 'green' }}>Email is valid.</p>
-          )}
-        {state.email.length > 1 &&
-          (!state.isEmailValid || !state.email.includes('@') || !state.email.includes('.')) && (
-            <p style={{ color: '#8B0000' }}>Email is invalid.</p>
-          )}
-        {!state.isPhoneNumberValid && (
-          <p style={{ color: '#8B0000' }}>Phone number is invalid.</p>
-        )}
-       
-       
       </form>
     </section>
-  )
+  );
 }
+type ZipFormType = {
+  setPostalCode: (postalCode: string) => void;
+  setPostalCodeValid: (isValid: boolean) => void;
+};
+function ZipForm({ setPostalCode, setPostalCodeValid }: ZipFormType) {
+  type PostalCodeData = {
+    nr: string;
+    navn: string;
+  };
 
-function ZipForm() {
-  const { state, dispatch } = useContext(FormsContext)
- /* const [postalCode, setPostalCode] = useState('')
-  const [postalCodes, setPostalCodes] = useState<PostalCodeData[]>([])
-  const [message, setMessage] = useState('')
-  const [city, setCity] = useState('')*/
+  const [postalCode, setPostalCodeLocal] = useState('');
+  const [postalCodes, setPostalCodes] = useState<PostalCodeData[]>([]);
+
+  const [city, setCity] = useState('');
+  const [, setIsValidPostalCode] = useState(false);
   const handlePostalCodesChange = (data : PostalCodeData[]) => {
     dispatch({type:'ZIPFORM_UPDATE_POSTAL_CODES',payload: {postalCodes: data}})
   }
@@ -193,7 +158,6 @@ function ZipForm() {
   const handleMessageChange = (message: string) => {
     dispatch({type:'ZIPFORM_UPDATE_MESSAGE',payload: {message: message}})
   }
-
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch('https://api.dataforsyningen.dk/postnumre')
@@ -219,7 +183,7 @@ function ZipForm() {
         handleCityChange('')
       }
     }
-  }
+  };
 
   return (
     <div className="zipform-container">
@@ -243,8 +207,9 @@ function ZipForm() {
         className="city-input"
       />
     </div>
-  )
+  );
 }
+
 
 export default ZipForm
 

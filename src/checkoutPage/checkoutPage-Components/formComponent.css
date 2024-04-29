@@ -11,6 +11,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
+  padding-right: 30px;
 }
 .form-content {
   margin-left: 3%;
@@ -22,7 +23,6 @@
 .zipform-container {
   margin-bottom: 10px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
   gap: 10px;
 }
 
