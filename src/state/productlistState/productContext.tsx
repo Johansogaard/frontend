@@ -33,7 +33,7 @@ interface ProductProviderProps {
 
 async function fetchGuestToken() {
   try {
-    const response = await fetch('https://127.0.0.1:3000/generate-guest-token', {  // Switch to HTTP and correct port if HTTPS isn't configured locally
+    const response = await fetch('https://127.0.0.1:443/api/generateguestToken', {  // Switch to HTTP and correct port if HTTPS isn't configured locally
         method: 'Get',
         headers: {
             'Content-Type': 'application/json',
@@ -87,7 +87,7 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
         path = '/' + state.category
       }
       console.log('fetchProducts: ' + state.category)
-      const response = await fetch(`http://127.0.0.1:3000/${path}`, {  // Assuming localhost for local development
+      const response = await fetch(`https://127.0.0.1:443/${path}`, {  // Assuming localhost for local development
       headers: {
         'Authorization': `Bearer ${token}`
       }
