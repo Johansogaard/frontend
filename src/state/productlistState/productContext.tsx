@@ -9,7 +9,8 @@ const initialState: ProductState = {
   products: null,
   category: null,
   isloading: false,
-  message: null
+  message: null,
+  guestToken: null
 };
 
 
@@ -30,15 +31,52 @@ interface ProductProviderProps {
   children: ReactNode;
 }
 
+async function fetchGuestToken() {
+  try {
+    const response = await fetch('https://127.0.0.1:3000/generate-guest-token', {  // Switch to HTTP and correct port if HTTPS isn't configured locally
+        method: 'Get',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+        
+    });
+    console.log('response' + response)
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    sessionStorage.setItem('guestToken', data.token);
+    console.log('token generated'+ data.token)
+  } catch (error) {
+    console.error("Failed to fetch guest token:", error);
+  }
+}
+/*
+useEffect(() => {
+  const guestToken = sessionStorage.getItem('guestToken');
+  if (!guestToken) {
+      fetchGuestToken();
+  }
+}, []);
+*/
+
 
 export const ProductProvider = ({ children }: ProductProviderProps) => {
   const [state, dispatch] = useReducer(productReducer, initialState);
+  const guestToken = sessionStorage.getItem('guestToken');
+
+  if (!guestToken) {
+    fetchGuestToken();
+    console.log('genereated token:'+ guestToken)
+  }
 
   useEffect(() => {
     if (state.category !== null) {
       fetchProducts();
     }
   }, [state.category]);
+
+  const token = localStorage.getItem('userToken') || sessionStorage.getItem('guestToken');
 
 
   const fetchProducts = useCallback(async () => {
@@ -49,8 +87,11 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
         path = '/' + state.category
       }
       console.log('fetchProducts: ' + state.category)
-      const response = await fetch('https://dtu62597.eduhost.dk:10132/products' + path);
-
+      const response = await fetch(`http://127.0.0.1:3000/${path}`, {  // Assuming localhost for local development
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
 
       if (!response.ok) {
         dispatch({ type: 'PRODUCT_LIST_FAILURE' })

@@ -6,6 +6,7 @@ export type ProductState = {
     category: Category | null;
     isloading: boolean;
     message: string | null;
+    guestToken: string | null
 };
 export type ProductAction =
     | { type: 'PRODUCT_LIST_REQUEST'; }
