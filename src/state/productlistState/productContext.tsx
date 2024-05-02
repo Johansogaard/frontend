@@ -31,44 +31,19 @@ interface ProductProviderProps {
   children: ReactNode;
 }
 
-async function fetchGuestToken() {
-  try {
-    const response = await fetch('https://127.0.0.1:443/api/generateguestToken', {  // Switch to HTTP and correct port if HTTPS isn't configured locally
-        method: 'Get',
-        headers: {
-            'Content-Type': 'application/json',
-        }
-        
-    });
-    console.log('response' + response)
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    const data = await response.json();
-    sessionStorage.setItem('guestToken', data.token);
-    console.log('token generated'+ data.token)
-  } catch (error) {
-    console.error("Failed to fetch guest token:", error);
-  }
-}
-/*
-useEffect(() => {
-  const guestToken = sessionStorage.getItem('guestToken');
-  if (!guestToken) {
-      fetchGuestToken();
-  }
-}, []);
-*/
+
 
 
 export const ProductProvider = ({ children }: ProductProviderProps) => {
   const [state, dispatch] = useReducer(productReducer, initialState);
-  const guestToken = sessionStorage.getItem('guestToken');
 
-  if (!guestToken) {
-    fetchGuestToken();
-    console.log('genereated token:'+ guestToken)
+  useEffect(() => {
+  if (state.guestToken == null) {
+    console.log('useffect called')
+      fetchGuestToken();
   }
+}, [state.guestToken]);
+
 
   useEffect(() => {
     if (state.category !== null) {
@@ -76,7 +51,7 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
     }
   }, [state.category]);
 
-  const token = localStorage.getItem('userToken') || sessionStorage.getItem('guestToken');
+  const token = sessionStorage.getItem('guestToken'); //localStorage.getItem('userToken') || sessionStorage.getItem('guestToken');
 
 
   const fetchProducts = useCallback(async () => {
@@ -110,6 +85,34 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
   }, [dispatch, state.category]);
 
 
+  async function fetchGuestToken() {
+
+    try {
+      const response = await fetch('https://127.0.0.1:443/api/generateguestToken', {  // Switch to HTTP and correct port if HTTPS isn't configured locally
+          method: 'Get',
+          headers: {
+              'Content-Type': 'application/json',
+          }
+          
+      });
+      console.log('response' + response)
+      if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      sessionStorage.setItem('guestToken', data.token);
+      const gt: string = data.token;
+      
+      dispatch({type: 'GUEST_SET', payload: { guestToken: gt}})
+      
+      console.log('token generated'+ data.token)
+      console.log('gt :'+gt)
+      
+      console.log('state token'+ state.guestToken)
+    } catch (error) {
+      console.error("Failed to fetch guest token:", error);
+    }
+  }
 
 
 

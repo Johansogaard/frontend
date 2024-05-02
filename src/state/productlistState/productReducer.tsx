@@ -10,7 +10,6 @@ export const productReducer = (state: ProductState, action: ProductAction): Prod
         isloading: true,
         products: null,
         message: 'Requesting products',
-        guestToken: null
       };
 
     case 'PRODUCT_LIST_SUCCESS':
@@ -19,7 +18,6 @@ export const productReducer = (state: ProductState, action: ProductAction): Prod
         isloading: false,
         products: action.payload.products,
         message: 'PRODUCT_LIST_SUCCESS',
-        guestToken: null
       };
     case 'PRODUCT_LIST_FAILURE':
       return {
@@ -27,7 +25,6 @@ export const productReducer = (state: ProductState, action: ProductAction): Prod
         isloading: false,
         products: null,
         message: 'PRODUCT_LIST_FAILURE',
-        guestToken: null
       }
     case 'PRODUCT_LIST_CATEGORY':
       return {
@@ -35,8 +32,14 @@ export const productReducer = (state: ProductState, action: ProductAction): Prod
         isloading: false,
         category: action.payload.category,
         message: 'PRODUCT_LIST_FAILURE',
-        guestToken: null
       }
+
+      case 'GUEST_SET':
+      return {
+        ...state,
+        guestToken: action.payload.guestToken
+      }
+
     default:
       return state;
 
