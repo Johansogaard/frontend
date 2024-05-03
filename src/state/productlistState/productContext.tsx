@@ -62,7 +62,7 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
         path = '/' + state.category
       }
       console.log('fetchProducts: ' + state.category)
-      const response = await fetch(`https://127.0.0.1:443/${path}`, {  // Assuming localhost for local development
+      const response = await fetch(`https://127.0.0.1:443/products/${path}`, {  // Assuming localhost for local development
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -101,13 +101,10 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
       }
       const data = await response.json();
       sessionStorage.setItem('guestToken', data.token);
-      const gt: string = data.token;
       
-      dispatch({type: 'GUEST_SET', payload: { guestToken: gt}})
+      dispatch({type: 'GUEST_SET', payload: { guestToken: data.token}})
       
-      console.log('token generated'+ data.token)
-      console.log('gt :'+gt)
-      
+    console.log('generated token' + data.token)
       console.log('state token'+ state.guestToken)
     } catch (error) {
       console.error("Failed to fetch guest token:", error);
