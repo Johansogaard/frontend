@@ -12,10 +12,10 @@ import { Helmet, HelmetProvider} from 'react-helmet-async'
 export function ConfirmationPage() {
   const {dispatch } = useContext(CartContext);
 
-  const [success, setSucces] = useState(false);
+  //const [success, setSucces] = useState(false);
   const [receipt, setReceipt] = useState<Receipt | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(String);
+  const [, setLoading] = useState(false);
+  const [, setError] = useState(String);
   // Get the Checkout Session ID from the URL
   const urlParams = new URLSearchParams(window.location.search);
   const sessionId = urlParams.get('session_id');

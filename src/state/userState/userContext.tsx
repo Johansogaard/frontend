@@ -8,7 +8,6 @@ import {
 } from 'react'
 import { UserState, UserAction } from './userTypes'
 import { userReducer } from './userReducer'
-import { c } from 'vite/dist/node/types.d-aGj9QkWt'
 import { Order } from '../../models/Orders'
 
 // Define the initial state
