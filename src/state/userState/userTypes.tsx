@@ -9,7 +9,7 @@ export type UserState = {
   orders: Order[] | null
   loadingOrders: boolean
   ordersError: String | null
-
+  guestToken: string | null
 }
 
 export type UserAction =
@@ -30,3 +30,5 @@ export type UserAction =
   | { type: 'FETCH_ORDERS_SUCCESS'; payload: { orders: Order[] } }
   | { type: 'FETCH_ORDERS_FAILURE'; payload: { error: String } }
   | { type: 'SET_USER_STATE'; payload: { userState: UserState } }
+  | { type: 'VALIDATE_GUESTTOKEN'; payload: { guestToken: string }}; 
+

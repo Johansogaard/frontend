@@ -77,6 +77,11 @@ export const userReducer = (
         ...state,
         ...action.payload.userState,
       }
+      case 'VALIDATE_GUESTTOKEN':
+      return {
+        ...state,
+        guestToken: action.payload.guestToken
+      }
     default:
       return state
   }

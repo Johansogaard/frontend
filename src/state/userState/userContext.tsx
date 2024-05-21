@@ -21,6 +21,7 @@ const initialState: UserState = {
   orders: null,
   loadingOrders: false,
   ordersError: null,
+  guestToken: null
 }
 
 interface UserProviderProps {
@@ -47,8 +48,12 @@ export const UserContext = createContext<{
   register: async () => { },
 })
 
+
+
 export const UserProvider = ({ children }: UserProviderProps) => {
   const [state, dispatch] = useReducer(userReducer, initialState)
+  const token = localStorage.getItem('userToken') || sessionStorage.getItem('guestToken');
+
 
   const login = useCallback(
     async (credentials: { email: string; customer_password: string }) => {
@@ -59,8 +64,9 @@ export const UserProvider = ({ children }: UserProviderProps) => {
           'https://dtu62597.eduhost.dk:10132/customer/login',
           {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
             body: JSON.stringify(credentials),
+            
           },
         )
         const data = await response.json()
